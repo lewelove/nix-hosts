@@ -32,13 +32,13 @@ Item {
         id: icon
         anchors.fill: parent
         fillMode: Image.PreserveAspectFit
-        mipmap: false
-        smooth: true
+        mipmap: true
+        smooth: false
         antialiasing: true
         
         // CHANGED: Source render size 48px
-        sourceSize.width: 48
-        sourceSize.height: 48
+        sourceSize.width: 24
+        sourceSize.height: 24
         
         source: root.cleanName 
                 ? `root:/assets/icons/${root.cleanName}.${root.currentExt}` 

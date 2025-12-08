@@ -4,7 +4,7 @@ import Quickshell.Widgets
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Effects
-import Qt5Compat.GraphicalEffects
+// import Qt5Compat.GraphicalEffects
 import "root:/" 
 
 Text {
@@ -44,14 +44,16 @@ Text {
     font: parent.font
   }
 
-  // Shadow Effect
-  DropShadow {
+  MultiEffect {
     anchors.fill: parent
     visible: parent.shadowEnabled
-    horizontalOffset: parent.shadowX
-    verticalOffset: parent.shadowY
-    color: parent.shadowColor
     source: textcopy
+    
+    shadowEnabled: parent.shadowEnabled
+    shadowColor: parent.shadowColor
+    shadowHorizontalOffset: parent.shadowX
+    shadowVerticalOffset: parent.shadowY
+    shadowBlur: 0.0 // Adjust if you want soft shadows
   }
 
   function wrapSymbols(text) {
