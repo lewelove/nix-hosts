@@ -1,0 +1,21 @@
+[general]
+timeout = "2s"
+hot_reload = true
+verbose = false
+
+# bitwarden popup
+[[handler]]
+on = "windowtitlev2"
+when = "(.*),(Extension: \\(Bitwarden Password Manager\\) - Bitwarden — Zen Browser)"
+then = """
+$HOME/.config/hypr/scripts/hyprwhenthen/popup-open.sh $REGEX_GROUP_1
+hyprctl dispatch sendshortcut ,Tab,
+hyprctl dispatch sendshortcut ,Tab,
+hyprctl dispatch sendshortcut ,Tab,
+hyprctl dispatch sendshortcut ,Tab,
+hyprctl dispatch sendshortcut ,Tab,
+"""
+[[handler]]
+on = "closewindow"
+when = "(.*)"
+then = "$HOME/.config/hypr/scripts/hyprwhenthen/popup-close.sh $REGEX_GROUP_1"
