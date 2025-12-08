@@ -11,13 +11,17 @@
     gcc
     tree
     killall
+    ydotool
+    wtype
 
     # Desktop
     fuzzel
     quickshell
     hyprpaper
+    hyprshot
     wlsunset
     xfce.thunar
+    bitwarden-desktop
 
     # Terminal Programs
     foot

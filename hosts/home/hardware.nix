@@ -16,25 +16,48 @@
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/aace99ed-5d25-4cf6-98a2-631459ae5fa2";
       fsType = "btrfs";
-      options = [ "subvol=@" ];
+      options = [ "subvol=@" "compress=zstd" "noatime" "discard=async" "space_cache=v2" ];
     };
 
   fileSystems."/home" =
     { device = "/dev/disk/by-uuid/aace99ed-5d25-4cf6-98a2-631459ae5fa2";
       fsType = "btrfs";
-      options = [ "subvol=@home" ];
+      options = [ "subvol=@home" "compress=zstd" "noatime" "discard=async" "space_cache=v2" ];
     };
 
   fileSystems."/nix" =
     { device = "/dev/disk/by-uuid/aace99ed-5d25-4cf6-98a2-631459ae5fa2";
       fsType = "btrfs";
-      options = [ "subvol=@nix" ];
+      options = [ "subvol=@nix" "compress=zstd" "noatime" "discard=async" "space_cache=v2" ];
     };
 
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/6125-B937";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
+    };
+
+  fileSystems."/mnt/drives/hdd1000.1" =
+    { device = "/dev/disk/by-uuid/27b9a1ab-0bb3-4e2f-bc9b-7c4a227dbb2f";
+      fsType = "btrfs";
+      options = [ "compress=zstd" "noatime" "discard=async" "space_cache=v2" ];
+    };
+
+  fileSystems."/mnt/drives/hdd500" =
+    { device = "/dev/disk/by-uuid/AC50BCE250BCB504";
+      fsType = "ntfs";
+    };
+
+  fileSystems."/mnt/drives/hdd250.1" =
+    { device = "/dev/disk/by-uuid/e7b47531-8e65-4096-be54-ca0648b0fe62";
+      fsType = "btrfs";
+      options = [ "compress=zstd" "noatime" "discard=async" "space_cache=v2" ];
+    };
+
+  fileSystems."/mnt/old/cachyos-home" =
+    { device = "/dev/disk/by-uuid/4e88875a-7b40-4ed2-8bd8-d42867685e36";
+      fsType = "btrfs";
+      options = [ "subvol=@home" "compress=zstd" "noatime" "discard=async" "space_cache=v2" ];
     };
 
   swapDevices = [ ];
