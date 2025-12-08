@@ -2,6 +2,8 @@
 
 {
   environment.systemPackages = with pkgs; [
+
+    # System
     git
     wget
     stow
@@ -10,31 +12,46 @@
     tree
     killall
 
+    # Desktop
+    fuzzel
+    quickshell
+    hyprpaper
+    wlsunset
+    xfce.thunar
+
+    # Terminal Programs
+    foot
+    kitty
+    neovim
+    btop
+
+    # CLI Programs
+    repomix
+
     # Rust Utils
     ripgrep
     bat
     fd
 
-    kitty
-    foot
-    librewolf
-    fuzzel
+    # Media
     mpv
     imv
-    xfce.thunar
-    quickshell
-    hyprpaper
-    adwaita-icon-theme
     easyeffects
     
+    # Network
     amneziawg-go
     amneziawg-tools
 
-    neovim
-    repomix
+    # Web
+    ungoogled-chromium
+    librewolf
+
+    # Themes and Icons
+    adwaita-icon-theme
     
     # Flake Inputs
     inputs.zen-browser.packages.x86_64-linux.default
+
   ];
 
   programs.hyprland = {
