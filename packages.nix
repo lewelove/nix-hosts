@@ -65,6 +65,6 @@
 
   programs.bash.shellAliases = {
     nv = "nvim";
-    nrs = "sudo nixos-rebuild switch --flake /home/lewe/nixos-machines/.#home"; 
+    nrs = "sudo nixos-rebuild switch --flake /home/lewelove/nixos-machines/.#home"; 
   };
 }

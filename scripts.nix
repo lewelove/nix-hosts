@@ -1,7 +1,7 @@
 { pkgs, config, ... }:
 
 let
-  user = "lewe";
+  user = "lewelove";
   nixosMachinesDir = "/home/${user}/nixos-machines";
 in
 {

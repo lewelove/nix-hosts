@@ -16,9 +16,9 @@
   networking.networkmanager.enable = true;
 
   # --- User Configuration ---
-  users.users.lewe = {
+  users.users.lewelove = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" "video" "audio" ];
+    extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.bash; 
   };
 
@@ -28,7 +28,7 @@
     NIXOS_OZONE_WL = "1";
     
     # Zen Appearance
-    GTK_THEME = "adw-gtk3";
+    GTK_THEME = "adw-gtk3-dark";
     XCURSOR_THEME = "Adwaita"; 
     XCURSOR_SIZE = "24";
     
