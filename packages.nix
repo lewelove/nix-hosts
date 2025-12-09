@@ -55,6 +55,10 @@
 
     # Themes and Icons
     adwaita-icon-theme
+    adw-gtk3
+    dconf
+    libsForQt5.qt5ct
+    kdePackages.qt6ct
     
     # Flake Inputs
     inputs.zen-browser.packages.x86_64-linux.default
@@ -65,6 +69,8 @@
   services.tumbler.enable = true;
 
   programs.thunar.enable = true;
+
+  programs.dconf.enable = true;
 
   programs.hyprland = {
     enable = true;

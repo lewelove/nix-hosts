@@ -46,10 +46,11 @@
     WLR_NO_HARDWARE_CURSORS = "1";
     NIXOS_OZONE_WL = "1";
     
-    # Zen Appearance
+    # Appearance
     GTK_THEME = "adw-gtk3-dark";
     XCURSOR_THEME = "Adwaita"; 
     XCURSOR_SIZE = "24";
+    QT_QPA_PLATFORMTHEME = "qt5ct";
     
     EDITOR = "nvim";
   };
