@@ -11,6 +11,7 @@
     gcc
     tree
     killall
+    jq
     ydotool
     wtype
 
@@ -49,6 +50,7 @@
     # Web
     ungoogled-chromium
     librewolf
+    ayugram-desktop
 
     # Themes and Icons
     adwaita-icon-theme
