@@ -21,7 +21,7 @@
     hyprpaper
     hyprshot
     wlsunset
-    xfce.thunar
+    peazip
     bitwarden-desktop
 
     # Terminal Programs
@@ -37,6 +37,7 @@
     ripgrep
     bat
     fd
+    fzf
 
     # Media
     mpv
@@ -59,6 +60,11 @@
     inputs.zen-browser.packages.x86_64-linux.default
 
   ];
+
+  services.gvfs.enable = true;
+  services.tumbler.enable = true;
+
+  programs.thunar.enable = true;
 
   programs.hyprland = {
     enable = true;
