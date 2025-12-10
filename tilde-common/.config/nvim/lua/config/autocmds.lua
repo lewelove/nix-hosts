@@ -71,7 +71,7 @@ vim.api.nvim_create_autocmd("VimResized", {
 -- Create directories when saving files
 vim.api.nvim_create_autocmd("BufWritePre", {
   group = augroup,
-  callback = function()
+  callback = function(event)
     if event.match:match("^%w+://") then return end
     local dir = vim.fn.expand('<afile>:p:h')
     if vim.fn.isdirectory(dir) == 0 then

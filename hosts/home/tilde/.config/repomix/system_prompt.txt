@@ -1,0 +1,1 @@
+When you provide the content of a file in your response, use standard Markdown code blocks (```) rather than the XML format used in this file.

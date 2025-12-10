@@ -2,13 +2,15 @@ import path from 'path';
 import os from 'os';
 import fs from 'fs';
 import process from 'process';
+import { fileURLToPath } from 'url';
 
 // --- CONFIGURATION ---
 
 const completelyIgnore = [
     '**/*.log', '**/*.lock', '**/node_modules/**',
     '**/.git/**', '**/dist/**', '**/coverage/**',
-    '**/tmp/**', '**/.cache/**', '**/.DS_Store'
+    '**/tmp/**', '**/.cache/**', '**/.DS_Store',
+    '**/*.svg', '**/*.rmlock'
 ];
 
 // Files to keep in tree, but strip content
@@ -23,6 +25,10 @@ const args = process.argv.slice(2);
 const targetArg = args.find(arg => !arg.startsWith('-'));
 const cwd = process.cwd();
 const absolutePath = targetArg ? path.resolve(cwd, targetArg) : cwd;
+
+// Determine the location of THIS config file to find .txt files alongside it
+const __filename = fileURLToPath(import.meta.url);
+const configDir = path.dirname(__filename);
 
 const homeDir = os.homedir();
 let prettyPath = absolutePath;
@@ -51,10 +57,29 @@ process.on('exit', () => {
 
         let content = fs.readFileSync(fullOutputPath, 'utf8');
 
-        // 1. Define Explanatory Header
-        const explanation = 
-            'This file is a packed representation of the source code.\n' +
-            'It allows AI to understand the structure and content.\n\n';
+        // 1. Ingest External .txt files as Tags
+        // Example: "explanation.txt" -> <explanation>content</explanation>
+        let injectedTags = '';
+        try {
+            const files = fs.readdirSync(configDir);
+            const txtFiles = files.filter(file => file.endsWith('.txt'));
+
+            for (const file of txtFiles) {
+                // Get name without extension (e.g., "explanation")
+                // Replace spaces/dashes with underscores to make valid XML-like tags
+                const rawName = path.parse(file).name;
+                const tagName = rawName.replace(/[^a-zA-Z0-9_]/g, '_');
+                
+                const filePath = path.join(configDir, file);
+                const fileContent = fs.readFileSync(filePath, 'utf8').trim();
+                
+                if (fileContent) {
+                    injectedTags += `<${tagName}>\n${fileContent}\n</${tagName}>\n\n`;
+                }
+            }
+        } catch (e) {
+            console.warn('Warning: Could not read external .txt files:', e.message);
+        }
 
         // 2. Merge Path into Directory Structure
         // We find the opening tag and inject the Root path immediately after
@@ -65,20 +90,18 @@ process.on('exit', () => {
             content = content.replace(openTag, injectedRoot);
         }
 
-        // 3. Prepend Explanation (only if not already there)
-        if (!content.startsWith('This file')) {
-            content = explanation + content;
-        }
+        // 3. Prepend Injected Tags
+        // We simply place the custom text files at the very top
+        content = injectedTags + content;
 
         // 4. Strip Binary/Image Content
-        // Build regex parts separately to keep lines short
         const escDots = stripExts.map(e => e.replace('.', '\\.'));
         const extPattern = escDots.join('|');
         
         // Regex: <file path="...ext"> content </file>
         const startTag = `<file path="[^"]+(?:${extPattern})">`;
-        const wildcard = '[\\s\\S]*?'; // Matches newlines too
-        const endTag = '<\\/file>\\s*'; // Swallow trailing whitespace
+        const wildcard = '[\\s\\S]*?'; 
+        const endTag = '<\\/file>\\s*'; 
 
         const regex = new RegExp(startTag + wildcard + endTag, 'gi');
         
@@ -86,6 +109,7 @@ process.on('exit', () => {
 
         fs.writeFileSync(fullOutputPath, content);
         console.log(`\n✅ Processed: ${dynamicName}`);
+        if (injectedTags) console.log(`   (Injected ${injectedTags.match(/<\w+>/g).length} context tags from .txt files)`);
 
     } catch (err) {
         console.error('Error post-processing:', err);
@@ -98,8 +122,7 @@ export default {
     output: {
         filePath: fullOutputPath,
         style: 'xml',
-        fileSummary: false, // We provide our own summary
-        // headerText is omitted intentionally
+        fileSummary: false,
         removeEmptyLines: false,
         removeComments: false, 
     },
