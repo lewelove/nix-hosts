@@ -33,6 +33,10 @@
     # CLI Programs
     repomix
 
+    # TUI Programs
+    tealdeer
+    wikiman
+
     # Rust Utils
     ripgrep
     bat
