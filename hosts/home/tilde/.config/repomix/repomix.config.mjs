@@ -109,7 +109,6 @@ process.on('exit', () => {
 
         fs.writeFileSync(fullOutputPath, content);
         console.log(`\n✅ Processed: ${dynamicName}`);
-        if (injectedTags) console.log(`   (Injected ${injectedTags.match(/<\w+>/g).length} context tags from .txt files)`);
 
     } catch (err) {
         console.error('Error post-processing:', err);
