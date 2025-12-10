@@ -65,6 +65,11 @@
 
   ];
 
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true;
+  };
+
   services.gvfs.enable = true;
   services.tumbler.enable = true;
 
