@@ -30,6 +30,9 @@
     neovim
     btop
 
+    # Virtualization
+    distrobox
+
     # CLI Programs
     repomix
 
@@ -72,6 +75,11 @@
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;
+  };
+
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
   };
 
   services.gvfs.enable = true;
