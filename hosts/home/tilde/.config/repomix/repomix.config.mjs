@@ -7,16 +7,29 @@ import { fileURLToPath } from 'url';
 // --- CONFIGURATION ---
 
 const completelyIgnore = [
+    // General Noise
     '**/*.log', '**/*.lock', '**/node_modules/**',
     '**/.git/**', '**/dist/**', '**/coverage/**',
     '**/tmp/**', '**/.cache/**', '**/.DS_Store',
-    '**/*.svg', '**/*.rmlock'
+    '**/*.rmlock',
+
+    // Specific Binary/Asset exclusions
+    '**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', 
+    '**/*.ico', '**/*.woff', '**/*.woff2', '**/*.ttf',
+    '**/*.svg', '**/*.pdf',
+
+    // Runtime Databases & State
+    '**/mpd/database',
+    '**/mpd/sticker.sql',
+    
+    // Auto-generated Lock files
+    '**/lazy-lock.json'
 ];
 
 // Files to keep in tree, but strip content
+// (Currently empty as we moved extensions to completelyIgnore, 
+// but kept here if you want to see specific files exist without content)
 const stripExts = [
-    '.svg', '.png', '.jpg', '.jpeg', '.gif',
-    '.ico', '.pdf', '.woff', '.woff2', '.ttf'
 ];
 
 // --- PATH LOGIC ---
@@ -96,16 +109,18 @@ process.on('exit', () => {
 
         // 4. Strip Binary/Image Content
         const escDots = stripExts.map(e => e.replace('.', '\\.'));
-        const extPattern = escDots.join('|');
-        
-        // Regex: <file path="...ext"> content </file>
-        const startTag = `<file path="[^"]+(?:${extPattern})">`;
-        const wildcard = '[\\s\\S]*?'; 
-        const endTag = '<\\/file>\\s*'; 
-
-        const regex = new RegExp(startTag + wildcard + endTag, 'gi');
-        
-        content = content.replace(regex, '');
+        if (escDots.length > 0) {
+            const extPattern = escDots.join('|');
+            
+            // Regex: <file path="...ext"> content </file>
+            const startTag = `<file path="[^"]+(?:${extPattern})">`;
+            const wildcard = '[\\s\\S]*?'; 
+            const endTag = '<\\/file>\\s*'; 
+    
+            const regex = new RegExp(startTag + wildcard + endTag, 'gi');
+            
+            content = content.replace(regex, '');
+        }
 
         fs.writeFileSync(fullOutputPath, content);
         console.log(`\n✅ Processed: ${dynamicName}`);
