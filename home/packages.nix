@@ -61,11 +61,15 @@
     ayugram-desktop
 
     # Themes and Icons
-    adwaita-icon-theme
+    nwg-look
     adw-gtk3
+    adwaita-icon-theme
+    papirus-icon-theme
     dconf
+    nwg-look
     libsForQt5.qt5ct
     kdePackages.qt6ct
+    kdePackages.breeze-gtk
     
     # Flake Inputs
     inputs.zen-browser.packages.x86_64-linux.default

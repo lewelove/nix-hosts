@@ -46,7 +46,6 @@
     NIXOS_OZONE_WL = "1";
     
     # Appearance
-    GTK_THEME = "adw-gtk3-dark";
     XCURSOR_THEME = "Adwaita"; 
     XCURSOR_SIZE = "24";
     QT_QPA_PLATFORMTHEME = "qt5ct";

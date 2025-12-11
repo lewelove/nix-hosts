@@ -1,9 +1,11 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports = [
+    inputs.home-manager.nixosModules.default
     ./hardware.nix
     ./packages.nix
+    ./hm-colors.nix
   ];
 
   networking.hostName = "home";
