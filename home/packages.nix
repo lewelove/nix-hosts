@@ -20,7 +20,9 @@
     quickshell
     hyprpaper
     hyprshot
+    hyprpicker
     wlsunset
+    wl-clipboard
     peazip
     bitwarden-desktop
 
