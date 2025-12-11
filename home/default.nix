@@ -5,7 +5,7 @@
     inputs.home-manager.nixosModules.default
     ./hardware.nix
     ./packages.nix
-    ./hm-colors.nix
+    ./home.nix
   ];
 
   networking.hostName = "home";
