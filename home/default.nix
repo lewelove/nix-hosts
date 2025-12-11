@@ -3,6 +3,7 @@
 {
   imports = [
     ./hardware.nix
+    ./packages.nix
   ];
 
   networking.hostName = "home";

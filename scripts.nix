@@ -2,42 +2,30 @@
 
 let
   user = "lewelove";
-  nixosMachinesDir = "/home/${user}/nixos-machines";
+  # Ensure this matches your folder name
+  repoPath = "/home/${user}/nixos-machines"; 
+  targetHost = config.networking.hostName; 
 in
 {
-  system.activationScripts.zen-tildes = {
+  system.activationScripts.zen-stow = {
     text = ''
-      # 1. Variables
-      TARGET_HOST="${config.networking.hostName}"
+      # Paths
       USER_HOME="/home/${user}"
-      ROOT_DIR="${nixosMachinesDir}"
-      HOST_DIR="${nixosMachinesDir}/hosts/$TARGET_HOST"
-
-      # 2. Stow Function
-      # Usage: run_stow <parent_dir> <package_name>
-      run_stow() {
-        PARENT_DIR=$1
-        PACKAGE_NAME=$2
-        
-        if [ -d "$PARENT_DIR/$PACKAGE_NAME" ]; then
-          echo "Stowing $PACKAGE_NAME from $PARENT_DIR..."
-          ${pkgs.util-linux}/bin/runuser -u ${user} -- \
-            ${pkgs.stow}/bin/stow -d "$PARENT_DIR" -t "$USER_HOME" -R "$PACKAGE_NAME" --verbose=1
-        fi
-      }
+      MACHINE_DIR="${repoPath}/home"
+      DOTFILES_DIR="$MACHINE_DIR/tilde"
 
       echo "------------------------------------------------"
-      echo "Synchronizing Tildes..."
+      echo "⚡ Stowing dotfiles from: $DOTFILES_DIR"
 
-      # 3. Apply Root Common Tilde
-      # Looks for ~/nixos-machines/tilde-common
-      run_stow "$ROOT_DIR" "tilde-common"
+      if [ -d "$DOTFILES_DIR" ]; then
+          # --adopt tells Stow: "If you find a file/link that conflicts, 
+          # assume it belongs to us and update the link to point here."
+          ${pkgs.util-linux}/bin/runuser -u ${user} -- \
+            ${pkgs.stow}/bin/stow --adopt -d "$MACHINE_DIR" -t "$USER_HOME" -R "tilde" --verbose=1
+      else
+          echo "⚠ No 'tilde' directory found at $DOTFILES_DIR."
+      fi
 
-      # 4. Apply Host Specific Tilde
-      # Looks for ~/nixos-machines/hosts/home/tilde
-      run_stow "$HOST_DIR" "tilde"
-
-      echo "Done."
       echo "------------------------------------------------"
     '';
     deps = [ "users" ];
