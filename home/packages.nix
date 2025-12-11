@@ -52,6 +52,8 @@
     mpv
     imv
     easyeffects
+    flac
+    mediainfo
     
     # Network
     amneziawg-go
