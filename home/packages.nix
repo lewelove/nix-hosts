@@ -15,6 +15,7 @@
     ydotool
     wtype
     wev
+    xorg.xhost
 
     # Desktop
     fuzzel
