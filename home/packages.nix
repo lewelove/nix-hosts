@@ -93,12 +93,6 @@
     dockerCompat = true;
   };
 
-  services.mpd = {
-    enable = true;
-    user = "lewelove";
-    musicDirectory = "/mnt/drives/hdd1000.1/backup-everything/FB2K/Library Historyfied!/[CD] Collection";
-  };
-
   services.gvfs.enable = true;
   services.tumbler.enable = true;
 

@@ -26,13 +26,15 @@
       users = [ "lewelove" ];
       commands = [
         { 
-          # killall comes from the 'psmisc' package
           command = "/run/current-system/sw/bin/killall";
           options = [ "NOPASSWD" ];
         }
         { 
-          # awg-quick comes from 'amneziawg-tools'
           command = "/run/current-system/sw/bin/awg-quick";
+          options = [ "NOPASSWD" ];
+        }
+        { 
+          command = "/run/current-system/sw/bin/nixos-rebuild";
           options = [ "NOPASSWD" ];
         }
       ];
