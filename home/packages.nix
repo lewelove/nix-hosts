@@ -14,6 +14,7 @@
     jq
     ydotool
     wtype
+    wev
 
     # Desktop
     fuzzel
@@ -51,6 +52,8 @@
     # Media
     mpv
     imv
+    mpc
+    rmpc
     easyeffects
     flac
     mediainfo
@@ -88,6 +91,12 @@
   virtualisation.podman = {
     enable = true;
     dockerCompat = true;
+  };
+
+  services.mpd = {
+    enable = true;
+    user = "lewelove";
+    musicDirectory = "/mnt/drives/hdd1000.1/backup-everything/FB2K/Library Historyfied!/[CD] Collection";
   };
 
   services.gvfs.enable = true;

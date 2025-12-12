@@ -1,6 +1,6 @@
 # Programs
 alias nv=nvim
-alias nvnotes='NVIM_APPNAME=nvim-notes nvim'
+alias nvn='NVIM_APPNAME=nvim-notes nvim'
 
 alias clients='hyprctl clients'
 alias x+='chmod +x'
