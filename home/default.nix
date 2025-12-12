@@ -5,8 +5,15 @@
     inputs.home-manager.nixosModules.default
     ./hardware.nix
     ./packages.nix
-    ./home.nix
   ];
+
+  home-manager = {
+    extraSpecialArgs = { inherit inputs; };
+    
+    users.lewelove = import ./hm/default.nix;
+    
+    backupFileExtension = "backup"; 
+  };
 
   networking.hostName = "home";
 
