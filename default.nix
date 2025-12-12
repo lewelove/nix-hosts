@@ -19,6 +19,7 @@
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.bash; 
+    autoSubUidGidRange = true;
   };
 
   security.sudo.extraRules = [

@@ -37,6 +37,7 @@
     # Virtualization
     distrobox
     runc
+    crun
 
     # CLI Programs
     repomix
@@ -88,6 +89,23 @@
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;
+  };
+
+  virtualisation.containers.enable = true;
+  
+  virtualisation.containers.containersConf.settings = {
+    containers = {
+      # CRITICAL: Fixes "log-driver not supported" error
+      log_driver = "k8s-file";
+    };
+    engine = {
+      # CRITICAL: Fixes "Inappropriate ioctl" and OOM permission errors
+      runtime = "crun";
+      # CRITICAL: Fixes the startup HANG (Journald deadlock)
+      events_logger = "file";
+      # NixOS standard
+      cgroup_manager = "systemd";
+    };
   };
 
   virtualisation.podman = {
