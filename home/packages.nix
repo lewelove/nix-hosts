@@ -35,6 +35,7 @@
 
     # Virtualization
     distrobox
+    runc
 
     # CLI Programs
     repomix

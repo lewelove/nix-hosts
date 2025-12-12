@@ -1,0 +1,17 @@
+[Desktop Entry]
+Name=Fedora-tauri
+GenericName=Terminal entering Fedora-tauri
+Comment=Terminal entering Fedora-tauri
+Categories=Distrobox;System;Utility
+Exec=/nix/store/z9ry9x4f5g61kmmmwv5a8ydjxhvapr7n-distrobox-1.8.2.2/bin/distrobox enter  fedora-tauri
+Icon=/home/lewelove/.local/share/icons/distrobox/fedora.png
+Keywords=distrobox;
+NoDisplay=false
+Terminal=true
+TryExec=/nix/store/z9ry9x4f5g61kmmmwv5a8ydjxhvapr7n-distrobox-1.8.2.2/bin/distrobox
+Type=Application
+Actions=Remove;
+
+[Desktop Action Remove]
+Name=Remove Fedora-tauri from system
+Exec=/nix/store/z9ry9x4f5g61kmmmwv5a8ydjxhvapr7n-distrobox-1.8.2.2/bin/distrobox rm  fedora-tauri
