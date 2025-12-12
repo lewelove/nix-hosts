@@ -1,0 +1,31 @@
+sw_volume: 100
+audio_device_state:1:PipeWire Sound Server
+state: stop
+random: 0
+repeat: 0
+single: 0
+consume: 0
+crossfade: 0
+mixrampdb: 0
+mixrampdelay: -1
+lastloadedplaylist: 
+playlist_begin
+0:[CD] Collection/Brian Eno - Music for Films [2009 XE Virgin 50999 684535 2 7]/01 - Aragon.flac
+1:[CD] Collection/Brian Eno - Music for Films [2009 XE Virgin 50999 684535 2 7]/02 - From the same Hill.flac
+2:[CD] Collection/Brian Eno - Music for Films [2009 XE Virgin 50999 684535 2 7]/03 - Inland Sea.flac
+3:[CD] Collection/Brian Eno - Music for Films [2009 XE Virgin 50999 684535 2 7]/04 - Two rapid formations.flac
+4:[CD] Collection/Brian Eno - Music for Films [2009 XE Virgin 50999 684535 2 7]/05 - Slow Water.flac
+5:[CD] Collection/Brian Eno - Music for Films [2009 XE Virgin 50999 684535 2 7]/06 - Sparrowfall (1).flac
+6:[CD] Collection/Brian Eno - Music for Films [2009 XE Virgin 50999 684535 2 7]/07 - Sparrowfall (2).flac
+7:[CD] Collection/Brian Eno - Music for Films [2009 XE Virgin 50999 684535 2 7]/08 - Sparrowfall (3).flac
+8:[CD] Collection/Brian Eno - Music for Films [2009 XE Virgin 50999 684535 2 7]/09 - Alternative 3.flac
+9:[CD] Collection/Brian Eno - Music for Films [2009 XE Virgin 50999 684535 2 7]/10 - Quartz.flac
+10:[CD] Collection/Brian Eno - Music for Films [2009 XE Virgin 50999 684535 2 7]/11 - Events in Dense Fog.flac
+11:[CD] Collection/Brian Eno - Music for Films [2009 XE Virgin 50999 684535 2 7]/12 - 'There is Nobody'.flac
+12:[CD] Collection/Brian Eno - Music for Films [2009 XE Virgin 50999 684535 2 7]/13 - Patrolling Wire Borders.flac
+13:[CD] Collection/Brian Eno - Music for Films [2009 XE Virgin 50999 684535 2 7]/14 - A Measured Room.flac
+14:[CD] Collection/Brian Eno - Music for Films [2009 XE Virgin 50999 684535 2 7]/15 - Task Force.flac
+15:[CD] Collection/Brian Eno - Music for Films [2009 XE Virgin 50999 684535 2 7]/16 - M386.flac
+16:[CD] Collection/Brian Eno - Music for Films [2009 XE Virgin 50999 684535 2 7]/17 - Strange Light.flac
+17:[CD] Collection/Brian Eno - Music for Films [2009 XE Virgin 50999 684535 2 7]/18 - Final Sunset.flac
+playlist_end

@@ -5,7 +5,7 @@
   services.mpd = {
     enable = true;
     
-    musicDirectory = "/mnt/drives/hdd1000.1/backup-everything/FB2K/Library Historyfied!/Lossless Album Collection";
+    musicDirectory = "/mnt/drives/hdd1000.1/backup-everything/FB2K/Library Historyfied!";
     
     dbFile = "${config.home.homeDirectory}/.config/mpd/database";
     
