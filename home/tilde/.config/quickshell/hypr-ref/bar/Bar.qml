@@ -74,7 +74,7 @@ Scope {
           spacing: 32
           Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
   
-          Blocks.Weather {}
+          // Blocks.Weather {}
           Blocks.Date {}
           Blocks.Time {}
         }

@@ -60,6 +60,7 @@
     easyeffects
     flac
     mediainfo
+    gimp
     
     # Network
     amneziawg-go
