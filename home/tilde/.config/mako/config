@@ -1,71 +1,35 @@
-font=Hack Nerd Font 11
-width=420
-height=300
-outer-margin=5
-margin=10
-padding=10
-border-size=0
-border-radius=10
+# Appearance
+font=CommitMono Nerd Font 13
+width=300
+height=200
+outer-margin=0
+margin=24
+padding=12
+border-size=2
+border-radius=0
 icon-location=left
 text-alignment=left
-default-timeout=6000
-max-visible=3
+default-timeout=1500
+max-visible=2
 layer=overlay
-anchor=top-center
+anchor=top-right
+
+# Interaction
 group-by=category
 on-button-left=invoke-default-action
 on-button-right=dismiss
 on-button-middle=dismiss-all
 
-# Colors
+# Colors (Matching Fuzzel Palette)
 background-color=#222222
-text-color=#e0e0e0
+text-color=#d0d0d0
+border-color=#888888
 
+# Urgency overrides
 [urgency=high]
-border-color=#fab387
+border-color=#ea4335
+text-color=#d0d0d0
+background-color=#222222
 
 [grouped]
 format=<b>%s</b>\n%b
-
-[category=screenshot]
-width=255
-height=150
-text-alignment=center
-anchor=bottom-right
-default-timeout=1500
-on-button-left=exec gimp $(ls -t  ~/Pictures/Screenshots/* | head -1)
-
-[category=volume]
-width=288
-height=180
-text-alignment=center
-anchor=center
-default-timeout=800
-[category=brightness]
-width=288
-height=180
-text-alignment=center
-anchor=center
-default-timeout=800
-
-# poweralertd notifications
-[app-name=poweralertd]
-text-alignment=center
-anchor=center
-width=300
-height=150
-[category=power.update]
-invisible=1
-[category=power.cleared]
-invisible=1
-[category=power.online]
-default-timeout=2200
-[category=power.offline]
-default-timeout=2200
-
-[category=display]
-outer-margin=20
-background-color=#23213600
-text-alignment=left
-anchor=bottom-left
-default-timeout=8000

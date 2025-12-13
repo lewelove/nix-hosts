@@ -20,6 +20,8 @@
     # Desktop
     fuzzel
     quickshell
+    mako
+    libnotify
     hyprpaper
     hyprshot
     hyprpicker
@@ -61,6 +63,7 @@
     flac
     mediainfo
     gimp
+    qbittorrent
     
     # Network
     amneziawg-go
