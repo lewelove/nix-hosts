@@ -20,6 +20,7 @@ let
 in
 {
 
+  # --- MPD Service ---
   services.mpd = {
     enable = true;
     
@@ -44,7 +45,7 @@ in
     network.startWhenNeeded = true;
   };
 
-  # Define the Systemd User Service with the consistent name
+  # --- ListenBrainz MPD Scrobble Service ---
   systemd.user.services.listenbrainz-mpd-90-no4m = {
     Unit = {
       Description = "ListenBrainz MPD Client (90% Threshold, No 4m Limit)";
@@ -53,8 +54,6 @@ in
     };
 
     Service = {
-      # The binary name inside Cargo.toml usually remains "listenbrainz-mpd"
-      # even if the package name changed, unless you edited Cargo.toml name.
       ExecStart = "${listenbrainz-mpd-90-no4m}/bin/listenbrainz-mpd";
       Restart = "on-failure";
       RestartSec = "5s";
@@ -66,6 +65,24 @@ in
 
     Install = {
       WantedBy = [ "default.target" ];
+    };
+  };
+
+  # --- Hyprpaper Service ---
+  systemd.user.services.hyprpaper = {
+    Unit = {
+      Description = "Hyprpaper Wallpaper Daemon";
+      PartOf = [ "graphical-session.target" ];
+      After = [ "graphical-session.target" ];
+    };
+
+    Service = {
+      ExecStart = "${pkgs.hyprpaper}/bin/hyprpaper";
+      Restart = "on-failure";
+    };
+
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
     };
   };
 

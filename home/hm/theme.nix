@@ -2,6 +2,10 @@
 
 {
 
+  # home.sessionVariables = {
+  #   QT_QPA_PLATFORMTHEME = "qt6ct";
+  # };
+
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
@@ -18,7 +22,7 @@
     };
 
     font = {
-      name = "Sans";
+      name = "Noto Sans";
       size = 11;
     };
 
@@ -29,8 +33,7 @@
   
   qt = {
     enable = true;
-    platformTheme.name = "gtk";
-    style.name = "adwaita-dark";
+    platformTheme.name = "qtct";
   };
 
 }

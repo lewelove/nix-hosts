@@ -5,6 +5,7 @@
     inputs.home-manager.nixosModules.default
     ./hardware.nix
     ./packages.nix
+    ./programs.nix
   ];
 
   home-manager = {

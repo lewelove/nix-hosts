@@ -13,7 +13,7 @@
 	<directories/>
 </action>
 <action>
-	<icon></icon>
+	<icon>copyq</icon>
 	<name>Copy Full Path</name>
 	<submenu></submenu>
 	<unique-id>1764594372543433-1</unique-id>
@@ -28,5 +28,15 @@
 	<text-files/>
 	<video-files/>
 </action>
+<action>
+	<icon>image-x-bmp</icon>
+	<name>Set as Wallpaper</name>
+	<submenu></submenu>
+	<unique-id>1765654861522815-1</unique-id>
+	<command>bash -c &quot;~/.config/hypr/scripts/change-wallpaper.sh &quot;%f&quot;&quot;</command>
+	<description>Sets image as wallpaper using hyprpaper</description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<image-files/>
+</action>
 </actions>
-

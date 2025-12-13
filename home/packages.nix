@@ -44,10 +44,6 @@
     # CLI Programs
     repomix
 
-    # TUI Programs
-    tealdeer
-    wikiman
-
     # Rust Utils
     ripgrep
     bat
@@ -76,61 +72,16 @@
 
     # Themes and Icons
     nwg-look
-    adw-gtk3
     adwaita-icon-theme
     papirus-icon-theme
     dconf
     nwg-look
     libsForQt5.qt5ct
     kdePackages.qt6ct
-    kdePackages.breeze-gtk
     
     # Flake Inputs
     inputs.zen-browser.packages.x86_64-linux.default
 
   ];
 
-  programs.direnv = {
-    enable = true;
-    enableBashIntegration = true;
-  };
-
-  virtualisation.containers.enable = true;
-  
-  virtualisation.containers.containersConf.settings = {
-    containers = {
-      # CRITICAL: Fixes "log-driver not supported" error
-      log_driver = "k8s-file";
-    };
-    engine = {
-      # CRITICAL: Fixes "Inappropriate ioctl" and OOM permission errors
-      runtime = "crun";
-      # CRITICAL: Fixes the startup HANG (Journald deadlock)
-      events_logger = "file";
-      # NixOS standard
-      cgroup_manager = "systemd";
-    };
-  };
-
-  virtualisation.podman = {
-    enable = true;
-    dockerCompat = true;
-  };
-
-  services.gvfs.enable = true;
-  services.tumbler.enable = true;
-
-  programs.thunar.enable = true;
-
-  programs.dconf.enable = true;
-
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
-
-  programs.bash.shellAliases = {
-    nv = "nvim";
-    nrs = "sudo nixos-rebuild switch --flake /home/lewelove/nixos-machines/.#home"; 
-  };
 }

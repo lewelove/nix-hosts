@@ -1,3 +1,5 @@
+alias nrs='sudo nixos-rebuild switch --flake /home/lewelove/nixos-machines/.#home'
+
 # Programs
 alias nv=nvim
 alias nvn='NVIM_APPNAME=nvim-notes nvim'

@@ -51,7 +51,6 @@
     # Appearance
     XCURSOR_THEME = "Adwaita"; 
     XCURSOR_SIZE = "24";
-    QT_QPA_PLATFORMTHEME = "qt5ct";
     
     EDITOR = "nvim";
   };
