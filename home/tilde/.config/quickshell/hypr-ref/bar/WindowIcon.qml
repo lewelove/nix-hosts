@@ -4,7 +4,7 @@ import "root:/"
 Item {
     id: root
     
-    // Size determined by Theme (24px)
+    // Size determined by Theme
     width: Theme.get.iconSize
     height: Theme.get.iconSize
 
@@ -33,12 +33,12 @@ Item {
         anchors.fill: parent
         fillMode: Image.PreserveAspectFit
         mipmap: true
-        smooth: false
+        smooth: true
         antialiasing: true
         
-        // CHANGED: Source render size 48px
-        sourceSize.width: 24
-        sourceSize.height: 24
+        // Use Theme values for texture loading to ensure correct scaling/resolution
+        sourceSize.width: Theme.get.iconSize
+        sourceSize.height: Theme.get.iconSize
         
         source: root.cleanName 
                 ? `root:/assets/icons/${root.cleanName}.${root.currentExt}` 

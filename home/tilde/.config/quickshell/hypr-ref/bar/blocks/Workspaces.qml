@@ -23,12 +23,13 @@ RowLayout {
             
             underline: isActive
             
-            Layout.preferredWidth: Math.max(32, content.implicitWidth)
+            Layout.preferredWidth: Math.max(Theme.get.barHeight, content.implicitWidth)
 
             onClicked: Hyprland.dispatch(`workspace ${thisWorkspace.id}`)
 
             content: Row {
-                spacing: 6
+                // Now uses the theme setting
+                spacing: Theme.get.workspaceInnerSpacing
                 leftPadding: 0
                 
                 Item {

@@ -7,7 +7,7 @@ import "../" // Imports WindowTracker and WindowIcon from bar/
 
 RowLayout {
     id: root
-    spacing: Theme.get.workspaceSpacing
+    spacing: Theme.get.workspaceInnerSpacing
     property HyprlandMonitor monitor: Hyprland.monitorFor(screen)
 
     visible: repeater.count > 0
@@ -29,14 +29,12 @@ RowLayout {
 
             underline: isActive
             
-            // CHANGED: Removed styling properties to remove hover/border
-            
             Layout.preferredWidth: content.implicitWidth
 
             onClicked: Hyprland.dispatch(`togglespecialworkspace ${thisWorkspace.name.replace("special:", "")}`)
 
             content: Row {
-                spacing: 5
+                spacing: Theme.get.workspaceInnerSpacing
                 anchors.centerIn: parent
 
                 Repeater {

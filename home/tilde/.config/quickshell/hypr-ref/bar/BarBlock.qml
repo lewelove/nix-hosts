@@ -6,10 +6,13 @@ import "root:/"
 Rectangle {
   id: root
   
+  // 1. Dynamic Width: Fits content, but at least iconSize
   Layout.preferredWidth: Math.max(Theme.get.iconSize, (content ? content.implicitWidth : 0) + 0)
   
-  // CHANGED: Height is now iconSize (24px) to fit inside the 32px bar with 4px padding
-  Layout.preferredHeight: Theme.get.iconSize
+  // 2. Full Height: Fills the bar vertical space
+  // This ensures the block structure (hover, underlines) fills the bar,
+  // while the contentContainer below handles centering the icon.
+  Layout.preferredHeight: Theme.get.barHeight
 
   property Item content
   property Item mouseArea: mouseArea
@@ -27,6 +30,9 @@ Rectangle {
     ColorAnimation { duration: 200 }
   }
 
+  // 3. Content Centering
+  // Since 'root' is now 32px (barHeight) and content is 24px (iconSize),
+  // this item will automatically position the content with equal top/bottom padding.
   Item {
     id: contentContainer
     implicitWidth:  content.implicitWidth

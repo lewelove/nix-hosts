@@ -17,7 +17,7 @@ Scope {
 
       // 1. Visuals
       color: Theme.get.barBgColor
-      implicitHeight: Theme.get.barHeight // 32px
+      implicitHeight: Theme.get.barHeight
       visible: true
 
       IpcHandler {
@@ -25,7 +25,7 @@ Scope {
         function toggleVis(): void { visible = !visible; }
       }
     
-      // 2. Positioning (Full Width)
+      // 2. Positioning
       anchors {
         top: Theme.get.onTop
         bottom: !Theme.get.onTop
@@ -33,7 +33,7 @@ Scope {
         right: true
       }
 
-      // 3. Spacing (External Margins -> 0)
+      // 3. Structural Margins
       margins {
         left: Theme.get.barMarginLeft
         right: Theme.get.barMarginRight
@@ -46,16 +46,14 @@ Scope {
         anchors.fill: parent
         spacing: 0
         
-        // CHANGED: Specific Top/Bottom (4px) and Left/Right (24px) padding
-        anchors.topMargin: Theme.get.barPaddingY
-        anchors.bottomMargin: Theme.get.barPaddingY
         anchors.leftMargin: Theme.get.barPaddingX
         anchors.rightMargin: Theme.get.barPaddingX
   
         // Left side
         Row {
           id: leftBlocks
-          spacing: 12 
+          // CHANGED: Uses Theme.get.sectionSpacingLeft (was 12)
+          spacing: Theme.get.sectionSpacingLeft
           Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
           
           Blocks.SpecialWorkspaces {}
@@ -71,7 +69,8 @@ Scope {
         // Right side
         RowLayout {
           id: rightBlocks
-          spacing: 32
+          // CHANGED: Uses Theme.get.sectionSpacingRight (was 32)
+          spacing: Theme.get.sectionSpacingRight
           Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
   
           // Blocks.Weather {}
@@ -87,7 +86,6 @@ Scope {
 
         chopLength: {
             var occupied = rightBlocks.implicitWidth + leftBlocks.implicitWidth
-            // Adjust calculation for new padding (PaddingX * 2)
             var available = bar.width - occupied - (Theme.get.barPaddingX * 2) - 20
             var chars = Math.floor(available / 10)
             return Math.max(10, chars)

@@ -7,46 +7,52 @@ Singleton {
   id: root
   property var get: root
 
-  // --- EXISTING BAR CONFIG ---
-  property string barBgColor: "#FF222222"
-  property string activeColor: "#40FFFFFF"
-  property string inactiveColor: "transparent"
-  property string hoverColor: "#60FFFFFF"
-  property bool onTop: true
-
   // --- DIMENSIONS & SPACING ---
+  property int barHeight: 26
+  property int iconSize: 18
+
   property int workspaceSpacing: 12
-  property int barHeight: 32           
-  property int iconSize: 24           
+  property int workspaceInnerSpacing: 4
+
+  // NEW: Spacing between major sections (Special <-> Normal, Date <-> Time)
+  property int sectionSpacingLeft: 12
+  property int sectionSpacingRight: 32
+  
   property int barMarginTop: 0        
   property int barMarginLeft: 0       
   property int barMarginRight: 0      
   property int barMarginBottom: 0
+  
   property int barPaddingX: 12
-  property int barPaddingY: 4
 
-  // --- GLOBAL COLORS ---
+  // --- BAR STYLING ---
+  property string barBgColor: "#FF222222"
+  property bool onTop: true
+
+  // --- COLORS ---
+  property string activeColor: "#40FFFFFF"
+  property string inactiveColor: "transparent"
+  property string hoverColor: "#60FFFFFF"
+  
   property color textColorGlobal: "#d0d0d0"
+  property color textColorCenter: "#d0d0d0"
 
-  // --- WORKSPACE COLORS (Left) ---
+  // --- WORKSPACE COLORS ---
   property color workspaceColorActive: "#d0d0d0"
   property color workspaceColorInactive: "#888888"
-
-  // --- ACTIVE WORKSPACE COLORS ---
-  property color textColorCenter: "#d0d0d0"
 
   // --- FONTS & WEIGHTS ---
   property string fontFaceWorkspaces: "CommitMono Nerd Font"
   property int fontWeightWorkspaces: Font.Bold
-  property int fontSizeWorkspaces: 13
+  property int fontSizeWorkspaces: 11
 
   property string fontFaceCenter: "CommitMono Nerd Font"
   property int fontWeightCenter: Font.Normal
-  property int fontSizeCenter: 13
+  property int fontSizeCenter: 11
   
   property string fontFaceRight: "CommitMono Nerd Font"
   property int fontWeightRight: Font.Bold
-  property int fontSizeRight: 13
+  property int fontSizeRight: 11
 
   property string fontSymbol: "CommitMono Nerd Font"
 
