@@ -1,6 +1,8 @@
 sw_volume: 100
 audio_device_state:1:PipeWire Sound Server
-state: stop
+state: pause
+current: 7
+time: 298.058
 random: 0
 repeat: 0
 single: 0
@@ -10,12 +12,13 @@ mixrampdb: 0
 mixrampdelay: -1
 lastloadedplaylist: 
 playlist_begin
-0:Lossless Album Collection/AFX - Hangable Auto Bulb {Warp Records WARPCD138}/01 - Children Talking.flac
-1:Lossless Album Collection/AFX - Hangable Auto Bulb {Warp Records WARPCD138}/02 - Hangable Auto Bulb.flac
-2:Lossless Album Collection/AFX - Hangable Auto Bulb {Warp Records WARPCD138}/03 - Laughable Butane Bob.flac
-3:Lossless Album Collection/AFX - Hangable Auto Bulb {Warp Records WARPCD138}/04 - Bit.flac
-4:Lossless Album Collection/AFX - Hangable Auto Bulb {Warp Records WARPCD138}/05 - Custodian Discount.flac
-5:Lossless Album Collection/AFX - Hangable Auto Bulb {Warp Records WARPCD138}/06 - Wabby Legs.flac
-6:Lossless Album Collection/AFX - Hangable Auto Bulb {Warp Records WARPCD138}/07 - Every Day.flac
-7:Lossless Album Collection/AFX - Hangable Auto Bulb {Warp Records WARPCD138}/08 - Arched Maid Via Rdj.flac
+0:Lossless Album Collection/John Cale - Artificial Intelligence/01 - Everytime the Dogs Bark.flac
+1:Lossless Album Collection/John Cale - Artificial Intelligence/02 - Dying on the Vine.flac
+2:Lossless Album Collection/John Cale - Artificial Intelligence/03 - The Sleeper.flac
+3:Lossless Album Collection/John Cale - Artificial Intelligence/04 - Vigilante Lover.flac
+4:Lossless Album Collection/John Cale - Artificial Intelligence/05 - Chinese Takeaway (Hong Kong 1997).flac
+5:Lossless Album Collection/John Cale - Artificial Intelligence/06 - Song of the Valley.flac
+6:Lossless Album Collection/John Cale - Artificial Intelligence/07 - Fadeaway Tomorrow.flac
+7:Lossless Album Collection/John Cale - Artificial Intelligence/08 - Black Rose.flac
+8:Lossless Album Collection/John Cale - Artificial Intelligence/09 - Satellite Walk.flac
 playlist_end

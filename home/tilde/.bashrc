@@ -1,3 +1,5 @@
+export PATH="$HOME/.local/bin:$PATH"
+
 alias nrs='sudo nixos-rebuild switch --flake /home/lewelove/nixos-machines/.#home'
 
 # Programs

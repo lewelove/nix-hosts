@@ -16,13 +16,14 @@
     wtype
     wev
     xorg.xhost
+    pulseaudio
 
     # Desktop
     fuzzel
     quickshell
     mako
     libnotify
-    hyprpaper
+    swww
     hyprshot
     hyprpicker
     wlsunset

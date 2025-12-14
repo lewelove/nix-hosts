@@ -33,8 +33,8 @@
 	<name>Set as Wallpaper</name>
 	<submenu></submenu>
 	<unique-id>1765654861522815-1</unique-id>
-	<command>bash -c &quot;~/.config/hypr/scripts/change-wallpaper.sh &quot;%f&quot;&quot;</command>
-	<description>Sets image as wallpaper using hyprpaper</description>
+	<command>/home/lewelove/.local/bin/change-wallpaper.sh &quot;%f&quot;</command>
+	<description>Sets image as wallpaper using swww</description>
 	<range>*</range>
 	<patterns>*</patterns>
 	<image-files/>
