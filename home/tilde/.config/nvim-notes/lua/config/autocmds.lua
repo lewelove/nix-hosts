@@ -173,3 +173,16 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end
   end,
 })
+
+-- -- Auto-enter Insert Mode when opening
+-- vim.api.nvim_create_autocmd("VimEnter", {
+--   group = augroup,
+--   callback = function()
+--     -- Defer slightly to ensure UI/ZenMode is settled
+--     vim.defer_fn(function()
+--       if vim.bo.modifiable then
+--         vim.cmd("startinsert")
+--       end
+--     end, 10)
+--   end,
+-- })

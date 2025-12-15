@@ -11,7 +11,7 @@ const completelyIgnore = [
     '**/*.log', '**/*.lock', '**/node_modules/**',
     '**/.git/**', '**/dist/**', '**/coverage/**',
     '**/tmp/**', '**/.cache/**', '**/.DS_Store',
-    '**/*.rmlock',
+    '**/*.rmlock', '**/.direnv/**',
 
     // Specific Binary/Asset exclusions
     '**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', 
