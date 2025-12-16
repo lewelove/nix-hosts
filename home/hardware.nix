@@ -37,6 +37,12 @@
       options = [ "fmask=0022" "dmask=0022" ];
     };
 
+  fileSystems."/mnt/drives/xhdd2000" =
+    { device = "/dev/disk/by-uuid/e2873f44-a0b2-4c05-9e8a-d14e9cade796";
+      fsType = "btrfs";
+      options = [ "nofail" "compress=zstd" "noatime" "space_cache=v2" ];
+    };
+
   fileSystems."/mnt/drives/hdd1000.1" =
     { device = "/dev/disk/by-uuid/27b9a1ab-0bb3-4e2f-bc9b-7c4a227dbb2f";
       fsType = "btrfs";

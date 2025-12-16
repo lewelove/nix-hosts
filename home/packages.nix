@@ -17,6 +17,7 @@
     wev
     xorg.xhost
     pulseaudio
+    gnome-disk-utility
 
     # Desktop
     fuzzel
