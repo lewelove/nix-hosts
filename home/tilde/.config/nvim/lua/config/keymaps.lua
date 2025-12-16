@@ -24,6 +24,9 @@ vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 -- Replace whole file with clipboard paste
 vim.keymap.set('n', '<leader>v', 'ggVG"+p', { desc = 'Paste clipboard to whole buffer' })
 
+-- Copy entire buffer
+vim.keymap.set('n', '<leader>y', 'ggVG"+y', { desc = 'Paste clipboard to whole buffer' })
+
 -- Better indenting in visual mode
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })

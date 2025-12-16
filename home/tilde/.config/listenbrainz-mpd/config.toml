@@ -41,7 +41,7 @@ enable_cache = true
 #   `{FOLDERID_LocalAppData}\listenbrainz-mpd\submission-cache.sqlite3`
 #
 # If directory components of the path do not exist, they will be created.
-cache_file = "$HOME/.local/share/listenbrainz-mpd/submission-cache.sqlite3"
+cache_file = "~/.local/share/listenbrainz-mpd/submission-cache.sqlite3"
 
 # This section configures how the application connects to your MPD server.
 #

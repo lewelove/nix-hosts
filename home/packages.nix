@@ -31,6 +31,7 @@
     wl-clipboard
     peazip
     bitwarden-desktop
+    vscodium
 
     # Terminal Programs
     foot
