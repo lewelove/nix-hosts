@@ -31,6 +31,7 @@
     wl-clipboard
     peazip
     bitwarden-desktop
+    qwen-code
 
     # Terminal Programs
     foot

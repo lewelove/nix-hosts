@@ -1,0 +1,222 @@
+#![enable(implicit_some)]
+#![enable(unwrap_newtypes)]
+#![enable(unwrap_variant_newtypes)]
+(
+    default_album_art_path: Some("/home/lewelove/.config/rmpc/default.png"),
+    show_song_table_header: false,
+    draw_borders: false,
+    format_tag_separator: " | ",
+    browser_column_widths: [33, 33, 33],
+    background_color: None,
+    text_color: None,
+    header_background_color: None,
+    modal_background_color: None,
+    modal_backdrop: false,
+    preview_label_style: (fg: "#d0d0d0"),
+    preview_metadata_group_style: (fg: "#d0d0d0", modifiers: "Bold"),
+    tab_bar: (
+        active_style: (fg: "black", bg: "#d0d0d0", modifiers: "Bold"),
+        inactive_style: (),
+    ),
+    highlighted_item_style: (fg: "#d0d0d0", modifiers: "Bold"),
+    current_item_style: (fg: "black", bg: "#d0d0d0", modifiers: "Bold"),
+    borders_style: (fg: "#d0d0d0"),
+    highlight_border_style: (fg: "#d0d0d0"),
+    symbols: (
+        song: " ",
+        dir: " ",
+        playlist: " ",
+        marker: " ",
+        ellipsis: "...",
+        song_style: None,
+        dir_style: None,
+        playlist_style: None,
+    ),
+    level_styles: (
+        info: (fg: "#d0d0d0", bg: "black"),
+        warn: (fg: "#d0d0d0", bg: "black"),
+        error: (fg: "#d0d0d0", bg: "black"),
+        debug: (fg: "#d0d0d0", bg: "black"),
+        trace: (fg: "#d0d0d0", bg: "black"),
+    ),
+    progress_bar: (
+        symbols: ["-", "-", ">", " ", "-"],
+        track_style: (fg: "#1e2030"),
+        elapsed_style: (fg: "#d0d0d0"),
+        thumb_style: (fg: "#d0d0d0", bg: "#1e2030"),
+        use_track_when_empty: false,
+    ),
+    scrollbar: (
+        symbols: [" ", " ", " ", " "],
+        track_style: (),
+        ends_style: (),
+        thumb_style: (fg: "#d0d0d0"),
+    ),
+    song_table_format: [
+        // --- COLUMN 1: Artist - Title ---
+        (
+            prop: (
+                // Group combines multiple properties into one string
+                kind: Group([
+                    (
+                        kind: Property(Artist), 
+                        // Optional: Add specific style for Artist
+                        style: (fg: "#d0d0d0"), 
+                    ),
+                    (
+                        kind: Text(" - "), 
+                        style: (fg: "#d0d0d0"),
+                    ),
+                    (
+                        kind: Property(Title),
+                        style: (fg: "white"),
+                    ),
+                ]),
+                // Fallback to Filename if tags are missing
+                default: (kind: Property(Filename))
+            ),
+            width: "85%",  // Give it most of the space
+            label: "Track", // Header text
+        ),
+
+        // --- COLUMN 2: Duration ---
+        (
+            prop: (
+                kind: Property(Duration), 
+                default: (kind: Text("-"))
+            ),
+            width: "15%",
+            alignment: Right, // Align to the right edge
+            label: "Time",
+        ),
+    ],
+    components: {
+        // ... any existing components ...
+
+        "custom_progress_bar": Split(
+            direction: Horizontal,
+            panes: [
+                // --- 33% Section: Artist - Title ---
+                (
+                    size: "33%",
+                    pane: Pane(Property(
+                        content: [
+                            (kind: Property(Song(Artist)), style: (fg: "#d0d0d0", modifiers: "Bold")),
+                            (kind: Text(" - ")),
+                            (kind: Property(Song(Title)), style: (modifiers: "Bold")),
+                        ],
+                        align: Center,
+                        scroll_speed: 1
+                    ))
+                ),
+                
+                // --- 67% Section: Time | Bar | Time ---
+                (
+                    size: "67%",
+                    pane: Split(
+                        direction: Horizontal,
+                        panes: [
+                            // 1. Elapsed Time (Fixed width)
+                            (
+                                size: "9",
+                                pane: Pane(Property(
+                                    content: [(kind: Property(Status(Elapsed)))], 
+                                    align: Center
+                                ))
+                            ),
+                            // 2. The Progress Bar (Fills remaining space)
+                            (
+                                size: "100%",
+                                pane: Pane(ProgressBar)
+                            ),
+                            // 3. Duration (Fixed width)
+                            (
+                                size: "9",
+                                pane: Pane(Property(
+                                    content: [(kind: Property(Status(Duration)))], 
+                                    align: Center
+                                ))
+                            ),
+                        ]
+                    )
+                ),
+            ]
+        ),
+    },
+    layout: Split(
+        direction: Vertical,
+        panes: [
+            (
+                pane: Pane(Tabs),
+                size: "2",
+                borders: "BOTTOM"
+            ),
+            (
+                pane: Pane(TabContent),
+                size: "100%",
+            ),
+            (
+                pane: Split(
+                    direction: Horizontal,
+                    panes: [
+                        (
+                            size: "100%",
+                            pane: Component("custom_progress_bar"),
+                            borders: "TOP",
+                        ),
+                    ],
+                ),
+                size: "2",
+                // borders: "ALL"
+            ),
+        ],
+    ),
+    header: (
+        rows: [
+            (
+                left: [
+                    (kind: Text("["), style: (fg: "#d0d0d0", modifiers: "Bold")),
+                    (kind: Property(Status(StateV2(playing_label: "Playing", paused_label: "Paused", stopped_label: "Stopped"))), style: (fg: "#d0d0d0", modifiers: "Bold")),
+                    (kind: Text("]"), style: (fg: "#d0d0d0", modifiers: "Bold"))
+                ],
+                center: [
+                    (kind: Property(Song(Artist)),
+                        default: (kind: Text("Unknown"))
+                    ),
+                    (kind: Text(" - ")),
+                    (kind: Property(Song(Album)),
+                        default: (kind: Text("Unknown Album"))
+                    ),
+                    (kind: Text(" - ")),
+                    (kind: Property(Song(Title)),
+                        default: (kind: Text("No Song"))
+                    )
+                ],
+                right: [
+                    (kind: Property(Status(Elapsed))),
+                    (kind: Text(" / ")),
+                    (kind: Property(Status(Duration))),
+                ]
+            ),
+        ],
+    ),
+    browser_song_format: [
+        (
+            kind: Group([
+                (kind: Property(Track)),
+                (kind: Text(" ")),
+            ])
+        ),
+        (
+            kind: Group([
+                (kind: Property(Artist)),
+                (kind: Text(" - ")),
+                (kind: Property(Title)),
+            ]),
+            default: (kind: Property(Filename))
+        ),
+    ],
+    lyrics: (
+        timestamp: false
+    )
+)
