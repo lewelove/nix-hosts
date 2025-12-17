@@ -33,13 +33,14 @@
         global: {
             ":":       CommandMode,
             ",":       VolumeDown,
-            "S":       Stop,
+            "s":       Stop,
             ".":       VolumeUp,
             "<Tab>":   NextTab,
             "<S-Tab>": PreviousTab,
             "1":       SwitchToTab("Queue"),
             "2":       SwitchToTab("Genres"),
-            "3":       SwitchToTab("Search"),
+            "3":       SwitchToTab("Albums"),
+            "4":       SwitchToTab("Search"),
             "q":       Quit,
             ">":       NextTrack,
             "p":       TogglePause,
@@ -130,15 +131,15 @@
                 direction: Horizontal,
                 panes: [
                     (
-                        size: "24%",
+                        size: "25%",
                         pane: Pane(Lyrics)
                     ),
                     (
-                        size: "100%",
+                        size: "50%",
                         pane: Pane(AlbumArt)
                     ), 
                     (
-                        size: "24%",
+                        size: "25%",
                         pane: Pane(Queue)
                     ),
                 ],
@@ -147,6 +148,10 @@
         (
             name: "Genres",
             pane: Pane(Browser(root_tag: "genre", separator: ";")), 
+        ),
+        (
+            name: "Albums",
+            pane: Pane(AlbumArtists),
         ),
         (
             name: "Search",
