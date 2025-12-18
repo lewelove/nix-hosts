@@ -24,7 +24,7 @@
     default_album_art_path: None,
     album_art: (
         method: Auto,
-        max_size_px: (width: 1200, height: 1200),
+        max_size_px: (width: 1920, height: 1920),
         disabled_protocols: ["http://", "https://"],
         vertical_align: Center,
         horizontal_align: Center,
@@ -39,7 +39,7 @@
             "<S-Tab>": PreviousTab,
             "1":       SwitchToTab("Queue"),
             "2":       SwitchToTab("Genres"),
-            "3":       SwitchToTab("Search"),
+            "3":       SwitchToTab("Artists"),
             "q":       Quit,
             ">":       NextTrack,
             "p":       TogglePause,
@@ -73,8 +73,8 @@
             "<C-l>":     PaneRight,
             "<C-u>":     UpHalf,
             "N":         PreviousResult,
-            "a":         Add,
-            "A":         AddAll,
+            "a":         AddReplace,
+            "A":         Add,
             "r":         Rename,
             "n":         NextResult,
             "g":         Top,
@@ -120,7 +120,7 @@
     ),
     artists: (
         album_display_mode: NameOnly,
-        album_sort_by: Name,
+        album_sort_by: Date,
         album_date_tags: [Date],
     ),
     tabs: [
@@ -130,27 +130,34 @@
                 direction: Horizontal,
                 panes: [
                     (
-                        size: "24%",
-                        pane: Pane(Lyrics)
+                        size: "57",
+                        pane: Pane(Lyrics),
+                        alignment: Left
                     ),
                     (
                         size: "100%",
-                        pane: Pane(AlbumArt)
+                        pane: Pane(AlbumArt),
+                        // borders: "ALL",
+
                     ), 
                     (
-                        size: "24%",
-                        pane: Pane(Queue)
+                        size: "57",
+                        pane: Pane(Queue),
+                        alignment: Right
                     ),
                 ],
             ),
         ),
         (
             name: "Genres",
-            pane: Pane(Browser(root_tag: "genre", separator: ";")), 
+            pane: Pane(Browser(
+                root_tag: "genre",
+                separator: ";"
+            )), 
         ),
         (
-            name: "Search",
-            pane: Pane(Search),
+            name: "Artists",
+            pane: Pane(AlbumArtists),
         ),
     ],
 )

@@ -12,45 +12,44 @@
     header_background_color: None,
     modal_background_color: None,
     modal_backdrop: false,
-    preview_label_style: (fg: "#d0d0d0"),
-    preview_metadata_group_style: (fg: "#d0d0d0", modifiers: "Bold"),
+    preview_label_style: (fg: "white"),
+    preview_metadata_group_style: (fg: "white", modifiers: "Bold"),
     tab_bar: (
-        active_style: (fg: "black", bg: "#d0d0d0", modifiers: "Bold"),
-        inactive_style: (),
+        active_style: (fg: "white", bg: "black"),
+        inactive_style: (fg: "white"),
     ),
-    highlighted_item_style: (fg: "#d0d0d0", modifiers: "Bold"),
-    current_item_style: (fg: "black", bg: "#d0d0d0", modifiers: "Bold"),
-    borders_style: (fg: "#d0d0d0"),
-    highlight_border_style: (fg: "#d0d0d0"),
+    highlighted_item_style: (fg: "black", bg: "#222222", modifiers: "Bold"),
+    current_item_style: (fg: "white", bg: "black"),
+    borders_style: (fg: "white"),
+    highlight_border_style: (fg: "white"),
     symbols: (
-        song: " ",
-        dir: " ",
-        playlist: " ",
-        marker: " ",
+        song: "",
+        dir: "",
+        playlist: "",
+        marker: "",
         ellipsis: "...",
         song_style: None,
         dir_style: None,
         playlist_style: None,
     ),
     level_styles: (
-        info: (fg: "#d0d0d0", bg: "black"),
-        warn: (fg: "#d0d0d0", bg: "black"),
-        error: (fg: "#d0d0d0", bg: "black"),
-        debug: (fg: "#d0d0d0", bg: "black"),
-        trace: (fg: "#d0d0d0", bg: "black"),
+        info: (fg: "white", bg: "black"),
+        warn: (fg: "white", bg: "black"),
+        error: (fg: "white", bg: "black"),
+        debug: (fg: "white", bg: "black"),
+        trace: (fg: "white", bg: "black"),
     ),
     progress_bar: (
-        symbols: ["-", "-", ">", " ", "-"],
-        track_style: (fg: "#1e2030"),
-        elapsed_style: (fg: "#d0d0d0"),
-        thumb_style: (fg: "#d0d0d0", bg: "#1e2030"),
+        symbols: [" ", " ", "-", " ", "-"],
+        elapsed_style: (fg: "black"),
+        thumb_style: (fg: "#666666"),
         use_track_when_empty: false,
     ),
     scrollbar: (
         symbols: [" ", " ", " ", " "],
         track_style: (),
         ends_style: (),
-        thumb_style: (fg: "#d0d0d0"),
+        thumb_style: (fg: "white"),
     ),
     song_table_format: [
         // --- COLUMN 1: Artist - Title ---
@@ -58,14 +57,14 @@
             prop: (
                 // Group combines multiple properties into one string
                 kind: Group([
+                    (kind: Text(" ")),
                     (
                         kind: Property(Artist), 
-                        // Optional: Add specific style for Artist
-                        style: (fg: "#d0d0d0"), 
+                        style: (fg: "white"), 
                     ),
                     (
                         kind: Text(" - "), 
-                        style: (fg: "#d0d0d0"),
+                        style: (fg: "white"),
                     ),
                     (
                         kind: Property(Title),
@@ -75,53 +74,47 @@
                 // Fallback to Filename if tags are missing
                 default: (kind: Property(Filename))
             ),
-            width: "85%",  // Give it most of the space
+            width: "100%",  // Give it most of the space
+            alignment: Left, // Align to the right edge
             label: "Track", // Header text
         ),
 
         // --- COLUMN 2: Duration ---
         (
             prop: (
-                kind: Property(Duration), 
+                kind: Group([
+                    (
+                        kind: Property(Duration), 
+                        style: (fg: "white"), 
+                    ),
+                    (kind: Text(" ")),
+                ]),
+                
                 default: (kind: Text("-"))
             ),
-            width: "15%",
+            width: "7",
             alignment: Right, // Align to the right edge
             label: "Time",
         ),
     ],
     components: {
-        // ... any existing components ...
-
+        "spacer": Pane(
+            Property(content: [(kind: Text(""))],)
+        ),
         "custom_progress_bar": Split(
             direction: Horizontal,
             panes: [
-                // --- 33% Section: Artist - Title ---
                 (
-                    size: "33%",
-                    pane: Pane(Property(
-                        content: [
-                            (kind: Property(Song(Artist)), style: (fg: "#d0d0d0", modifiers: "Bold")),
-                            (kind: Text(" - ")),
-                            (kind: Property(Song(Title)), style: (modifiers: "Bold")),
-                        ],
-                        align: Center,
-                        scroll_speed: 1
-                    ))
-                ),
-                
-                // --- 67% Section: Time | Bar | Time ---
-                (
-                    size: "67%",
+                    size: "100%",
                     pane: Split(
                         direction: Horizontal,
                         panes: [
                             // 1. Elapsed Time (Fixed width)
                             (
-                                size: "9",
+                                size: "7",
                                 pane: Pane(Property(
                                     content: [(kind: Property(Status(Elapsed)))], 
-                                    align: Center
+                                    align: Left
                                 ))
                             ),
                             // 2. The Progress Bar (Fills remaining space)
@@ -131,10 +124,10 @@
                             ),
                             // 3. Duration (Fixed width)
                             (
-                                size: "9",
+                                size: "7",
                                 pane: Pane(Property(
                                     content: [(kind: Property(Status(Duration)))], 
-                                    align: Center
+                                    align: Right
                                 ))
                             ),
                         ]
@@ -147,9 +140,12 @@
         direction: Vertical,
         panes: [
             (
-                pane: Pane(Tabs),
-                size: "2",
-                borders: "BOTTOM"
+                pane: Split(
+                    direction: Horizontal,
+                    panes: [
+                    ]
+                ),
+                size: "1",
             ),
             (
                 pane: Pane(TabContent),
@@ -159,47 +155,42 @@
                 pane: Split(
                     direction: Horizontal,
                     panes: [
+                        (size: "55", pane: Pane(Tabs)),
+                        (size: "100%", pane: Component("custom_progress_bar")),
                         (
-                            size: "100%",
-                            pane: Component("custom_progress_bar"),
-                            borders: "TOP",
+                             size: "55",
+                             pane: Pane(Property(
+                                 content: [
+                                   (
+                                     kind: Property(Widget(States(
+                                       active_style: (fg: "white", modifiers: "Bold"),
+                                       separator_style: (fg: "#666666")))
+                                     ),
+                                     style: (fg: "#666666")
+                                   ),
+                                 ],
+                                 align: Center,
+                                 scroll_speed: 1
+                             ))
                         ),
-                    ],
+//                       (
+//                            size: "23%",
+//                            pane: Pane(Property(
+//                                content: [
+//                                    (kind: Property(Song(Album)), style: (fg: "white")),
+//                                ],
+//                                align: Center,
+//                                scroll_speed: 1
+//                            ))
+//                       ),
+                    
+                    ]
                 ),
-                size: "2",
-                // borders: "ALL"
+                size: "1",
             ),
         ],
     ),
-    header: (
-        rows: [
-            (
-                left: [
-                    (kind: Text("["), style: (fg: "#d0d0d0", modifiers: "Bold")),
-                    (kind: Property(Status(StateV2(playing_label: "Playing", paused_label: "Paused", stopped_label: "Stopped"))), style: (fg: "#d0d0d0", modifiers: "Bold")),
-                    (kind: Text("]"), style: (fg: "#d0d0d0", modifiers: "Bold"))
-                ],
-                center: [
-                    (kind: Property(Song(Artist)),
-                        default: (kind: Text("Unknown"))
-                    ),
-                    (kind: Text(" - ")),
-                    (kind: Property(Song(Album)),
-                        default: (kind: Text("Unknown Album"))
-                    ),
-                    (kind: Text(" - ")),
-                    (kind: Property(Song(Title)),
-                        default: (kind: Text("No Song"))
-                    )
-                ],
-                right: [
-                    (kind: Property(Status(Elapsed))),
-                    (kind: Text(" / ")),
-                    (kind: Property(Status(Duration))),
-                ]
-            ),
-        ],
-    ),
+    header: (rows: [],),
     browser_song_format: [
         (
             kind: Group([

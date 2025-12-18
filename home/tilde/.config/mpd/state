@@ -1,8 +1,6 @@
 sw_volume: 100
 audio_device_state:1:PipeWire Sound Server
-state: play
-current: 6
-time: 119.86500000000001
+state: stop
 random: 0
 repeat: 0
 single: 0
@@ -12,12 +10,15 @@ mixrampdb: 0
 mixrampdelay: -1
 lastloadedplaylist: 
 playlist_begin
-0:Lossless Album Collection/Casiopea - Casiopea/01 - Time Limit.flac
-1:Lossless Album Collection/Casiopea - Casiopea/02 - Tears of the Star.flac
-2:Lossless Album Collection/Casiopea - Casiopea/03 - Space Road.flac
-3:Lossless Album Collection/Casiopea - Casiopea/04 - Midnight Rendezvous.flac
-4:Lossless Album Collection/Casiopea - Casiopea/05 - Far Away.flac
-5:Lossless Album Collection/Casiopea - Casiopea/06 - Swallow.flac
-6:Lossless Album Collection/Casiopea - Casiopea/07 - Dream Hill.flac
-7:Lossless Album Collection/Casiopea - Casiopea/08 - Black Joke.flac
+0:Lossless Album Collection/Autechre - Move Of Ten EP/01 - Etchogon-S.flac
+1:Lossless Album Collection/Autechre - Move Of Ten EP/02 - y7.flac
+2:Lossless Album Collection/Autechre - Move Of Ten EP/03 - pce freeze 2.8i.flac
+3:Lossless Album Collection/Autechre - Move Of Ten EP/04 - rew(1).flac
+4:Lossless Album Collection/Autechre - Move Of Ten EP/05 - nth Dafuseder.b.flac
+5:Lossless Album Collection/Autechre - Move Of Ten EP/06 - iris was a pupil.flac
+6:Lossless Album Collection/Autechre - Move Of Ten EP/07 - no border.flac
+7:Lossless Album Collection/Autechre - Move Of Ten EP/08 - M62.flac
+8:Lossless Album Collection/Autechre - Move Of Ten EP/09 - ylm0.flac
+9:Lossless Album Collection/Autechre - Move Of Ten EP/10 - Cep puiqMX.flac
+10:Lossless Album Collection/Autechre - Move Of Ten EP/11 - ClnChr.flac
 playlist_end
