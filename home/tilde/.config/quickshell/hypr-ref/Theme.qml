@@ -26,7 +26,7 @@ Singleton {
   property int barPaddingX: 12
 
   // --- BAR STYLING ---
-  property string barBgColor: "#FF222222"
+  property string barBgColor: "#FF242424"
   property bool onTop: true
 
   // --- COLORS ---
@@ -34,12 +34,12 @@ Singleton {
   property string inactiveColor: "transparent"
   property string hoverColor: "#60FFFFFF"
   
-  property color textColorGlobal: "#d0d0d0"
-  property color textColorCenter: "#d0d0d0"
+  property color textColorGlobal: "#B7B7B7"
+  property color textColorCenter: "#B7B7B7"
 
   // --- WORKSPACE COLORS ---
-  property color workspaceColorActive: "#d0d0d0"
-  property color workspaceColorInactive: "#888888"
+  property color workspaceColorActive: "#B7B7B7"
+  property color workspaceColorInactive: "#7A7A7A"
 
   // --- FONTS & WEIGHTS ---
   property string fontFaceWorkspaces: "CommitMono Nerd Font"
