@@ -1,0 +1,24 @@
+# Bemenu styling - Matching your Fuzzel aesthetic
+export BEMENU_OPTS="
+  --fn 'CommitMono Nerd Font 11'
+  --nb '#222222'
+  --nf '#888888'
+  --hb '#444444'
+  --hf '#d0d0d0'
+  --fb '#222222'
+  --ff '#c4747e'
+  --tb '#222222'
+  --tf '#888888'
+  --cb '#222222'
+  --cf '#d0d0d0'
+  --line-height 28
+  --width-factor 0.3
+  --border 2
+  --bdr '#888888'
+  -c
+  -l 10
+  --monitor 0
+  --auto-select
+  --accept-single
+  --ignorecase
+"

@@ -21,6 +21,7 @@
 
     # Desktop
     fuzzel
+    bemenu
     quickshell
     mako
     libnotify
@@ -78,7 +79,6 @@
     adwaita-icon-theme
     papirus-icon-theme
     dconf
-    nwg-look
     libsForQt5.qt5ct
     kdePackages.qt6ct
     

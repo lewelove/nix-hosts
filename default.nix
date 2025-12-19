@@ -82,6 +82,7 @@
   # --- Fonts ---
   fonts.packages = with pkgs; [
     nerd-fonts.commit-mono
+    commit-mono
     noto-fonts
     noto-fonts-color-emoji
   ];
