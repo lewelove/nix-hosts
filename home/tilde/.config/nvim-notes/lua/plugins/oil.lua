@@ -2,9 +2,15 @@ return {
   "stevearc/oil.nvim",
   opts = {
     default_file_explorer = true,
-    columns = {}, -- Hide permissions, size, etc. Just names.
+    delete_to_trash = true,
+    columns = {
+      "icon",
+    },
     view_options = {
       show_hidden = false,
+      sort = {
+        { "name", "desc" },
+      },
     },
     -- Use a floating window for the file explorer
     float = {

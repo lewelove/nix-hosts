@@ -6,6 +6,9 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- File Viewer (Oil)
 vim.keymap.set("n", "<leader>e", function() require("oil").open_float() end, { desc = "Open File List" })
 
+-- New Note (Empty Buffer)
+vim.keymap.set("n", "<leader>n", ":enew | ZenMode | ZenMode<CR>", { desc = "New Note" })
+
 -- Manual Save
 vim.keymap.set("n", "<leader>s", function()
   _G.UpdateMetadata()
