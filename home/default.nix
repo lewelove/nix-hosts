@@ -31,6 +31,25 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
   zramSwap.enable = true;
 
+  # Enable Bluetooth
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        AutoEnable = true;
+        Enable = "Source,Sink,Media,Socket";
+        AutoConnect = true;
+      };
+      Policy = {
+        AutoEnable = true;
+      };
+    };
+  };
+  
+  # Enable Blueman (GUI manager and system service)
+  services.blueman.enable = true;
+
   # Hardware
   hardware.graphics.enable = true;
 

@@ -99,3 +99,17 @@ vim.opt.maxmempattern = 20000
 
 -- Custom Status Line
 vim.opt.statusline = "  %f  [%y] %m %= Ln %l/%L  Col %c  %p%%  "
+
+-- Modern Filetype Detection
+vim.filetype.add({
+  pattern = {
+    -- Match any file inside a 'bin' directory
+    [".*/bin/.*"] = function(path, bufnr)
+      local filename = vim.fn.fnamemodify(path, ":t")
+      -- If the filename does NOT contain a dot, assume it is a shell script
+      if not filename:find("%.") then
+        return "sh"
+      end
+    end,
+  },
+})

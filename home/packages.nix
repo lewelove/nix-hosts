@@ -18,6 +18,8 @@
     xorg.xhost
     pulseaudio
     gnome-disk-utility
+    bluez
+    blueman
 
     # Desktop
     fuzzel
