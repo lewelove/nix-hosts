@@ -62,7 +62,6 @@
     easyeffects
     flac
     mediainfo
-    gimp
     qbittorrent
     
     # Network
@@ -84,6 +83,7 @@
     
     # Flake Inputs
     inputs.zen-browser.packages.x86_64-linux.default
+    inputs.photogimp.packages.${pkgs.system}.default
 
   ];
 

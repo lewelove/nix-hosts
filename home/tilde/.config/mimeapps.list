@@ -13,3 +13,4 @@ application/x-yaml=nvim-foot.desktop
 [Added Associations]
 text/plain=nvim-foot.desktop;
 image/jpeg=imv-dir.desktop;
+image/png=imv-dir.desktop;

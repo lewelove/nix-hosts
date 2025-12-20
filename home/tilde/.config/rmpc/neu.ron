@@ -6,7 +6,7 @@
     show_song_table_header: false,
     draw_borders: false,
     format_tag_separator: " | ",
-    browser_column_widths: [33, 33, 33],
+    browser_column_widths: [30, 40, 30],
     background_color: None,
     text_color: None,
     header_background_color: None,
@@ -18,7 +18,7 @@
         active_style: (fg: "white", bg: "black"),
         inactive_style: (fg: "white"),
     ),
-    highlighted_item_style: (fg: "black", bg: "#222222", modifiers: "Bold"),
+    highlighted_item_style: (fg: "black", bg: "black", modifiers: "Bold"),
     current_item_style: (fg: "white", bg: "black"),
     borders_style: (fg: "white"),
     highlight_border_style: (fg: "white"),
@@ -42,7 +42,7 @@
     progress_bar: (
         symbols: [" ", " ", "-", " ", "-"],
         elapsed_style: (fg: "black"),
-        thumb_style: (fg: "#666666"),
+        thumb_style: (fg: "#4D4D4D"),
         use_track_when_empty: false,
     ),
     scrollbar: (
@@ -52,20 +52,18 @@
         thumb_style: (fg: "white"),
     ),
     song_table_format: [
-        // --- COLUMN 1: Artist - Title ---
         (
             prop: (
-                // Group combines multiple properties into one string
                 kind: Group([
                     (kind: Text(" ")),
-                    (
-                        kind: Property(Artist), 
-                        style: (fg: "white"), 
-                    ),
-                    (
-                        kind: Text(" - "), 
-                        style: (fg: "white"),
-                    ),
+//                    (
+//                        kind: Property(Artist), 
+//                        style: (fg: "white"), 
+//                    ),
+//                    (
+//                        kind: Text(" - "), 
+//                        style: (fg: "white"),
+//                    ),
                     (
                         kind: Property(Title),
                         style: (fg: "white"),
@@ -164,9 +162,9 @@
                                    (
                                      kind: Property(Widget(States(
                                        active_style: (fg: "white", modifiers: "Bold"),
-                                       separator_style: (fg: "#666666")))
+                                       separator_style: (fg: "#4D4D4D")))
                                      ),
-                                     style: (fg: "#666666")
+                                     style: (fg: "#4D4D4D")
                                    ),
                                  ],
                                  align: Center,

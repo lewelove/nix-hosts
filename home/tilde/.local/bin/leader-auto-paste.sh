@@ -1,32 +1,33 @@
 #!/usr/bin/env bash
 
-# Source the styling
-if [ -f "$HOME/.config/bemenu/config" ]; then
-    source "$HOME/.config/bemenu/config"
-fi
+FILE="${1:-$HOME/.config/fuzzel/snippets.txt}"
 
-# Define your commands here
-# Format: ["cmd"]="text to paste"
+# 1. Initialize an associative array (local to this script only)
 declare -A snippets
-snippets=(
-    ["dc"]=" **do not** write code yet, think about my questions and ideas i just provided and reason through them. "
-    ["cot"]=" think step-by-step. reason through the logic out loud before providing the final answer."
-    ["brief"]=" be extremely concise. no yapping, no 'here is your code', just the raw output."
-    ["ref"]=" refactor this code for readability and performance without changing functionality."
-    ["crit"]=" find the flaws in my logic. act as a devil's advocate and try to break my proposal."
-    ["arch"]=" high-level architecture only. focus on data flow and state management. no implementation yet."
-)
+# 2. Initialize a normal array to keep the original file order
+keys=()
 
-# Generate list of keys for bemenu
-keys=$(printf "%s\n" "${!snippets[@]}" | sort)
+# 3. Read the file into memory using only Bash built-ins
+while IFS='=' read -r key value || [[ -n "$key" ]]; do
+    # Skip empty lines or comments
+    [[ -z "$key" || "$key" == \#* ]] && continue
 
-# Launch bemenu
-# BEMENU_OPTS is picked up from the sourced config
-choice=$(echo "$keys" | bemenu -p "LLM Leader:")
+    # Strip the quotes from the value: value="string" -> string
+    # %\" removes trailing quote, #\" removes leading quote
+    clean_value="${value%\"}"
+    clean_value="${clean_value#\"}"
 
-# If a choice was made, type it
-if [ -n "$choice" ] && [ -n "${snippets[$choice]}" ]; then
-    # Tiny sleep to let bemenu window close so the target window regains focus
-    sleep 0.1
-    wtype "${snippets[$choice]}"
-fi
+    snippets["$key"]="$clean_value"
+    keys+=("$key")
+done < "$FILE"
+
+# 4. Feed ONLY the keys from our array to Fuzzel
+# This is fast because printf is a shell built-in
+selection=$(printf "%s\n" "${keys[@]}" | fuzzel --dmenu --auto-select)
+
+# Exit if Escaped
+[[ -z "$selection" ]] && exit 0
+
+# 5. Instant Paste via Clipboard (Faster than wtype character-by-character)
+echo -n "${snippets[$selection]}" | wl-copy
+wtype -M ctrl v -m ctrl

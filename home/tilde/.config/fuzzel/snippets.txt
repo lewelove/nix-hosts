@@ -1,0 +1,2 @@
+dc="don't write code yet. talk to me."
+dy="don't yap. get straight to the point."
