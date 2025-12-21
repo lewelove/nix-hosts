@@ -10,9 +10,7 @@
 
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
-    
     users.lewelove = import ./hm/default.nix;
-    
     backupFileExtension = "backup"; 
   };
 
@@ -58,7 +56,6 @@
   hardware.nvidia-container-toolkit.enable = true;
 
   hardware.nvidia = {
-
     modesetting.enable = true;
     powerManagement.enable = true;
     powerManagement.finegrained = false;

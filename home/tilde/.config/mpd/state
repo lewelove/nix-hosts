@@ -1,8 +1,8 @@
 sw_volume: 100
 audio_device_state:1:PipeWire Sound Server
-state: pause
+state: play
 current: 2
-time: 179.30700000000002
+time: 120.297
 random: 0
 repeat: 0
 single: 0
@@ -12,15 +12,10 @@ mixrampdb: 0
 mixrampdelay: -1
 lastloadedplaylist: 
 playlist_begin
-0:Lossless Album Collection/Cream - Disraeli Gears/01 - Strange Brew.flac
-1:Lossless Album Collection/Cream - Disraeli Gears/02 - Sunshine of Your Love.flac
-2:Lossless Album Collection/Cream - Disraeli Gears/03 - World of Pain.flac
-3:Lossless Album Collection/Cream - Disraeli Gears/04 - Dance the Night Away.flac
-4:Lossless Album Collection/Cream - Disraeli Gears/05 - Blue Condition.flac
-5:Lossless Album Collection/Cream - Disraeli Gears/06 - Tales of Brave Ulysses.flac
-6:Lossless Album Collection/Cream - Disraeli Gears/07 - Swlabr.flac
-7:Lossless Album Collection/Cream - Disraeli Gears/08 - We're Going Wrong.flac
-8:Lossless Album Collection/Cream - Disraeli Gears/09 - Outside Woman Blues.flac
-9:Lossless Album Collection/Cream - Disraeli Gears/10 - Take It Back.flac
-10:Lossless Album Collection/Cream - Disraeli Gears/11 - Mother's Lament.flac
+0:Lossless Album Collection/Oneohtrix Point Never - The Fall Into Time/01 - Blue Drive.flac
+1:Lossless Album Collection/Oneohtrix Point Never - The Fall Into Time/02 - The Trouble With Being Born.flac
+2:Lossless Album Collection/Oneohtrix Point Never - The Fall Into Time/03 - Sand Partina.flac
+3:Lossless Album Collection/Oneohtrix Point Never - The Fall Into Time/04 - Melancholy Descriptions Of Simple 3D Environments.flac
+4:Lossless Album Collection/Oneohtrix Point Never - The Fall Into Time/05 - Memory Vague.flac
+5:Lossless Album Collection/Oneohtrix Point Never - The Fall Into Time/06 - KGB Nights.flac
 playlist_end

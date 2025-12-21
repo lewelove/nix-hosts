@@ -6,7 +6,7 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- Leader Keys
 vim.keymap.set('n', '<leader>w', ':w<CR>')
 vim.keymap.set('n', '<leader>q', ':q<CR>')
-vim.keymap.set({ 'n', 'v', 'x' }, '<leader>y', '"+y<CR>')
+vim.keymap.set({ 'n', 'v', 'x' }, '<leader>y', '"+y<CR> ')
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>d', '"+d<CR>')
 
 -- Center screen when jumping
@@ -22,7 +22,7 @@ vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" 
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
 -- Replace whole file with clipboard paste
-vim.keymap.set('n', '<leader>v', 'ggVG"+p', { desc = 'Paste clipboard to whole buffer' })
+vim.keymap.set('n', '<leader>v', 'ggVG"+p | :w<CR>', { desc = 'Paste clipboard to whole buffer' })
 
 -- Copy entire buffer
 vim.keymap.set('n', '<leader>y', 'ggVG"+y', { desc = 'Paste clipboard to whole buffer' })
