@@ -41,6 +41,8 @@
     kitty
     neovim
     btop
+    yazi
+    ripdrag
 
     # Virtualization
     distrobox
@@ -82,6 +84,7 @@
     dconf
     libsForQt5.qt5ct
     kdePackages.qt6ct
+    kdePackages.xdg-desktop-portal-kde
     
     # Flake Inputs
     inputs.zen-browser.packages.x86_64-linux.default

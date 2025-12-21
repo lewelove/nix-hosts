@@ -8,6 +8,11 @@
     xwayland.enable = true;
   };
 
+  programs.steam = {
+    enable = true;
+    gamescopeSession.enable = true;
+  };
+
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;
@@ -19,6 +24,22 @@
 
   services.gvfs.enable = true;
   services.tumbler.enable = true;
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ 
+      pkgs.xdg-desktop-portal-hyprland
+      pkgs.kdePackages.xdg-desktop-portal-kde
+    ];
+    config = {
+      common = {
+        default = [ "kde" ];
+      };
+      hyprland = {
+        default = [ "hyprland" "kde" ];
+      };
+    };
+  };
 
   virtualisation.containers.enable = true;
 

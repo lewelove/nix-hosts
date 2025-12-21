@@ -6,6 +6,7 @@
     ./hardware.nix
     ./packages.nix
     ./programs.nix
+    ./games.nix
   ];
 
   home-manager = {

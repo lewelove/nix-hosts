@@ -1,8 +1,8 @@
 sw_volume: 100
 audio_device_state:1:PipeWire Sound Server
 state: play
-current: 1
-time: 6.875
+current: 12
+time: 3.005
 random: 0
 repeat: 0
 single: 0
@@ -12,19 +12,21 @@ mixrampdb: 0
 mixrampdelay: -1
 lastloadedplaylist: 
 playlist_begin
-0:Lossless Album Collection/Tim Hecker - Harmony in Ultraviolet/01 - Rainbow Blood.flac
-1:Lossless Album Collection/Tim Hecker - Harmony in Ultraviolet/02 - Stags, Aircraft, Kings and Secretaries.flac
-2:Lossless Album Collection/Tim Hecker - Harmony in Ultraviolet/03 - Palimpsest I.flac
-3:Lossless Album Collection/Tim Hecker - Harmony in Ultraviolet/04 - Chimeras.flac
-4:Lossless Album Collection/Tim Hecker - Harmony in Ultraviolet/05 - Dungeoneering.flac
-5:Lossless Album Collection/Tim Hecker - Harmony in Ultraviolet/06 - Palimpsest II.flac
-6:Lossless Album Collection/Tim Hecker - Harmony in Ultraviolet/07 - Spring Heeled Jack Flies Tonight.flac
-7:Lossless Album Collection/Tim Hecker - Harmony in Ultraviolet/08 - Harmony in Blue I.flac
-8:Lossless Album Collection/Tim Hecker - Harmony in Ultraviolet/09 - Harmony in Blue II.flac
-9:Lossless Album Collection/Tim Hecker - Harmony in Ultraviolet/10 - Harmony in Blue III.flac
-10:Lossless Album Collection/Tim Hecker - Harmony in Ultraviolet/11 - Harmony in Blue IV.flac
-11:Lossless Album Collection/Tim Hecker - Harmony in Ultraviolet/12 - Radio Spiricom.flac
-12:Lossless Album Collection/Tim Hecker - Harmony in Ultraviolet/13 - Whitecaps of White Noise I.flac
-13:Lossless Album Collection/Tim Hecker - Harmony in Ultraviolet/14 - Whitecaps of White Noise II.flac
-14:Lossless Album Collection/Tim Hecker - Harmony in Ultraviolet/15 - Blood Rainbow.flac
+0:Lossless Album Collection/Flying Lotus - Cosmogramma/01 - Clock Catcher.flac
+1:Lossless Album Collection/Flying Lotus - Cosmogramma/02 - Pickled!.flac
+2:Lossless Album Collection/Flying Lotus - Cosmogramma/03 - Nose Art.flac
+3:Lossless Album Collection/Flying Lotus - Cosmogramma/04 - Intro  A Cosmic Drama.flac
+4:Lossless Album Collection/Flying Lotus - Cosmogramma/05 - Zodiac Shit.flac
+5:Lossless Album Collection/Flying Lotus - Cosmogramma/06 - Computer Face  Pure Being.flac
+6:Lossless Album Collection/Flying Lotus - Cosmogramma/07 - ...And The World Laughs With You (feat. Thom Yorke).flac
+7:Lossless Album Collection/Flying Lotus - Cosmogramma/08 - Arkestry..flac
+8:Lossless Album Collection/Flying Lotus - Cosmogramma/09 - Mmmhmm (feat. Thundercat).flac
+9:Lossless Album Collection/Flying Lotus - Cosmogramma/10 - Do The Astral Plane.flac
+10:Lossless Album Collection/Flying Lotus - Cosmogramma/11 - Satelllliiiiiteee.flac
+11:Lossless Album Collection/Flying Lotus - Cosmogramma/12 - German Haircut.flac
+12:Lossless Album Collection/Flying Lotus - Cosmogramma/13 - Recoiled.flac
+13:Lossless Album Collection/Flying Lotus - Cosmogramma/14 - Dance Of The Pseudo Nymph.flac
+14:Lossless Album Collection/Flying Lotus - Cosmogramma/15 - Drips  Auntie´s Harp.flac
+15:Lossless Album Collection/Flying Lotus - Cosmogramma/16 - Table Tennis (feat. Laura Darlington).flac
+16:Lossless Album Collection/Flying Lotus - Cosmogramma/17 - Galaxy In Janaki.flac
 playlist_end
