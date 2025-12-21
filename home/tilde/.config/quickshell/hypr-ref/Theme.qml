@@ -7,22 +7,21 @@ Singleton {
   id: root
   property var get: root
 
+  // --- SCREENSAVER SETTINGS ---
+  property bool screensaverActive: false
+  property int screensaverFadeTime: 300 
+
   // --- DIMENSIONS & SPACING ---
   property int barHeight: 26
   property int iconSize: 18
-
   property int workspaceSpacing: 12
   property int workspaceInnerSpacing: 4
-
-  // NEW: Spacing between major sections (Special <-> Normal, Date <-> Time)
   property int sectionSpacingLeft: 12
   property int sectionSpacingRight: 32
-  
   property int barMarginTop: 0        
   property int barMarginLeft: 0       
   property int barMarginRight: 0      
   property int barMarginBottom: 0
-  
   property int barPaddingX: 12
 
   // --- BAR STYLING ---
@@ -41,38 +40,20 @@ Singleton {
   property color workspaceColorActive: "#B7B7B7"
   property color workspaceColorInactive: "#7A7A7A"
 
-  // --- FONTS & WEIGHTS ---
+  // --- FONTS ---
   property string fontFaceWorkspaces: "CommitMono Nerd Font"
   property int fontWeightWorkspaces: Font.Bold
   property int fontSizeWorkspaces: 11
-
   property string fontFaceCenter: "CommitMono Nerd Font"
   property int fontWeightCenter: Font.Normal
   property int fontSizeCenter: 11
-  
   property string fontFaceRight: "CommitMono Nerd Font"
   property int fontWeightRight: Font.Bold
   property int fontSizeRight: 11
-
   property string fontSymbol: "CommitMono Nerd Font"
 
-  // --- SHADOW CONFIGURATION ---
-  
-  // Workspaces (Left)
+  // --- SHADOWS ---
   property bool shadowWorkspacesEnabled: false
-  property color shadowWorkspacesColor: "#000000"
-  property int shadowWorkspacesX: 1
-  property int shadowWorkspacesY: 1
-
-  // Center (Active Title)
   property bool shadowCenterEnabled: false
-  property color shadowCenterColor: "#000000"
-  property int shadowCenterX: 1
-  property int shadowCenterY: 1
-
-  // Right (Time/Date)
   property bool shadowRightEnabled: false
-  property color shadowRightColor: "#000000"
-  property int shadowRightX: 1
-  property int shadowRightY: 1
 }
