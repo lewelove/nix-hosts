@@ -1,4 +1,4 @@
-{ pkgs, identity, ... }:
+{ pkgs, identity, hostPath, ... }:
 
 let
   nrs = pkgs.writeShellApplication {
