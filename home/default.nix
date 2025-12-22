@@ -7,6 +7,7 @@
     ./packages.nix
     ./programs.nix
     ./games.nix
+    ./nvidia.nix
   ];
 
   home-manager = {
@@ -49,21 +50,5 @@
   # Enable Blueman (GUI manager and system service)
   services.blueman.enable = true;
 
-  # Hardware
-  hardware.graphics.enable = true;
-
-  services.xserver.videoDrivers = [ "nvidia" ];
-
-  hardware.nvidia-container-toolkit.enable = true;
-
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = true;
-    powerManagement.finegrained = false;
-    open = false;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
-  
   system.stateVersion = "25.11"; 
 }

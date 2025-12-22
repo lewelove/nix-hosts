@@ -1,8 +1,8 @@
 sw_volume: 100
 audio_device_state:1:PipeWire Sound Server
 state: play
-current: 12
-time: 3.005
+current: 5
+time: 120.092
 random: 0
 repeat: 0
 single: 0
@@ -12,21 +12,34 @@ mixrampdb: 0
 mixrampdelay: -1
 lastloadedplaylist: 
 playlist_begin
-0:Lossless Album Collection/Flying Lotus - Cosmogramma/01 - Clock Catcher.flac
-1:Lossless Album Collection/Flying Lotus - Cosmogramma/02 - Pickled!.flac
-2:Lossless Album Collection/Flying Lotus - Cosmogramma/03 - Nose Art.flac
-3:Lossless Album Collection/Flying Lotus - Cosmogramma/04 - Intro  A Cosmic Drama.flac
-4:Lossless Album Collection/Flying Lotus - Cosmogramma/05 - Zodiac Shit.flac
-5:Lossless Album Collection/Flying Lotus - Cosmogramma/06 - Computer Face  Pure Being.flac
-6:Lossless Album Collection/Flying Lotus - Cosmogramma/07 - ...And The World Laughs With You (feat. Thom Yorke).flac
-7:Lossless Album Collection/Flying Lotus - Cosmogramma/08 - Arkestry..flac
-8:Lossless Album Collection/Flying Lotus - Cosmogramma/09 - Mmmhmm (feat. Thundercat).flac
-9:Lossless Album Collection/Flying Lotus - Cosmogramma/10 - Do The Astral Plane.flac
-10:Lossless Album Collection/Flying Lotus - Cosmogramma/11 - Satelllliiiiiteee.flac
-11:Lossless Album Collection/Flying Lotus - Cosmogramma/12 - German Haircut.flac
-12:Lossless Album Collection/Flying Lotus - Cosmogramma/13 - Recoiled.flac
-13:Lossless Album Collection/Flying Lotus - Cosmogramma/14 - Dance Of The Pseudo Nymph.flac
-14:Lossless Album Collection/Flying Lotus - Cosmogramma/15 - Drips  Auntie´s Harp.flac
-15:Lossless Album Collection/Flying Lotus - Cosmogramma/16 - Table Tennis (feat. Laura Darlington).flac
-16:Lossless Album Collection/Flying Lotus - Cosmogramma/17 - Galaxy In Janaki.flac
+0:Lossless Album Collection/Aphex Twin - Drukqs/01 - Jynweythek.flac
+1:Lossless Album Collection/Aphex Twin - Drukqs/02 - Vordhosbn.flac
+2:Lossless Album Collection/Aphex Twin - Drukqs/03 - Kladfvgbung Micshk.flac
+3:Lossless Album Collection/Aphex Twin - Drukqs/04 - Omgyjya-Switch7.flac
+4:Lossless Album Collection/Aphex Twin - Drukqs/05 - Strotha Tynhe.flac
+5:Lossless Album Collection/Aphex Twin - Drukqs/06 - Gwely Mernans.flac
+6:Lossless Album Collection/Aphex Twin - Drukqs/07 - Bbydhyonchord.flac
+7:Lossless Album Collection/Aphex Twin - Drukqs/08 - Cock-ver10.flac
+8:Lossless Album Collection/Aphex Twin - Drukqs/09 - Avril 14th.flac
+9:Lossless Album Collection/Aphex Twin - Drukqs/10 - Mt Saint Michel + Saint Michaels Mount.flac
+10:Lossless Album Collection/Aphex Twin - Drukqs/11 - Gwarek2.flac
+11:Lossless Album Collection/Aphex Twin - Drukqs/12 - Orban Eq Trx4.flac
+12:Lossless Album Collection/Aphex Twin - Drukqs/13 - Aussois.flac
+13:Lossless Album Collection/Aphex Twin - Drukqs/14 - Hy A Scullyas Lyf Adhagrow.flac
+14:Lossless Album Collection/Aphex Twin - Drukqs/15 - Kesson Dalef.flac
+15:Lossless Album Collection/Aphex Twin - Drukqs/16 - 54 Cymrv Beats.flac
+16:Lossless Album Collection/Aphex Twin - Drukqs/17 - Btoum-Roumada.flac
+17:Lossless Album Collection/Aphex Twin - Drukqs/18 - Lornaderek.flac
+18:Lossless Album Collection/Aphex Twin - Drukqs/19 - Qkthr.flac
+19:Lossless Album Collection/Aphex Twin - Drukqs/20 - Meltphace 6.flac
+20:Lossless Album Collection/Aphex Twin - Drukqs/21 - Bit 4.flac
+21:Lossless Album Collection/Aphex Twin - Drukqs/22 - Prep Gwarlek 3b.flac
+22:Lossless Album Collection/Aphex Twin - Drukqs/23 - Father.flac
+23:Lossless Album Collection/Aphex Twin - Drukqs/24 - Taking Control.flac
+24:Lossless Album Collection/Aphex Twin - Drukqs/25 - Petiatil Cx Htdui.flac
+25:Lossless Album Collection/Aphex Twin - Drukqs/26 - Ruglen Holon.flac
+26:Lossless Album Collection/Aphex Twin - Drukqs/27 - AFX 237 V.7.flac
+27:Lossless Album Collection/Aphex Twin - Drukqs/28 - Ziggomatic 17.flac
+28:Lossless Album Collection/Aphex Twin - Drukqs/29 - Beskhu3epnm.flac
+29:Lossless Album Collection/Aphex Twin - Drukqs/30 - Nanou2.flac
 playlist_end
