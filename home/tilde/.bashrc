@@ -1,8 +1,6 @@
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.local/bin/commands:$PATH"
 
-alias nrs='sudo nixos-rebuild switch --flake /home/lewelove/nix-hosts/.#$HOSTNAME'
-
 # Programs
 alias nv=nvim
 alias nvn='NVIM_APPNAME=nvim-notes nvim'

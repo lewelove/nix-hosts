@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+REPO_DIR="$HOME/nix-hosts"
+MSG="${1:-$(date -u +'%Y-%m-%d %H:%M UTC')}"
+
+cd "$REPO_DIR" || exit 1
+
+echo ":: Rebuilding NixOS..."
+if sudo nixos-rebuild switch --flake "$HOSTNAME/.#$HOSTNAME"; then
+    
+    echo ":: Rebuild OK. Syncing Git..."
+    git add .
+    git commit -m "$MSG"
+    git push
+    
+    if command -v repomix &> /dev/null; then
+        repomix
+    fi
+else
+    echo ":: Rebuild FAILED. Skipping sync."
+    exit 1
+fi
