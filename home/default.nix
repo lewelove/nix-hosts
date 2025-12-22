@@ -11,13 +11,21 @@
     ./modules/home-manager.nix
 
     # Modules
-    ./modules/hardware-configuration.nix
-    ./modules/packages.nix
-    ./modules/bluetooth.nix
-    ./modules/programs.nix
+    ./modules/boot.nix
+    ./modules/system.nix
+    ./modules/environment.nix
+    ./modules/user.nix
+
+    ./modules/hardware.nix
     ./modules/nvidia.nix
-    ./modules/games.nix
+
+    ./modules/networking.nix
+    ./modules/bluetooth.nix
     ./modules/virtualization.nix
+
+    ./modules/packages.nix
+    ./modules/programs.nix
+    ./modules/games.nix
 
     # System Services
     # ./services/system/keyd.nix
