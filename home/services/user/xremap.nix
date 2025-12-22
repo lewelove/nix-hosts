@@ -5,7 +5,15 @@
     enable = true;
     withHypr = true;
 
-    yamlConfig = builtins.readFile ./../../tilde/.config/xremap/config.yml;
+    yamlConfig = ''
+      keymap:
+        - name: Global Launch Trigger
+          remap:
+            Super-l:
+              remap:
+                v:
+                  launch: ["foot", "-e", "nvim"]
+    '';
 
     watch = true;
   };
