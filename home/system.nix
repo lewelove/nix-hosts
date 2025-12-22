@@ -66,6 +66,12 @@
   };
   services.blueman.enable = true;
 
+  environment.loginShellInit = ''
+    if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
+       exec uwsm start default
+    fi
+  '';
+
   # --- Environment Variables ---
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";

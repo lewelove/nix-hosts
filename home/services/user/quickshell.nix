@@ -10,7 +10,6 @@
       After = [ "graphical-session.target" ];
     };
     Service = {
-      # %h is systemd shorthand for home directory
       ExecStart = "${pkgs.quickshell}/bin/quickshell -p %h/.config/quickshell/hypr-ref/shell.qml";
       Restart = "on-failure";
     };
