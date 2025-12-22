@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+REPO_DIR="$HOME/nix-hosts"
+MSG="${1:-$(date -u +'%Y-%m-%d %H:%M UTC')}"
+
+cd "$REPO_DIR" || exit 1
+
+echo
+echo ":: Syncing NixOS Configuration..."
+echo
+git add .
+git commit -m "$MSG"
+git push
+    
+if command -v repomix &> /dev/null; then
+    repomix
+fi
