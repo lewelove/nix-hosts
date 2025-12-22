@@ -1,6 +1,7 @@
 { pkgs, inputs, ... }:
 
 {
+
   environment.systemPackages = with pkgs; [
 
     # System
@@ -89,7 +90,6 @@
     # Flake Inputs
     inputs.zen-browser.packages.x86_64-linux.default
     inputs.photogimp.packages.${pkgs.system}.default
-
   ];
 
 }

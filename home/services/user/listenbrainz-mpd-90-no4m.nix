@@ -1,6 +1,7 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 
 let
+
   listenbrainz-mpd-90-no4m = pkgs.listenbrainz-mpd.overrideAttrs (old: rec {
     pname = "listenbrainz-mpd-90-no4m";
     version = "git";
@@ -15,8 +16,11 @@ let
 
     cargoHash = lib.fakeHash;
   });
+
 in
+
 {
+
   # --- ListenBrainz MPD Scrobble Service ---
   systemd.user.services.listenbrainz-mpd-90-no4m = {
     Unit = {
@@ -39,4 +43,5 @@ in
       WantedBy = [ "default.target" ];
     };
   };
+
 }

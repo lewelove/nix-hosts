@@ -24,7 +24,7 @@
       }
     '';
 
-    network.startWhenNeeded = true;
+    startWhenNeeded = true;
   };
 
 }

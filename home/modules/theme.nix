@@ -2,10 +2,6 @@
 
 {
 
-  # home.sessionVariables = {
-  #   QT_QPA_PLATFORMTHEME = "qt6ct";
-  # };
-
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
