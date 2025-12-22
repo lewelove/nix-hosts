@@ -8,7 +8,7 @@
     ./system.nix
 
     # Home Manager
-    ./modules/home-managert.nix
+    ./modules/home-manager.nix
 
     # Modules
     ./modules/hardware-configuration.nix
