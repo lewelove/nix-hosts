@@ -24,11 +24,11 @@
 
     # Desktop
     fuzzel
-    bemenu
     quickshell
     mako
     libnotify
     swww
+    xremap
     hyprshot
     hyprpicker
     wlsunset

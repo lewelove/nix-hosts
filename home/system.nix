@@ -11,7 +11,7 @@
 
   users.users.${username} = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel"  "input" "uinput" ];
     shell = pkgs.bash; 
     autoSubUidGidRange = true;
   };
@@ -108,6 +108,13 @@
     noto-fonts
     noto-fonts-color-emoji
   ];
+
+  hardware.uinput.enable = true;
+
+  services.udev.extraRules = ''
+    KERNEL=="uinput", GROUP="uinput", MODE="0660"
+    KERNEL=="event*", GROUP="input", MODE="0660"
+  '';
 
   # --- Nix Settings ---
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
