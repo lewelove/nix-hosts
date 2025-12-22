@@ -19,8 +19,7 @@
     nixosConfigurations.${identity.hostname} = nixpkgs.lib.nixosSystem {
       specialArgs = {
         inherit inputs xremap;
-        inherit (identity) username hostname;
-        repoPath = "/home/${identity.username}/nix-hosts/home";
+        inherit (identity) username hostname repoPath;
       };
         modules = [ ./default.nix ];
     };
