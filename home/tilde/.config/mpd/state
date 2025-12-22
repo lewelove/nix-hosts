@@ -1,6 +1,8 @@
 sw_volume: 100
 audio_device_state:1:PipeWire Sound Server
-state: stop
+state: play
+current: 0
+time: 119.455
 random: 0
 repeat: 0
 single: 0
@@ -10,13 +12,13 @@ mixrampdb: 0
 mixrampdelay: -1
 lastloadedplaylist: 
 playlist_begin
-0:Lossless Album Collection/Bing & Ruth - Tomorrow Was the Golden Age/01 - Warble.flac
-1:Lossless Album Collection/Bing & Ruth - Tomorrow Was the Golden Age/02 - TWTGA.flac
-2:Lossless Album Collection/Bing & Ruth - Tomorrow Was the Golden Age/03 - Just Like the First Time.flac
-3:Lossless Album Collection/Bing & Ruth - Tomorrow Was the Golden Age/04 - Police Police Police Police Police.flac
-4:Lossless Album Collection/Bing & Ruth - Tomorrow Was the Golden Age/05 - Strange Wind.flac
-5:Lossless Album Collection/Bing & Ruth - Tomorrow Was the Golden Age/06 - The Towns We Love Is Our Town.flac
-6:Lossless Album Collection/Bing & Ruth - Tomorrow Was the Golden Age/07 - We Are on the Side of Angels.flac
-7:Lossless Album Collection/Bing & Ruth - Tomorrow Was the Golden Age/08 - Reflector.flac
-8:Lossless Album Collection/Bing & Ruth - Tomorrow Was the Golden Age/09 - Postcard From Brilliant Orange.flac
+0:Lossless Album Collection/Intersystems - #4/01 - Ghost.flac
+1:Lossless Album Collection/Intersystems - #4/02 - Revelation of the Birds.flac
+2:Lossless Album Collection/Intersystems - #4/03 - Sonny Abilene I.flac
+3:Lossless Album Collection/Intersystems - #4/04 - Sonny Abilene II.flac
+4:Lossless Album Collection/Intersystems - #4/05 - X-Ray Animals.flac
+5:Lossless Album Collection/Intersystems - #4/06 - The End of the World.flac
+6:Lossless Album Collection/Intersystems - #4/07 - Unfinished World.flac
+7:Lossless Album Collection/Intersystems - #4/08 - Pedestal Park.flac
+8:Lossless Album Collection/Intersystems - #4/09 - Eddie.flac
 playlist_end

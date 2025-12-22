@@ -9,7 +9,6 @@
     users.${username} = {
       home.stateVersion = "25.05";
       imports = [
-        ./services.nix
         ./theme.nix
       ];
     };
