@@ -48,6 +48,7 @@
 
   # --- Network ---
   networking.networkmanager.enable = true;
+  networking.firewall.allowedTCPPorts = [ 80 8080 6600 ];
 
   # --- Bluetooth ---
   hardware.bluetooth = {
