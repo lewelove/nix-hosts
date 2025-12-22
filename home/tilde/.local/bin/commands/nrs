@@ -8,7 +8,7 @@ cd "$REPO_DIR" || exit 1
 echo ":: Rebuilding NixOS..."
 if sudo nixos-rebuild switch --flake "$HOSTNAME/.#$HOSTNAME"; then
     
-    echo ":: Rebuild OK. Syncing Git..."
+    echo "\n :: Rebuild OK. Syncing Git..."
     git add .
     git commit -m "$MSG"
     git push
