@@ -81,6 +81,15 @@
     QT_QPA_PLATFORMTHEME = "qt6ct";
     
     EDITOR = "nvim";
+
+    PATH = [
+      "$HOME/.commands"
+      "$HOME/.scripts"
+    ];
+
+    XDG_DATA_DIRS = [
+      "$HOME/.applications"
+    ];
   };
   
   # --- Fonts ---

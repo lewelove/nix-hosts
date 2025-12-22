@@ -1,5 +1,5 @@
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.local/bin/commands:$PATH"
+export PATH="$HOME/nix-hosts/home/tilde/.commands/:$PATH"
 
 # Programs
 alias nv=nvim
