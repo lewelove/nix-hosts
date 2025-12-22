@@ -1,4 +1,4 @@
-export PATH="$HOME/.commands:$HOME/.scripts:$PATH"
+# export PATH="$HOME/.commands:$HOME/.scripts:$PATH"
 
 # Programs
 alias nv=nvim

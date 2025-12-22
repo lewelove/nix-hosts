@@ -66,6 +66,8 @@
   };
   services.blueman.enable = true;
 
+  services.getty.autologinUser = "${username}";
+
   environment.loginShellInit = ''
     if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
        exec uwsm start default
