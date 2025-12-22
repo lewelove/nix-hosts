@@ -74,8 +74,8 @@
     fi
   '';
 
-  systemd.user.extraConfig = ''
-    DefaultEnvironment="XDG_DATA_DIRS=/home/${username}/.applications:/run/current-system/sw/share:/usr/local/share:/usr/share"
+  environment.extraInit = ''
+    export XDG_DATA_DIRS="$HOME/.applications:$XDG_DATA_DIRS"
   '';
 
   # --- Environment Variables ---
@@ -99,9 +99,6 @@
       "$HOME/.scripts"
     ];
 
-    XDG_DATA_DIRS = [
-      "$HOME/.applications"
-    ];
   };
   
   # --- Fonts ---
