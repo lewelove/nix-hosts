@@ -1,7 +1,6 @@
 ; thunar GtkAccelMap rc-file         -*- scheme -*-
 ; this file is an automated accelerator map dump
 ;
-; (gtk_accel_path "<Actions>/ThunarDetailsView/expandable-folders" "")
 ; (gtk_accel_path "<Actions>/ThunarStandardView/sort-by-type" "")
 ; (gtk_accel_path "<Actions>/ThunarStatusBar/toggle-last-modified" "")
 ; (gtk_accel_path "<Actions>/ThunarBookmarks/9e8e433d61e6f267817e5fcb09d72e1c" "")
@@ -13,7 +12,6 @@
 ; (gtk_accel_path "<Actions>/ThunarWindow/close-tab" "<Primary>w")
 ; (gtk_accel_path "<Actions>/ThunarBookmarks/e2f26837a38fc0f03837bd8216b47287" "")
 ; (gtk_accel_path "<Actions>/ThunarWindow/switch-previous-tab-alt" "<Primary><Shift>ISO_Left_Tab")
-; (gtk_accel_path "<Actions>/ThunarBookmarks/61bf9c8b8fe3600a11c5c5a306d0feed" "")
 ; (gtk_accel_path "<Actions>/ThunarStatusBar/toggle-size" "")
 ; (gtk_accel_path "<Actions>/ThunarWindow/new-window" "<Primary>n")
 ; (gtk_accel_path "<Actions>/ThunarBookmarks/26577ba26fde8991a53c5a4a482b6a2c" "")
@@ -42,7 +40,7 @@
 ; (gtk_accel_path "<Actions>/ThunarStandardView/sort-descending" "")
 ; (gtk_accel_path "<Actions>/ThunarWindow/show-highlight" "")
 ; (gtk_accel_path "<Actions>/ThunarStandardView/sort-by-name" "")
-; (gtk_accel_path "<Actions>/ThunarBookmarks/7991a3d49415b1fb0847e9a8d9d5e0b9" "")
+; (gtk_accel_path "<Actions>/ThunarBookmarks/a8944e951588cef1dccbf027ddda7cbb" "")
 ; (gtk_accel_path "<Actions>/ThunarStandardView/select-all-files" "<Primary>a")
 ; (gtk_accel_path "<Actions>/ThunarActionManager/execute" "")
 ; (gtk_accel_path "<Actions>/ThunarStandardView/properties" "<Alt>Return")
@@ -105,7 +103,6 @@
 ; (gtk_accel_path "<Actions>/ThunarWindow/view-as-icons" "<Primary>1")
 ; (gtk_accel_path "<Actions>/ThunarActionManager/delete-2" "<Shift>Delete")
 ; (gtk_accel_path "<Actions>/ThunarWindow/zoom-in" "<Primary>plus")
-; (gtk_accel_path "<Actions>/ThunarStandardView/configure-columns" "")
 ; (gtk_accel_path "<Actions>/ThunarStandardView/rename" "F2")
 ; (gtk_accel_path "<Actions>/ThunarWindow/open-location" "<Primary>l")
 ; (gtk_accel_path "<Actions>/ThunarWindow/view-as-compact-list" "<Primary>3")
