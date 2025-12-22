@@ -16,6 +16,7 @@
         ../services/user/wlsunset.nix
         ../services/user/quickshell.nix
         ../services/user/listenbrainz-mpd-90-no4m.nix
+        ../services/user/xremap.nix
       ];
     };
   };
