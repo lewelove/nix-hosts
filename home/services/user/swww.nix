@@ -6,8 +6,8 @@
   systemd.user.services.swww = {
     Unit = {
       Description = "Wayland Wallpaper Daemon";
-      PartOf = [ "graphical-session.target" ];
-      After = [ "graphical-session.target" ];
+      PartOf = [ "wayland-session.target" ];
+      After = [ "wayland-session.target" ];
       ConditionEnvironment = "WAYLAND_DISPLAY";
     };
     Service = {
@@ -17,7 +17,7 @@
       Type = "simple";
     };
     Install = {
-      WantedBy = [ "graphical-session.target" ];
+      WantedBy = [ "wayland-session.target" ];
     };
   };
 

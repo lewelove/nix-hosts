@@ -16,6 +16,7 @@
     ./modules/programs.nix
     ./modules/nvidia.nix
     ./modules/games.nix
+    ./modules/virtualization.nix
 
     # System Services
     ./services/system/keyd.nix
