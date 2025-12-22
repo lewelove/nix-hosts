@@ -8,6 +8,7 @@
       if [ -d "${repoPath}/tilde" ]; then
           echo
           echo ":: Stowing Dotfiles from ${repoPath}/tilde..."
+          echo
 
           ${pkgs.util-linux}/bin/runuser -u ${username} -- mkdir -p "$USER_HOME/.config"
           ${pkgs.util-linux}/bin/runuser -u ${username} -- mkdir -p "$USER_HOME/.local/bin"

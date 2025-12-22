@@ -5,9 +5,11 @@ MSG="${1:-$(date -u +'%Y-%m-%d %H:%M UTC')}"
 
 cd "$REPO_DIR" || exit 1
 
+echo
 echo ":: Rebuilding NixOS..."
+echo
+
 if sudo nixos-rebuild switch --flake "$HOSTNAME/.#$HOSTNAME"; then
-    
     echo
     echo ":: Rebuild OK. Syncing Git..."
     echo
@@ -21,5 +23,6 @@ if sudo nixos-rebuild switch --flake "$HOSTNAME/.#$HOSTNAME"; then
 else
     echo
     echo ":: Rebuild FAILED. Skipping sync."
+    echo
     exit 1
 fi
