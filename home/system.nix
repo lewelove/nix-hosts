@@ -74,10 +74,6 @@
     fi
   '';
 
-  environment.extraInit = ''
-    export XDG_DATA_DIRS="$HOME/.applications:$XDG_DATA_DIRS"
-  '';
-
   # --- Environment Variables ---
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
@@ -97,6 +93,10 @@
     PATH = [
       "$HOME/.commands"
       "$HOME/.scripts"
+    ];
+
+    XDG_DATA_DIRS = [
+      "$HOME/.applications"
     ];
 
   };
