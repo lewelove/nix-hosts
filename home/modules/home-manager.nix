@@ -14,12 +14,12 @@
         xremap.homeManagerModules.default
 
         ./theme.nix
-        ../services/user/mpd.nix
-        ../services/user/swww.nix
-        ../services/user/wlsunset.nix
-        ../services/user/quickshell.nix
-        ../services/user/listenbrainz-mpd-90-no4m.nix
-        ../services/user/xremap.nix
+        ../services/hm/mpd.nix
+        ../services/hm/swww.nix
+        ../services/hm/wlsunset.nix
+        ../services/hm/quickshell.nix
+        ../services/hm/listenbrainz-mpd-90-no4m.nix
+        ../services/hm/xremap.nix
       ];
     };
   };

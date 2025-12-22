@@ -50,23 +50,6 @@
   networking.networkmanager.enable = true;
   networking.firewall.allowedTCPPorts = [ 80 8080 6600 ];
 
-  # --- Bluetooth ---
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-    settings = {
-      General = {
-        AutoEnable = true;
-        Enable = "Source,Sink,Media,Socket";
-        AutoConnect = true;
-      };
-      Policy = {
-        AutoEnable = true;
-      };
-    };
-  };
-  services.blueman.enable = true;
-
   services.getty.autologinUser = "${username}";
 
   environment.loginShellInit = ''

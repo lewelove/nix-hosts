@@ -1,7 +1,8 @@
-sw_volume: 100
+sw_volume: 77
 audio_device_state:1:PipeWire Sound Server
-state: stop
+state: play
 current: 0
+time: 252.639
 random: 0
 repeat: 0
 single: 0
@@ -11,16 +12,8 @@ mixrampdb: 0
 mixrampdelay: -1
 lastloadedplaylist: 
 playlist_begin
-0:Lossless Album Collection/Duster - Contemporary Movement/01 - Get the Dutch.flac
-1:Lossless Album Collection/Duster - Contemporary Movement/02 - Operations.flac
-2:Lossless Album Collection/Duster - Contemporary Movement/03 - Diamond.flac
-3:Lossless Album Collection/Duster - Contemporary Movement/04 - Me and the Birds.flac
-4:Lossless Album Collection/Duster - Contemporary Movement/05 - Travelogue.flac
-5:Lossless Album Collection/Duster - Contemporary Movement/06 - The Phantom Facing Me.flac
-6:Lossless Album Collection/Duster - Contemporary Movement/07 - Cooking.flac
-7:Lossless Album Collection/Duster - Contemporary Movement/08 - Unrecovery.flac
-8:Lossless Album Collection/Duster - Contemporary Movement/09 - The Breakup Suite.flac
-9:Lossless Album Collection/Duster - Contemporary Movement/10 - Everything You See (Is Your Own).flac
-10:Lossless Album Collection/Duster - Contemporary Movement/11 - Now It's Coming Back.flac
-11:Lossless Album Collection/Duster - Contemporary Movement/12 - Auto-Mobile.flac
+0:Lossless Album Collection/Harold Budd - The Pavilion of Dreams/01 - Bismillahi 'Rrahman 'Rrahim.flac
+1:Lossless Album Collection/Harold Budd - The Pavilion of Dreams/02 - Two Songs.flac
+2:Lossless Album Collection/Harold Budd - The Pavilion of Dreams/03 - Madrigals of the Rose Angel.flac
+3:Lossless Album Collection/Harold Budd - The Pavilion of Dreams/04 - Juno.flac
 playlist_end
