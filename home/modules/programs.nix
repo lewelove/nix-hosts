@@ -8,11 +8,6 @@
     xwayland.enable = true;
   };
 
-  programs.steam = {
-    enable = true;
-    gamescopeSession.enable = true;
-  };
-
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;

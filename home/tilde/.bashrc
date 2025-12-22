@@ -1,7 +1,7 @@
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.local/bin/commands:$PATH"
 
-alias nrs='sudo nixos-rebuild switch --flake /home/lewelove/nixos-machines/.#home'
+alias nrs='sudo nixos-rebuild switch --flake /home/lewelove/nix-hosts/.#$HOSTNAME'
 
 # Programs
 alias nv=nvim

@@ -1,21 +1,15 @@
-{ config, pkgs, ... }:
+{ config, pkgs, username, hostname, ... }:
 
 {
-  imports = [
-    ./scripts.nix
-  ];
-
-  nixpkgs.config.allowUnfree = true;
 
   # --- Localization ---
   time.timeZone = "Europe/Moscow";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  # --- Network ---
-  networking.networkmanager.enable = true;
-
   # --- User Configuration ---
-  users.users.lewelove = {
+  networking.hostName = hostname;
+
+  users.users.${username} = {
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.bash; 
@@ -24,7 +18,7 @@
 
   security.sudo.extraRules = [
     {
-      users = [ "lewelove" ];
+      users = [ "${username}" ];
       commands = [
         { 
           command = "/run/current-system/sw/bin/killall";
@@ -41,6 +35,36 @@
       ];
     }
   ];
+
+  # --- Boot ---
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub = {
+    enable = true;
+    device = "nodev";
+    efiSupport = true;
+    useOSProber = true;
+  };
+
+  # --- Network ---
+  networking.networkmanager.enable = true;
+
+  # --- Bluetooth ---
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        AutoEnable = true;
+        Enable = "Source,Sink,Media,Socket";
+        AutoConnect = true;
+      };
+      Policy = {
+        AutoEnable = true;
+      };
+    };
+  };
+  services.blueman.enable = true;
 
   # --- Input Remapping ---
   services.keyd = {
@@ -94,4 +118,7 @@
 
   # --- Nix Settings ---
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nixpkgs.config.allowUnfree = true;
+  system.stateVersion = "25.11"; 
+
 }

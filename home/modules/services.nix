@@ -1,7 +1,6 @@
 { pkgs, config, lib, ... }:
 
 let
-  # Define the custom package pointing to your fork
   listenbrainz-mpd-90-no4m = pkgs.listenbrainz-mpd.overrideAttrs (old: rec {
     pname = "listenbrainz-mpd-90-no4m";
     version = "git";
@@ -10,12 +9,11 @@ let
       domain = "codeberg.org";
       owner = "lewelove";
       repo = "listenbrainz-mpd-90-no4m";
-      rev = "main"; # Or use a specific commit hash for stability
-      hash = "sha256-ePYk33SuGTiTRquUcVZTdkx4bXayCpWkEK5a/CC0+Yo="; # STEP 1: Change this after first error
+      rev = "main";
+      hash = "sha256-ePYk33SuGTiTRquUcVZTdkx4bXayCpWkEK5a/CC0+Yo=";
     };
 
-    # Invalidate the vendor hash since the source code changed
-    cargoHash = lib.fakeHash; # STEP 2: Change this after second error
+    cargoHash = lib.fakeHash;
   });
 in
 {
