@@ -66,6 +66,7 @@
     rmpc
     easyeffects
     flac
+    flac2all
     mediainfo
     qbittorrent
     
