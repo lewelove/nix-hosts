@@ -74,6 +74,10 @@
     fi
   '';
 
+  systemd.user.extraConfig = ''
+    DefaultEnvironment="XDG_DATA_DIRS=/home/${username}/.applications:/run/current-system/sw/share:/usr/local/share:/usr/share"
+  '';
+
   # --- Environment Variables ---
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
