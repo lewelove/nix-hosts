@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, username, xremap, ... }:
+{ config, pkgs, inputs, username, ... }:
 
 {
 
@@ -11,7 +11,7 @@
       home.stateVersion = "25.05";
       imports = [
         
-        xremap.homeManagerModules.default
+        inputs.xremap.homeManagerModules.default
 
         ./theme.nix
         ../services/hm/mpd.nix

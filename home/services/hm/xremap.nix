@@ -1,4 +1,4 @@
-{ xremap, config, ... }:
+{ inputs, ... }:
 
 {
   services.xremap = {

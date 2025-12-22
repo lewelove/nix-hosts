@@ -12,13 +12,14 @@
     xremap.url = "github:xremap/nix-flake";
   };
 
-  outputs = { self, nixpkgs, xremap, ... }@inputs:
+  outputs = { self, nixpkgs, ... }@inputs:
   let
     identity = import ./identity.nix;
+    hostPath = "${identity.repoPath}/${identity.hostname}";
   in {
     nixosConfigurations.${identity.hostname} = nixpkgs.lib.nixosSystem {
       specialArgs = {
-        inherit inputs xremap;
+        inherit inputs identity hostPath;
         inherit (identity) username hostname repoPath;
       };
         modules = [ ./default.nix ];
