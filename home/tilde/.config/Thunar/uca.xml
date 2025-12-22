@@ -33,7 +33,7 @@
 	<name>Set as Wallpaper</name>
 	<submenu></submenu>
 	<unique-id>1765654861522815-1</unique-id>
-	<command>/home/lewelove/.local/bin/change-wallpaper.sh &quot;%f&quot;</command>
+	<command>change-wallpaper.sh &quot;%f&quot;</command>
 	<description>Sets image as wallpaper using swww</description>
 	<range>*</range>
 	<patterns>*</patterns>
