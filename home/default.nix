@@ -19,7 +19,7 @@
     ./modules/virtualization.nix
 
     # System Services
-    ./services/system/xremap.nix
+    # ./services/system/keyd.nix
 
     # Scripts
     ./scripts/tilde-stow.nix

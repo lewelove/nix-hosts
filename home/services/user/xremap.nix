@@ -4,10 +4,8 @@
   services.xremap = {
     enable = true;
     withHypr = true;
-    serviceMode = "user";
-    userName = "lewelove";
 
-    yamlConfig = builtins.readFile "${config.home.homeDirectory}/.config/xremap/config.yml";
+    yamlConfig = builtins.readFile ./../../tilde/.config/xremap/config.yml;
 
     watch = true;
   };
