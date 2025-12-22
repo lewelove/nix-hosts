@@ -20,6 +20,7 @@
 
     # System Services
     # ./services/system/keyd.nix
+    ./services/system/mympd.nix
 
     # Scripts
     ./scripts/tilde-stow.nix
