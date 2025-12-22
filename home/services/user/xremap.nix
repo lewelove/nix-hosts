@@ -1,19 +1,14 @@
-{ pkgs, config, ... }:
+{ xremap, config, ... }:
 
 {
-  systemd.user.services.xremap = {
-    Unit = {
-      Description = "xremap user service";
-      PartOf = [ "graphical-session.target" ];
-      After = [ "graphical-session.target" ];
-    };
+  services.xremap = {
+    enable = true;
+    withHypr = true;
+    serviceMode = "user";
+    userName = "lewelove";
 
-    Service = {
-      # Points to the file managed by your stow script
-      ExecStart = "${pkgs.xremap}/bin/xremap ${config.home.homeDirectory}/.config/xremap/config.yml --watch";
-      Restart = "always";
-    };
+    yamlConfig = builtins.readFile "${config.home.homeDirectory}/.config/xremap/config.yml";
 
-    Install.WantedBy = [ "graphical-session.target" ];
+    watch = true;
   };
 }

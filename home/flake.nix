@@ -9,6 +9,7 @@
     # Other Flakes
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     photogimp.url = "github:Libadoxon/nix-photo-gimp";
+    xremap.url = "github:xremap/nix-flake";
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
