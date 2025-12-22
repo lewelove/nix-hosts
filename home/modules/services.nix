@@ -85,4 +85,32 @@ in
     };
   };
 
+  # --- Wlsunset ---
+  systemd.user.services.wlsunset = {
+    Unit = {
+      Description = "Day/Night Gamma Adjuster";
+      PartOf = [ "graphical-session.target" ];
+      After = [ "graphical-session.target" ];
+    };
+    Service = {
+      ExecStart = "${pkgs.wlsunset}/bin/wlsunset -S 08:00 -s 21:00 -d 3600 -t 4000";
+      Restart = "on-failure";
+    };
+    Install.WantedBy = [ "graphical-session.target" ];
+  };
+
+  # --- Quickshell ---
+  systemd.user.services.quickshell = {
+    Unit = {
+      Description = "Quickshell Desktop Shell";
+      PartOf = [ "graphical-session.target" ];
+      After = [ "graphical-session.target" ];
+    };
+    Service = {
+      # %h is systemd shorthand for home directory
+      ExecStart = "${pkgs.quickshell}/bin/quickshell -p %h/.config/quickshell/hypr-ref/shell.qml";
+      Restart = "on-failure";
+    };
+    Install.WantedBy = [ "graphical-session.target" ];
+  };
 }
