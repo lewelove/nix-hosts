@@ -13,6 +13,7 @@
               remap:
                 v:
                   launch: ["foot", "-e", "nvim"]
+              timeout_millis: 1000
     '';
 
     watch = true;
