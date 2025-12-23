@@ -7,6 +7,10 @@
   networking.firewall = {
     trustedInterfaces = [ "tailscale0" ];
     allowedUDPPorts = [ config.services.tailscale.port ];
+    extraUpFlags = [
+      "--advertise-exit-node"
+      "--accept-dns=true"
+    ]
   };
 
   boot.kernel.sysctl = {
