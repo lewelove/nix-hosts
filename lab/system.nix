@@ -6,6 +6,10 @@
   time.timeZone = "Europe/Moscow";
   i18n.defaultLocale = "en_US.UTF-8";
 
+  boot.kernelModules = [ "tun" ];
+
+  networking.resolvconf.enable = true;
+
   # --- OpenSSH ---
   services.openssh = {
     enable = true;
