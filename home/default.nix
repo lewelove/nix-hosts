@@ -35,6 +35,7 @@
     ./scripts/tilde-stow.nix
     ./scripts/nrs.nix
     ./scripts/ns.nix
+    ./scripts/nt.nix
   ];
 
 }
