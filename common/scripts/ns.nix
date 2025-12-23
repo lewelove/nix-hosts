@@ -34,7 +34,12 @@ let
           
       # 5. Refresh LLM Context
       if command -v repomix &> /dev/null; then
-          repomix
+          echo "Repomixing $REPO_DIR..."
+          repomix --quiet
+          echo "Repomixing [home] host..."
+          repomix --include "common/**,home/**"
+          echo "Repomixing [lab] host..."
+          repomix --include "common/**,lab/**"
       fi
     '';
   };
