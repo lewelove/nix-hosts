@@ -9,8 +9,11 @@
   # --- OpenSSH ---
   services.openssh = {
     enable = true;
-    settings.PasswordAuthentication = true;
-    settings.PermitRootLogin = "yes";
+    settings = {
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+      PermitRootLogin = "prohibit-password";
+    };
   };
 
   # --- Nix Settings ---
