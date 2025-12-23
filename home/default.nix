@@ -12,7 +12,6 @@
 
     # Modules
     ./modules/boot.nix
-    ./modules/system.nix
     ./modules/environment.nix
     ./modules/user.nix
 
@@ -32,10 +31,10 @@
     ./services/mympd.nix
 
     # Scripts
-    ./scripts/tilde-stow.nix
-    ./scripts/nrs.nix
-    ./scripts/ns.nix
-    ./scripts/nt.nix
+    ../common/scripts/tilde-stow.nix
+    ../common/scripts/nrs.nix
+    ../common/scripts/ns.nix
+    ../common/scripts/nt.nix
   ];
 
 }
