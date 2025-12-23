@@ -1,37 +1,31 @@
-{ pkgs, identity, hostPath, ... }:
+{ pkgs, identity, ... }:
 
 let
   nrs = pkgs.writeShellApplication {
     name = "nrs";
-    runtimeInputs = with pkgs; [ git nixos-rebuild repomix ];
+    runtimeInputs = with pkgs; [ nixos-rebuild ];
     text = ''
       REPO_DIR="${identity.repoPath}"
-      HOST_PATH="${hostPath}"
-      HOSTNAME="${identity.hostname}"
-      MSG="''${1:-$(date -u +'%Y-%m-%d %H:%M UTC')}"
+      TARGET_HOST="''${1:-${identity.hostname}}"
+      TARGET_PATH="$REPO_DIR/$TARGET_HOST"
+
+      if [ ! -d "$TARGET_PATH" ]; then
+        echo ":: Error: Host directory $TARGET_PATH does not exist."
+        exit 1
+      fi
 
       cd "$REPO_DIR" || exit 1
 
       echo
-      echo ":: Rebuilding NixOS for $HOSTNAME..."
+      echo ":: Rebuilding NixOS for [$TARGET_HOST]..."
       echo
 
-      if sudo nixos-rebuild switch --flake "$HOST_PATH#$HOSTNAME"; then
+      if sudo nixos-rebuild switch --flake "$TARGET_PATH#$TARGET_HOST"; then
           echo
-          echo ":: Rebuild OK. Syncing Git..."
-          echo
-
-          git add .
-          git commit -m "$MSG"
-          git push
-          
-          if command -v repomix &> /dev/null; then
-              repomix
-          fi
+          echo ":: SUCCESS: Configuration for [$TARGET_HOST] applied."
       else
           echo
-          echo ":: Rebuild FAILED. Skipping sync."
-          echo
+          echo ":: FAILURE: Rebuild failed."
           exit 1
       fi
     '';
