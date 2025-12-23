@@ -2,6 +2,8 @@
 
 {
 
+  boot.extraModulePackages = [ config.boot.kernelPackages.amneziawg ];
+
   environment.systemPackages = with pkgs; [
     amneziawg-tools
     amneziawg-go
