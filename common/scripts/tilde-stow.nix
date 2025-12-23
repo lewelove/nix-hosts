@@ -1,4 +1,4 @@
-{ pkgs, identity, hostPath, ... }:
+{ pkgs, identity, repoPath, hostPath, ... }:
 
 let
   tilde-stow = pkgs.writeShellApplication {
@@ -14,15 +14,13 @@ let
       r() { gum style --foreground 1 "$*"; }
       g() { gum style --foreground 2 "$*"; }
       b() { gum style --foreground 4 "$*"; }
-
-      REPO_PATH="${identity.repoPath}"
       
       mkdir -p "$HOME/.config"
 
-      if [ -d "$REPO_PATH/common/tilde" ]; then
+      if [ -d "${repoPath}/common/tilde" ]; then
           echo
           gum join --horizontal ":: Stowing " "$(b "$HOSTNAME") " "commons..."
-          cd "$REPO_PATH/common"
+          cd "${repoPath}/common"
           stow --adopt -t "$HOME" tilde --verbose=1
           echo
       fi

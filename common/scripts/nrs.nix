@@ -1,4 +1,4 @@
-{ pkgs, identity, ... }:
+{ pkgs, identity, repoPath, hostPath, ... }:
 
 let
   nrs = pkgs.writeShellApplication {
@@ -15,23 +15,22 @@ let
       g() { gum style --foreground 2 "$*"; }
       b() { gum style --foreground 4 "$*"; }
 
-      REPO_PATH="${identity.repoPath}"
-      
       TARGET_HOST="''${1:-$(hostname)}"
-      TARGET_PATH="$REPO_PATH/$TARGET_HOST"
 
-      if [ ! -d "$TARGET_PATH" ]; then
-        echo ":: Error: Host directory $TARGET_PATH does not exist in $REPO_PATH"
+      if [ ! -d "${hostPath}" ]; then
+        echo ":: Error: Host directory ${hostPath} does not exist in ${repoPath}"
         exit 1
       fi
 
-      cd "$REPO_PATH" || exit 1
+      cd "${repoPath}" || exit 1
 
       echo
       gum join --horizontal ":: Rebuilding NixOS for " "$(b "$TARGET_HOST")" "..."
       echo
 
-      if sudo nixos-rebuild switch --flake "$TARGET_PATH#$TARGET_HOST"; then
+      if
+          sudo nixos-rebuild switch --flake "${hostPath}#$TARGET_HOST"
+      then
           tilde-stow
           gum join --horizontal ":: " "$(gb "SUCCESS ")" "Configuration for " "$(b "$TARGET_HOST ")" "applied."
       else
