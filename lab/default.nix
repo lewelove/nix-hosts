@@ -24,6 +24,10 @@
     ./modules/packages.nix
     ./modules/programs.nix
 
+    # Services
+    ./services/tailscale.nix
+    ./services/jellyfin.nix
+
     # Scripts
     ../common/scripts/tilde-stow.nix
     ../common/scripts/nrs.nix
