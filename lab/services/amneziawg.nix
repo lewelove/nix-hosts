@@ -1,17 +1,29 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
-
-  boot.extraModulePackages = [ config.boot.kernelPackages.amneziawg ];
-
-  environment.systemPackages = with pkgs; [
-    amneziawg-tools
-    amneziawg-go
+  environment.systemPackages = with pkgs; [ 
+    amneziawg-tools 
+    amneziawg-go 
+    iptables
   ];
 
   systemd.services.awg-vpn = {
     description = "AmneziaWG VPN Service";
     after = [ "network.target" ];
+    
+    # Giving the service the same toolset as your user shell
+    path = with pkgs; [ 
+      amneziawg-tools
+      amneziawg-go
+      iproute2
+      iptables
+      openresolv
+      procps
+    ];
+
+    # Ensure it uses the userspace implementation found in the path above
+    environment.WG_QUICK_USERSPACE_IMPLEMENTATION = "amneziawg-go";
+
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
