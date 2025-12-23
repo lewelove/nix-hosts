@@ -6,35 +6,36 @@ let
     runtimeInputs = with pkgs; [ git stow repomix coreutils gum ];
     text = ''
 
-      b() { gum style --foreground 4 --bold "$*"; }
-      g() { gum style --foreground 2 --bold "$*"; }
-      c() { gum style --foreground 6 "$*"; }
+      wb() { gum style --foreground 7 --bold "$*"; }
+      rb() { gum style --foreground 1 --bold "$*"; }
+      gb() { gum style --foreground 2 --bold "$*"; }
+      bb() { gum style --foreground 4 --bold "$*"; }
+      w() { gum style --foreground 7 "$*"; }
+      r() { gum style --foreground 1 "$*"; }
+      g() { gum style --foreground 2 "$*"; }
+      b() { gum style --foreground 4 "$*"; }
 
       REPO_DIR="${identity.repoPath}"
       MSG="''${1:-$(date -u +'%Y-%m-%d %H:%M UTC')}"
 
-      # 1. Ensure .config exists so Stow doesn't link the whole directory
       mkdir -p "$HOME/.config"
 
-      # 2. Stow Common Workflow
       if [ -d "$REPO_DIR/common/tilde" ]; then
           echo
-          gum join --horizontal "::" "$(b "Stowing Common Workflow...")"
+          gum join --horizontal "$(w ":: Stowing ")" "$(bb "$HOSTNAME") " "commons..."
           echo
           cd "$REPO_DIR/common"
           stow --adopt -t "$HOME" tilde --verbose=1
       fi
 
-      # 3. Stow Host Specifics
       if [ -d "${hostPath}/tilde" ]; then
-          gum join --horizontal ":: " "$(b "Stowing Host Specifics...")"
+          gum join --horizontal "$(w ":: Stowing ")" "$(bb "$HOSTNAME") " "specifics..."
           echo
           cd "${hostPath}"
           stow --adopt -t "$HOME" tilde --verbose=1
       fi
 
-      # 4. Sync Git Repository
-      gum join --horizontal ":: " "$(g "Syncing Git...")"
+      gum join --horizontal "$(w ":: Syncing git for ")" "$(g "$REPO_DIR...")"
       echo
       cd "$REPO_DIR"
       git add .
@@ -42,9 +43,8 @@ let
       git push
       echo
           
-      # 5. Refresh LLM Context
       if command -v repomix &> /dev/null; then
-          gum join --horizontal ":: " "$(g "Repomixing $REPO_DIR...")"
+          gum join --horizontal "$(w ":: Repomixing ")" "$(g "$REPO_DIR...")"
           repomix --quiet
           repomix --quiet --include "common/**,home/**"
           repomix --quiet --include "common/**,lab/**"
