@@ -22,20 +22,20 @@ let
 
       if [ -d "$REPO_DIR/common/tilde" ]; then
           echo
-          gum join --horizontal "$(w ":: Stowing ")" "$(bb "$HOSTNAME") " "commons..."
+          gum join --horizontal ":: Stowing " "$(b "$HOSTNAME") " "commons..."
           echo
           cd "$REPO_DIR/common"
           stow --adopt -t "$HOME" tilde --verbose=1
       fi
 
       if [ -d "${hostPath}/tilde" ]; then
-          gum join --horizontal "$(w ":: Stowing ")" "$(bb "$HOSTNAME") " "specifics..."
+          gum join --horizontal ":: Stowing " "$(b "$HOSTNAME") " "specifics..."
           echo
           cd "${hostPath}"
           stow --adopt -t "$HOME" tilde --verbose=1
       fi
 
-      gum join --horizontal "$(w ":: Syncing git for ")" "$(g "$REPO_DIR...")"
+      gum join --horizontal ":: Syncing " "$(g "$REPO_DIR...")"
       echo
       cd "$REPO_DIR"
       git add .
@@ -44,7 +44,7 @@ let
       echo
           
       if command -v repomix &> /dev/null; then
-          gum join --horizontal "$(w ":: Repomixing ")" "$(g "$REPO_DIR...")"
+          gum join --horizontal ":: Repomixing " "$(g "$REPO_DIR...")"
           repomix --quiet
           repomix --quiet --include "common/**,home/**"
           repomix --quiet --include "common/**,lab/**"
