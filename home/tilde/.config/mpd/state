@@ -1,8 +1,8 @@
 sw_volume: 77
 audio_device_state:1:PipeWire Sound Server
-state: pause
-current: 4
-time: 204.806
+state: play
+current: 3
+time: 119.888
 random: 0
 repeat: 0
 single: 0
@@ -12,9 +12,11 @@ mixrampdb: 0
 mixrampdelay: -1
 lastloadedplaylist: 
 playlist_begin
-0:Lossless Album Collection/Brian Eno - Compact Forest Proposal/01 - Condition 5.flac
-1:Lossless Album Collection/Brian Eno - Compact Forest Proposal/02 - Condition 3.flac
-2:Lossless Album Collection/Brian Eno - Compact Forest Proposal/03 - Condition 4.flac
-3:Lossless Album Collection/Brian Eno - Compact Forest Proposal/04 - Condition 8.flac
-4:Lossless Album Collection/Brian Eno - Compact Forest Proposal/05 - Condition 7.flac
+0:Lossless Album Collection/David Bowie - Hunky Dory/05 - Kooks.flac
+1:Lossless Album Collection/David Bowie - Hunky Dory/06 - Quicksand.flac
+2:Lossless Album Collection/David Bowie - Hunky Dory/07 - Fill Your Heart.flac
+3:Lossless Album Collection/David Bowie - Hunky Dory/08 - Andy Warhol.flac
+4:Lossless Album Collection/David Bowie - Hunky Dory/09 - Song For Bob Dylan.flac
+5:Lossless Album Collection/David Bowie - Hunky Dory/10 - Queen Bitch.flac
+6:Lossless Album Collection/David Bowie - Hunky Dory/11 - The Bewlay Brothers.flac
 playlist_end
