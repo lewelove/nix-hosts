@@ -3,14 +3,17 @@
 let
   nrs = pkgs.writeShellApplication {
     name = "nrs";
-    runtimeInputs = with pkgs; [ nixos-rebuild ];
+    runtimeInputs = with pkgs; [ nixos-rebuild coreutils ];
     text = ''
       REPO_DIR="${identity.repoPath}"
-      TARGET_HOST="''${1:-${identity.hostname}}"
+      
+      # 1. Priority: CLI Argument ($1)
+      # 2. Fallback: Current system hostname
+      TARGET_HOST="''${1:-$(hostname)}"
       TARGET_PATH="$REPO_DIR/$TARGET_HOST"
 
       if [ ! -d "$TARGET_PATH" ]; then
-        echo ":: Error: Host directory $TARGET_PATH does not exist."
+        echo ":: Error: Host directory $TARGET_PATH does not exist in $REPO_DIR"
         exit 1
       fi
 
