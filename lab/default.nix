@@ -25,9 +25,9 @@
     ./modules/programs.nix
 
     # Scripts
-    ./scripts/tilde-stow.nix
-    ./scripts/nrs.nix
-    ./scripts/ns.nix
+    ../common/scripts/tilde-stow.nix
+    ../common/scripts/nrs.nix
+    ../common/scripts/ns.nix
   ];
 
 }
