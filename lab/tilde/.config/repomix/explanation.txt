@@ -1,1 +1,0 @@
-This file is a packed representation of the directory containing plaintext files (code, notes, etc). It allows AI to understand the structure and content.
