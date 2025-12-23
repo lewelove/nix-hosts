@@ -3,12 +3,20 @@
 let
   nrs = pkgs.writeShellApplication {
     name = "nrs";
-    runtimeInputs = with pkgs; [ nixos-rebuild coreutils ];
+    runtimeInputs = with pkgs; [ nixos-rebuild coreutils gum ];
     text = ''
+
+      wb() { gum style --foreground 7 --bold "$*"; }
+      rb() { gum style --foreground 1 --bold "$*"; }
+      gb() { gum style --foreground 2 --bold "$*"; }
+      bb() { gum style --foreground 4 --bold "$*"; }
+      w() { gum style --foreground 7 "$*"; }
+      r() { gum style --foreground 1 "$*"; }
+      g() { gum style --foreground 2 "$*"; }
+      b() { gum style --foreground 4 "$*"; }
+
       REPO_DIR="${identity.repoPath}"
       
-      # 1. Priority: CLI Argument ($1)
-      # 2. Fallback: Current system hostname
       TARGET_HOST="''${1:-$(hostname)}"
       TARGET_PATH="$REPO_DIR/$TARGET_HOST"
 
@@ -20,15 +28,15 @@ let
       cd "$REPO_DIR" || exit 1
 
       echo
-      echo ":: Rebuilding NixOS for [$TARGET_HOST]..."
+      gum join --horizontal ":: Rebuilding NixOS for " "$(b "$TARGET_HOST")" "..."
       echo
 
       if sudo nixos-rebuild switch --flake "$TARGET_PATH#$TARGET_HOST"; then
           echo
-          echo ":: SUCCESS: Configuration for [$TARGET_HOST] applied."
+          gum join --horizontal ":: " "$(gb "SUCCESS ")" "Configuration for " "$(b "$TARGET_HOST ")" "applied."
       else
           echo
-          echo ":: FAILURE: Rebuild failed."
+          gum join --horizontal ":: " "$(rb "FAILURE ")" "Build failed."
           exit 1
       fi
     '';
