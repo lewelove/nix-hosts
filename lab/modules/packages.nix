@@ -33,10 +33,6 @@
     mpc
     rmpc
     
-    # Network
-    amneziawg-go
-    amneziawg-tools
-
   ];
 
 }

@@ -27,10 +27,14 @@
     # Services
     ./services/tailscale.nix
     ./services/jellyfin.nix
+    ./services/amneziawg.nix
 
     # Scripts
     ../common/scripts/tilde-stow.nix
     ../common/scripts/nrs.nix
+    ./scripts/awgu.nix
+    ./scripts/awgd.nix
+    ./scripts/awgr.nix
 
   ];
 
