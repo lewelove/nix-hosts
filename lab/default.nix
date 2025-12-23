@@ -27,7 +27,7 @@
     # Scripts
     ../common/scripts/tilde-stow.nix
     ../common/scripts/nrs.nix
-    ../common/scripts/ns.nix
+
   ];
 
 }
