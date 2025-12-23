@@ -1,29 +1,42 @@
-{ pkgs, username, repoPath, hostPath, ... }:
+{ pkgs, identity, hostPath, ... }:
 
-{
-  system.activationScripts.tilde-stow = {
+let
+  tilde-stow = pkgs.writeShellApplication {
+    name = "tilde-stow";
+    runtimeInputs = with pkgs; [ stow coreutils gum ];
     text = ''
-      USER_HOME="/home/${username}"
 
-      # Ensure the base config dir exists so Stow doesn't link the whole folder
-      ${pkgs.util-linux}/bin/runuser -u ${username} -- mkdir -p "$USER_HOME/.config"
+      wb() { gum style --foreground 7 --bold "$*"; }
+      rb() { gum style --foreground 1 --bold "$*"; }
+      gb() { gum style --foreground 2 --bold "$*"; }
+      bb() { gum style --foreground 4 --bold "$*"; }
+      w() { gum style --foreground 7 "$*"; }
+      r() { gum style --foreground 1 "$*"; }
+      g() { gum style --foreground 2 "$*"; }
+      b() { gum style --foreground 4 "$*"; }
 
-      # 1. Stow Common (Workflow)
-      if [ -d "${repoPath}/common/tilde" ]; then
-          echo ":: Stowing Common Workflow..."
-          cd "${repoPath}/common"
-          ${pkgs.util-linux}/bin/runuser -u ${username} -- \
-            ${pkgs.stow}/bin/stow --adopt -t "$USER_HOME" tilde --verbose=1
+      REPO_PATH="${identity.repoPath}"
+      
+      mkdir -p "$HOME/.config"
+
+      if [ -d "$REPO_PATH/common/tilde" ]; then
+          echo
+          gum join --horizontal ":: Stowing " "$(b "$HOSTNAME") " "commons..."
+          echo
+          cd "$REPO_PATH/common"
+          stow --adopt -t "$HOME" tilde --verbose=1
       fi
 
-      # 2. Stow Host (Identity)
       if [ -d "${hostPath}/tilde" ]; then
-          echo ":: Stowing Host Specifics..."
+          gum join --horizontal ":: Stowing " "$(b "$HOSTNAME") " "specifics..."
+          echo
           cd "${hostPath}"
-          ${pkgs.util-linux}/bin/runuser -u ${username} -- \
-            ${pkgs.stow}/bin/stow --adopt -t "$USER_HOME" tilde --verbose=1
+          stow --adopt -t "$HOME" tilde --verbose=1
       fi
+
     '';
-    deps = [ "users" ];
   };
+in
+{
+  environment.systemPackages = [ tilde-stow ];
 }
