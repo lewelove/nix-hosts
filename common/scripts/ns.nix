@@ -3,8 +3,13 @@
 let
   ns = pkgs.writeShellApplication {
     name = "ns";
-    runtimeInputs = with pkgs; [ git stow repomix coreutils ];
+    runtimeInputs = with pkgs; [ git stow repomix coreutils gum ];
     text = ''
+
+      b() { gum style --foreground 4 --bold "$*"; }
+      g() { gum style --foreground 2 --bold "$*"; }
+      c() { gum style --foreground 6 "$*"; }
+
       REPO_DIR="${identity.repoPath}"
       MSG="''${1:-$(date -u +'%Y-%m-%d %H:%M UTC')}"
 
@@ -13,7 +18,8 @@ let
 
       # 2. Stow Common Workflow
       if [ -d "$REPO_DIR/common/tilde" ]; then
-          echo ":: Stowing Common Workflow..."
+          echo
+          gum join --horizontal "::" "$(b "Stowing Common Workflow...")"
           echo
           cd "$REPO_DIR/common"
           stow --adopt -t "$HOME" tilde --verbose=1
@@ -21,14 +27,14 @@ let
 
       # 3. Stow Host Specifics
       if [ -d "${hostPath}/tilde" ]; then
-          echo ":: Stowing Host Specifics..."
+          gum join --horizontal ":: " "$(b "Stowing Host Specifics...")"
           echo
           cd "${hostPath}"
           stow --adopt -t "$HOME" tilde --verbose=1
       fi
 
       # 4. Sync Git Repository
-      echo ":: Syncing Git..."
+      gum join --horizontal ":: " "$(g "Syncing Git...")"
       echo
       cd "$REPO_DIR"
       git add .
@@ -38,11 +44,9 @@ let
           
       # 5. Refresh LLM Context
       if command -v repomix &> /dev/null; then
-          echo "Repomixing $REPO_DIR..."
+          gum join --horizontal ":: " "$(g "Repomixing $REPO_DIR...")"
           repomix --quiet
-          echo "Repomixing [home] host..."
           repomix --quiet --include "common/**,home/**"
-          echo "Repomixing [lab] host..."
           repomix --quiet --include "common/**,lab/**"
       fi
     '';
