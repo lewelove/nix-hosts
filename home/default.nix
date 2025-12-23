@@ -26,8 +26,9 @@
     ./modules/programs.nix
     ./modules/games.nix
 
-    # System Services
+    # Services
     # ./services/system/keyd.nix
+    ./services/tailscale.nix
     ./services/mympd.nix
 
     # Scripts
