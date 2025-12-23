@@ -14,10 +14,8 @@
     ./modules/disko.nix
 
     ./modules/boot.nix
-    ./modules/system.nix
     ./modules/user.nix
 
-    ./modules/hardware.nix
     ./modules/hardware-configuration.nix
 
     ./modules/networking.nix
