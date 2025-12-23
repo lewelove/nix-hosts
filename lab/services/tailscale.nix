@@ -2,15 +2,17 @@
 
 {
 
-  services.tailscale.enable = true;
-
-  networking.firewall = {
-    trustedInterfaces = [ "tailscale0" ];
-    allowedUDPPorts = [ config.services.tailscale.port ];
+  services.tailscale = {
+    enable = true;
     extraUpFlags = [
       "--advertise-exit-node"
       "--accept-dns=true"
     ];
+  };
+
+  networking.firewall = {
+    trustedInterfaces = [ "tailscale0" ];
+    allowedUDPPorts = [ config.services.tailscale.port ];
   };
 
   boot.kernel.sysctl = {
