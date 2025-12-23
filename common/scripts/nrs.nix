@@ -15,24 +15,24 @@ let
       g() { gum style --foreground 2 "$*"; }
       b() { gum style --foreground 4 "$*"; }
 
-      REPO_DIR="${identity.repoPath}"
+      REPO_PATH="${identity.repoPath}"
       
       TARGET_HOST="''${1:-$(hostname)}"
-      TARGET_PATH="$REPO_DIR/$TARGET_HOST"
+      TARGET_PATH="$REPO_PATH/$TARGET_HOST"
 
       if [ ! -d "$TARGET_PATH" ]; then
-        echo ":: Error: Host directory $TARGET_PATH does not exist in $REPO_DIR"
+        echo ":: Error: Host directory $TARGET_PATH does not exist in $REPO_PATH"
         exit 1
       fi
 
-      cd "$REPO_DIR" || exit 1
+      cd "$REPO_PATH" || exit 1
 
       echo
       gum join --horizontal ":: Rebuilding NixOS for " "$(b "$TARGET_HOST")" "..."
       echo
 
       if sudo nixos-rebuild switch --flake "$TARGET_PATH#$TARGET_HOST"; then
-          echo
+          tilde-stow
           gum join --horizontal ":: " "$(gb "SUCCESS ")" "Configuration for " "$(b "$TARGET_HOST ")" "applied."
       else
           echo

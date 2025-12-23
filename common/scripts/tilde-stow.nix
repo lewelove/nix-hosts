@@ -22,16 +22,16 @@ let
       if [ -d "$REPO_PATH/common/tilde" ]; then
           echo
           gum join --horizontal ":: Stowing " "$(b "$HOSTNAME") " "commons..."
-          echo
           cd "$REPO_PATH/common"
           stow --adopt -t "$HOME" tilde --verbose=1
+          echo
       fi
 
       if [ -d "${hostPath}/tilde" ]; then
           gum join --horizontal ":: Stowing " "$(b "$HOSTNAME") " "specifics..."
-          echo
           cd "${hostPath}"
           stow --adopt -t "$HOME" tilde --verbose=1
+          echo
       fi
 
     '';
