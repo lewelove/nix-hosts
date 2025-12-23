@@ -10,7 +10,7 @@
     extraUpFlags = [
       "--advertise-exit-node"
       "--accept-dns=true"
-    ]
+    ];
   };
 
   boot.kernel.sysctl = {
