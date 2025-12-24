@@ -1,7 +1,6 @@
 { pkgs, ... }:
 
 {
-
   systemd.services.awg-vpn = {
     description = "AmneziaWG VPN Service";
     after = [ "network.target" ];
@@ -15,12 +14,7 @@
       procps
     ];
 
-    environment = {
-      WG_QUICK_USERSPACE_IMPLEMENTATION = "amneziawg-go";
-      # PROFESSIONAL FIX: Force awg-quick to use a specific priority range (Tier 3)
-      # This prevents it from trying to "beat" your other rules.
-      WG_QUICK_USER_RULE_PRIORITY = "2000"; 
-    };
+    environment.WG_QUICK_USERSPACE_IMPLEMENTATION = "amneziawg-go";
 
     serviceConfig = {
       Type = "oneshot";
@@ -28,7 +22,7 @@
       ExecStart = "${pkgs.amneziawg-tools}/bin/awg-quick up /etc/amneziawg/active.conf";
 
       ExecStartPost = pkgs.writeShellScript "awg-post-start" ''
-        # Ensure Tailscale stays in Tier 2
+        # Tailscale stays in Tier 2 (Safe at 500)
         ${pkgs.iproute2}/bin/ip rule add to 100.64.0.0/10 lookup 52 priority 500 || true
         ${pkgs.iptables}/bin/iptables -t mangle -A FORWARD -o active -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
       '';
@@ -40,5 +34,4 @@
       '';
     };
   };
-
 }
