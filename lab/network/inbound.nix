@@ -27,7 +27,6 @@
       RemainAfterExit = true;
     };
 
-    # REPLACE: <LAB_INBOUND_PRIVATE_KEY> and <PHONE_PUBLIC_KEY>
     script = ''
       mkdir -p /etc/amneziawg
       cat <<EOF > /etc/amneziawg/awg-phone.conf
@@ -45,6 +44,20 @@
       H2 = 2
       H3 = 3
       H4 = 4
+
+      # 1. Allow traffic to flow IN and OUT of the VPN interface (Bypasses Firewall DROP)
+      PostUp = iptables -A FORWARD -i awg-phone -j ACCEPT
+      PostUp = iptables -A FORWARD -o awg-phone -j ACCEPT
+      PostDown = iptables -D FORWARD -i awg-phone -j ACCEPT
+      PostDown = iptables -D FORWARD -o awg-phone -j ACCEPT
+
+      # 2. NAT: Hide phone traffic behind the Lab's active IP
+      PostUp = iptables -t nat -A POSTROUTING -s 10.10.10.0/24 -j MASQUERADE
+      PostDown = iptables -t nat -D POSTROUTING -s 10.10.10.0/24 -j MASQUERADE
+
+      # 3. MSS Clamping: Fixes website loading issues
+      PostUp = iptables -t mangle -A FORWARD -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
+      PostDown = iptables -t mangle -D FORWARD -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
 
       [Peer]
       PublicKey = ZTLbqTILxC72BunEQXnYpYmaxGwsX5lJ2HaAap1UZA4=
