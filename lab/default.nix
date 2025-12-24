@@ -29,7 +29,6 @@
 
     # Services
     # ./services/tailscale.nix
-    ./services/amneziawg.nix
     ./services/transmission.nix
     ./services/jellyfin.nix
 

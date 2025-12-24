@@ -19,8 +19,8 @@
       ListenPort = 55555
       PrivateKey = gKXCI1S7lGuxEVkGuu/7ASdeaUKxxTPDiQwXr5lpp0M=
       
-      # Mark the encrypted 'pipe' packets so we can route them via ISP
-      FwMark = 51820
+      # FwMark labels the 'Pipe' traffic so it stays on the ISP
+      FwMark = 55555
 
       Jc = 4
       Jmin = 40
@@ -32,22 +32,17 @@
       H3 = 3
       H4 = 4
 
-      # --- DETERMINISTIC ROUTING ---
-      # 1. Force Handshake 'Pipe' (Mark 51820) to use ISP (Priority 100)
-      PostUp = ip rule add fwmark 51820 priority 100 table main
-      PostDown = ip rule del priority 100 || true
+      # --- TIER 1: INFRASTRUCTURE (Priority 100-102) ---
+      # Becomes effective only when the tunnel is UP
+      PostUp = ip rule add fwmark 55555 priority 100 table main || true
+      PostUp = ip rule add to 10.10.10.0/24 priority 101 table main || true
+      PostUp = ip rule add to 192.168.1.0/24 priority 102 table main || true
 
-      # 2. Force Decrypted local replies to stay local (Priority 101-102)
-      PostUp = ip rule add to 10.10.10.0/24 priority 101 table main
-      PostUp = ip rule add to 192.168.1.0/24 priority 102 table main
-      PostDown = ip rule del priority 101 || true
-      PostDown = ip rule del priority 102 || true
-
-      # 3. Standard Forwarding & NAT
-      PostUp = iptables -A FORWARD -i awg-phone -j ACCEPT
-      PostUp = iptables -A FORWARD -o awg-phone -j ACCEPT
-      PostUp = iptables -t nat -A POSTROUTING -s 10.10.10.0/24 -j MASQUERADE
-      PostUp = iptables -t mangle -A FORWARD -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --set-mss 1280
+      # Forwarding & NAT
+      PostUp = iptables -A FORWARD -i awg-phone -j ACCEPT || true
+      PostUp = iptables -A FORWARD -o awg-phone -j ACCEPT || true
+      PostUp = iptables -t nat -A POSTROUTING -s 10.10.10.0/24 -j MASQUERADE || true
+      PostUp = iptables -t mangle -A FORWARD -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --set-mss 1280 || true
       EOF
 
       ${pkgs.amneziawg-tools}/bin/awg-quick up /etc/amneziawg/awg-phone.conf
@@ -55,6 +50,9 @@
 
     postStop = ''
       ${pkgs.amneziawg-tools}/bin/awg-quick down /etc/amneziawg/awg-phone.conf || true
+      ${pkgs.iproute2}/bin/ip rule del priority 100 || true
+      ${pkgs.iproute2}/bin/ip rule del priority 101 || true
+      ${pkgs.iproute2}/bin/ip rule del priority 102 || true
     '';
   };
 }
