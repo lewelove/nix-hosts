@@ -19,7 +19,7 @@
       ListenPort = 55555
       PrivateKey = gKXCI1S7lGuxEVkGuu/7ASdeaUKxxTPDiQwXr5lpp0M=
       
-      # This mark allows the handshake to find the ISP when Spain is ON
+      # FwMark 55555 (0xd903) identifies the tunnel pipe
       FwMark = 55555
 
       Jc = 4
@@ -32,14 +32,15 @@
       H3 = 3
       H4 = 4
 
-      # --- REVERTED TO WORKING NAT STATE ---
-      PostUp = ip rule add fwmark 55555 priority 10 table main || true
-      PostUp = ip rule add to 10.10.10.0/24 priority 11 table main || true
+      # Simple stable rules for handshake and replies
+      PostUp = ip rule add fwmark 55555 priority 100 table main || true
+      PostUp = ip rule add to 10.10.10.0/24 priority 101 table main || true
 
+      # Standard Forwarding & NAT
       PostUp = iptables -A FORWARD -i awg-phone -j ACCEPT || true
       PostUp = iptables -A FORWARD -o awg-phone -j ACCEPT || true
       PostUp = iptables -t nat -A POSTROUTING -s 10.10.10.0/24 -j MASQUERADE || true
-      PostUp = iptables -t mangle -A FORWARD -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --set-mss 1280 || true
+      PostUp = iptables -t mangle -A FORWARD -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu || true
       EOF
 
       ${pkgs.amneziawg-tools}/bin/awg-quick up /etc/amneziawg/awg-phone.conf
@@ -47,8 +48,8 @@
 
     postStop = ''
       ${pkgs.amneziawg-tools}/bin/awg-quick down /etc/amneziawg/awg-phone.conf || true
-      ip rule del priority 10 || true
-      ip rule del priority 11 || true
+      ip rule del priority 100 || true
+      ip rule del priority 101 || true
     '';
   };
 }
