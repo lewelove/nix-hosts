@@ -45,13 +45,13 @@
       H3 = 3
       H4 = 4
 
-      PostUp = ip rule add to 10.10.10.0/24 priority 100 table main || true
-      PostUp = ip rule add from 10.10.10.0/24 to 10.10.10.0/24 priority 101 table main || true
-      PostUp = ip rule add from 10.10.10.0/24 to 192.168.1.0/24 priority 102 table main || true
+      PostUp = ip rule add to 10.10.10.0/24 priority 20 table main || true
+      PostUp = ip rule add from 10.10.10.0/24 to 10.10.10.0/24 priority 21 table main || true
+      PostUp = ip rule add from 10.10.10.0/24 to 192.168.1.0/24 priority 22 table main || true
       
-      PostDown = ip rule del to 10.10.10.0/24 priority 100 table main || true
-      PostDown = ip rule del from 10.10.10.0/24 to 10.10.10.0/24 priority 101 table main || true
-      PostDown = ip rule del from 10.10.10.0/24 to 192.168.1.0/24 priority 102 table main || true
+      PostDown = ip rule del priority 20 || true
+      PostDown = ip rule del priority 21 || true
+      PostDown = ip rule del priority 22 || true
 
       # --- FORWARDING & NAT ---
       PostUp = iptables -A FORWARD -i awg-phone -j ACCEPT || true
@@ -62,7 +62,7 @@
       PostUp = iptables -t nat -A POSTROUTING -s 10.10.10.0/24 -j MASQUERADE || true
       PostDown = iptables -t nat -D POSTROUTING -s 10.10.10.0/24 -j MASQUERADE || true
 
-      # MSS Clamping (Safe for Double VPN tunnels)
+      # MSS Clamping (Double VPN Safety)
       PostUp = iptables -t mangle -A FORWARD -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --set-mss 1280 || true
       PostDown = iptables -t mangle -D FORWARD -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --set-mss 1280 || true
 
