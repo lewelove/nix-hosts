@@ -18,6 +18,8 @@
       Address = 10.10.10.1/24
       ListenPort = 55555
       PrivateKey = gKXCI1S7lGuxEVkGuu/7ASdeaUKxxTPDiQwXr5lpp0M=
+      
+      # This mark allows the handshake to find the ISP when Spain is ON
       FwMark = 55555
 
       Jc = 4
@@ -30,12 +32,10 @@
       H3 = 3
       H4 = 4
 
-      # 1. Pipe Protection: Force handshake to ISP
+      # --- REVERTED TO WORKING NAT STATE ---
       PostUp = ip rule add fwmark 55555 priority 10 table main || true
-      # 2. Local Access: Lab must always find the phone in 'main'
       PostUp = ip rule add to 10.10.10.0/24 priority 11 table main || true
-      
-      # 3. Decrypted Forwarding & NAT
+
       PostUp = iptables -A FORWARD -i awg-phone -j ACCEPT || true
       PostUp = iptables -A FORWARD -o awg-phone -j ACCEPT || true
       PostUp = iptables -t nat -A POSTROUTING -s 10.10.10.0/24 -j MASQUERADE || true
