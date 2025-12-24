@@ -24,7 +24,7 @@ let
       cd "${repoPath}"
       git add .
       git commit -m "$MSG"
-      git push -u origin
+      git push -u origin main
       echo
           
       if command -v repomix &> /dev/null; then
