@@ -48,6 +48,11 @@
       PostUp = ip rule add to 10.10.10.0/24 priority 100 table main
       PostDown = ip rule del to 10.10.10.0/24 priority 100 table main
 
+      PostUp = ip rule add from 10.10.10.0/24 to 10.10.10.0/24 priority 101 table main
+      PostUp = ip rule add from 10.10.10.0/24 to 192.168.1.0/24 priority 102 table main
+      PostDown = ip rule del from 10.10.10.0/24 to 10.10.10.0/24 priority 101 table main
+      PostDown = ip rule del from 10.10.10.0/24 to 192.168.1.0/24 priority 102 table main
+
       PostUp = iptables -A FORWARD -i awg-phone -j ACCEPT
       PostUp = iptables -A FORWARD -o awg-phone -j ACCEPT
       PostDown = iptables -D FORWARD -i awg-phone -j ACCEPT
