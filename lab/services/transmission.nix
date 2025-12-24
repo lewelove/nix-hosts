@@ -3,8 +3,10 @@
 {
   # 1. Automatically create and permission the directories
   systemd.tmpfiles.rules = [
-    "d /mnt/drives/hdd1000/media/torrents 0775 transmission jellyfin -"
-    "d /mnt/drives/hdd1000/media/torrents/.incomplete 0775 transmission jellyfin -"
+    "d /mnt/drives/hdd1000 0775 lewelove jellyfin -"
+    "d /mnt/drives/hdd1000/media 2775 lewelove jellyfin -"
+    "d /mnt/drives/hdd1000/media/torrents 2775 transmission jellyfin -"
+    "d /mnt/drives/hdd1000/media/torrents/.incomplete 2775 transmission jellyfin -"
   ];
 
   # 2. Enable Transmission Daemon
@@ -12,9 +14,11 @@
     enable = true;
     group = "jellyfin"; 
     settings = {
+
+      umask = 2;
+
       download-dir = "/mnt/drives/hdd1000/media/torrents";
-      incomplete-dir = "/mnt/drives/hdd1000/media/torrents/.incomplete";
-      incomplete-dir-enabled = true;
+      incomplete-dir-enabled = false;
 
       cache-size-mb = 1024;
       peer-limit-global = 2000;
