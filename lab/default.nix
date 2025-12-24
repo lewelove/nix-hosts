@@ -26,8 +26,9 @@
 
     # Services
     ./services/tailscale.nix
-    ./services/jellyfin.nix
     ./services/amneziawg.nix
+    ./services/transmission.nix
+    ./services/jellyfin.nix
 
     # Scripts
     ../common/scripts/tilde-stow.nix

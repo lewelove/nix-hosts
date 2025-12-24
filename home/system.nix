@@ -14,6 +14,8 @@
     noto-fonts-color-emoji
   ];
 
+  programs.fuse.userAllowOther = true;
+
   programs.ssh.startAgent = true;
 
   hardware.uinput.enable = true;

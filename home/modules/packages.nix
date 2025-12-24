@@ -21,6 +21,7 @@
     gnome-disk-utility
     bluez
     blueman
+    sshfs
 
     # Desktop
     fuzzel
@@ -64,11 +65,11 @@
     imv
     mpc
     rmpc
-    easyeffects
     flac
     flac2all
     mediainfo
     qbittorrent
+    transmission_4
     
     # Network
     amneziawg-go
@@ -76,7 +77,6 @@
 
     # Web
     ungoogled-chromium
-    librewolf
     ayugram-desktop
 
     # Themes and Icons
