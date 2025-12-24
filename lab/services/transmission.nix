@@ -15,6 +15,14 @@
       download-dir = "/mnt/drives/hdd1000/media/torrents";
       incomplete-dir = "/mnt/drives/hdd1000/media/torrents/.incomplete";
       incomplete-dir-enabled = true;
+
+      cache-size-mb = 1024;
+      peer-limit-global = 2000;
+      peer-limit-per-torrent = 500;
+      encryption = 1;
+
+      peer-port = 54321;
+      port-forwarding-enabled = false;
       
       rpc-bind-address = "0.0.0.0";
       rpc-port = 9091;
@@ -22,7 +30,6 @@
       rpc-whitelist = "127.0.0.1,192.168.*.*,100.*.*.*";
       rpc-host-whitelist-enabled = false;
       
-      peer-port = 51413;
     };
   };
 
@@ -58,6 +65,6 @@
     '';
   };
 
-  networking.firewall.allowedTCPPorts = [ 9091 51413 ];
-  networking.firewall.allowedUDPPorts = [ 51413 ];
+  networking.firewall.allowedTCPPorts = [ 9091 54321 ];
+  networking.firewall.allowedUDPPorts = [ 54321 ];
 }
