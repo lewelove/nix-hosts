@@ -18,8 +18,6 @@
       Address = 10.10.10.1/24
       ListenPort = 55555
       PrivateKey = gKXCI1S7lGuxEVkGuu/7ASdeaUKxxTPDiQwXr5lpp0M=
-      
-      # FwMark labels the 'Pipe' traffic so it stays on the ISP
       FwMark = 55555
 
       Jc = 4
@@ -32,13 +30,12 @@
       H3 = 3
       H4 = 4
 
-      # --- TIER 1: INFRASTRUCTURE (Priority 100-102) ---
-      # Becomes effective only when the tunnel is UP
-      PostUp = ip rule add fwmark 55555 priority 100 table main || true
-      PostUp = ip rule add to 10.10.10.0/24 priority 101 table main || true
-      PostUp = ip rule add to 192.168.1.0/24 priority 102 table main || true
-
-      # Forwarding & NAT
+      # 1. Pipe Protection: Force handshake to ISP
+      PostUp = ip rule add fwmark 55555 priority 10 table main || true
+      # 2. Local Access: Lab must always find the phone in 'main'
+      PostUp = ip rule add to 10.10.10.0/24 priority 11 table main || true
+      
+      # 3. Decrypted Forwarding & NAT
       PostUp = iptables -A FORWARD -i awg-phone -j ACCEPT || true
       PostUp = iptables -A FORWARD -o awg-phone -j ACCEPT || true
       PostUp = iptables -t nat -A POSTROUTING -s 10.10.10.0/24 -j MASQUERADE || true
@@ -50,9 +47,8 @@
 
     postStop = ''
       ${pkgs.amneziawg-tools}/bin/awg-quick down /etc/amneziawg/awg-phone.conf || true
-      ${pkgs.iproute2}/bin/ip rule del priority 100 || true
-      ${pkgs.iproute2}/bin/ip rule del priority 101 || true
-      ${pkgs.iproute2}/bin/ip rule del priority 102 || true
+      ip rule del priority 10 || true
+      ip rule del priority 11 || true
     '';
   };
 }

@@ -4,40 +4,39 @@
   systemd.services.awg-vpn = {
     description = "AmneziaWG VPN Service";
     after = [ "network.target" ];
-    path = with pkgs; [ amneziawg-tools amneziawg-go iproute2 iptables gnugrep coreutils ];
+    path = with pkgs; [ amneziawg-tools amneziawg-go iproute2 iptables coreutils ];
     environment.WG_QUICK_USERSPACE_IMPLEMENTATION = "amneziawg-go";
 
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
-      ExecStart = pkgs.writeShellScript "awg-isolated-up" ''
-        # 1. Start the VPN normally
+      
+      ExecStart = pkgs.writeShellScript "awg-up-isolated" ''
+        # Force Table=off behavior by preventing awg-quick from seeing a 'Table' setting
+        # This ensures awg-quick ONLY sets up the interface and routes in a custom table
         ${pkgs.amneziawg-tools}/bin/awg-quick up /etc/amneziawg/active.conf
 
-        # 2. THE ANCHOR: Locate and Demote awg-quick's aggressive rules
-        # Identify the table ID used by awg-quick (usually 51820)
-        TABLE_ID=51820
-        
-        # Move the 'suppress_prefixlength' rule to Tier 3
-        ${pkgs.iproute2}/bin/ip rule add lookup main suppress_prefixlength 0 priority 1999 || true
-        # Move the default gateway rule to Tier 3
-        ${pkgs.iproute2}/bin/ip rule add not from all fwmark 51820 lookup $TABLE_ID priority 2000 || true
+        # THE RIGOROUS FIX:
+        # 1. Ensure the Spain VPN has a default route in its own table
+        # (awg-quick should have done this, but we force it)
+        ip route add default dev active table 51820 || true
 
-        # Delete the aggressive rules awg-quick created (usually priority < 100)
-        # We find them by searching for the table ID and prefix suppression
-        ${pkgs.iproute2}/bin/ip rule show | grep "suppress_prefixlength 0" | grep -v "1999:" | head -n 1 | cut -d ":" -f 1 | xargs -I {} ${pkgs.iproute2}/bin/ip rule del priority {} || true
-        ${pkgs.iproute2}/bin/ip rule show | grep "lookup $TABLE_ID" | grep -v "2000:" | head -n 1 | cut -d ":" -f 1 | xargs -I {} ${pkgs.iproute2}/bin/ip rule del priority {} || true
+        # 2. FORWARD PHONE TO SPAIN: 
+        # Any traffic originating from the phone's network MUST use the Spain Table.
+        # This priority (1000) is after your 'main' bypasses (10-11).
+        ip rule add from 10.10.10.0/24 lookup 51820 priority 1000 || true
 
-        # Tier 2 Bypass: Tailscale
-        ${pkgs.iproute2}/bin/ip rule add to 100.64.0.0/10 lookup 52 priority 500 || true
-        ${pkgs.iptables}/bin/iptables -t mangle -A FORWARD -o active -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
+        # 3. OPTIONAL: Force Lab internet to Spain (Comment this if you want Lab in Russia)
+        ip rule add not from all fwmark 51820 lookup 51820 priority 1001 || true
+
+        # 4. MSS Clamping
+        iptables -t mangle -A FORWARD -o active -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
       '';
 
-      ExecStop = pkgs.writeShellScript "awg-isolated-down" ''
-        ${pkgs.amneziawg-tools}/bin/awg-quick down /etc/amneziawg/active.conf || true
-        ${pkgs.iproute2}/bin/ip rule del priority 1999 || true
-        ${pkgs.iproute2}/bin/ip rule del priority 2000 || true
-        ${pkgs.iproute2}/bin/ip rule del priority 500 || true
+      ExecStop = pkgs.writeShellScript "awg-down-isolated" ''
+        ip rule del priority 1000 || true
+        ip rule del priority 1001 || true
+        ${pkgs.amneziawg-tools}/bin/awg-quick down /etc/amneziawg/active.conf
       '';
     };
   };
