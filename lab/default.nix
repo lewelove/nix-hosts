@@ -7,6 +7,9 @@
     # System
     ./system.nix
 
+    # Network
+    ./network
+
     # Home Manager
     ./modules/home-manager.nix
 
@@ -25,7 +28,7 @@
     ./modules/programs.nix
 
     # Services
-    ./services/tailscale.nix
+    # ./services/tailscale.nix
     ./services/amneziawg.nix
     ./services/transmission.nix
     ./services/jellyfin.nix

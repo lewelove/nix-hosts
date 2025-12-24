@@ -2,12 +2,6 @@
 
 {
 
-  environment.systemPackages = with pkgs; [ 
-    amneziawg-tools 
-    amneziawg-go 
-    iptables
-  ];
-
   systemd.services.awg-vpn = {
     description = "AmneziaWG VPN Service";
     after = [ "network.target" ];
