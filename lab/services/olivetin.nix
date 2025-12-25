@@ -8,14 +8,17 @@
       actions = [
         {
           title = "VPN: START RANDOM / RESTART";
+          icon = "🚀";
           shell = "sudo /run/current-system/sw/bin/awgu";
         }
         {
           title = "VPN: STOP (ISP Mode)";
+          icon = "⏹";
           shell = "sudo /run/current-system/sw/bin/awgd";
         }
         {
           title = "SYSTEM: RESTART PHONE TUNNEL";
+          icon = "📱";
           shell = "sudo /run/current-system/sw/bin/systemctl restart awg-inbound";
         }
       ];
