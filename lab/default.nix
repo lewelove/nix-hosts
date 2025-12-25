@@ -21,7 +21,6 @@
 
     ./modules/hardware-configuration.nix
 
-    ./modules/networking.nix
     ./modules/virtualization.nix
 
     ./modules/packages.nix
