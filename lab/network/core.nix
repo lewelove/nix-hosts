@@ -8,7 +8,6 @@
 
   networking.firewall = {
     enable = true;
-    allowedUDPPorts = [ 55555 ];
     checkReversePath = "loose";
   };
 

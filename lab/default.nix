@@ -9,7 +9,11 @@
     ./user.nix
 
     # Network
-    ./network
+    ./network/core.nix
+    ./network/inbound.nix
+    ./network/openssh.nix
+    ./network/amneziawg.nix
+    # ./network/tailscale.nix
 
     # Home Manager
     ./modules/home-manager.nix
@@ -24,7 +28,6 @@
     ./modules/virtualization.nix
 
     # Services
-    # ./services/tailscale.nix
     ./services/transmission.nix
     ./services/jellyfin.nix
 

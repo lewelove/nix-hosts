@@ -1,7 +1,9 @@
 { config, pkgs, ... }:
 
 {
-  # 1. Automatically create and permission the directories
+
+  networking.firewall.allowedTCPPorts = [ 9091 54321 ];
+
   systemd.tmpfiles.rules = [
     "d /mnt/drives/hdd1000 0775 lewelove jellyfin -"
     "d /mnt/drives/hdd1000/media 2775 lewelove jellyfin -"
@@ -9,7 +11,6 @@
     "d /mnt/drives/hdd1000/media/torrents/.incomplete 2775 transmission jellyfin -"
   ];
 
-  # 2. Enable Transmission Daemon
   services.transmission = {
     enable = true;
     group = "jellyfin"; 
@@ -37,7 +38,6 @@
     };
   };
 
-  # 3. VPN Bypass Routing Logic
   systemd.services.transmission-bypass = {
     description = "Routing rules to bypass VPN for Transmission user";
     after = [ "network.target" "awg-vpn.service" ];
@@ -69,6 +69,4 @@
     '';
   };
 
-  networking.firewall.allowedTCPPorts = [ 9091 54321 ];
-  networking.firewall.allowedUDPPorts = [ 54321 ];
 }

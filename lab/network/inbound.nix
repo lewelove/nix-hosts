@@ -1,7 +1,9 @@
 { pkgs, ... }:
 
 {
-  # Ensure the tools are available
+
+  networking.firewall.allowedUDPPorts = [ 55555 ];
+
   environment.systemPackages = with pkgs; [ 
     amneziawg-tools 
     amneziawg-go 

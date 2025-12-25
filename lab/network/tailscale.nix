@@ -2,6 +2,8 @@
 
 {
 
+  networking.firewall.allowedUDPPorts = [ config.services.tailscale.port ];
+
   services.tailscale = {
     enable = true;
     port = 51820;
@@ -13,7 +15,6 @@
 
   networking.firewall = {
     trustedInterfaces = [ "tailscale0" ];
-    allowedUDPPorts = [ config.services.tailscale.port ];
     extraCommands = ''
       ip rule add to 100.64.0.0/10 lookup 52 priority 500 || true
       iptables -t mangle -A FORWARD -o active -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu || true
