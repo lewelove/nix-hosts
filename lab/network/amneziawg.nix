@@ -11,6 +11,7 @@
       iproute2
       iptables
       procps
+      gnugrep
     ];
 
     serviceConfig = {
@@ -19,11 +20,18 @@
     };
 
     script = ''
+      CONF="/etc/amneziawg/active.conf"
+      VPN_IP=$(grep '^Address' "$CONF" | cut -d'=' -f2 | xargs)
+
+      ip link delete active || true
       amneziawg-go active &
       sleep 2
       
-      awg setconf active /etc/amneziawg/active.conf
-      ip addr add 10.8.0.2/24 dev active || true
+      grep -v -E "^(Address|DNS|MTU|Table)" "$CONF" | awg setconf active /dev/stdin
+
+      if [ -n "$VPN_IP" ]; then
+        ip addr add "$VPN_IP" dev active || true
+      fi
       ip link set active up
 
       ip route add default dev active table 100 || true

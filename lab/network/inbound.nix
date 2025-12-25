@@ -19,6 +19,7 @@
       iproute2
       iptables
       procps
+      gnugrep
     ];
 
     serviceConfig = {
@@ -27,11 +28,18 @@
     };
 
     script = ''
+      CONF="/etc/amneziawg/awg-phone.conf"
+      VPN_IP=$(grep '^Address' "$CONF" | cut -d'=' -f2 | xargs)
+
+      ip link delete awg-phone || true
       amneziawg-go awg-phone &
       sleep 2
       
-      awg setconf awg-phone /etc/amneziawg/awg-phone.conf
-      ip addr add 10.10.10.1/24 dev awg-phone
+      grep -v -E "^(Address|DNS|MTU|Table)" "$CONF" | awg setconf awg-phone /dev/stdin
+
+      if [ -n "$VPN_IP" ]; then
+        ip addr add "$VPN_IP" dev awg-phone || true
+      fi
       ip link set awg-phone up
 
       ip rule add from 10.10.10.1 lookup main priority 100 || true
