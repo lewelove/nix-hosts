@@ -6,7 +6,7 @@
     
     settings = {
       # This forces OliveTin to listen on all interfaces (LAN and VPN)
-      listenAddress = "0.0.0.0:1337";
+      listenAddressSingleHTTPFrontend = "0.0.0.0:1337";
 
       actions = [
         {
