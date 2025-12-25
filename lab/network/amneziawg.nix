@@ -6,12 +6,7 @@
     after = [ "network.target" ];
     
     path = with pkgs; [ 
-      amneziawg-tools
-      amneziawg-go
-      iproute2
-      iptables
-      procps
-      gnugrep
+      amneziawg-tools amneziawg-go iproute2 iptables procps gnugrep
     ];
 
     serviceConfig = {
@@ -21,9 +16,12 @@
 
     script = ''
       CONF="/etc/amneziawg/active.conf"
-      VPN_IP=$(grep '^Address' "$CONF" | cut -d'=' -f2 | xargs)
+      VPN_IP=$(grep '^Address' "$CONF" | cut -d'=' -f2 | xargs || true)
 
+      # Targeted cleanup: only kill the outbound daemon
+      pkill -f "amneziawg-go active" || true
       ip link delete active || true
+
       amneziawg-go active &
       sleep 2
       
@@ -32,6 +30,9 @@
       if [ -n "$VPN_IP" ]; then
         ip addr add "$VPN_IP" dev active || true
       fi
+      
+      # Match MTU
+      ip link set mtu 1280 dev active
       ip link set active up
 
       ip route add default dev active table 100 || true
@@ -41,7 +42,7 @@
     postStop = ''
       iptables -t nat -D POSTROUTING -o active -j MASQUERADE || true
       ip link delete active || true
-      pkill -f amneziawg-go || true
+      pkill -f "amneziawg-go active" || true
     '';
   };
 }
