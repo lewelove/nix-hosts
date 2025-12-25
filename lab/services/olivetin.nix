@@ -9,17 +9,17 @@
         {
           title = "VPN: START RANDOM / RESTART";
           icon = "🚀";
-          shell = "sudo /run/current-system/sw/bin/awgu";
+          shell = "/run/wrappers/bin/sudo /run/current-system/sw/bin/awgu";
         }
         {
           title = "VPN: STOP (ISP Mode)";
           icon = "⏹";
-          shell = "sudo /run/current-system/sw/bin/awgd";
+          shell = "/run/wrappers/bin/sudo /run/current-system/sw/bin/awgd";
         }
         {
           title = "SYSTEM: RESTART PHONE TUNNEL";
           icon = "📱";
-          shell = "sudo /run/current-system/sw/bin/systemctl restart awg-inbound";
+          shell = "/run/wrappers/bin/sudo /run/current-system/sw/bin/systemctl restart awg-inbound";
         }
       ];
     };
