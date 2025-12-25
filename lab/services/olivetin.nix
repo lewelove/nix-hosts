@@ -10,13 +10,11 @@
           title = "VPN: RESTART";
           icon = "🚀";
           shell = "/run/wrappers/bin/sudo /run/current-system/sw/bin/awgu";
-          timeout = 30;
         }
         {
           title = "VPN: STOP";
           icon = "⏹";
           shell = "/run/wrappers/bin/sudo /run/current-system/sw/bin/awgd";
-          timeout = 30;
         }
       ];
     };
