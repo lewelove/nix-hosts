@@ -5,7 +5,6 @@
     enable = true;
     
     settings = {
-      # This forces OliveTin to listen on all interfaces (LAN and VPN)
       listenAddressSingleHTTPFrontend = "0.0.0.0:1337";
 
       actions = [
@@ -23,9 +22,9 @@
               name = "config_name";
               type = "choice";
               choices = [
-                "Spain.conf"
-                "Germany.conf"
-                "USA.conf"
+                { title = "Spain"; value = "Spain.conf"; }
+                { title = "Germany"; value = "Germany.conf"; }
+                { title = "USA"; value = "USA.conf"; }
               ];
             }
           ];
@@ -35,11 +34,11 @@
           icon = "🔍";
           shell = ''
             echo "--- HOST (ISP) ---"
-            ${pkgs.curl}/bin/curl -s http://ip-api.com/line | head -n 14
+            ${pkgs.curl}/bin/curl -s http://ip-api.com/line | head -n 14 || echo "ISP Check Failed"
             echo ""
             echo "--- TUNNEL (VPN) ---"
             if ${pkgs.systemd}/bin/systemctl is-active --quiet awg-vpn; then
-              ${pkgs.curl}/bin/curl -s --interface active http://ip-api.com/line | head -n 14
+              ${pkgs.curl}/bin/curl -s --interface active http://ip-api.com/line | head -n 14 || echo "VPN Traffic Blocked"
             else
               echo "VPN Service is DOWN"
             fi
@@ -48,7 +47,7 @@
         {
           title = "SYSTEM: RESTART PHONE TUNNEL";
           icon = "📱";
-          shell = "sudo /run/current-system/sw/bin/systemctl restart awg-inbound";
+          shell = "sudo ${pkgs.systemd}/bin/systemctl restart awg-inbound";
         }
       ];
     };
