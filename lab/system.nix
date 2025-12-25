@@ -17,8 +17,6 @@
     useOSProber = true;
   };
 
-  networking.resolvconf.enable = true;
-
   # --- Nix Settings ---
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
