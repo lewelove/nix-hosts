@@ -9,6 +9,7 @@
         {
           title = "VPN: START RANDOM / RESTART";
           icon = "🚀";
+          # Use the absolute path to the sudo wrapper and the script
           shell = "/run/wrappers/bin/sudo /run/current-system/sw/bin/awgu";
         }
         {
@@ -24,6 +25,16 @@
       ];
     };
   };
+
+  # CRITICAL: This injects the necessary paths into the OliveTin service environment.
+  # This allows the service to find 'bash' to run the shell string and 'sudo' to escalate.
+  systemd.services.olivetin.path = [ 
+    pkgs.bash 
+    pkgs.coreutils 
+    pkgs.systemd
+    "/run/wrappers" 
+    "/run/current-system/sw"
+  ];
 
   security.sudo.extraRules = [
     {
