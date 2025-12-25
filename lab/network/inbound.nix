@@ -1,7 +1,6 @@
 { pkgs, ... }:
 
 {
-
   networking.firewall.allowedUDPPorts = [ 55555 ];
 
   environment.systemPackages = with pkgs; [ 
@@ -10,7 +9,7 @@
   ];
 
   systemd.services.awg-inbound = {
-    description = "AmneziaWG Inbound Server for Phone";
+    description = "AmneziaWG Inbound (Phone Entry)";
     after = [ "network.target" ];
     wantedBy = [ "multi-user.target" ];
     
@@ -19,45 +18,37 @@
       amneziawg-go
       iproute2
       iptables
+      procps
     ];
-
-    # We use 'amneziawg-go' for userspace obfuscation support
-    environment.WG_QUICK_USERSPACE_IMPLEMENTATION = "amneziawg-go";
 
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
     };
 
-    # REPLACE: <LAB_INBOUND_PRIVATE_KEY> and <PHONE_PUBLIC_KEY>
     script = ''
-      mkdir -p /etc/amneziawg
-      cat <<EOF > /etc/amneziawg/awg-phone.conf
-      [Interface]
-      Address = 10.10.10.1/24
-      ListenPort = 55555
-      PrivateKey = gKXCI1S7lGuxEVkGuu/7ASdeaUKxxTPDiQwXr5lpp0M=
+      amneziawg-go awg-phone &
+      sleep 2
       
-      Jc = 4
-      Jmin = 40
-      Jmax = 70
-      S1 = 44
-      S2 = 98
-      H1 = 1
-      H2 = 2
-      H3 = 3
-      H4 = 4
+      awg setconf awg-phone /etc/amneziawg/awg-phone.conf
+      ip addr add 10.10.10.1/24 dev awg-phone
+      ip link set awg-phone up
 
-      [Peer]
-      PublicKey = ZTLbqTILxC72BunEQXnYpYmaxGwsX5lJ2HaAap1UZA4=
-      AllowedIPs = 10.10.10.2/32
-      EOF
-
-      ${pkgs.amneziawg-tools}/bin/awg-quick up /etc/amneziawg/awg-phone.conf
+      ip rule add from 10.10.10.1 lookup main priority 100 || true
+      iptables -t mangle -A PREROUTING -i awg-phone -j MARK --set-mark 100
+      ip rule add fwmark 100 to 192.168.1.0/24 lookup main priority 400 || true
+      ip rule add fwmark 100 lookup 100 priority 500 || true
+      iptables -t nat -A POSTROUTING -s 10.10.10.0/24 -o enp2s0 -j MASQUERADE
     '';
 
     postStop = ''
-      ${pkgs.amneziawg-tools}/bin/awg-quick down /etc/amneziawg/awg-phone.conf
+      ip rule del from 10.10.10.1 lookup main || true
+      ip rule del fwmark 100 lookup 100 || true
+      ip rule del fwmark 100 to 192.168.1.0/24 lookup main || true
+      iptables -t mangle -D PREROUTING -i awg-phone -j MARK --set-mark 100 || true
+      iptables -t nat -D POSTROUTING -s 10.10.10.0/24 -o enp2s0 -j MASQUERADE || true
+      ip link delete awg-phone || true
+      pkill -f amneziawg-go || true
     '';
   };
 }
