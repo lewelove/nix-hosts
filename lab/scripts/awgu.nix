@@ -3,48 +3,39 @@
 let
   awgu = pkgs.writeShellApplication {
     name = "awgu";
-    runtimeInputs = with pkgs; [ coreutils gum systemd ];
+    runtimeInputs = with pkgs; [ coreutils systemd jq curl ];
     text = ''
-      CONF_DIR="/etc/amneziawg"
-      
-      if [ ! -d "$CONF_DIR" ]; then
-        echo "Error: $CONF_DIR does not exist."
-        exit 1
-      fi
-
-      # Move to directory to use globs safely
-      cd "$CONF_DIR"
-
-      # Use a Bash array to find .conf files safely
-      # This handles spaces and special characters correctly
-      configs=()
-      for f in *.conf; do
-          # Skip the active.conf symlink and ensure file exists
-          if [[ "$f" != "active.conf" && -f "$f" ]]; then
-              configs+=("$f")
-          fi
-      done
-
-      if [ "''${#configs[@]}" -eq 0 ]; then
-        echo "No .conf files found in $CONF_DIR"
-        exit 1
-      fi
-
-      # Pipe the array to gum
-      SELECTED=$(printf "%s\n" "''${configs[@]}" | gum choose --header "Select VPN Config")
+      SOURCE_DIR="/etc/amneziawg/configs"
+      ACTIVE_LINK="/etc/amneziawg/active.conf"
+      SELECTED="''${1:-}"
 
       if [ -z "$SELECTED" ]; then
-        exit 0
+        echo ":: Error: No config specified."
+        exit 1
       fi
 
-      echo ":: Linking $SELECTED to active.conf"
-      sudo ln -sf "$CONF_DIR/$SELECTED" "$CONF_DIR/active.conf"
-      
-      echo ":: Starting VPN..."
+      if [ ! -f "$SOURCE_DIR/$SELECTED" ]; then
+        echo ":: Error: Config $SELECTED not found."
+        exit 1
+      fi
+
+      sudo ln -sf "$SOURCE_DIR/$SELECTED" "$ACTIVE_LINK"
       sudo systemctl restart awg-vpn
       
-      echo ":: Status:"
-      curl -s ip-api.com/line | gum style --foreground 2
+      # Wait a moment for the handshake
+      sleep 3
+
+      # Force the check through the VPN interface to verify it's working
+      if INFO=$(curl -s --interface active http://ip-api.com/json); then
+        IP=$(echo "$INFO" | jq -r .query)
+        COUNTRY=$(echo "$INFO" | jq -r .country)
+        CITY=$(echo "$INFO" | jq -r .city)
+        echo ":: SUCCESS: Tunnel is LIVE"
+        echo ":: VPN IP: $IP ($CITY, $COUNTRY)"
+      else
+        echo ":: ERROR: Tunnel is UP but NOT passing traffic!"
+        exit 1
+      fi
     '';
   };
 in

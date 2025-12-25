@@ -3,13 +3,10 @@
 let
   awgd = pkgs.writeShellApplication {
     name = "awgd";
-    runtimeInputs = with pkgs; [ systemd gum ];
+    runtimeInputs = with pkgs; [ systemd coreutils ];
     text = ''
-      echo ":: Bringing VPN down..."
       sudo systemctl stop awg-vpn
-      
-      echo ":: Current IP (Local ISP):"
-      curl -s ip-api.com/line | gum style --foreground 1
+      echo ":: VPN Stopped. Host is back to ISP-Only mode."
     '';
   };
 in

@@ -29,6 +29,7 @@
 
     # Services
     ./services/transmission.nix
+    ./services/olivetin.nix
     ./services/jellyfin.nix
 
     # Scripts
