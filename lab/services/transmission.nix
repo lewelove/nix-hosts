@@ -32,7 +32,7 @@
       rpc-bind-address = "0.0.0.0";
       rpc-port = 9091;
       rpc-whitelist-enabled = true;
-      rpc-whitelist = "127.0.0.1,192.168.*.*,100.*.*.*";
+      rpc-whitelist = "127.0.0.1,192.168.*.*,100.*.*.*,10.*.*.*";
       rpc-host-whitelist-enabled = false;
       
     };
