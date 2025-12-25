@@ -49,21 +49,17 @@
     };
 
     script = ''
-      # Table 100 points to your ISP router
-      ${pkgs.iproute2}/bin/ip route add default via 192.168.1.1 dev enp2s0 table 100 || true
+      ${pkgs.iproute2}/bin/ip route add default via 192.168.1.1 dev enp2s0 table 101 || true
       
-      # Mark 1 packets use table 100
-      ${pkgs.iproute2}/bin/ip rule add fwmark 1 lookup 100 priority 1000 || true
+      ${pkgs.iproute2}/bin/ip rule add fwmark 1 lookup 101 priority 10 || true
 
-      # Mark traffic from transmission user
       ${pkgs.iptables}/bin/iptables -t mangle -A OUTPUT -m owner --uid-owner transmission -j MARK --set-mark 1
       
-      # Masquerade for ISP interface
       ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -o enp2s0 -m mark --mark 1 -j MASQUERADE
     '';
 
     postStop = ''
-      ${pkgs.iproute2}/bin/ip rule del fwmark 1 lookup 100 || true
+      ${pkgs.iproute2}/bin/ip rule del fwmark 1 lookup 101 || true
       ${pkgs.iptables}/bin/iptables -t mangle -D OUTPUT -m owner --uid-owner transmission -j MARK --set-mark 1 || true
       ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -o enp2s0 -m mark --mark 1 -j MASQUERADE || true
     '';
