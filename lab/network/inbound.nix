@@ -38,6 +38,8 @@
       ip link set awg-phone up
 
       ip rule add from 10.10.10.1 lookup main priority 100 || true
+
+      ip rule add to 192.168.1.0/24 lookup main priority 400 || true
       
       iptables -t mangle -D PREROUTING -i awg-phone -j MARK --set-mark 100 || true
       iptables -t mangle -A PREROUTING -i awg-phone -j MARK --set-mark 100
