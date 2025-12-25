@@ -4,6 +4,7 @@
 
   networking.hostName = hostname;
   networking.networkmanager.enable = true;
+  networking.resolvconf.enable = true;
 
   networking.firewall = {
     enable = true;

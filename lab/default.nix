@@ -6,6 +6,7 @@
 
     # System
     ./system.nix
+    ./user.nix
 
     # Network
     ./network
@@ -14,17 +15,13 @@
     ./modules/home-manager.nix
 
     # Modules
-    ./modules/disko.nix
-
-    ./modules/boot.nix
-    ./modules/user.nix
-
     ./modules/hardware-configuration.nix
-
-    ./modules/virtualization.nix
+    ./modules/disko.nix
 
     ./modules/packages.nix
     ./modules/programs.nix
+
+    ./modules/virtualization.nix
 
     # Services
     # ./services/tailscale.nix

@@ -10,9 +10,6 @@
     shell = pkgs.bash; 
     autoSubUidGidRange = true;
     initialPassword = "lab";
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINngwDtUZAiEALEZ1XhPXX221hYqjGSaqWRnvaUnpMXT lewelove@proton.me"
-    ];
   };
 
   security.sudo.wheelNeedsPassword = true;

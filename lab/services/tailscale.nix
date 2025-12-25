@@ -4,7 +4,7 @@
 
   services.tailscale = {
     enable = true;
-    port = 55555;
+    port = 51820;
     extraUpFlags = [
       "--advertise-exit-node"
       "--accept-dns=true"
