@@ -25,7 +25,7 @@ let
       sudo ln -sf "$SOURCE_DIR/$SELECTED" "$ACTIVE_LINK"
       sudo systemctl restart awg-vpn
       
-      sleep 2
+      sleep 1
 
       if INFO=$(curl -s --interface active --max-time 5 http://ip-api.com/json); then
         IP=$(echo "$INFO" | jq -r .query)

@@ -7,27 +7,21 @@
       listenAddressSingleHTTPFrontend = "0.0.0.0:1337";
       actions = [
         {
-          title = "VPN: START RANDOM / RESTART";
+          title = "VPN: RESTART";
           icon = "🚀";
-          # Use the absolute path to the sudo wrapper and the script
           shell = "/run/wrappers/bin/sudo /run/current-system/sw/bin/awgu";
+          timeout = 30;
         }
         {
-          title = "VPN: STOP (ISP Mode)";
+          title = "VPN: STOP";
           icon = "⏹";
           shell = "/run/wrappers/bin/sudo /run/current-system/sw/bin/awgd";
-        }
-        {
-          title = "SYSTEM: RESTART PHONE TUNNEL";
-          icon = "📱";
-          shell = "/run/wrappers/bin/sudo /run/current-system/sw/bin/systemctl restart awg-inbound";
+          timeout = 30;
         }
       ];
     };
   };
 
-  # CRITICAL: This injects the necessary paths into the OliveTin service environment.
-  # This allows the service to find 'bash' to run the shell string and 'sudo' to escalate.
   systemd.services.olivetin.path = [ 
     pkgs.bash 
     pkgs.coreutils 
