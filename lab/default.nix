@@ -10,9 +10,9 @@
 
     # Network
     ./network/core.nix
-    ./network/inbound.nix
+    # ./network/inbound.nix
     ./network/openssh.nix
-    ./network/amneziawg.nix
+    # ./network/amneziawg.nix
     # ./network/tailscale.nix
 
     # Home Manager
@@ -28,16 +28,16 @@
     ./modules/virtualization.nix
 
     # Services
-    ./services/transmission.nix
-    ./services/olivetin.nix
-    ./services/jellyfin.nix
+    # ./services/transmission.nix
+    # ./services/olivetin.nix
+    # ./services/jellyfin.nix
 
     # Scripts
-    ../common/scripts/tilde-stow.nix
-    ../common/scripts/nrs.nix
-    ./scripts/awgu.nix
-    ./scripts/awgd.nix
-    ./scripts/awgr.nix
+    # ../common/scripts/tilde-stow.nix
+    # ../common/scripts/nrs.nix
+    # ./scripts/awgu.nix
+    # ./scripts/awgd.nix
+    # ./scripts/awgr.nix
 
   ];
 
