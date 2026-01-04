@@ -71,13 +71,15 @@
 
   # --- NFS Mounting ---
 
-  # fileSystems."/home/${username}/Downloads/1000xlab" = {
-  #   device = "192.168.1.100:/mnt/drives/1000xlab/downloads";
-  #   fsType = "nfs";
-  #   options = [
-  #     "noauto"
-  #   ];
-  # };
+  fileSystems."/home/${username}/Downloads/1000xlab" = {
+    device = "192.168.1.100:/mnt/1000xlab/downloads";
+    fsType = "nfs";
+    options = [
+      "x-systemd.automount"
+      "noauto"
+      "x-systemd.idle-timeout=600"
+    ];
+  };
 
   swapDevices = [ ];
 

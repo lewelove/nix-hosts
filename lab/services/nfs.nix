@@ -9,7 +9,7 @@
     mountdPort = 4002;
 
     exports = ''
-      /mnt/1000xlab/downloads 192.168.1.0/24(rw,nohide,insecure,no_subtree_check,all_squash,anonuid=1000,anongid=100)
+      /mnt/1000xlab/downloads 192.168.1.0/24(rw,nohide,insecure,no_subtree_check,all_squash,anonuid=1000,anongid=999)
     '';
   };
 
