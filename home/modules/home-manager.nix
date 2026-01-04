@@ -34,6 +34,7 @@
       home.file = {
         "Downloads/1000xhome".source = config.lib.file.mkOutOfStoreSymlink "/run/media/${username}/1000xhome/downloads";
         "Downloads/x2000".source    = config.lib.file.mkOutOfStoreSymlink "/run/media/${username}/x2000/downloads";
+        "Downloads/1000xlab".source = config.lib.file.mkOutOfStoreSymlink "/mnt/servers/1000xlab/downloads";
       };
     };
   };
