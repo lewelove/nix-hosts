@@ -11,5 +11,6 @@
     efiSupport = true;
     useOSProber = true;
   };
+  boot.supportedFilesystems = [ "btrfs" "nfs" "ntfs" ];
 
 }

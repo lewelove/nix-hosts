@@ -6,7 +6,7 @@
   services.mpd = {
     enable = true;
     
-    musicDirectory = "/run/media/${config.home.username}/1000-home/backup-everything/FB2K/Library Historyfied!";
+    musicDirectory = "/run/media/${config.home.username}/1000xhome/backup-everything/FB2K/Library Historyfied!";
     
     dbFile = "${config.home.homeDirectory}/.config/mpd/database";
     

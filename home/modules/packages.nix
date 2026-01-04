@@ -22,6 +22,7 @@
     bluez
     blueman
     sshfs
+    nfs-utils
 
     # Desktop
     fuzzel
