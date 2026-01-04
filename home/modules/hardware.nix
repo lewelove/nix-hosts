@@ -71,8 +71,8 @@
 
   # --- NFS Mounting ---
 
-  fileSystems."/home/${username}/Downloads/1000xlab" = {
-    device = "192.168.1.100:/mnt/1000xlab/downloads";
+  fileSystems."/mnt/servers/1000xlab" = {
+    device = "192.168.1.100:/mnt/1000xlab";
     fsType = "nfs";
     options = [
       "x-systemd.automount"

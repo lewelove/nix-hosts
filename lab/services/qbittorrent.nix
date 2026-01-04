@@ -13,6 +13,7 @@
   systemd.tmpfiles.rules = [
     "d /mnt/1000xlab 0775 lewelove torrents -"
     "d /mnt/1000xlab/downloads 2775 qbittorrent torrents -"
+    "d /mnt/1000xlab/media 2775 qbittorrent torrents -"
   ];
 
   users.users.qbittorrent.uid = 993;

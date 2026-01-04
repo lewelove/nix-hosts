@@ -7,6 +7,8 @@
     openFirewall = true;
   };
 
+  users.users.jellyfin.extraGroups = [ "torrents" ];
+
   users.users.lewelove.extraGroups = [ "jellyfin" ];
 
 }
