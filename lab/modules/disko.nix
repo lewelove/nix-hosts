@@ -4,7 +4,7 @@
   disko.devices = {
     disk = {
       main = {
-        device = "/dev/sda";
+        device = "/dev/disk/by-id/ata-AGI120G06AI138_AGISAAXXK1002289";
         type = "disk";
         content = {
           type = "gpt";
@@ -44,7 +44,7 @@
         };
       };
       data = {
-        device = "/dev/sdb";
+        device = "/dev/disk/by-id/ata-ST1000DM003-1CH162_W1D34CCN";
         type = "disk";
         content = {
           type = "gpt";
@@ -53,8 +53,8 @@
               size = "100%";
               content = {
                 type = "btrfs";
-                extraArgs = [ "-f" ];
-                mountpoint = "/mnt/drives/hdd1000";
+                extraArgs = [ "-f" "-L" "1000xlab" ];
+                mountpoint = "/mnt/1000xlab";
                 mountOptions = [ "compress=zstd" "noatime" "space_cache=v2" ];
               };
             };
