@@ -19,11 +19,18 @@ let
 
       MSG="''${1:-$(date -u +'%Y-%m-%d %H:%M UTC')}"
 
-      gum join --horizontal ":: Syncing " "$(g "${repoPath}...")"
       echo
       cd "${repoPath}"
       git add .
       git commit -m "$MSG"
+
+      if git remote | grep -q "^lab$"; then
+          gum join --horizontal ":: Syncing to " "$(b "lab")" " via LAN..."
+          git push lab main
+          echo
+      fi
+
+      gum join --horizontal ":: Syncing to " "$(g "origin")" "..."
       git push -u origin main
       echo
           
