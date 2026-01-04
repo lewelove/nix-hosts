@@ -29,6 +29,7 @@ let
 
       if git remote | grep -q "^lab$"; then
           gum join --horizontal ":: Syncing to " "$(b "lab")" " via LAN..."
+          echo
           git push lab main
           echo
       fi
