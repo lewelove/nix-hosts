@@ -69,18 +69,14 @@
     options = [ "subvol=/" "nofail" "compress=zstd" "noatime" "space_cache=v2" "x-gvfs-show" ];
  };
 
-  # --- Downloads Subvolumes ---
+  # --- NFS Mounting ---
 
-  # fileSystems."/home/${username}/Downloads/1000xhome" = {
-  #   device = "/dev/disk/by-uuid/27b9a1ab-0bb3-4e2f-bc9b-7c4a227dbb2f";
-  #   fsType = "btrfs";
-  #   options = [ "subvol=@downloads" "nofail" "compress=zstd" "noatime" "space_cache=v2" "x-gvfs-show" "x-gvfs-name=1000downloads" ];
-  # };
-
-  # fileSystems."/home/${username}/Downloads/x2000" = {
-  #   device = "/dev/disk/by-uuid/e2873f44-a0b2-4c05-9e8a-d14e9cade796";
-  #   fsType = "btrfs";
-  #   options = [ "subvol=@downloads" "nofail" "compress=zstd" "noatime" "space_cache=v2" ];
+  # fileSystems."/home/${username}/Downloads/1000xlab" = {
+  #   device = "192.168.1.100:/mnt/drives/1000xlab/downloads";
+  #   fsType = "nfs";
+  #   options = [
+  #     "noauto"
+  #   ];
   # };
 
   swapDevices = [ ];
