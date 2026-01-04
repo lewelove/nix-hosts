@@ -28,7 +28,6 @@
 
     # Services
     # ./services/system/keyd.nix
-    # ./services/tailscale.nix
     # ./services/mympd.nix
 
     # Scripts
