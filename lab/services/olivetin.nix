@@ -28,8 +28,6 @@
     };
   };
 
-  # CRITICAL: This injects the necessary paths into the OliveTin service environment.
-  # This allows the service to find 'bash' to run the shell string and 'sudo' to escalate.
   systemd.services.olivetin.path = [ 
     pkgs.bash 
     pkgs.coreutils 

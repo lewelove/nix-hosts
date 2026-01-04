@@ -10,9 +10,11 @@
 
     # Network
     ./network/core.nix
-    # ./network/inbound.nix
+    ./network/inbound.nix
     ./network/openssh.nix
-    # ./network/amneziawg.nix
+    ./network/amneziawg.nix
+
+    ./network/routing-isp.nix
     # ./network/tailscale.nix
 
     # Home Manager
@@ -30,14 +32,15 @@
     # Services
     # ./services/transmission.nix
     # ./services/olivetin.nix
-    # ./services/jellyfin.nix
+    ./services/jellyfin.nix
+    ./services/qbittorrent.nix
 
     # Scripts
-    # ../common/scripts/tilde-stow.nix
-    # ../common/scripts/nrs.nix
-    # ./scripts/awgu.nix
-    # ./scripts/awgd.nix
-    # ./scripts/awgr.nix
+    ../common/scripts/tilde-stow.nix
+    ../common/scripts/nrs.nix
+    ./scripts/awgu.nix
+    ./scripts/awgd.nix
+    ./scripts/awgr.nix
 
   ];
 
