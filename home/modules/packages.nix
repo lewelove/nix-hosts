@@ -34,6 +34,7 @@
     hyprpicker
     wlsunset
     wl-clipboard
+    polkit_gnome
     peazip
     bitwarden-desktop
     qwen-code

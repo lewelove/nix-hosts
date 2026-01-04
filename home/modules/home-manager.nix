@@ -20,6 +20,7 @@
         ../services/hm/quickshell.nix
         ../services/hm/listenbrainz-mpd-90-no4m.nix
         ../services/hm/xremap.nix
+        ../services/hm/polkit-agent.nix
       ];
     };
   };

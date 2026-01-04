@@ -22,6 +22,8 @@
 
   services.udisks2.enable = true;
 
+  security.polkit.enable = true;
+
   xdg.portal = {
     enable = true;
     extraPortals = [ 
