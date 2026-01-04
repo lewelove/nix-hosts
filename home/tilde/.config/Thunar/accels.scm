@@ -15,6 +15,7 @@
 ; (gtk_accel_path "<Actions>/ThunarWindow/close-tab" "<Primary>w")
 ; (gtk_accel_path "<Actions>/ThunarBookmarks/e2f26837a38fc0f03837bd8216b47287" "")
 ; (gtk_accel_path "<Actions>/ThunarWindow/switch-previous-tab-alt" "<Primary><Shift>ISO_Left_Tab")
+; (gtk_accel_path "<Actions>/ThunarBookmarks/61bf9c8b8fe3600a11c5c5a306d0feed" "")
 ; (gtk_accel_path "<Actions>/ThunarStatusBar/toggle-size" "")
 ; (gtk_accel_path "<Actions>/ThunarWindow/new-window" "<Primary>n")
 ; (gtk_accel_path "<Actions>/ThunarBookmarks/26577ba26fde8991a53c5a4a482b6a2c" "")
