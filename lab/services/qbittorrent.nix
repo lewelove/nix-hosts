@@ -5,6 +5,7 @@
   services.qbittorrent = {
     enable = true;
     webuiPort = 8080;
+    torrentingPort = 54321;
     openFirewall = true;
     user = "qbittorrent";
     group = "torrents";
