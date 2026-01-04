@@ -15,14 +15,17 @@ let
       g() { gum style --foreground 2 "$*"; }
       b() { gum style --foreground 4 "$*"; }
 
-      tilde-stow
+      # tilde-stow
 
       MSG="''${1:-$(date -u +'%Y-%m-%d %H:%M UTC')}"
 
       echo
+      gum join --horizontal ":: Adding with message " "$(g "$MSG")" "..."
+      echo
       cd "${repoPath}"
       git add .
       git commit -m "$MSG"
+      echo
 
       if git remote | grep -q "^lab$"; then
           gum join --horizontal ":: Syncing to " "$(b "lab")" " via LAN..."
@@ -31,6 +34,7 @@ let
       fi
 
       gum join --horizontal ":: Syncing to " "$(g "origin")" "..."
+      echo
       git push -u origin main
       echo
           
