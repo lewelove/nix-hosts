@@ -32,10 +32,10 @@
     ];
     config = {
       common = {
-        default = [ "kde" ];
+        default = [ "gtk" ];
       };
       hyprland = {
-        default = [ "hyprland" "kde" ];
+        default = [ "hyprland" "gtk" ];
       };
     };
   };
