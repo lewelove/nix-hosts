@@ -27,12 +27,10 @@ let
       git push -u origin main
       echo
           
-      if command -v repomix &> /dev/null; then
-          gum join --horizontal ":: Repomixing " "$(g "${repoPath}...")"
-          repomix --quiet
-          repomix --quiet --include "common/**,home/**"
-          repomix --quiet --include "common/**,lab/**"
-      fi
+      gum join --horizontal ":: Repomixing " "$(g "${repoPath}...")"
+      repomix --quiet
+      repomix --quiet --include "common/**,home/**"
+      repomix --quiet --include "common/**,lab/**"
     '';
   };
 in
