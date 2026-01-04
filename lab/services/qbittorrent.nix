@@ -15,7 +15,7 @@
     "d /mnt/1000xlab/downloads 2775 qbittorrent torrents -"
   ];
 
-  users.groups.torrents.gid = 999;
+  users.groups.torrents.gid = 990;
 
   users.users.lewelove.extraGroups = [ "torrents" ];
 
