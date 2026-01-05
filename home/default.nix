@@ -6,6 +6,7 @@
 
     # System
     ./system.nix
+    ./user.nix
 
     # Home Manager
     ./modules/home-manager.nix
@@ -13,7 +14,6 @@
     # Modules
     ./modules/boot.nix
     ./modules/environment.nix
-    ./modules/user.nix
 
     ./modules/hardware.nix
     ./modules/nvidia.nix
