@@ -9,7 +9,7 @@
     enable = true;
     device = "nodev";
     efiSupport = true;
-    useOSProber = true;
+    useOSProber = false;
   };
   boot.supportedFilesystems = [ "btrfs" "nfs" "ntfs" ];
 

@@ -90,9 +90,14 @@
     kdePackages.qt6ct
     kdePackages.xdg-desktop-portal-kde
     
+    # Nix
+    nh
+    nvd
+    nix-output-monitor
+
     # Flake Inputs
     inputs.zen-browser.packages.x86_64-linux.default
-    inputs.photogimp.packages.${pkgs.system}.default
+    inputs.photogimp.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
 }

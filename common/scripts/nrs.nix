@@ -3,7 +3,7 @@
 let
   nrs = pkgs.writeShellApplication {
     name = "nrs";
-    runtimeInputs = with pkgs; [ nixos-rebuild coreutils gum ];
+    runtimeInputs = with pkgs; [ nh nix-output-monitor nvd coreutils gum ];
     text = ''
 
       wb() { gum style --foreground 7 --bold "$*"; }
@@ -28,9 +28,9 @@ let
       gum join --horizontal ":: Rebuilding NixOS for " "$(b "$TARGET_HOST")" "..."
       echo
 
-      if
-          sudo nixos-rebuild switch --flake "${hostPath}#$TARGET_HOST"
-      then
+      export NH_FLAKE="${hostPath}"
+      
+      if NH_NOM=1 nh os switch "${hostPath}" --hostname "$TARGET_HOST"; then
           tilde-stow
           gum join --horizontal ":: " "$(gb "SUCCESS ")" "Configuration for " "$(b "$TARGET_HOST ")" "applied."
       else
