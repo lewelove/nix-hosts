@@ -1,8 +1,8 @@
-{ pkgs, lib, username, ... }:
+{ pkgs, lib, username, config, ... }:
 
 let
 
-  flags = import ../../programs/chromium-flags.nix { inherit pkgs lib; };
+  flags = config.my.chromium.flags;
 
 in
 
@@ -16,7 +16,7 @@ in
         After = [ "graphical-session.target" ];
       };
       Service = {
-        ExecStart = "${pkgs.ungoogled-chromium}/bin/chromium ${builtins.concatStringsSep " " flags.commonArgs} --silent-launch";
+        ExecStart = "${pkgs.ungoogled-chromium}/bin/chromium ${builtins.concatStringsSep " " flags} --silent-launch";
         Restart = "on-failure";
         RestartSec = "5s";
         Environment = [

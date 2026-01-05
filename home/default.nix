@@ -11,8 +11,6 @@
     # Modules
     ./modules/boot.nix
     ./modules/environment.nix
-    ./modules/home-manager.nix
-    ./modules/theme.nix
 
     ./modules/hardware-configuration.nix
     ./modules/nvidia.nix
@@ -20,6 +18,9 @@
     ./modules/networking.nix
     ./modules/bluetooth.nix
     ./modules/virtualization.nix
+
+    ./modules/home-manager.nix
+    ./modules/theme.nix
 
     ./modules/packages.nix
     ./modules/programs.nix
@@ -39,10 +40,10 @@
 
     # System Services
     # ./services/xremap.nix
-    ./services/mpd.nix
     ./services/mympd.nix
 
     # User Services
+    ./services/user/mpd.nix
     ./services/user/chromium-service.nix
     ./services/user/swww.nix
     ./services/user/wlsunset.nix

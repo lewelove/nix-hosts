@@ -1,8 +1,8 @@
-{ pkgs, lib, username, ... }:
+{ pkgs, lib, username, config, ... }:
 
 let
 
-  flags = import ../chromium-flags.nix { inherit pkgs lib; };
+  flags = config.my.chromium.flags;
 
   url = "https://youtube.com";
   name = "YouTube";
@@ -18,7 +18,7 @@ in
       genericName = "${name}";
       exec = builtins.concatStringsSep " " [
         "${pkgs.ungoogled-chromium}/bin/chromium"
-        "${builtins.concatStringsSep " " flags.commonArgs}"
+        "${builtins.concatStringsSep " " flags}"
         "--app=${url}"
       ];
       terminal = false;
