@@ -28,6 +28,7 @@ gum join --horizontal ":: Repomixing " "$(g "${repoPath}...")"
 repomix --quiet --include "common/**,home/**"
 repomix --quiet --include "common/**,lab/**"
 repomix --quiet --include "common/**,note/**"
+echo
 
 gum join --horizontal ":: Adding with message " "$(g "$MSG")" "..."
 echo
