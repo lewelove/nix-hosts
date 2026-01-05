@@ -115,13 +115,22 @@
                     ),
                     (
                         size: "100%",
-                        pane: Pane(AlbumArt),
-                        // borders: "ALL",
-
+                        pane: Split(
+                            direction: Vertical,
+                            panes: [
+                                (size: "100%", pane: Pane(AlbumArt)),
+                            ]
+                        ),
                     ), 
                     (
                         size: "57",
-                        pane: Pane(Queue),
+                        pane: Split(
+                            direction: Vertical,
+                            panes: [
+                                // (size: "1", pane: Component("spacer")),
+                                (size: "100%", pane: Pane(Queue)),
+                            ]
+                        ),
                         alignment: Right
                     ),
                 ],
