@@ -9,7 +9,7 @@
     ./user.nix
 
     # Home Manager
-    ./modules/home-manager.nix
+    ./hm
 
     # Modules
     ./modules/boot.nix

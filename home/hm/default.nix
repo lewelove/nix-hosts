@@ -7,7 +7,6 @@
   home-manager = {
     extraSpecialArgs = { inherit inputs username; };
     backupFileExtension = "backup"; 
-    # Notice the function syntax here: { config, ... }: {
     users.${username} = { config, ... }: {
       home.stateVersion = "25.05";
 
@@ -16,13 +15,13 @@
         inputs.xremap.homeManagerModules.default
 
         ./theme.nix
-        ../services/hm/mpd.nix
-        ../services/hm/swww.nix
-        ../services/hm/wlsunset.nix
-        ../services/hm/quickshell.nix
-        ../services/hm/listenbrainz-mpd-90-no4m.nix
-        ../services/hm/xremap.nix
-        ../services/hm/polkit-agent.nix
+        ./services/mpd.nix
+        ./services/swww.nix
+        ./services/wlsunset.nix
+        ./services/quickshell.nix
+        ./services/listenbrainz-mpd-90-no4m.nix
+        ./services/xremap.nix
+        ./services/polkit-agent.nix
       ];
 
       xdg.userDirs = {
