@@ -42,9 +42,9 @@ git push -u origin main
 echo
     
 gum join --horizontal ":: Repomixing " "$(g "${repoPath}...")"
-repomix --quiet
 repomix --quiet --include "common/**,home/**"
 repomix --quiet --include "common/**,lab/**"
+repomix --quiet --include "common/**,note/**"
 
 ################################################################
 

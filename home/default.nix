@@ -26,6 +26,9 @@
     ./modules/programs.nix
     ./modules/games.nix
 
+    # Programs
+    ./programs/chromium.nix
+
     # Services
     # ./services/system/keyd.nix
     ./services/mympd.nix

@@ -15,6 +15,7 @@
         inputs.xremap.homeManagerModules.default
 
         ./theme.nix
+
         ./services/mpd.nix
         ./services/swww.nix
         ./services/wlsunset.nix

@@ -78,7 +78,6 @@
     amneziawg-tools
 
     # Web
-    ungoogled-chromium
     ayugram-desktop
 
     # Themes and Icons

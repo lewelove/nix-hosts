@@ -19,20 +19,21 @@ b() { gum style --foreground 4 "$*"; }
 
 mkdir -p "$HOME/.config"
 
+echo
+
 if [ -d "${repoPath}/common/tilde" ]; then
-    echo
     gum join --horizontal ":: Stowing " "$(b "$HOSTNAME") " "commons..."
     cd "${repoPath}/common"
     stow --adopt -t "$HOME" tilde --verbose=1
-    echo
 fi
 
 if [ -d "${hostPath}/tilde" ]; then
     gum join --horizontal ":: Stowing " "$(b "$HOSTNAME") " "specifics..."
     cd "${hostPath}"
     stow --adopt -t "$HOME" tilde --verbose=1
-    echo
 fi
+
+echo
 
 ################################################################
 
