@@ -7,7 +7,7 @@ in
   home-manager.users.${username} = {
     systemd.user.services.chromium-preloader = {
       Unit = {
-        Description = "Chromium Background Preloader";
+        Description = "Chromium Background Service";
         PartOf = [ "graphical-session.target" ];
         After = [ "graphical-session.target" ];
       };
