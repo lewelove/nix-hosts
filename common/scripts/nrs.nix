@@ -6,38 +6,43 @@ let
     runtimeInputs = with pkgs; [ nh nix-output-monitor nvd coreutils gum ];
     text = ''
 
-      wb() { gum style --foreground 7 --bold "$*"; }
-      rb() { gum style --foreground 1 --bold "$*"; }
-      gb() { gum style --foreground 2 --bold "$*"; }
-      bb() { gum style --foreground 4 --bold "$*"; }
-      w() { gum style --foreground 7 "$*"; }
-      r() { gum style --foreground 1 "$*"; }
-      g() { gum style --foreground 2 "$*"; }
-      b() { gum style --foreground 4 "$*"; }
+################################################################
 
-      TARGET_HOST="''${1:-$(hostname)}"
+wb() { gum style --foreground 7 --bold "$*"; }
+rb() { gum style --foreground 1 --bold "$*"; }
+gb() { gum style --foreground 2 --bold "$*"; }
+bb() { gum style --foreground 4 --bold "$*"; }
+w() { gum style --foreground 7 "$*"; }
+r() { gum style --foreground 1 "$*"; }
+g() { gum style --foreground 2 "$*"; }
+b() { gum style --foreground 4 "$*"; }
 
-      if [ ! -d "${hostPath}" ]; then
-        echo ":: Error: Host directory ${hostPath} does not exist in ${repoPath}"
-        exit 1
-      fi
+TARGET_HOST="''${1:-$(hostname)}"
 
-      cd "${repoPath}" || exit 1
+if [ ! -d "${hostPath}" ]; then
+  echo ":: Error: Host directory ${hostPath} does not exist in ${repoPath}"
+  exit 1
+fi
 
-      echo
-      gum join --horizontal ":: Rebuilding NixOS for " "$(b "$TARGET_HOST")" "..."
-      echo
+cd "${repoPath}" || exit 1
 
-      export NH_FLAKE="${hostPath}"
-      
-      if NH_NOM=1 nh os switch "${hostPath}" --hostname "$TARGET_HOST"; then
-          tilde-stow
-          gum join --horizontal ":: " "$(gb "SUCCESS ")" "Configuration for " "$(b "$TARGET_HOST ")" "applied."
-      else
-          echo
-          gum join --horizontal ":: " "$(rb "FAILURE ")" "Build failed."
-          exit 1
-      fi
+echo
+gum join --horizontal ":: Rebuilding NixOS for " "$(b "$TARGET_HOST")" "..."
+echo
+
+export NH_FLAKE="${hostPath}"
+
+if NH_NOM=1 nh os switch "${hostPath}" --hostname "$TARGET_HOST"; then
+    tilde-stow
+    gum join --horizontal ":: " "$(gb "SUCCESS ")" "Configuration for " "$(b "$TARGET_HOST")" " applied."
+else
+    echo
+    gum join --horizontal ":: " "$(rb "FAILURE ")" "Build failed."
+    exit 1
+fi
+
+################################################################
+
     '';
   };
 in
