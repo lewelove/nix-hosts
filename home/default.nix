@@ -34,6 +34,7 @@
 
     # Services
     # ./services/system/keyd.nix
+    ./services/chromium-service.nix
     ./services/mympd.nix
 
     # Scripts

@@ -1,28 +1,25 @@
 { pkgs, lib }:
 
 let
-
-  extensions = import ./chromium-extensions.nix { inherit pkgs lib; };
-
-  loadExtensions = e: "--load-extension=${lib.concatStringsSep "," (map (x: "${x.drv}") e)}";
-
-in
-
-{
-
-  inherit extensions;
-
-  baseExts = loadExtensions extensions.base;
-
-  youtubeExts = loadExtensions extensions.youtube;
-
-  common = [
-    "--extension-mime-request-handling=always-prompt-for-install"
-    "--no-default-browser-check"
-    "--force-dark-mode"
-    "--hide-fullscreen-exit-ui"
-    "--hide-scrollbars"
-    "--restore-last-session"
+  exts = import ./chromium-extensions.nix { inherit pkgs lib; };
+  
+  standardExtensions = [
+    exts.ublock-origin.drv
+    exts.untrap.drv
   ];
 
+  extensionString = lib.concatStringsSep "," (map (x: "${x}") standardExtensions);
+
+in
+{
+  # The unified list of performance and behavior flags
+  commonArgs = [
+    "--load-extension=${extensionString}"
+    "--extension-mime-request-handling=always-prompt-for-install"
+    "--no-default-browser-check"
+    "--restore-last-session"
+    "--force-dark-mode"
+    "--hide-scrollbars"
+    "--hide-fullscreen-exit-ui"
+  ];
 }
