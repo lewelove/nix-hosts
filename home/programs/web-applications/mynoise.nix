@@ -3,14 +3,13 @@
 {
   home-manager.users.${username} = {
     xdg.desktopEntries.youtube = {
-      name = "YouTube";
-      genericName = "Video Streaming";
+      name = "MyNoise";
+      genericName = "Noise Generator";
       exec = builtins.concatStringsSep " " [
         "${pkgs.ungoogled-chromium}/bin/chromium"
         "--app=https://youtube.com"
         "--class=youtube-app"
         "--no-default-browser-check"
-        "--hide-fullscreen-exit-ui=enabled"
         "--hide-scrollbars"
       ];
       terminal = false;

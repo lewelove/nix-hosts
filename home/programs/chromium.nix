@@ -84,6 +84,7 @@ in
         "--no-default-browser-check"
         "--restore-last-session"
         "--force-dark-mode"
+        "--hide-fullscreen-exit-ui"
       ];
     };
   };

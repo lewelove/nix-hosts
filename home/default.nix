@@ -29,8 +29,8 @@
     # Programs
     ./programs/chromium.nix
 
-    # ".desktop" Application Files
-    ./programs/applications/youtube.nix
+    # Web Applications
+    ./programs/web-applications/youtube.nix
 
     # Services
     # ./services/system/keyd.nix
