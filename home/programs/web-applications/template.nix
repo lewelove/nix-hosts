@@ -4,9 +4,9 @@ let
 
   flags = import ../chromium-flags.nix { inherit pkgs lib; };
 
-  url = "https://youtube.com";
-  name = "YouTube";
-  icon = "youtube";
+  url = "https://TEMPLATE";
+  name = "TEMPLATE";
+  icon = "TEMPLATE";
 
 in
 

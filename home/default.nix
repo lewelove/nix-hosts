@@ -33,6 +33,10 @@
     ./programs/web-applications/youtube.nix
     ./programs/web-applications/figma.nix
 
+    ./programs/web-applications/qbittorrent.nix
+    ./programs/web-applications/jellyfin.nix
+    ./programs/web-applications/mympd.nix
+
     # Services
     # ./services/system/keyd.nix
     ./services/chromium-service.nix

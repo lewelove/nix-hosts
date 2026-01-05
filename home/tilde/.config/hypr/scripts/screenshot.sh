@@ -33,4 +33,4 @@ mkdir -p "$DIR"
 
 # OPTIMIZATION 4: 'exec' replaces this script process with hyprshot
 # This saves memory and creates a seamless transition
-exec hyprshot -m "$MODE" -o "$DIR" -f "$FILENAME"
+exec hyprshot --freeze -m "$MODE" -o "$DIR" -f "$FILENAME"

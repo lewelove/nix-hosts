@@ -4,22 +4,25 @@ let
 
   flags = import ../chromium-flags.nix { inherit pkgs lib; };
 
+  url = "https://figma.com";
+  name = "Figma";
+  icon = "figma";
+
 in
 
 {
 
   home-manager.users.${username} = {
-    xdg.desktopEntries.youtube = {
-      name = "Figma";
-      genericName = "Vector Graphics Editor";
+    xdg.desktopEntries.${name} = {
+      name = "${name}";
+      genericName = "${name}";
       exec = builtins.concatStringsSep " " [
         "${pkgs.ungoogled-chromium}/bin/chromium"
         "${builtins.concatStringsSep " " flags.commonArgs}"
-        "--app=https://figma.com"
-        "--class=figma"
+        "--app=${url}"
       ];
       terminal = false;
-      icon = "figma";
+      icon = "${icon}";
     };
   };
 

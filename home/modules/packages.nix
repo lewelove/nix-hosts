@@ -70,8 +70,6 @@
     flac
     flac2all
     mediainfo
-    qbittorrent
-    transmission_4
     
     # Network
     amneziawg-go
