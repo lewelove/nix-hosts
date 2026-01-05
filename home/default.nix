@@ -29,6 +29,9 @@
     # Programs
     ./programs/chromium.nix
 
+    # ".desktop" Application Files
+    ./programs/applications/youtube.nix
+
     # Services
     # ./services/system/keyd.nix
     ./services/mympd.nix

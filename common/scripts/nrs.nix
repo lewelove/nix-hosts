@@ -26,6 +26,8 @@ fi
 
 cd "${repoPath}" || exit 1
 
+git add .
+
 echo
 gum join --horizontal ":: Rebuilding NixOS for " "$(b "$TARGET_HOST")" "..."
 echo
