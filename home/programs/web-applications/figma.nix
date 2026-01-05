@@ -10,17 +10,16 @@ in
 
   home-manager.users.${username} = {
     xdg.desktopEntries.youtube = {
-      name = "YouTube";
-      genericName = "Video Streaming";
+      name = "Figma";
+      genericName = "Vector Graphics Editor";
       exec = builtins.concatStringsSep " " [
         "${pkgs.ungoogled-chromium}/bin/chromium"
         "${builtins.concatStringsSep " " flags.commonArgs}"
-        "--app=https://youtube.com"
-        "--class=youtube-app"
+        "--app=https://figma.com"
+        "--class=figma"
       ];
       terminal = false;
-      icon = "youtube";
-      categories = [ "Network" "Video" ];
+      icon = "figma";
     };
   };
 

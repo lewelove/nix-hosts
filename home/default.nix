@@ -31,6 +31,7 @@
 
     # Web Applications
     ./programs/web-applications/youtube.nix
+    ./programs/web-applications/figma.nix
 
     # Services
     # ./services/system/keyd.nix
