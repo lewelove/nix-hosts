@@ -21,10 +21,16 @@ b() { gum style --foreground 4 "$*"; }
 
 MSG="''${1:-$(date -u +'%Y-%m-%d %H:%M UTC')}"
 
+cd "${repoPath}"
+
 echo
+gum join --horizontal ":: Repomixing " "$(g "${repoPath}...")"
+repomix --quiet --include "common/**,home/**"
+repomix --quiet --include "common/**,lab/**"
+repomix --quiet --include "common/**,note/**"
+
 gum join --horizontal ":: Adding with message " "$(g "$MSG")" "..."
 echo
-cd "${repoPath}"
 git add .
 git commit -m "$MSG"
 echo
@@ -39,13 +45,7 @@ fi
 gum join --horizontal ":: Syncing to " "$(g "origin")" "..."
 echo
 git push -u origin main
-echo
     
-gum join --horizontal ":: Repomixing " "$(g "${repoPath}...")"
-repomix --quiet --include "common/**,home/**"
-repomix --quiet --include "common/**,lab/**"
-repomix --quiet --include "common/**,note/**"
-
 ################################################################
 
     '';
