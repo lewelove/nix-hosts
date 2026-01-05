@@ -1,11 +1,15 @@
 { pkgs, lib, username, ... }:
 
 let
+
   flags = import ../programs/chromium-flags.nix { inherit pkgs lib; };
+
 in
+
 {
+
   home-manager.users.${username} = {
-    systemd.user.services.chromium-preloader = {
+    systemd.user.services.chromium-service = {
       Unit = {
         Description = "Chromium Background Service";
         PartOf = [ "graphical-session.target" ];
@@ -13,7 +17,7 @@ in
       };
 
       Service = {
-        ExecStart = "${pkgs.ungoogled-chromium}/bin/chromium ${builtins.concatStringsSep " " flags.commonArgs} --no-startup-window";
+        ExecStart = "${pkgs.ungoogled-chromium}/bin/chromium ${builtins.concatStringsSep " " flags.commonArgs} --silent-launch";
         Restart = "on-failure";
         RestartSec = "5s";
         Environment = [
@@ -26,4 +30,5 @@ in
       };
     };
   };
+
 }
