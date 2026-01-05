@@ -15,7 +15,7 @@
     ./modules/boot.nix
     ./modules/environment.nix
 
-    ./modules/hardware.nix
+    ./modules/hardware-configuration.nix
     ./modules/nvidia.nix
 
     ./modules/networking.nix
