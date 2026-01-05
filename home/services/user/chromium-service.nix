@@ -2,7 +2,7 @@
 
 let
 
-  flags = import ../programs/chromium-flags.nix { inherit pkgs lib; };
+  flags = import ../../programs/chromium-flags.nix { inherit pkgs lib; };
 
 in
 
@@ -15,7 +15,6 @@ in
         PartOf = [ "graphical-session.target" ];
         After = [ "graphical-session.target" ];
       };
-
       Service = {
         ExecStart = "${pkgs.ungoogled-chromium}/bin/chromium ${builtins.concatStringsSep " " flags.commonArgs} --silent-launch";
         Restart = "on-failure";
@@ -24,10 +23,7 @@ in
           "XDG_CURRENT_DESKTOP=Hyprland"
         ];
       };
-
-      Install = {
-        WantedBy = [ "graphical-session.target" ];
-      };
+      Install.WantedBy = [ "graphical-session.target" ];
     };
   };
 

@@ -8,12 +8,11 @@
     ./system.nix
     ./user.nix
 
-    # Home Manager
-    ./hm
-
     # Modules
     ./modules/boot.nix
     ./modules/environment.nix
+    ./modules/home-manager.nix
+    ./modules/theme.nix
 
     ./modules/hardware-configuration.nix
     ./modules/nvidia.nix
@@ -33,14 +32,23 @@
     ./programs/web-applications/youtube.nix
     ./programs/web-applications/figma.nix
 
+    # Local Web Applications
     ./programs/web-applications/qbittorrent.nix
     ./programs/web-applications/jellyfin.nix
     ./programs/web-applications/mympd.nix
 
-    # Services
-    # ./services/system/keyd.nix
-    ./services/chromium-service.nix
+    # System Services
+    # ./services/xremap.nix
+    ./services/mpd.nix
     ./services/mympd.nix
+
+    # User Services
+    ./services/user/chromium-service.nix
+    ./services/user/swww.nix
+    ./services/user/wlsunset.nix
+    ./services/user/quickshell.nix
+    ./services/user/listenbrainz-mpd-90-no4m.nix
+    ./services/user/polkit-agent.nix
 
     # Scripts
     ../common/scripts/tilde-stow.nix

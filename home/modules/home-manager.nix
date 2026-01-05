@@ -1,3 +1,4 @@
+
 { config, pkgs, inputs, username, ... }:
 
 {
@@ -9,14 +10,6 @@
     backupFileExtension = "backup"; 
     users.${username} = { config, ... }: {
       home.stateVersion = "25.05";
-
-      imports = [
-        
-        inputs.xremap.homeManagerModules.default
-
-        ./theme.nix
-
-      ];
 
       xdg.userDirs = {
         enable = true;

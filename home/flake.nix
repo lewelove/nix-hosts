@@ -1,4 +1,5 @@
 {
+
   description = "Entry Point for NixOS Configuration";
 
   inputs = {
@@ -6,6 +7,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
     # Other Flakes
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     photogimp.url = "github:Libadoxon/nix-photo-gimp";
@@ -25,4 +27,5 @@
         modules = [ ./default.nix ];
     };
   };
+
 }
