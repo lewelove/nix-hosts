@@ -1,26 +1,11 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
-
   programs.hyprland = {
     enable = true;
     withUWSM = true;
     xwayland.enable = true;
   };
-
-  programs.direnv = {
-    enable = true;
-    enableBashIntegration = true;
-  };
-
-  programs.dconf.enable = true;
-
-  programs.thunar.enable = true;
-
-  services.gvfs.enable = true;
-  services.tumbler.enable = true;
-
-  services.udisks2.enable = true;
 
   security.polkit.enable = true;
 
@@ -39,5 +24,4 @@
       };
     };
   };
-
 }

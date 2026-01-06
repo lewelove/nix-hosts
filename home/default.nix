@@ -23,11 +23,13 @@
     ./modules/theme.nix
 
     ./modules/packages.nix
-    ./modules/programs.nix
     ./modules/games.nix
 
     # Programs
     ./programs/chromium.nix
+    ./programs/hyprland.nix
+    ./programs/thunar.nix
+    ./programs/system.nix
 
     # Web Applications
     ./programs/web-applications/youtube.nix

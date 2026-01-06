@@ -5,7 +5,6 @@
   environment.systemPackages = with pkgs; [
 
     # System
-    git
     wget
     stow
     unzip
@@ -23,6 +22,7 @@
     blueman
     sshfs
     nfs-utils
+    btop
 
     # Desktop
     fuzzel
@@ -44,7 +44,6 @@
     foot
     kitty
     neovim
-    btop
     yazi
     ripdrag
 
@@ -60,7 +59,6 @@
     ripgrep
     bat
     fd
-    fzf
 
     # Media
     mpv
