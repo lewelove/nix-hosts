@@ -40,10 +40,10 @@ if ! output=$(repomix --quiet --include "common/**,lab/**" 2>&1); then
 fi
 echo
 
-gum join --horizontal "$(g ">")" " Adding with message " "$(m "$MSG")" "..."
+gum join --horizontal "$(g ">")" " Adding to git with message " "$(m "$MSG")" "..."
 echo
-git add .
-git commit -m "$MSG"
+git add -v .
+git commit -v -m "$MSG"
 echo
 
 if git remote | grep -q "^lab$"; then
