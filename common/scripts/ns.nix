@@ -48,13 +48,11 @@ echo
 
 if git remote | grep -q "^lab$"; then
     gum join --horizontal "$(g ">")" " Syncing to " "$(b "lab")" " via LAN..."
-    echo
     git push -q lab main
     echo
 fi
 
 gum join --horizontal "$(g ">")" " Syncing to " "$(g "origin")" "..."
-echo
 git push -uq origin main
     
 ################################################################
