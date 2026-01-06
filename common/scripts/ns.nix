@@ -50,6 +50,7 @@ if git remote | grep -q "^lab$"; then
     LAB_ADDR=$(git remote get-url lab)
     gum join --horizontal "$(g ">")" " Syncing to " "$(g "$LAB_ADDR")" "..."
     git push -q lab main
+    echo
 fi
 
 if git remote | grep -q "^origin$"; then

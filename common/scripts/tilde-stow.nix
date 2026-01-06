@@ -37,8 +37,6 @@ if [ -d "${hostPath}/tilde" ]; then
     stow --adopt -t "$HOME" tilde --verbose=1
 fi
 
-echo
-
 ################################################################
 
     '';
