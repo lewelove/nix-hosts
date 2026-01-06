@@ -29,9 +29,15 @@ cd "${repoPath}"
 
 echo
 gum join --horizontal "$(g ">")" " Repomixing " "$(g "${repoPath}...")"
-repomix --quiet --include "common/**,home/**"
-repomix --quiet --include "common/**,lab/**"
-# repomix --quiet --include "common/**,note/**"
+if ! output=$(repomix --quiet --include "common/**,home/**" 2>&1); then
+    echo "$output"
+    exit 1
+fi
+
+if ! output=$(repomix --quiet --include "common/**,lab/**" 2>&1); then
+    echo "$output"
+    exit 1
+fi
 echo
 
 gum join --horizontal "$(g ">")" " Adding with message " "$(m "$MSG")" "..."
