@@ -11,11 +11,11 @@ vim.cmd("syntax off")
 vim.opt.syntax = "off"
 
 -- Directories (Notes & Undo)
-local notes_dir = vim.fn.expand("~/Documents/Notes")
+local notes_dir = vim.fn.expand("~/Notes")
 if vim.fn.isdirectory(notes_dir) == 0 then vim.fn.mkdir(notes_dir, "p") end
 vim.api.nvim_set_current_dir(notes_dir)
 
-local undo_dir = notes_dir .. "/.undo"
+local undo_dir = vim.fn.expand("~/.vim/undodir-notes")
 if vim.fn.isdirectory(undo_dir) == 0 then vim.fn.mkdir(undo_dir, "p") end
 vim.opt.undodir = undo_dir
 vim.opt.undofile = true

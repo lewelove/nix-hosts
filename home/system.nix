@@ -7,12 +7,40 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   # --- Fonts ---
-  fonts.packages = with pkgs; [
-    nerd-fonts.commit-mono
-    commit-mono
-    noto-fonts
-    noto-fonts-color-emoji
-  ];
+  fonts = {
+    packages = with pkgs; [
+      nerd-fonts.commit-mono
+      commit-mono
+      noto-fonts
+      noto-fonts-color-emoji
+      corefonts
+      vista-fonts
+    ];
+
+    fontconfig = {
+      enable = true;
+      antialias = true;
+      
+      hinting = {
+        enable = true;
+        autohint = false;
+        style = "full";
+      };
+
+      subpixel = {
+        rgba = "rgb";
+        lcdfilter = "default";
+      };
+
+      useEmbeddedBitmaps = true;
+
+      defaultFonts = {
+        monospace = [ "CommitMono Nerd Font" "Noto Color Emoji" ];
+        sansSerif = [ "Noto Sans" "Arial" "Noto Color Emoji" ];
+        serif     = [ "Noto Serif" "Times New Roman" "Noto Color Emoji" ];
+      };
+    };
+  };
 
   hardware.uinput.enable = true;
 

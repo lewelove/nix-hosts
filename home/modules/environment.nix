@@ -15,6 +15,8 @@
     XCURSOR_THEME = "Adwaita"; 
     XCURSOR_SIZE = "24";
 
+    FREETYPE_PROPERTIES = "truetype:interpreter-version=40";
+
     XDG_CURRENT_DESKTOP = "Hyprland";
     XDG_MENU_PREFIX = "plasma-";
     GTK_USE_PORTAL = "1";

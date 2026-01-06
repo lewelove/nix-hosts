@@ -108,7 +108,7 @@ _G.Rename = function()
 
   if buf_name == "" then
     -- Case A: New buffer (No Name) -> Use Default Notes Directory
-    target_dir = vim.fn.expand("~/Documents/Notes")
+    target_dir = vim.fn.expand("~/Notes")
   else
     -- Case B: Existing file -> Use that file's directory
     -- :p:h gets the full path head (directory) of the file

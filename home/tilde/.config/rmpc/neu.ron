@@ -106,12 +106,12 @@
                     size: "100%",
                     pane: Pane(Property(
                         content: [
-                            (kind: Property(Song(Other("date"))), style: (fg: "white")),
-                            (kind: Text(" - ")),
+                            // (kind: Text(" - ")),
                             (kind: Property(Song(Other("albumartist"))), style: (fg: "white", modifiers: "Bold")),
                             (kind: Text(" - ")),
                             (kind: Property(Song(Album)), style: (fg: "white")),
-                            // (kind: Text(" - ")),
+                            (kind: Text(" - ")),
+                            (kind: Property(Song(Other("date"))), style: (fg: "white")),
                             // (kind: Property(Song(Title)), style: (fg: "white")),
                         ],
                         align: Center
