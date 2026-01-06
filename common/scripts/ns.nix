@@ -42,19 +42,22 @@ echo
 
 gum join --horizontal "$(g ">")" " Adding to git with message " "$(m "$MSG")" "..."
 echo
-git add -v .
-git commit -v -m "$MSG"
+git add .
+git commit -m "$MSG"
 echo
 
 if git remote | grep -q "^lab$"; then
-    gum join --horizontal "$(g ">")" " Syncing to " "$(b "lab")" " via LAN..."
+    LAB_ADDR=$(git remote get-url lab)
+    gum join --horizontal "$(g ">")" " Syncing to " "$(g "$LAB_ADDR")" "..."
     git push -q lab main
-    echo
 fi
 
-gum join --horizontal "$(g ">")" " Syncing to " "$(g "origin")" "..."
-git push -uq origin main
-    
+if git remote | grep -q "^origin$"; then
+    ORIGIN_ADDR=$(git remote get-url origin)
+    gum join --horizontal "$(g ">")" " Syncing to " "$(b "$ORIGIN_ADDR")" "..."
+    git push -uq origin main
+fi
+
 ################################################################
 
     '';
