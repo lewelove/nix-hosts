@@ -34,7 +34,7 @@ repomix --quiet --include "common/**,lab/**"
 # repomix --quiet --include "common/**,note/**"
 echo
 
-gum join --horizontal "$(g ">")" " Adding with message " "$(p "$MSG")" "..."
+gum join --horizontal "$(g ">")" " Adding with message " "$(m "$MSG")" "..."
 echo
 git add .
 git commit -m "$MSG"
