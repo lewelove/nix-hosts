@@ -42,14 +42,13 @@ if
     NH_NOM=1 nh os switch "${hostPath}" --hostname "$TARGET_HOST"
 then
     tilde-stow
+    echo
     gum join --horizontal "$(g ">")" " " "$(g "SUCCESS ")" "Configuration for " "$(b "$TARGET_HOST")" " applied."
 else
     echo
     gum join --horizontal "$(b ">")" " " "$(r "FAILURE ")" "Build failed."
     exit 1
 fi
-
-echo
 
 ################################################################
 
