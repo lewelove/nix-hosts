@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 
-# 1. Get current workspace information
-# We check if the window is already in the special workspace named "special:focused"
 CURRENT_WORKSPACE=$(hyprctl activewindow -j | jq -r '.workspace.name')
 
 if [ "$CURRENT_WORKSPACE" != "special:focused" ]; then
-    # --- Normal -> Focus Mode ---
+
     hyprctl dispatch movetoworkspace special:focused
 
     hyprctl dispatch togglefloating
@@ -20,7 +18,7 @@ if [ "$CURRENT_WORKSPACE" != "special:focused" ]; then
     hyprctl dispatch moveactive 0 "$NUDGE_Y"
 
 else
-    # --- Focus Mode -> Normal ---
+
     hyprctl dispatch movetoworkspace m+0
 
     hyprctl dispatch togglefloating
