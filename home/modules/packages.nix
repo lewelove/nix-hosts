@@ -22,7 +22,6 @@
     blueman
     sshfs
     nfs-utils
-    btop
 
     # Desktop
     fuzzel
@@ -44,21 +43,19 @@
     foot
     kitty
     neovim
+    btop
+    repomix
     yazi
     ripdrag
+    ripgrep
+    bat
+    fd
+    fastfetch
 
     # Virtualization
     distrobox
     runc
     crun
-
-    # CLI Programs
-    repomix
-
-    # Rust Utils
-    ripgrep
-    bat
-    fd
 
     # Media
     mpv
