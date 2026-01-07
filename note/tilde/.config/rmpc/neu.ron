@@ -99,6 +99,26 @@
         "spacer": Pane(
             Property(content: [(kind: Text(""))],)
         ),
+        "album_header": Split(
+            direction: Horizontal,
+            panes: [
+                (
+                    size: "100%",
+                    pane: Pane(Property(
+                        content: [
+                            // (kind: Text(" - ")),
+                            (kind: Property(Song(Other("albumartist"))), style: (fg: "white", modifiers: "Bold")),
+                            (kind: Text(" - ")),
+                            (kind: Property(Song(Album)), style: (fg: "white")),
+                            (kind: Text(" - ")),
+                            (kind: Property(Song(Other("date"))), style: (fg: "white")),
+                            // (kind: Property(Song(Title)), style: (fg: "white")),
+                        ],
+                        align: Center
+                    ))
+                ),
+            ]
+        ),
         "custom_progress_bar": Split(
             direction: Horizontal,
             panes: [
@@ -141,6 +161,7 @@
                 pane: Split(
                     direction: Horizontal,
                     panes: [
+                        (size: "100%", pane: Component("album_header")),
                     ]
                 ),
                 size: "1",

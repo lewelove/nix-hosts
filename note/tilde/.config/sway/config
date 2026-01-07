@@ -1,0 +1,61 @@
+# --- Variables ---
+set $mainMod Mod4
+set $terminal foot
+set $menu fuzzel
+set $fileManager thunar
+
+# --- Appearance ---
+default_border none
+default_floating_border normal
+smart_gaps on
+gaps inner 8
+gaps outer 16
+
+# --- Input ---
+input "type:touchpad" {
+    tap enabled
+    natural_scroll disabled
+}
+
+# --- Keybindings ---
+bindsym $mainMod+Return exec $terminal
+bindsym $mainMod+q kill
+bindsym $mainMod+r exec $menu
+bindsym $mainMod+Shift+e exec $fileManager
+
+# Layout manipulation
+bindsym $mainMod+v floating toggle
+bindsym $mainMod+Tab fullscreen toggle
+
+# Focus
+bindsym $mainMod+j focus next
+bindsym $mainMod+k focus prev
+
+# Workspaces
+bindsym $mainMod+1 workspace number 1
+bindsym $mainMod+2 workspace number 2
+bindsym $mainMod+3 workspace number 3
+bindsym $mainMod+4 workspace number 4
+bindsym $mainMod+5 workspace number 5
+
+# Move to Workspaces
+bindsym $mainMod+Shift+1 move container to workspace number 1
+bindsym $mainMod+Shift+2 move container to workspace number 2
+bindsym $mainMod+Shift+3 move container to workspace number 3
+
+# --- Special Workspaces (Scratchpads) ---
+# Notes
+for_window [app_id="nvim-notes"] move scratchpad
+bindsym $mainMod+n [app_id="nvim-notes"] scratchpad show
+
+# --- Status Bar ---
+bar {
+    swaybar_command waybar
+}
+
+# --- Background ---
+# Uses your existing swww setup if the service is running, 
+# or use sway's native setter:
+# output * bg /path/to/wallpaper.png fill
+
+include /etc/sway/config.d/*
