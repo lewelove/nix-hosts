@@ -2,21 +2,44 @@
 
 {
 
-    # --- Localization ---
+  # --- Localization ---
   time.timeZone = "Europe/Moscow";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  # --- Fonts ---
-  fonts.packages = with pkgs; [
-    nerd-fonts.commit-mono
-    commit-mono
-    noto-fonts
-    noto-fonts-color-emoji
-  ];
+  fonts = {
+    packages = with pkgs; [
+      nerd-fonts.commit-mono
+      commit-mono
+      noto-fonts
+      noto-fonts-color-emoji
+      # corefonts
+      # vista-fonts
+    ];
 
-  programs.fuse.userAllowOther = true;
+    fontconfig = {
+      enable = true;
+      antialias = true;
+      
+      hinting = {
+        enable = true;
+        autohint = false;
+        style = "full";
+      };
 
-  programs.ssh.startAgent = true;
+      subpixel = {
+        rgba = "rgb";
+        lcdfilter = "default";
+      };
+
+      useEmbeddedBitmaps = true;
+
+      defaultFonts = {
+        monospace = [ "CommitMono Nerd Font" "Noto Color Emoji" ];
+        sansSerif = [ "Noto Sans" "Arial" "Noto Color Emoji" ];
+        serif     = [ "Noto Serif" "Times New Roman" "Noto Color Emoji" ];
+      };
+    };
+  };
 
   hardware.uinput.enable = true;
 

@@ -22,6 +22,7 @@
     bluez
     blueman
     sshfs
+    nfs-utils
 
     # Desktop
     fuzzel
@@ -60,8 +61,8 @@
     fd
     fzf
 
-    # # Media
-    # mpv
+    # Media
+    mpv
     # imv
     # mpc
     # rmpc
@@ -75,10 +76,10 @@
     amneziawg-go
     amneziawg-tools
 
-    # # Web
-    # ungoogled-chromium
-    # ayugram-desktop
-    #
+    # Web
+    ungoogled-chromium
+    ayugram-desktop
+
     # Themes and Icons
     nwg-look
     adwaita-icon-theme
@@ -89,8 +90,8 @@
     kdePackages.xdg-desktop-portal-kde
     
     # Flake Inputs
-    inputs.zen-browser.packages.x86_64-linux.default
-    inputs.photogimp.packages.${pkgs.system}.default
+    # inputs.zen-browser.packages.x86_64-linux.default
+    # inputs.photogimp.packages.${pkgs.system}.default
   ];
 
 }

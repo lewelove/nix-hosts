@@ -14,19 +14,21 @@ alias uvr='env PYTHONDONTWRITEBYTECODE=1 uv run'
 alias awgd='sudo killall amneziawg-go'
 alias awgr='sudo killall amneziawg-go & sudo awg-quick up $(find $HOME/VPN/awg/*.conf | shuf -n 1)'
 
-alias ipcheck='curl ip-api.com/line'
+alias ipcheck='curl ip-api.com'
+
+alias sc='systemctl'
+alias status='systemctl status'
+alias scu='systemctl --user'
+alias jc='journalctl -fu'
+alias jcu='journalctl --user -fu'
 
 gitsync() {
-    # Check if an argument ($1) was passed
     if [ -z "$1" ]; then
-        # No argument: set message to current date/time
         msg=$(date -u +"%Y-%m-%d at %H:%M UTC")
     else
-        # Argument exists: use it as the message
         msg="$1"
     fi
 
-    # Run git commands
     git add .
     git commit -m "$msg"
     git push -u origin main

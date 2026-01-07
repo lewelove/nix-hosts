@@ -15,8 +15,6 @@
     XCURSOR_THEME = "Adwaita"; 
     XCURSOR_SIZE = "24";
 
-    XDG_CURRENT_DESKTOP = "Hyprland";
-    XDG_MENU_PREFIX = "plasma-";
     GTK_USE_PORTAL = "1";
     QT_QPA_PLATFORMTHEME = "qt6ct";
     

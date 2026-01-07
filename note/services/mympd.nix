@@ -5,7 +5,7 @@
   services.mympd = {
     enable = true;
     settings = {
-      http_port = 80;
+      http_port = 666;
     };
   };
 
