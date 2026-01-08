@@ -38,6 +38,7 @@
     peazip
     bitwarden-desktop
     qwen-code
+    gnome-calculator
 
     # Terminal Programs
     foot
