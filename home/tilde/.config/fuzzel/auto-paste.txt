@@ -1,7 +1,17 @@
-don't-code-plan="do not write any code yet. think through the plan."
-don't-code-think="do not write any code yet. think critically through everything i just said."
-don't-code-undestand="do not write any code yet. explain my intentions and implications of them. think critically through everything i just said."
-don't-yap="do not yap. get straight to the point."
-explain="explain again in simpler words. don't use analogies, just explain."
-write-fully="write out the logic, write all files changed fully."
-write-fully-no-comments="write out the logic, write all files changed fully without comments."
+don't code, plan="do not write any code yet. think through the plan."
+
+don't code, think="do not write any code yet. think critically through everything i just said."
+
+don't code, understand="do not write any code yet. explain my intentions and implications of them. think critically through everything i just said."
+
+understand="explain my intentions and implications of them. think critically and rigorously through everything i just said and elaborate on the main subject of it."
+
+critique yourself="critically evaluate everything you just said. try to critique heavily and find flaws in your output that you just made because you didn't understand me 100%."
+
+don't yap="do not yap. get straight to the point."
+
+explain="explain again in simpler words. do not use any analogies, just explain."
+
+write fully="write out the logic, write all files changed fully."
+
+write fully, no comments="write out the logic, write all files changed fully without comments."
