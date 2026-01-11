@@ -9,7 +9,6 @@
     extraGroups = [ "networkmanager" "wheel"  "input" "uinput" ];
     shell = pkgs.bash; 
     autoSubUidGidRange = true;
-    password = "note";
   };
 
   security.sudo.extraRules = [
@@ -26,6 +25,10 @@
         }
         { 
           command = "/run/current-system/sw/bin/nixos-rebuild";
+          options = [ "NOPASSWD" ];
+        }
+        { 
+          command = "/run/current-system/sw/bin/passwd";
           options = [ "NOPASSWD" ];
         }
       ];
