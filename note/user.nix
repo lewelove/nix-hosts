@@ -4,14 +4,14 @@
   
   services.getty.autologinUser = "${username}";
 
-  users.mutableUsers = false;
+  # users.mutableUsers = false;
 
   users.users.${username} = {
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel"  "input" "uinput" ];
     shell = pkgs.bash; 
     autoSubUidGidRange = true;
-    password = "note";
+    initialPassword = "note";
   };
 
   security.sudo.extraRules = [
