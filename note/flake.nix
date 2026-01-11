@@ -25,7 +25,10 @@
         inherit inputs identity hostPath;
         inherit (identity) username hostname repoPath;
       };
-        modules = [ ./default.nix ];
+        modules = [
+          inputs.disko.nixosModules.disko
+          ./default.nix
+        ];
     };
   };
 }
