@@ -13,10 +13,10 @@
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/4e1e68ed-7ec8-4f0b-9578-9bc168821040";
-      fsType = "btrfs";
-    };
+  # fileSystems."/" =
+  #   { device = "/dev/disk/by-uuid/4e1e68ed-7ec8-4f0b-9578-9bc168821040";
+  #     fsType = "btrfs";
+  #   };
 
   swapDevices = [ ];
 

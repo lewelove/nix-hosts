@@ -1,4 +1,4 @@
-{ config, pkgs, username, hostname, ... }:
+{ config, pkgs, lib, username, hostname, ... }:
 
 {
 
@@ -8,7 +8,8 @@
   boot.loader.efi.canTouchEfiVariables = false;
   boot.loader.grub = {
     enable = true;
-    device = "/dev/sda";
+    devices = lib.mkForce [ "/dev/sda" ];
+    version = 2;
     efiSupport = false;
     useOSProber = true;
   };
