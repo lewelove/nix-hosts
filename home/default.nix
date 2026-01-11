@@ -43,6 +43,7 @@
     # System Services
     # ./services/xremap.nix
     ./services/mympd.nix
+    ./services/open-webui.nix
 
     # User Services
     ./services/user/mpd.nix

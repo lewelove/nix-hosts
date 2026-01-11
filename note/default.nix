@@ -13,6 +13,7 @@
     ./modules/environment.nix
 
     ./modules/hardware-configuration.nix
+    ./modules/disko.nix
 
     ./modules/networking.nix
     ./modules/bluetooth.nix

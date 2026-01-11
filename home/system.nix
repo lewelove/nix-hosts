@@ -44,6 +44,13 @@
 
   hardware.uinput.enable = true;
 
+  nixpkgs.config = {
+    allowUnfree = true;
+    cudaSupport = true;
+    cudaCapabilities = [ "6.1" ];
+    allowUnsupportedSystem = true;
+  };
+
   services.udev.extraRules = ''
     KERNEL=="uinput", GROUP="uinput", MODE="0660"
     KERNEL=="event*", GROUP="input", MODE="0660"
@@ -51,7 +58,6 @@
 
   # --- Nix Settings ---
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nixpkgs.config.allowUnfree = true;
   system.stateVersion = "25.11"; 
 
 }

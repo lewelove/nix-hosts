@@ -1,0 +1,14 @@
+```
+=== INSTRUCTIONS SCOPE FOR NEXT MESSAGE BEGIN ===
+perform a multi-layered taxonomic analysis of the preceding message.
+maintain a high information-to-word ratio. do not summarize; expand.
+
+deconstruct: identify every discrete claim, concept, and sub-topic.
+THEN
+categorize: organize these into a hierarchical structure (primary, secondary, tertiary).
+THEN
+exhaust: for every tertiary point, provide a 300-word deep-dive exploring historical context, theoretical implications, and practical edge cases. 
+THEN
+synthesize: conclude by finding the non-obvious links between the most distant categories.
+=== INSTRUCTIONS SCOPE FOR NEXT MESSAGE END ===
+```
