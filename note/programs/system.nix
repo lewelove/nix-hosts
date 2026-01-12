@@ -22,6 +22,19 @@
     enable = true;
     enableBashIntegration = true;
   };
+  
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ 
+      pkgs.xdg-desktop-portal-hyprland
+      pkgs.kdePackages.xdg-desktop-portal-kde
+    ];
+    config = {
+      common = {
+        default = [ "gtk" ];
+      };
+    };
+  };
 
   programs.fuse.userAllowOther = true;
 
