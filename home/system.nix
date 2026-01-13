@@ -47,8 +47,8 @@
   nixpkgs.config = {
     allowUnfree = true;
     cudaSupport = true;
-    cudaCapabilities = [ "6.1" ];
-    allowUnsupportedSystem = true;
+    # cudaCapabilities = [ "6.1" ];
+    # allowUnsupportedSystem = true;
   };
 
   services.udev.extraRules = ''

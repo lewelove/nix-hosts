@@ -69,10 +69,26 @@ process.on('exit', () => {
         if (!fs.existsSync(fullOutputPath)) return;
 
         let content = fs.readFileSync(fullOutputPath, 'utf8');
-
-        // 1. Ingest External .txt files as Tags
-        // Example: "explanation.txt" -> <explanation>content</explanation>
         let injectedTags = '';
+
+        // 1. Check Target Root for system_prompt.txt
+        // This checks the folder you are packing (e.g. ~/nix-hosts/home)
+        const rootPromptPath = path.join(absolutePath, 'system_prompt.txt');
+
+        if (fs.existsSync(rootPromptPath)) {
+            try {
+                const promptContent = fs.readFileSync(rootPromptPath, 'utf8').trim();
+                if (promptContent) {
+                    injectedTags += `<system_prompt>\n${promptContent}\n</system_prompt>\n\n`;
+                    console.log('   Found system_prompt.txt in target root.');
+                }
+            } catch (e) {
+                console.warn('   Warning: Failed reading root system_prompt.txt:', e.message);
+            }
+        }
+
+        // 2. Ingest External .txt files from Config Dir
+        // This grabs ANY .txt file in ~/.config/repomix/ and creates a tag from its filename
         try {
             const files = fs.readdirSync(configDir);
             const txtFiles = files.filter(file => file.endsWith('.txt'));
@@ -94,7 +110,7 @@ process.on('exit', () => {
             console.warn('Warning: Could not read external .txt files:', e.message);
         }
 
-        // 2. Merge Path into Directory Structure
+        // 3. Merge Path into Directory Structure
         // We find the opening tag and inject the Root path immediately after
         const openTag = '<directory_structure>';
         const injectedRoot = `${openTag}\nRoot: ${prettyPath}\n`;
@@ -103,11 +119,11 @@ process.on('exit', () => {
             content = content.replace(openTag, injectedRoot);
         }
 
-        // 3. Prepend Injected Tags
+        // 4. Prepend Injected Tags
         // We simply place the custom text files at the very top
         content = injectedTags + content;
 
-        // 4. Strip Binary/Image Content
+        // 5. Strip Binary/Image Content
         const escDots = stripExts.map(e => e.replace('.', '\\.'));
         if (escDots.length > 0) {
             const extPattern = escDots.join('|');
@@ -123,7 +139,7 @@ process.on('exit', () => {
         }
 
         fs.writeFileSync(fullOutputPath, content);
-        console.log(`\n✅ Processed: ${dynamicName}`);
+        console.log(`\n Repomixed: ${dynamicName}`);
 
     } catch (err) {
         console.error('Error post-processing:', err);
