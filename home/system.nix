@@ -46,7 +46,7 @@
 
   nixpkgs.config = {
     allowUnfree = true;
-    cudaSupport = true;
+    # cudaSupport = true;
     # cudaCapabilities = [ "6.1" ];
     # allowUnsupportedSystem = true;
   };
