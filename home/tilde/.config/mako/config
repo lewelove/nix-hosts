@@ -9,7 +9,7 @@ border-size=2
 border-radius=0
 icon-location=left
 text-alignment=left
-default-timeout=15000
+default-timeout=3000
 max-visible=2
 layer=overlay
 anchor=top-right
@@ -21,15 +21,15 @@ on-button-right=dismiss
 on-button-middle=dismiss-all
 
 # Colors (Matching Fuzzel Palette)
-background-color=#222222
-text-color=#d0d0d0
-border-color=#888888
+background-color=#242424
+text-color=#b7b7b7
+border-color=#7a7a7a
 
 # Urgency overrides
 [urgency=high]
+background-color=#242424
+text-color=#b7b7b7
 border-color=#ea4335
-text-color=#d0d0d0
-background-color=#222222
 
 [grouped]
 format=<b>%s</b>\n%b

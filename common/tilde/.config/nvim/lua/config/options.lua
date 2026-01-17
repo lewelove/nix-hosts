@@ -102,6 +102,9 @@ vim.opt.statusline = "  %f  [%y] %m %= Ln %l/%L  Col %c  %p%%  "
 
 -- Modern Filetype Detection
 vim.filetype.add({
+  filename = {
+    ["metadata.lock"] = "toml",
+  },
   pattern = {
     -- Match any file inside a 'bin' directory
     [".*/bin/.*"] = function(path, bufnr)

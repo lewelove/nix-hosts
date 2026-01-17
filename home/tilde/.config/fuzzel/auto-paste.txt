@@ -1,21 +1,27 @@
-don't code, plan="do not write any code yet. think through the plan."
+no code="do not write any code yet."
 
-don't code, think="do not write any code yet. think critically through everything i just said."
+no code, talk="do not write any code yet. support the conversation in a thoughtful way. answer questions if it's required to understand me further."
 
-don't code, understand="do not write any code yet. explain my intentions and implications of them. think critically through everything i just said."
+no code, plan="do not write any code yet. think through the plan."
 
-don't code, identify problem="do not write any code yet. identify and describe the problem we face. then identify what is causing it. then propose a solution."
+no code, think="do not write any code yet. think critically through everything i just said."
+
+no code, understand="do not write any code yet. explain my intentions back to me. think critically through everything i just said."
+
+no code, identify problem="do not write any code yet. identify and describe the problem we face. then identify what is causing it. then propose a solution."
 
 understand="explain my intentions and implications of them. think critically and rigorously through everything i just said and elaborate on the main subject of it."
 
 critique yourself="critically evaluate everything you just said. try to critique heavily and find flaws in your output that you just made because you didn't understand me 100%."
 
-don't yap="do not yap. get straight to the point."
+no yap="do not yap. get straight to the point."
 
 explain="explain again in simpler words. do not use any analogies, just explain."
 
 code="write out the logic, for each file changed write it fully."
 
 code, no comments="write out the logic, write all files changed fully without comments."
+
+talk="support the conversation in a thoughtful way. answer questions if it's required to understand me further."
 
 exhaust tokens, no fluff="treat the output token limit as a budget that must be fully spent. do not 'water down' the content to fill space; instead, expand the scope of the inquiry to include secondary and tertiary implications. if you think you are finished, explore the edge cases and counter-intuitive facets of the subject until the buffer is exhausted."
