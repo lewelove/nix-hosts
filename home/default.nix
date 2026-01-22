@@ -39,17 +39,19 @@
     ./programs/web-applications/qbittorrent.nix
     ./programs/web-applications/jellyfin.nix
     ./programs/web-applications/mympd.nix
+    ./programs/web-applications/mpf2k.nix
 
     # System Services
     # ./services/xremap.nix
     ./services/mympd.nix
+    ./services/olivetin.nix
     ./services/open-webui.nix
 
     # User Services
     ./services/user/mpd.nix
     ./services/user/chromium-service.nix
     ./services/user/swww.nix
-    ./services/user/wlsunset.nix
+    # ./services/user/wlsunset.nix
     ./services/user/quickshell.nix
     ./services/user/listenbrainz-mpd-90-no4m.nix
     ./services/user/polkit-agent.nix

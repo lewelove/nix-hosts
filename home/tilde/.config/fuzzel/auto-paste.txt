@@ -1,27 +1,23 @@
 no code="do not write any code yet."
 
-no code, talk="do not write any code yet. support the conversation in a thoughtful way. answer questions if it's required to understand me further."
+talk="do not code. support the conversation in a thoughtful way. ask questions if it's required to understand me further."
 
-no code, plan="do not write any code yet. think through the plan."
+understand="do not code. understand and explain my intentions back to me. think carefully through everything i just said and elaborate on the main subject of it."
 
-no code, think="do not write any code yet. think critically through everything i just said."
-
-no code, understand="do not write any code yet. explain my intentions back to me. think critically through everything i just said."
-
-no code, identify problem="do not write any code yet. identify and describe the problem we face. then identify what is causing it. then propose a solution."
-
-understand="explain my intentions and implications of them. think critically and rigorously through everything i just said and elaborate on the main subject of it."
+explain="do not code. explain again in simpler words. do not use any analogies, just explain."
 
 critique yourself="critically evaluate everything you just said. try to critique heavily and find flaws in your output that you just made because you didn't understand me 100%."
 
+identify problem="do not code. identify and describe the problem we face. then identify what is causing it. then propose a solution."
+
+plan transition="create comprehensive plan required for full transition. do not write any code yet. think carefully through the plan."
+
+plan implementation="create comprehensive plan required for full implementation. do not write any code yet. think carefully through the plan."
+
 no yap="do not yap. get straight to the point."
 
-explain="explain again in simpler words. do not use any analogies, just explain."
+code plan="execute drafted plan. write out the logic. write only files changed. for each file changed write it in full."
 
-code="write out the logic, for each file changed write it fully."
+code="write out the logic. write only files changed. for each file changed write it in full."
 
-code, no comments="write out the logic, write all files changed fully without comments."
-
-talk="support the conversation in a thoughtful way. answer questions if it's required to understand me further."
-
-exhaust tokens, no fluff="treat the output token limit as a budget that must be fully spent. do not 'water down' the content to fill space; instead, expand the scope of the inquiry to include secondary and tertiary implications. if you think you are finished, explore the edge cases and counter-intuitive facets of the subject until the buffer is exhausted."
+no comments="make no additional comments in produced code."
