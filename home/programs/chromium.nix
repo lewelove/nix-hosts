@@ -60,6 +60,8 @@ let
     };
   };
 
+  windowUserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36";
+
   commonArgs = [
     "--load-extension=${extensions.ublock-origin.drv},${extensions.untrap.drv},${extensions.sponsorblock.drv}"
     "--extension-mime-request-handling=always-prompt-for-install"
@@ -68,6 +70,8 @@ let
     "--force-dark-mode"
     "--hide-scrollbars"
     "--hide-fullscreen-exit-ui"
+    "--user-agent=\"${windowUserAgent}\""
+    "--disable-features=BlockInsecurePrivateNetworkRequests"
   ];
 
 in
