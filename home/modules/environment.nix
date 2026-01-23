@@ -8,6 +8,11 @@
     fi
   '';
 
+  environment.extraInit = ''
+    export PATH="$HOME/.commands:$HOME/.scripts:$PATH"
+    export XDG_DATA_DIRS="$HOME/.applications:$XDG_DATA_DIRS"
+  '';
+
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "nvidia";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
@@ -27,15 +32,6 @@
     QT_QPA_PLATFORMTHEME = "qt6ct";
     
     EDITOR = "nvim";
-
-    PATH = [
-      "$HOME/.commands"
-      "$HOME/.scripts"
-    ];
-
-    XDG_DATA_DIRS = [
-      "$HOME/.applications"
-    ];
 
   };
 
