@@ -70,18 +70,24 @@ let
     "--force-dark-mode"
     "--hide-scrollbars"
     "--hide-fullscreen-exit-ui"
-    "--user-agent=\"${windowUserAgent}\""
+    "--user-agent=${windowUserAgent}"
     "--disable-features=BlockInsecurePrivateNetworkRequests"
   ];
+
+  chromiumWrapper = pkgs.writeShellScriptBin "chromium-browser" ''
+    exec ${pkgs.ungoogled-chromium}/bin/chromium \
+      ${lib.strings.escapeShellArgs commonArgs} \
+      "$@" >/dev/null 2>&1
+  '';
 
 in
 
 {
 
-  options.my.chromium.flags = lib.mkOption {
-    type = lib.types.listOf lib.types.str;
-    default = commonArgs;
-    description = "Shared flags for Chromium and Web Apps";
+  options.my.chromium.wrapper = lib.mkOption {
+    type = lib.types.package;
+    default = chromiumWrapper;
+    description = "Wrapped Chromium package with default flags applied";
   };
 
   config = {
@@ -89,8 +95,10 @@ in
       programs.chromium = {
         enable = true;
         package = pkgs.ungoogled-chromium;
-        commandLineArgs = config.my.chromium.flags;
+        commandLineArgs = commonArgs; 
       };
+      
+      home.packages = [ chromiumWrapper ];
     };
   };
 

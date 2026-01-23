@@ -1,13 +1,9 @@
 { pkgs, lib, username, config, ... }:
 
 let
-
-  flags = config.my.chromium.flags;
-
+  wrapper = config.my.chromium.wrapper;
 in
-
 {
-
   home-manager.users.${username} = {
     systemd.user.services.chromium-service = {
       Unit = {
@@ -16,7 +12,8 @@ in
         After = [ "graphical-session.target" ];
       };
       Service = {
-        ExecStart = "${pkgs.ungoogled-chromium}/bin/chromium ${builtins.concatStringsSep " " flags} --silent-launch";
+        # Using the wrapper is cleaner here too
+        ExecStart = "${wrapper}/bin/chromium-browser --silent-launch";
         Restart = "on-failure";
         RestartSec = "5s";
         Environment = [
@@ -26,5 +23,4 @@ in
       Install.WantedBy = [ "graphical-session.target" ];
     };
   };
-
 }

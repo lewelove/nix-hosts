@@ -32,14 +32,14 @@
     ./programs/system.nix
 
     # Web Applications
-    ./programs/web-applications/youtube.nix
+    # ./programs/web-applications/youtube.nix
     ./programs/web-applications/figma.nix
 
     # Local Web Applications
-    ./programs/web-applications/qbittorrent.nix
-    ./programs/web-applications/jellyfin.nix
-    ./programs/web-applications/mympd.nix
-    ./programs/web-applications/mpf2k.nix
+    # ./programs/web-applications/qbittorrent.nix
+    # ./programs/web-applications/jellyfin.nix
+    # ./programs/web-applications/mympd.nix
+    # ./programs/web-applications/mpf2k.nix
 
     # System Services
     # ./services/xremap.nix
