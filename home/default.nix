@@ -33,6 +33,7 @@
 
     # Web Applications
     ./programs/web-applications/youtube.nix
+    ./programs/web-applications/photopea.nix
     ./programs/web-applications/figma.nix
 
     # Local Web Applications

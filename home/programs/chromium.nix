@@ -70,7 +70,7 @@ let
     "--force-dark-mode"
     "--hide-scrollbars"
     "--hide-fullscreen-exit-ui"
-    "--user-agent=${windowUserAgent}"
+    "--user-agent=\"${windowUserAgent}\""
     "--disable-features=BlockInsecurePrivateNetworkRequests"
   ];
 
