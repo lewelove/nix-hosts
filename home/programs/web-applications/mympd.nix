@@ -1,29 +1,18 @@
 { pkgs, lib, username, config, ... }:
 
 let
-
-  flags = config.my.chromium.flags;
-
+  wrapper = config.my.chromium.wrapper;
   url = "http://localhost:666";
   name = "myMPD";
   icon = "mympd";
-
 in
-
 {
-
   home-manager.users.${username} = {
     xdg.desktopEntries.${name} = {
-      name = "${name}";
-      genericName = "${name}";
-      exec = builtins.concatStringsSep " " [
-        "${pkgs.ungoogled-chromium}/bin/chromium"
-        "${builtins.concatStringsSep " " flags}"
-        "--app=${url}"
-      ];
+      inherit name icon;
+      genericName = "MPD Web Client";
+      exec = "${wrapper}/bin/chromium-browser --app=${url}";
       terminal = false;
-      icon = "${icon}";
     };
   };
-
 }

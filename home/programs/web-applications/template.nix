@@ -1,29 +1,18 @@
 { pkgs, lib, username, config, ... }:
 
 let
-
-  flags = config.my.chromium.flags;
-
+  wrapper = config.my.chromium.wrapper;
   url = "https://TEMPLATE";
   name = "TEMPLATE";
   icon = "TEMPLATE";
-
 in
-
 {
-
   home-manager.users.${username} = {
     xdg.desktopEntries.${name} = {
-      name = "${name}";
+      inherit name icon;
       genericName = "${name}";
-      exec = builtins.concatStringsSep " " [
-        "${pkgs.ungoogled-chromium}/bin/chromium"
-        "${builtins.concatStringsSep " " flags}"
-        "--app=${url}"
-      ];
+      exec = "${wrapper}/bin/chromium-browser --app=${url}";
       terminal = false;
-      icon = "${icon}";
     };
   };
-
 }

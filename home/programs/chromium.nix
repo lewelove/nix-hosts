@@ -98,7 +98,7 @@ in
         commandLineArgs = commonArgs; 
       };
       
-      home.packages = [ chromiumWrapper ];
+      home.packages = [ ];
     };
   };
 
