@@ -51,6 +51,7 @@
     ./services/user/mpd.nix
     ./services/user/chromium-service.nix
     ./services/user/swww.nix
+    ./services/user/figma-agent.nix
     # ./services/user/wlsunset.nix
     ./services/user/quickshell.nix
     ./services/user/listenbrainz-mpd-90-no4m.nix
