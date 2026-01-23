@@ -39,7 +39,8 @@
     # Local Web Applications
     ./programs/web-applications/qbittorrent.nix
     ./programs/web-applications/jellyfin.nix
-    ./programs/web-applications/mympd.nix
+    ./programs/web-applications/vscode.nix
+    # ./programs/web-applications/mympd.nix
     ./programs/web-applications/mpf2k.nix
 
     # System Services
@@ -51,6 +52,7 @@
     # User Services
     ./services/user/mpd.nix
     ./services/user/chromium-service.nix
+    ./services/user/code-server.nix
     ./services/user/swww.nix
     ./services/user/figma-agent.nix
     # ./services/user/wlsunset.nix
