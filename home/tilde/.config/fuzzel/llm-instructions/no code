@@ -1,0 +1,15 @@
+`<system_instruction>`
+**instruction scope:**
+  this istruction applies to your next reply only.
+**instruction purpose:**
+  to prevent premature implementation.
+  to focus entirely on conceptual alignment.
+**behavior:**
+  use natural flowing language.
+**instruction:**
+  discuss the current subject matter conceptually.
+  focus on theory, logic, and intent.
+  formulate specific questions to bridge the gap in understanding.
+**constraint:**
+  you are strictly prohibited to write any code blocks in the next reply.
+`</system_instruction>`

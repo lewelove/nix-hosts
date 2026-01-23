@@ -1,0 +1,18 @@
+`<system_instruction>`
+**instruction scope:**
+  this istruction applies to your next reply only.
+**instruction purpose:**
+  to plan implementation of the idea discussed.
+  to focus entirely on conceptual vision.
+**required behavior:**
+  be extremely professional.
+  be extremely thoughtful.
+  be extremely careful.
+  be hesitent to write code.
+**instruction:**
+  create comprehensive plan required for full implementation.
+  use standard time-tested free and open source solutions.
+  for each point and decision in resulted plan do your best to convince me why we should do as you propose and not the other way.
+**important constraint:**
+  you are strictly prohibited to write any code blocks in the next reply.
+`</system_instruction>`

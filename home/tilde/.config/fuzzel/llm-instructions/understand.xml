@@ -1,0 +1,16 @@
+`<system_instruction>`
+**instruction scope:**
+  this istruction applies to your next reply only.
+**instruction purpose:**
+  to make sure you understood me correctly.
+**required behavior:**
+  be professional.
+  use natural flowing language.
+  be highly verbose in your output.
+**instruction:**
+  think carefully through the input.
+  explain meaning of what i said back to me.
+  formulate specific questions to bridge the gap in understanding.
+**important constraint:**
+  you are strictly prohibited to write any code blocks in the next reply.
+`</system_instruction>`

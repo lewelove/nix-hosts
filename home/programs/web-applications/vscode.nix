@@ -2,7 +2,7 @@
 
 let
   wrapper = config.my.chromium.wrapper;
-  url = "http://localhost:4444/"; # Default to dev folder
+  url = "http://vscode.home:4444/";
   name = "VS Code";
   icon = "code";
 in
