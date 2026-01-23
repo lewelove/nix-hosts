@@ -73,6 +73,7 @@
 
     # Web
     ayugram-desktop
+    figma-agent
 
     # Themes and Icons
     nwg-look

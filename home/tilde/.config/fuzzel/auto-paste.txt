@@ -1,14 +1,14 @@
 no code="do not write any code yet."
 
-talk="do not code. support the conversation in a thoughtful way. ask questions if it's required to understand me further."
+talk="support the conversation in a thoughtful way. ask questions if it's required to understand me further. do not write any code yet."
 
-understand="do not code. understand and explain my intentions back to me. think carefully through everything i just said and elaborate on the main subject of it."
+understand="understand and explain my intentions back to me. think carefully through everything i just said and elaborate on the main subject of it. do not write any code yet."
 
-explain="do not code. explain again in simpler words. do not use any analogies, just explain."
+explain="explain again in simpler words. do not use any analogies, just explain. do not write any code yet."
 
 critique yourself="critically evaluate everything you just said. try to critique heavily and find flaws in your output that you just made because you didn't understand me 100%."
 
-identify problem="do not code. identify and describe the problem we face. then identify what is causing it. then propose a solution."
+identify problem="identify and describe the problem we face. then identify what is causing it. then propose a solution. do not write any code yet."
 
 plan transition="create comprehensive plan required for full transition. do not write any code yet. think carefully through the plan."
 
