@@ -13,6 +13,9 @@
     containers = {
       log_driver = "k8s-file";
     };
+    storage = {
+      driver = "overlay";
+    };
     engine = {
       runtime = "crun";
       events_logger = "file";
