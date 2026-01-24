@@ -2,8 +2,14 @@
 **instruction scope:**
   this istruction applies to your next reply only.
 **instruction purpose:**
+  problems / bugs identification.
 **required behavior:**
+  be extremely attentive.
 **instruction:**
+  describe the problem i'm talking about.
+  look carefully through code and identify what is causing it.
+  propose 3 distinct ways to solve it.
+  for each proposition made evaluate pros and cons and lay them out.
 **important constraint:**
   you are strictly prohibited to write any code blocks in the next reply.
 `</system_instruction>`

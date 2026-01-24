@@ -1,0 +1,19 @@
+`<system_instruction>`
+**instruction scope:**
+  this istruction applies to your next reply only.
+**instruction purpose:**
+  to write professional code.
+**required behavior:**
+  be extremely professional.
+  be extremely thoughtful.
+  be extremely careful.
+**instruction:**
+  execute drafted plan step by step.
+  write out the code.
+  for every change made to codebase triple check that it is not breaking already existing features / logic that are out of scope of plan you are currently executing.
+  write out only files that require change and nothing else. 
+  for each file changed write it in full.
+**important constraint:**
+  do not botch things.
+  follow plan closely, do not implement things not explicetly listed in plan.
+`</system_instruction>`
