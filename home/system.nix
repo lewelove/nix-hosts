@@ -77,6 +77,7 @@
   '';
 
   systemd.oomd.enable = false;
+  systemd.sockets.systemd-oomd.enable = false;
 
   # --- Nix Settings ---
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

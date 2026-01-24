@@ -17,9 +17,10 @@
       driver = "overlay";
     };
     engine = {
-      runtime = "runc";
+      runtime = "crun";
       events_logger = "file";
       cgroup_manager = "systemd";
+      tmp_dir = "/var/tmp";
     };
   };
 
