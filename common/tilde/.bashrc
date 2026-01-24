@@ -19,6 +19,14 @@ alias scu='systemctl --user'
 alias jc='journalctl -fu'
 alias jcu='journalctl --user -fu'
 
+distrobox() {
+  if [[ "$1" == "create" || "$1" == "rm" || "$1" == "stop" || "$1" == "assemble" ]]; then
+    systemd-run --user --scope --unit=distrobox-setup distrobox "$@"
+  else
+    command distrobox "$@"
+  fi
+}
+
 gitsync() {
     local branch
     branch=$(git branch --show-current)

@@ -14,13 +14,12 @@
       log_driver = "k8s-file";
     };
     storage = {
-      driver = "overlay";
+      driver = "btrfs";
     };
     engine = {
       runtime = "crun";
       events_logger = "file";
       cgroup_manager = "systemd";
-      tmp_dir = "/var/tmp";
     };
   };
 

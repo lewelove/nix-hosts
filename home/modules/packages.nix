@@ -82,7 +82,6 @@
     dconf
     libsForQt5.qt5ct
     kdePackages.qt6ct
-    kdePackages.xdg-desktop-portal-kde
     
     # Nix
     nh
