@@ -15,4 +15,8 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
+  environment.systemPackages = [
+    pkgs.nvidia-container-toolkit
+  ];
+
 }
