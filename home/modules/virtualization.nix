@@ -17,7 +17,7 @@
       driver = "overlay";
     };
     engine = {
-      runtime = "crun";
+      runtime = "runc";
       events_logger = "file";
       cgroup_manager = "systemd";
     };

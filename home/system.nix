@@ -76,6 +76,8 @@
     KERNEL=="event*", GROUP="input", MODE="0660"
   '';
 
+  systemd.oomd.enable = false;
+
   # --- Nix Settings ---
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   system.stateVersion = "25.11"; 
