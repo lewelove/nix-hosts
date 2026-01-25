@@ -13,7 +13,10 @@
 **instruction:**
   create comprehensive plan required for full implementation.
   use standard time-tested free and open source solutions.
-  for each point and decision in resulted plan do your best to convince me why we should do as you propose and not the other way.
+  for each of requests create 3 points:
+  1. describe what you will implement
+  2. in short describe technical way to get there
+  3. convince me why technical decision you picked is the best and the most profesional one.
 **important constraint:**
   you are strictly prohibited to write any code blocks in the next reply.
 `</system_instruction>`

@@ -76,6 +76,8 @@ let
     "--hide-fullscreen-exit-ui"
     "--user-agent=\"${windowUserAgent}\""
     "--disable-features=BlockInsecurePrivateNetworkRequests"
+    "--disable-features=WaylandWpColorManagerV1"
+    "--force-color-profile=srgb"
   ];
 
   chromiumWrapper = pkgs.writeShellScriptBin "chromium-browser" ''
