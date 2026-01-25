@@ -8,3 +8,7 @@ config
 rsync
 whitelist
 txt
+eluxum
+json
+mpd
+lanczos
