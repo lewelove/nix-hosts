@@ -31,6 +31,20 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- Enable spellcheck for specific filetypes
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("SpellCheck", { clear = true }),
+  pattern = { "markdown", "text", "gitcommit" },
+  callback = function()
+    vim.opt_local.spell = true
+    vim.opt_local.spelllang = "en_us"
+  end,
+})
+vim.api.nvim_set_hl(0, "SpellBad", { undercurl = true, sp = "#EA4335" })
+vim.api.nvim_set_hl(0, "SpellRare", { underline = false, undercurl = false })
+vim.api.nvim_set_hl(0, "SpellLocal", { underline = false, undercurl = false })
+vim.api.nvim_set_hl(0, "SpellCap", { underline = false, undercurl = false })
+
 vim.api.nvim_create_autocmd("FileType", {
   group = augroup,
   pattern = { "javascript", "typescript", "json", "html", "css" },
@@ -39,6 +53,54 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.shiftwidth = 2
   end,
 })
+
+-- Autoname file based on first line
+_G.RenameByContent = function()
+  local ft = vim.bo.filetype
+  if ft ~= "text" and ft ~= "markdown" then return end
+
+  local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+  local line
+  for _, l in ipairs(lines) do
+    if l:match("%S") then
+      line = l
+      break
+    end
+  end
+
+  if not line then return end
+  local timestamp = os.date("!%Y%m%d-%H%M%S")
+  local text = line:gsub('[<>:"/\\|%?%*]', "_")
+  text = text:gsub("%s+", " ")
+  text = text:match("^%s*(.-)%s*$")
+
+  if #text > 45 then
+    text = vim.fn.strcharpart(text, 0, 45)
+    text = text:match("^(.-)%s*$")
+  end
+  if #text == 0 then text = "untitled" end
+
+  local filename = timestamp .. " " .. text .. ".txt"
+  local buf_name = vim.api.nvim_buf_get_name(0)
+  local target_dir = (buf_name == "") and vim.fn.expand("~/Notes") or vim.fn.fnamemodify(buf_name, ":p:h")
+
+  local new_path = target_dir .. "/" .. filename
+  local current_path = vim.fn.expand("%:p")
+
+  if current_path ~= new_path then
+    if vim.fn.isdirectory(target_dir) == 0 then
+      vim.fn.mkdir(target_dir, 'p')
+    end
+
+    vim.cmd("saveas! " .. vim.fn.fnameescape(new_path))
+    
+    if current_path ~= "" and vim.fn.filereadable(current_path) == 1 then
+      vim.fn.delete(current_path)
+    end
+    
+    vim.cmd("file " .. vim.fn.fnameescape(new_path))
+  end
+end
 
 -- Auto-close terminal when process exits
 vim.api.nvim_create_autocmd("TermClose", {

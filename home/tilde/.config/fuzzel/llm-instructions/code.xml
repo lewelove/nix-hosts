@@ -1,3 +1,4 @@
+```code
 `<system_instruction>`
 **instruction scope:**
   this istruction applies to your next reply only.
@@ -13,7 +14,10 @@
   for every change made to codebase triple check that it is not breaking already existing features / logic that are out of scope of plan you are currently executing.
   write out only files that require change and nothing else. 
   for each file changed write it in full.
-**important constraint:**
+**important constraints:**
   do not botch things.
+  treat already existing comments as essential.
+  never write additional comments unless explicitly asked.
   follow plan closely, do not implement things not explicetly listed in plan.
 `</system_instruction>`
+```

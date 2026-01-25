@@ -21,6 +21,19 @@ vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { desc = "Move line up" })
 vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
+-- Better navigation
+vim.keymap.set({ 'n', 'v' }, 'j', 'gj', { silent = true })
+vim.keymap.set({ 'n', 'v' }, 'k', 'gk', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '0', 'g0', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '$', 'g$', { silent = true })
+vim.keymap.set({ "n", "v" }, "<Down>", "gj", { silent = true })
+vim.keymap.set({ "n", "v" }, "<Up>", "gk", { silent = true })
+vim.keymap.set("i", "<Down>", "<C-o>gj", { silent = true })
+vim.keymap.set("i", "<Up>", "<C-o>gk", { silent = true })
+
+-- Autorename by first line
+vim.keymap.set("n", "<leader>n", function() _G.RenameByContent() end, { silent = true })
+
 -- Replace whole file with clipboard paste
 vim.keymap.set('n', '<leader>v', 'ggVG"+p | :w<CR>', { desc = 'Paste clipboard to whole buffer' })
 
