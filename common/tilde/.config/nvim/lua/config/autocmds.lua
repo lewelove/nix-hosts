@@ -56,33 +56,57 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- Autoname file based on first line
 _G.RenameByContent = function()
-  local ft = vim.bo.filetype
-  if ft ~= "text" and ft ~= "markdown" then return end
+  local buf = vim.api.nvim_get_current_buf()
+  local buf_name = vim.api.nvim_buf_get_name(buf)
+  local ft = vim.bo[buf].filetype
+  local bt = vim.bo[buf].buftype
+  local exists = vim.fn.filereadable(buf_name) == 1
 
-  local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
-  local line
+  -- Never rename special buffers (terminals, help, oil, etc.)
+  if bt ~= "" then return end
+  -- Only proceed if we can actually modify the buffer
+  if not vim.bo[buf].modifiable or vim.bo[buf].readonly then return end
+
+  -- Strict Guard: Only work on text/md OR buffers that don't exist yet
+  if not (ft == "text" or ft == "markdown" or buf_name == "" or not exists) then
+    return
+  end
+
+  local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+  local first_line
   for _, l in ipairs(lines) do
     if l:match("%S") then
-      line = l
+      first_line = l
       break
     end
   end
+  if not first_line then return end
 
-  if not line then return end
-  local timestamp = os.date("!%Y%m%d-%H%M%S")
-  local text = line:gsub('[<>:"/\\|%?%*]', "_")
-  text = text:gsub("%s+", " ")
-  text = text:match("^%s*(.-)%s*$")
-
-  if #text > 45 then
-    text = vim.fn.strcharpart(text, 0, 45)
-    text = text:match("^(.-)%s*$")
+  local clean_text = first_line:gsub('[<>:"/\\|%?%*]', "_")
+  clean_text = clean_text:gsub("^%.+", "") -- Remove leading dots
+  clean_text = clean_text:gsub("%s+", " ")
+  clean_text = clean_text:match("^%s*(.-)%s*$")
+  
+  if #clean_text > 45 then
+    clean_text = vim.fn.strcharpart(clean_text, 0, 45):match("^(.-)%s*$")
   end
-  if #text == 0 then text = "untitled" end
+  if #clean_text == 0 then clean_text = "untitled" end
 
-  local filename = timestamp .. " " .. text .. ".txt"
-  local buf_name = vim.api.nvim_buf_get_name(0)
-  local target_dir = (buf_name == "") and vim.fn.expand("~/Notes") or vim.fn.fnamemodify(buf_name, ":p:h")
+  local timestamp = os.date("!%Y%m%d-%H%M%S")
+  
+  local extension = (ft == "markdown") and ".md" or ".txt"
+  local filename = timestamp .. " " .. clean_text .. extension
+  
+  local target_dir
+  if buf_name ~= "" then
+    target_dir = vim.fn.fnamemodify(buf_name, ":p:h")
+  else
+    target_dir = vim.fn.getcwd()
+    
+    if target_dir == "" or target_dir == vim.fn.expand("~") then
+       target_dir = vim.fn.expand("~/Notes")
+    end
+  end
 
   local new_path = target_dir .. "/" .. filename
   local current_path = vim.fn.expand("%:p")
@@ -92,25 +116,38 @@ _G.RenameByContent = function()
       vim.fn.mkdir(target_dir, 'p')
     end
 
-    vim.cmd("saveas! " .. vim.fn.fnameescape(new_path))
-    
-    if current_path ~= "" and vim.fn.filereadable(current_path) == 1 then
-      vim.fn.delete(current_path)
+    local success = pcall(function()
+      vim.cmd("saveas! " .. vim.fn.fnameescape(new_path))
+    end)
+
+    if success then
+      if exists and current_path ~= "" and current_path ~= new_path then
+        vim.fn.delete(current_path)
+      end
+      vim.cmd("file " .. vim.fn.fnameescape(new_path))
     end
-    
-    vim.cmd("file " .. vim.fn.fnameescape(new_path))
   end
 end
 
--- Auto-close terminal when process exits
-vim.api.nvim_create_autocmd("TermClose", {
-  group = augroup,
-  callback = function()
-    if vim.v.event.status == 0 then
-      vim.api.nvim_buf_delete(0, {})
-    end
-  end,
-})
+-- Create new empty buffer in the same directory as current file
+_G.NewBufferSameDir = function()
+  if vim.bo.buftype ~= "" then return end
+
+  local current_buf_path = vim.api.nvim_buf_get_name(0)
+  local target_dir
+
+  if current_buf_path ~= "" then
+    target_dir = vim.fn.fnamemodify(current_buf_path, ":p:h")
+  else
+    target_dir = vim.fn.expand("~/Notes")
+  end
+
+  vim.cmd("enew")
+
+  if vim.fn.isdirectory(target_dir) == 1 then
+    vim.cmd("lcd " .. vim.fn.fnameescape(target_dir))
+  end
+end
 
 -- Disable line numbers in terminal
 vim.api.nvim_create_autocmd("TermOpen", {

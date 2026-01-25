@@ -31,6 +31,9 @@ vim.keymap.set({ "n", "v" }, "<Up>", "gk", { silent = true })
 vim.keymap.set("i", "<Down>", "<C-o>gj", { silent = true })
 vim.keymap.set("i", "<Up>", "<C-o>gk", { silent = true })
 
+-- New buffer in same directory
+vim.keymap.set("n", "<leader>a", function() _G.NewBufferSameDir() end, { desc = "New buffer in current dir", silent = true })
+
 -- Autorename by first line
 vim.keymap.set("n", "<leader>n", function() _G.RenameByContent() end, { silent = true })
 
