@@ -40,8 +40,8 @@
     ./programs/web-applications/qbittorrent.nix
     ./programs/web-applications/jellyfin.nix
     ./programs/web-applications/vscode.nix
-    # ./programs/web-applications/mympd.nix
-    ./programs/web-applications/mpf2k.nix
+    ./programs/web-applications/comfyui.nix
+    ./programs/web-applications/eluxum.nix
 
     # System Services
     # ./services/xremap.nix

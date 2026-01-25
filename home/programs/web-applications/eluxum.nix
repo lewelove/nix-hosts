@@ -3,8 +3,8 @@
 let
   wrapper = config.my.chromium.wrapper;
   url = "http://localhost:5173/";
-  name = "mpf2k";
-  icon = "mpf2k";
+  name = "Eluxum";
+  icon = "eluxum";
 in
 {
   home-manager.users.${username} = {
