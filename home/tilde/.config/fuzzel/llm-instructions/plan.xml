@@ -1,5 +1,5 @@
 ```plan
-`<system_instruction>`
+<system_instruction>
 **instruction scope:**
   this istruction applies to your next reply only.
 **instruction purpose:**
@@ -18,6 +18,6 @@
   2. in short describe technical way to get there
   3. convince me why technical decision you picked is the best and the most profesional one.
 **important constraint:**
-  you are strictly prohibited to write any code blocks in the next reply.
-`</system_instruction>`
+  you are strictly prohibited to write any code blocks in the next reply until explicitely asked by me.
+</system_instruction>
 ```

@@ -9,6 +9,12 @@ vim.keymap.set('n', '<leader>q', ':q<CR>')
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>y', '"+y<CR> ')
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>d', '"+d<CR>')
 
+-- No clipboard override
+map("n", "x", '"_x')
+map({"n", "v"}, "d", '"_d')
+map("n", "dd", '"_dd')
+map("v", "p", '"_dP')
+
 -- Center screen when jumping
 vim.keymap.set("n", "n", "nzzzv", { desc = "Next search result (centered)" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous search result (centered)" })
@@ -38,17 +44,25 @@ vim.keymap.set("n", "<leader>a", function() _G.NewBufferSameDir() end, { desc = 
 vim.keymap.set("n", "<leader>n", function() _G.RenameByContent() end, { silent = true })
 
 -- Replace whole file with clipboard paste
-vim.keymap.set('n', '<leader>v', 'ggVG"+p | :w<CR>', { desc = 'Paste clipboard to whole buffer' })
+vim.keymap.set('n', '<leader>v', 'ggVG"_dP | :w<CR>', { desc = 'Paste clipboard to whole buffer' })
 
 -- Copy entire buffer
-vim.keymap.set('n', '<leader>y', 'ggVG"+y', { desc = 'Paste clipboard to whole buffer' })
+vim.keymap.set('n', '<leader>y', 'ggVG"+y', { desc = 'Yank whole buffer to clipboard' })
 
 -- Better indenting in visual mode
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
 
 -- Quick file navigation
-vim.keymap.set("n", "<leader>e", ":Oil<CR>", { desc = "Open file explorer" })
+vim.keymap.set("n", "<leader>e", function()
+  require("oil").open()
+  vim.schedule(function()
+    if vim.bo.filetype == "oil" then
+      vim.cmd.edit()
+    end
+  end)
+end, { desc = "Open oil and force refresh" })
+
 vim.keymap.set("n", "<leader>ff", ":find ", { desc = "Find file" })
 
 -- Quick config editing

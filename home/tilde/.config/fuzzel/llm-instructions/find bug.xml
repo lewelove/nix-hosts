@@ -1,5 +1,5 @@
 ```find bug
-`<system_instruction>`
+<system_instruction>
 **instruction scope:**
   this istruction applies to your next reply only.
 **instruction purpose:**
@@ -13,5 +13,5 @@
   for each proposition made evaluate pros and cons and lay them out.
 **important constraints:**
   you are strictly prohibited to write any code blocks in the next reply.
-`</system_instruction>`
+</system_instruction>
 ```

@@ -1,5 +1,5 @@
 ```code
-`<system_instruction>`
+<system_instruction>
 **instruction scope:**
   this istruction applies to your next reply only.
 **instruction purpose:**
@@ -18,6 +18,6 @@
   do not botch things.
   treat already existing comments as essential.
   never write additional comments unless explicitly asked.
-  follow plan closely, do not implement things not explicetly listed in plan.
-`</system_instruction>`
+  follow plan closely, do not implement things not explicitly listed in plan.
+</system_instruction>
 ```
