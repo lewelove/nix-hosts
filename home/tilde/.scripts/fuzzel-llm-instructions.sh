@@ -12,6 +12,12 @@ content=$(rg --passthru --no-line-number --no-filename "^" "$target_file")
 
 echo -n "$content" | wl-copy
 
-# wtype -k Return -k Return
+wtype -k Return -k Return
+
 sleep 0.05
+
 wtype -M ctrl v -m ctrl
+
+sleep 0.05
+
+wtype -M ctrl -k Return -m ctrl

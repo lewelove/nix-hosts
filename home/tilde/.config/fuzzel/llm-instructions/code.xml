@@ -16,7 +16,6 @@
   for each file changed write it in full.
 **important constraints:**
   do not botch things.
-  treat already existing comments as essential.
   never write additional comments unless explicitly asked.
   follow plan closely, do not implement things not explicitly listed in plan.
 </system_instruction>
