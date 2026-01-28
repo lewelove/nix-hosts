@@ -1,7 +1,5 @@
 ```talk
-<system_instruction>
-**instruction scope:**
-  this istruction applies to your next reply only.
+<instruction_for_the_next_reply>
 **instruction purpose:**
   to support live conversation.
 **required behavior:**
@@ -16,5 +14,5 @@
   use usual llm markdown formatting to convey speech dynamics.
 **important constraint:**
   you are strictly prohibited to write any code blocks in next reply.
-</system_instruction>
+</instruction_for_the_next_reply>
 ```

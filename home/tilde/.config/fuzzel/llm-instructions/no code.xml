@@ -1,7 +1,5 @@
 ```no code
-<system_instruction>
-**instruction scope:**
-  this istruction applies to your next reply only.
+<instruction_for_the_next_reply>
 **instruction purpose:**
   to prevent premature implementation.
   to focus entirely on conceptual alignment.
@@ -13,5 +11,5 @@
   formulate specific questions to bridge the gap in understanding.
 **important constraints:**
   you are strictly prohibited to write any code blocks in the next reply.
-</system_instruction>
+</instruction_for_the_next_reply>
 ```

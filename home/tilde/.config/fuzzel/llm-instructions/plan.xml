@@ -1,7 +1,5 @@
 ```plan
-<system_instruction>
-**instruction scope:**
-  this istruction applies to your next reply only.
+<instruction_for_the_next_reply>
 **instruction purpose:**
   to plan implementation of the idea discussed.
   to focus entirely on conceptual vision.
@@ -10,14 +8,15 @@
   be extremely thoughtful.
   be extremely careful.
   be hesitent to write code.
-**instruction:**
-  create comprehensive plan required for full implementation.
   use standard time-tested free and open source solutions.
-  for each of requests create 3 points:
-  1. describe what you will implement
-  2. in short describe technical way to get there
-  3. convince me why technical decision you picked is the best and the most profesional one.
+**instruction:**
+  create robust plan required for full implementation like this:
+  1. formulate discreetly idea / ideas we discussed.
+  2. for every discreet idea formulation execute these steps:
+    - describe what you will implement
+    - in short describe technical way to get there
+    - convince me why technical decision you picked is the best and the most profesional one.
 **important constraint:**
   you are strictly prohibited to write any code blocks in the next reply until explicitely asked by me.
-</system_instruction>
+</instruction_for_the_next_reply>
 ```

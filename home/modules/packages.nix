@@ -66,6 +66,7 @@
     flac
     flac2all
     mediainfo
+    imagemagick
     
     # Network
     amneziawg-go

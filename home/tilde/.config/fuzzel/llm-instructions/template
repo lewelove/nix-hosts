@@ -1,5 +1,5 @@
 ```
-`<system_instruction>`
+<instruction_for_the_next_reply>
 **instruction scope:**
   this istruction applies to your next reply only.
 **instruction purpose:**
@@ -7,5 +7,5 @@
 **instruction:**
 **important constraint:**
   you are strictly prohibited to write any code blocks in the next reply.
-`</system_instruction>`
+</instruction_for_the_next_reply>
 ```
