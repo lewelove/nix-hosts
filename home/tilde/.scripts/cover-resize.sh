@@ -49,7 +49,7 @@ process_size() {
     local TARGET_SIZE="$1"
 
     if [ "$ORIG_W" -eq "$TARGET_SIZE" ]; then
-        local FILENAME="${FILE_PATH}+${TARGET_SIZE}+none+${TARGET_SIZE}.png"
+        local FILENAME="${FILE_PATH}+none+${TARGET_SIZE}.png"
         local OUT_PATH="${OUT_DIR}/${FILENAME}"
 
         cp "$INPUT_PATH" "$OUT_PATH"
@@ -59,7 +59,7 @@ process_size() {
 
     # Create the filename safely by quoting the whole string
     if [ "$TARGET_SIZE" -gt "$ORIG_W" ]; then
-        local FILENAME="${FILE_PATH}+${ORIG_W}+mitchell+${TARGET_SIZE}.png"
+        local FILENAME="${FILE_PATH}+mitchell+${TARGET_SIZE}.png"
         local OUT_PATH="${OUT_DIR}/${FILENAME}"
 
         magick "$INPUT_PATH" \
@@ -71,7 +71,7 @@ process_size() {
 
         echo "[+] > [${TARGET_SIZE}] $FILENAME [Upscaled]"
     else
-        local FILENAME="${FILE_PATH}+$ORIG_W+lanczos+${TARGET_SIZE}.png"
+        local FILENAME="${FILE_PATH}+lanczos+${TARGET_SIZE}.png"
         local OUT_PATH="${OUT_DIR}/${FILENAME}"
 
         magick "$INPUT_PATH" \
@@ -85,6 +85,25 @@ process_size() {
     fi
 }
 
+process_embed_jpg() {
+    local TARGET_SIZE=1080
+    local FILENAME="${FILE_PATH}+embedding+${TARGET_SIZE}.jpg"
+    local OUT_PATH="${OUT_DIR}/${FILENAME}"
+
+    magick "$INPUT_PATH" \
+        -colorspace RGB \
+        -filter Lanczos \
+        -distort Resize "${TARGET_SIZE}x${TARGET_SIZE}" \
+        -colorspace sRGB \
+        -sampling-factor 4:4:4 \
+        -interlace Plane \
+        -quality 100 \
+        -strip \
+        "$OUT_PATH"
+
+    echo "[+] > [${TARGET_SIZE}] $FILENAME [JPG for Embedding Created]"
+}
+
 # --- Execution ---
 
 echo "[>] Starting Resampling for: $1 [${ORIG_W}x${ORIG_H}px]"
@@ -92,3 +111,4 @@ echo "[>] Starting Resampling for: $1 [${ORIG_W}x${ORIG_H}px]"
 process_size 2160
 process_size 1440
 process_size 1080
+process_embed_jpg

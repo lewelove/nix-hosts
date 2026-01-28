@@ -1,11 +1,16 @@
 ```
 <instruction_for_the_next_reply>
-**instruction scope:**
-  this istruction applies to your next reply only.
-**instruction purpose:**
-**required behavior:**
-**instruction:**
-**important constraint:**
-  you are strictly prohibited to write any code blocks in the next reply.
+  <persona>
+  </persona>
+  <instruction_purpose>
+  </instruction_purpose>
+  <instruction>
+  </instruction>
+  <important_constraints>
+    <constraint>
+    </constraint>
+    <constraint>
+    </constraint>
+  </important_constraints>
 </instruction_for_the_next_reply>
 ```
