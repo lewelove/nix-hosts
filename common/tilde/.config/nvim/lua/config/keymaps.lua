@@ -86,13 +86,11 @@ vim.keymap.set("n", "]", "]c", { desc = "Next Change" })
 vim.keymap.set("n", "[", "[c", { desc = "Prev Change" })
 
 -- Obtain from AI buffer (Visual mode = Selected lines only)
-vim.keymap.set({"n", "v"}, "<leader>gh", ":diffget<CR>", { desc = "Diff Get (Merge)" })
-
--- Put to AI buffer (Visual mode = Selected lines only)
-vim.keymap.set({"n", "v"}, "<leader>gl", ":diffput<CR>", { desc = "Diff Put (Push)" })
+-- Context: Cursor must be in YOUR file.
+vim.keymap.set({"n", "v"}, "<leader>gh", ":diffget<CR>", { desc = "Get Change (From AI Buffer)" })
 
 -- =============================================================
--- AI MERGE TOOL (Internal V-Split)
+-- DIFF MERGE TOOL (Internal V-Split)
 -- =============================================================
 
 vim.keymap.set("n", "<leader>d", function()
@@ -103,39 +101,28 @@ vim.keymap.set("n", "<leader>d", function()
     return
   end
 
-  -- 1. Setup GitHub-ish colors
-  vim.cmd([[
-    hi DiffAdd guibg=#2d3322 guifg=#a6e22e
-    hi DiffDelete guibg=#331b1b guifg=#661111
-    hi DiffChange guibg=#1f2430
-    hi DiffText guibg=#394b70 guifg=#7aa2f7 gui=bold
-  ]])
+  -- vim.cmd([[
+  --   hi DiffAdd guibg=#2d3322 guifg=#a6e22e
+  --   hi DiffDelete guibg=#331b1b guifg=#661111
+  --   hi DiffChange guibg=#1f2430
+  --   hi DiffText guibg=#394b70 guifg=#7aa2f7 gui=bold
+  -- ]])
 
-  -- 2. Create a scratch buffer
+  vim.cmd("diffthis")
+
   local buf = vim.api.nvim_create_buf(false, true)
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, vim.split(clipboard, "\n"))
   
-  -- 3. Set properties
   vim.bo[buf].filetype = ft
   vim.bo[buf].bufhidden = "wipe"
-  vim.api.nvim_buf_set_name(buf, "AI_REVIEW")
+  vim.api.nvim_buf_set_name(buf, "DIFF_REVIEW")
 
-  -- 4. Open vertical split and trigger diff
   vim.cmd("vsplit")
   local win = vim.api.nvim_get_current_win()
   vim.api.nvim_win_set_buf(win, buf)
   
-  -- Enable diff and disable folding for the review
-  vim.cmd("windo set nofoldenable")
   vim.cmd("diffthis")
-  vim.cmd("wincmd p")
-  vim.cmd("diffthis")
-  
-  -- Visual cleanups
-  vim.opt_local.wrap = true
-  vim.opt_local.foldcolumn = "0"
 
-  -- Auto-cleanup
   vim.api.nvim_create_autocmd("BufWipeout", {
     buffer = buf,
     once = true,
@@ -144,9 +131,6 @@ vim.keymap.set("n", "<leader>d", function()
     end,
   })
   
-  vim.notify("Internal AI Review Started (No Folding)", vim.log.levels.INFO)
-end, { desc = "AI Merge Tool (Internal)" })
-
 -- =============================================================
 
 -- Reload Configuration
@@ -162,12 +146,3 @@ vim.keymap.set("n", "<leader>rl", function()
   end
   vim.notify("Configuration Reloaded!", vim.log.levels.INFO)
 end, { desc = "Reload Config" })
-
--- =============================================================
--- TEST LINES (Copy entire file, then <leader>d)
--- =============================================================
--- If logic works, this section will NOT be hidden under a "--- 12 lines" fold.
--- Every single line of this file should remain visible at all times.
--- Even lines that are identical between both buffers.
--- This ensures you always have total spatial awareness.
--- =============================================================

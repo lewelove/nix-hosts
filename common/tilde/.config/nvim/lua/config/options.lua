@@ -19,7 +19,7 @@ vim.opt.fillchars = { vert = "│", diff = " " }
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = false
-vim.opt.wrap = false
+vim.opt.wrap = true
 vim.opt.scrolloff = 5
 vim.opt.sidescrolloff = 0
 vim.opt.smoothscroll = true
@@ -119,8 +119,6 @@ vim.opt.statusline = "  %f  [%y] %m %= Ln %l/%L  Col %c  %p%%  "
 vim.opt.breakindent = true
 vim.opt.linebreak = true
 vim.opt.title = true
-
-vim.opt.colorcolumn = "80" 
 
 -- Modern Filetype Detection
 vim.filetype.add({
