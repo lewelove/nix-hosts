@@ -1,7 +1,5 @@
 ```code
 <instruction_for_the_next_reply>
-  <persona>
-  </persona>
   <instruction_purpose>
     to write professional code.
   </instruction_purpose>
@@ -18,8 +16,6 @@
   <important_constraints>
     <constraint>
       never write additional comments unless explicitly asked.
-    </constraint>
-    <constraint>
     </constraint>
   </important_constraints>
 </instruction_for_the_next_reply>

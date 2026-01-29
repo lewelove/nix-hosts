@@ -9,6 +9,12 @@ vim.api.nvim_set_hl(0, "LineNr", { bg = "none" })
 vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
 vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
 
+-- Visual separation for diff windows and splits
+vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#444444", bg = "none" })
+
+-- CLEAN DIFF LOOK: No dashes, just empty space for missing lines
+vim.opt.fillchars = { vert = "│", diff = " " }
+
 -- Basic Settings
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -16,6 +22,7 @@ vim.opt.cursorline = false
 vim.opt.wrap = false
 vim.opt.scrolloff = 5
 vim.opt.sidescrolloff = 0
+vim.opt.smoothscroll = true
 
 -- Indentation
 vim.opt.tabstop = 2
@@ -92,6 +99,7 @@ vim.opt.wildignore:append({ "*.o", "*.obj", "*.pyc", "*.class", "*.jar" })
 
 -- Better diff options
 vim.opt.diffopt:append("linematch:60")
+vim.opt.diffopt:append("iwhite") 
 
 -- Performance improvements
 vim.opt.redrawtime = 10000
@@ -106,10 +114,8 @@ vim.filetype.add({
     ["metadata.lock"] = "toml",
   },
   pattern = {
-    -- Match any file inside a 'bin' directory
     [".*/bin/.*"] = function(path, bufnr)
       local filename = vim.fn.fnamemodify(path, ":t")
-      -- If the filename does NOT contain a dot, assume it is a shell script
       if not filename:find("%.") then
         return "sh"
       end

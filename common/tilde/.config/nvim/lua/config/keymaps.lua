@@ -7,7 +7,6 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', '<leader>w', ':w<CR>')
 vim.keymap.set('n', '<leader>q', ':q<CR>')
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>y', '"+y<CR> ')
-vim.keymap.set({ 'n', 'v', 'x' }, '<leader>d', '"+d<CR>')
 
 -- No clipboard override
 map("n", "x", '"_x')
@@ -77,6 +76,46 @@ vim.keymap.set("n", "<leader>cfp", function()
 	vim.fn.setreg("+", path)
 	print("file:", path)
 end)
+
+-- =============================================================
+-- AI MERGE TOOL (UNIFIED GITHUB LOGIC)
+-- =============================================================
+
+vim.keymap.set("n", "<leader>d", function()
+  local current_file = vim.fn.expand("%:p")
+  local ext = vim.fn.expand("%:e")
+  local tmp_file = "/tmp/ai_diff." .. ext
+  
+  -- 1. Grab Clipboard
+  local clipboard = vim.fn.getreg('+')
+  if clipboard == "" then
+    vim.notify("Clipboard is empty!", vim.log.levels.WARN)
+    return
+  end
+  
+  -- 2. Write to Temp
+  local f = io.open(tmp_file, "w")
+  f:write(clipboard)
+  f:close()
+  
+  -- 3. Construct the "GitHub Review" commands
+  local review_setup = table.concat({
+    "set diffopt+=iwhite",
+    "hi DiffAdd guibg=#2d3322 guifg=#a6e22e", 
+    "hi DiffDelete guibg=#331111 guifg=#331111", 
+    "hi DiffChange guibg=#332d22",               
+    "hi DiffText guibg=#443311 guifg=#fd971f bold", 
+  }, " | ")
+
+  -- 4. Spawn Window
+  local nvim_cmd = string.format("nvim -d %s %s -c '%s'", current_file, tmp_file, review_setup)
+  local terminal_cmd = string.format('hyprctl dispatch exec "foot %s"', nvim_cmd)
+  
+  vim.fn.jobstart(terminal_cmd)
+  vim.notify("Launching AI Reviewer...", vim.log.levels.INFO)
+end, { desc = "AI Merge Tool" })
+
+-- =============================================================
 
 -- Reload Configuration
 vim.keymap.set("n", "<leader>rl", function()

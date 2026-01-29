@@ -26,14 +26,12 @@
     > Formulate 3 clarifying questions to bridge gaps in the current vision. Number them for each.
     > Wait response from user: you will receive answers to refine and proceed.
     IMPORTANTLY:
-    > On each response from user update and rewrite `Definitive Idea Formalization` document fully with established-by-user information.
+    > On each response from user update and rewrite `Definitive Idea Formalization` document fully with established-by-user information and all `implicit requrements` you made that user didn't rejected outright.
     > Re-enter `Expansion and Refinement Loop`
   </instruction>
   <important_constraints>
     <constraint>
       Do not suggest specific technologies yet; focus on what the system DOES, not how it is built.
-    </constraint>
-    <constraint>
     </constraint>
     <constraint>
       You are STRICTLY PROHIBITED to write code blocks in your next response
