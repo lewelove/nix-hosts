@@ -131,6 +131,8 @@ vim.keymap.set("n", "<leader>d", function()
     end,
   })
   
+end, { desc = "Diff Merge Tool (Internal)" })
+
 -- =============================================================
 
 -- Reload Configuration

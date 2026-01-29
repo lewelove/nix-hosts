@@ -30,7 +30,7 @@ vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
 vim.opt.expandtab = true
 vim.opt.smartindent = true
-vim.opt.autoindent = false
+vim.opt.autoindent = true  -- CHANGED: Was false. Required for basic indentation on newline.
 
 -- Search settings
 vim.opt.ignorecase = true
@@ -97,7 +97,11 @@ vim.opt.wildmenu = true
 vim.opt.wildmode = "longest:full,full"
 vim.opt.wildignore:append({ "*.o", "*.obj", "*.pyc", "*.class", "*.jar" })
 
--- GITHUB-STYLE DIFF LOGIC (No collapsing)
+-- Visual UI fixes
+vim.opt.breakindent = true
+vim.opt.linebreak = true
+
+-- GITHUB-STYLE DIFF LOGIC
 vim.opt.diffopt = {
   "internal",
   "filler",
