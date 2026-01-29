@@ -85,9 +85,16 @@ end)
 vim.keymap.set("n", "]", "]c", { desc = "Next Change" })
 vim.keymap.set("n", "[", "[c", { desc = "Prev Change" })
 
--- Obtain from AI buffer (Visual mode = Selected lines only)
--- Context: Cursor must be in YOUR file.
-vim.keymap.set({"n", "v"}, "<leader>gh", ":diffget<CR>", { desc = "Get Change (From AI Buffer)" })
+-- Smart Diff Merge (Leader m)
+-- If in DIFF_REVIEW -> Push to original (diffput)
+-- If in Original    -> Pull from review (diffget)
+vim.keymap.set({ "n", "v" }, "<leader>m", function()
+  if vim.fn.bufname("%") == "DIFF_REVIEW" then
+    vim.cmd("diffput")
+  else
+    vim.cmd("diffget")
+  end
+end, { desc = "Smart Diff Put/Get" })
 
 -- =============================================================
 -- DIFF MERGE TOOL (Internal V-Split)

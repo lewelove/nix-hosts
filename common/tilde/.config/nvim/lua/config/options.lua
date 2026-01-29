@@ -30,7 +30,7 @@ vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
 vim.opt.expandtab = true
 vim.opt.smartindent = true
-vim.opt.autoindent = true  -- CHANGED: Was false. Required for basic indentation on newline.
+vim.opt.autoindent = true
 
 -- Search settings
 vim.opt.ignorecase = true
@@ -109,7 +109,7 @@ vim.opt.diffopt = {
   "indent-heuristic", 
   "linematch:60",     
   "algorithm:histogram",
-  "context:99999", -- Forces every line to be shown; never collapses
+  "context:99999",
 }
 
 -- Performance improvements
