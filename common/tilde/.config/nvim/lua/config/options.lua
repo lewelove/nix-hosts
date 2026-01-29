@@ -61,7 +61,7 @@ vim.opt.writebackup = false
 vim.opt.swapfile = false
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.expand("~/.vim/undodir")
-vim.opt.updatetime = 300
+vim.opt.updatetime = 250
 vim.opt.timeoutlen = 500
 vim.opt.ttimeoutlen = 0
 vim.opt.autoread = true
@@ -97,9 +97,16 @@ vim.opt.wildmenu = true
 vim.opt.wildmode = "longest:full,full"
 vim.opt.wildignore:append({ "*.o", "*.obj", "*.pyc", "*.class", "*.jar" })
 
--- Better diff options
-vim.opt.diffopt:append("linematch:60")
-vim.opt.diffopt:append("iwhite") 
+-- GITHUB-STYLE DIFF LOGIC (No collapsing)
+vim.opt.diffopt = {
+  "internal",
+  "filler",
+  "closeoff",
+  "indent-heuristic", 
+  "linematch:60",     
+  "algorithm:histogram",
+  "context:99999", -- Forces every line to be shown; never collapses
+}
 
 -- Performance improvements
 vim.opt.redrawtime = 10000
@@ -107,6 +114,13 @@ vim.opt.maxmempattern = 20000
 
 -- Custom Status Line
 vim.opt.statusline = "  %f  [%y] %m %= Ln %l/%L  Col %c  %p%%  "
+
+-- Visual UI fixes
+vim.opt.breakindent = true
+vim.opt.linebreak = true
+vim.opt.title = true
+
+vim.opt.colorcolumn = "80" 
 
 -- Modern Filetype Detection
 vim.filetype.add({

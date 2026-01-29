@@ -30,7 +30,7 @@ vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 vim.keymap.set({ 'n', 'v' }, 'j', 'gj', { silent = true })
 vim.keymap.set({ 'n', 'v' }, 'k', 'gk', { silent = true })
 vim.keymap.set({ 'n', 'v' }, '0', 'g0', { silent = true })
-vim.keymap.set({ 'n', 'v' }, '$', 'g$', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '1', 'g$', { silent = true })
 vim.keymap.set({ "n", "v" }, "<Down>", "gj", { silent = true })
 vim.keymap.set({ "n", "v" }, "<Up>", "gk", { silent = true })
 vim.keymap.set("i", "<Down>", "<C-o>gj", { silent = true })
@@ -78,61 +78,96 @@ vim.keymap.set("n", "<leader>cfp", function()
 end)
 
 -- =============================================================
--- AI MERGE TOOL (UNIFIED GITHUB LOGIC)
+-- DIFF NAVIGATION & MERGING
+-- =============================================================
+
+-- Jump between hunks
+vim.keymap.set("n", "]", "]c", { desc = "Next Change" })
+vim.keymap.set("n", "[", "[c", { desc = "Prev Change" })
+
+-- Obtain from AI buffer (Visual mode = Selected lines only)
+vim.keymap.set({"n", "v"}, "<leader>gh", ":diffget<CR>", { desc = "Diff Get (Merge)" })
+
+-- Put to AI buffer (Visual mode = Selected lines only)
+vim.keymap.set({"n", "v"}, "<leader>gl", ":diffput<CR>", { desc = "Diff Put (Push)" })
+
+-- =============================================================
+-- AI MERGE TOOL (Internal V-Split)
 -- =============================================================
 
 vim.keymap.set("n", "<leader>d", function()
-  local current_file = vim.fn.expand("%:p")
-  local ext = vim.fn.expand("%:e")
-  local tmp_file = "/tmp/ai_diff." .. ext
-  
-  -- 1. Grab Clipboard
+  local ft = vim.bo.filetype
   local clipboard = vim.fn.getreg('+')
   if clipboard == "" then
     vim.notify("Clipboard is empty!", vim.log.levels.WARN)
     return
   end
-  
-  -- 2. Write to Temp
-  local f = io.open(tmp_file, "w")
-  f:write(clipboard)
-  f:close()
-  
-  -- 3. Construct the "GitHub Review" commands
-  local review_setup = table.concat({
-    "set diffopt+=iwhite",
-    "hi DiffAdd guibg=#2d3322 guifg=#a6e22e", 
-    "hi DiffDelete guibg=#331111 guifg=#331111", 
-    "hi DiffChange guibg=#332d22",               
-    "hi DiffText guibg=#443311 guifg=#fd971f bold", 
-  }, " | ")
 
-  -- 4. Spawn Window
-  local nvim_cmd = string.format("nvim -d %s %s -c '%s'", current_file, tmp_file, review_setup)
-  local terminal_cmd = string.format('hyprctl dispatch exec "foot %s"', nvim_cmd)
+  -- 1. Setup GitHub-ish colors
+  vim.cmd([[
+    hi DiffAdd guibg=#2d3322 guifg=#a6e22e
+    hi DiffDelete guibg=#331b1b guifg=#661111
+    hi DiffChange guibg=#1f2430
+    hi DiffText guibg=#394b70 guifg=#7aa2f7 gui=bold
+  ]])
+
+  -- 2. Create a scratch buffer
+  local buf = vim.api.nvim_create_buf(false, true)
+  vim.api.nvim_buf_set_lines(buf, 0, -1, false, vim.split(clipboard, "\n"))
   
-  vim.fn.jobstart(terminal_cmd)
-  vim.notify("Launching AI Reviewer...", vim.log.levels.INFO)
-end, { desc = "AI Merge Tool" })
+  -- 3. Set properties
+  vim.bo[buf].filetype = ft
+  vim.bo[buf].bufhidden = "wipe"
+  vim.api.nvim_buf_set_name(buf, "AI_REVIEW")
+
+  -- 4. Open vertical split and trigger diff
+  vim.cmd("vsplit")
+  local win = vim.api.nvim_get_current_win()
+  vim.api.nvim_win_set_buf(win, buf)
+  
+  -- Enable diff and disable folding for the review
+  vim.cmd("windo set nofoldenable")
+  vim.cmd("diffthis")
+  vim.cmd("wincmd p")
+  vim.cmd("diffthis")
+  
+  -- Visual cleanups
+  vim.opt_local.wrap = true
+  vim.opt_local.foldcolumn = "0"
+
+  -- Auto-cleanup
+  vim.api.nvim_create_autocmd("BufWipeout", {
+    buffer = buf,
+    once = true,
+    callback = function()
+      vim.cmd("diffoff!")
+    end,
+  })
+  
+  vim.notify("Internal AI Review Started (No Folding)", vim.log.levels.INFO)
+end, { desc = "AI Merge Tool (Internal)" })
 
 -- =============================================================
 
 -- Reload Configuration
 vim.keymap.set("n", "<leader>rl", function()
-  -- 1. Clear Lua Cache for your config modules
   for name,_ in pairs(package.loaded) do
     if name:match("^config") then
       package.loaded[name] = nil
     end
   end
-
-  -- 2. Reload init.lua
   dofile(vim.env.MYVIMRC)
-  
-  -- 3. Re-source specific file if you are currently editing one
   if vim.fn.expand("%:e") == "lua" then
       pcall(dofile, vim.fn.expand("%"))
   end
-
   vim.notify("Configuration Reloaded!", vim.log.levels.INFO)
 end, { desc = "Reload Config" })
+
+-- =============================================================
+-- TEST LINES (Copy entire file, then <leader>d)
+-- =============================================================
+-- If logic works, this section will NOT be hidden under a "--- 12 lines" fold.
+-- Every single line of this file should remain visible at all times.
+-- Even lines that are identical between both buffers.
+-- This ensures you always have total spatial awareness.
+-- =============================================================

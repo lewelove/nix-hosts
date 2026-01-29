@@ -34,10 +34,10 @@ return {
   config = function(_, opts)
     require("zen-mode").setup(opts)
     -- Auto-Start Logic
-    vim.api.nvim_create_autocmd("VimEnter", {
-      callback = function()
-        vim.defer_fn(function() require("zen-mode").toggle() end, 10)
-      end,
-    })
+    -- vim.api.nvim_create_autocmd("VimEnter", {
+    --   callback = function()
+    --     vim.defer_fn(function() require("zen-mode").toggle() end, 10)
+    --   end,
+    -- })
   end,
 }
