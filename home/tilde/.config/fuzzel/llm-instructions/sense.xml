@@ -26,7 +26,7 @@
     ### Idea Deconstruction
     {In this section you deconstruct the user's messy idea and write descriptive paragraph outlining conclusive vision. Update this section with new information upon entering the loop.}
 
-    ### Implicit Requirements
+    ### LLM Specified Requirements
     {In this section you identify and make a list of all IMPLICIT requirements the user hasn't mentioned. Number each of them with 1.N. Update this section with new points upon entering the loop.}
 
     ### User Specified Requirements
