@@ -4,8 +4,8 @@ vim.g.maplocalleader = " "
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- Leader Keys
-vim.keymap.set('n', '<leader>w', ':w<CR>')
-vim.keymap.set('n', '<leader>q', ':q<CR>')
+vim.keymap.set('n', '<leader>w', ':w!<CR>')
+vim.keymap.set('n', '<leader>q', ':q!<CR>')
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>y', '"+y<CR> ')
 
 -- No clipboard override
@@ -144,14 +144,6 @@ end, { desc = "Diff Merge Tool (Internal)" })
 
 -- Reload Configuration
 vim.keymap.set("n", "<leader>rl", function()
-  for name,_ in pairs(package.loaded) do
-    if name:match("^config") then
-      package.loaded[name] = nil
-    end
-  end
-  dofile(vim.env.MYVIMRC)
-  if vim.fn.expand("%:e") == "lua" then
-      pcall(dofile, vim.fn.expand("%"))
-  end
-  vim.notify("Configuration Reloaded!", vim.log.levels.INFO)
+  vim.cmd("source $MYVIMRC")
+  -- vim.notify("Configuration Reloaded!", vim.log.levels.INFO)
 end, { desc = "Reload Config" })
