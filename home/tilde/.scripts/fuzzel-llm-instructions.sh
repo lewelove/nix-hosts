@@ -8,16 +8,14 @@ selection=$(fd --max-depth 1 --type f --extension xml . "$INSTRUCTIONS_DIR" --ex
 
 target_file="$INSTRUCTIONS_DIR/${selection}.xml"
 
-content=$(rg --passthru --no-line-number --no-filename "^" "$target_file")
+raw_content=$(cat "$target_file")
 
-echo -n "$content" | wl-copy
+wrapped_content=$(printf '```%s\n%s\n```' "$selection" "$raw_content")
+
+echo -n "$wrapped_content" | wl-copy
 
 wtype -k Return -k Return
-
 sleep 0.05
-
 wtype -M ctrl v -m ctrl
-
 sleep 0.05
-
 wtype -M ctrl -k Return -m ctrl

@@ -1,12 +1,16 @@
-```no code
 <instruction_for_the_next_reply>
-**instruction purpose:**
-  to prevent premature implementation.
-  to focus entirely on conceptual alignment.
-**instruction:**
-  discuss the current subject matter conceptually.
-  focus on theory, logic, and intent.
-**important constraints:**
-  you are strictly prohibited to write any code blocks in the next reply.
+
+  <output_formatting>
+    - Use markdown-rich formatting.
+  </output_formatting>
+
+  <important_constraints>
+    <constraint>
+      - You are strictly prohibited to write any code blocks in the next reply.
+    </constraint>
+    <constraint>
+      - You are strictly prohibited to use any preambles or post-ambles.
+    </constraint>
+  </important_constraints>
+
 </instruction_for_the_next_reply>
-```

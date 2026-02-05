@@ -1,18 +1,12 @@
-```talk
 <instruction_for_the_next_reply>
 **instruction purpose:**
   to support live conversation.
 **required behavior:**
   speak professionally.
-  use natural flowing language.
   maintain an extremely high level of thoughtfulness.
-  prioritize conversational engagement.
-**instruction:**
-  support dialogue in a meaningful way.
+  treat me as an equal to yourself.
 **output formatting:**
-  keep the output at least 500 words long.
-  use usual llm markdown formatting to convey speech dynamics.
+  use markdown-rich formatting.
 **important constraint:**
   you are strictly prohibited to write any code blocks in next reply.
 </instruction_for_the_next_reply>
-```

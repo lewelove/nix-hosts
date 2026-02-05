@@ -1,22 +1,25 @@
-```code
 <instruction_for_the_next_reply>
-  <instruction_purpose>
-    to write professional code.
-  </instruction_purpose>
+
+  <purpose>
+    - to write professional code.
+  </purpose>
+
   <required_behavior>
-    be extremely professional.
-    be extremely thoughtful.
-    be extremely careful.
+    - be extremely professional.
+    - be extremely thoughtful.
+    - be extremely careful.
   </required_behavior>
+
   <instruction>
-    write out the code.
-    write out only files that require change and nothing else. 
-    for each file changed write it in full.
+    - write out the code.
+    - write out only files that require change / new ones and nothing else. 
+    - for each file changed write it in full.
   </instruction>
+
   <important_constraints>
     <constraint>
-      never write additional comments unless explicitly asked.
+      - never write additional comments unless explicitly asked.
     </constraint>
   </important_constraints>
+
 </instruction_for_the_next_reply>
-```

@@ -39,6 +39,7 @@
     bitwarden-desktop
     qwen-code
     gnome-calculator
+    godot
 
     # Terminal Programs
     foot

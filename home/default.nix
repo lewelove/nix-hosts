@@ -65,6 +65,7 @@
     ../common/scripts/nrs.nix
     ../common/scripts/ns.nix
     ../common/scripts/nt.nix
+    ./scripts/awgr.nix
   ];
 
 }

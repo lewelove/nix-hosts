@@ -9,7 +9,7 @@ alias x+='chmod +x'
 
 # Networking
 alias awgd='sudo killall amneziawg-go'
-alias awgr='sudo killall amneziawg-go & sudo awg-quick up $(find $HOME/VPN/awg/*.conf | shuf -n 1)'
+# alias awgr='sudo killall amneziawg-go & sudo awg-quick up $(find $HOME/VPN/awg/*.conf | shuf -n 1)'
 
 alias ipcheck='curl ip-api.com'
 

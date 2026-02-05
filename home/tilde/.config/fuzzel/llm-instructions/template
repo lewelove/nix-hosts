@@ -1,16 +1,22 @@
-```
 <instruction_for_the_next_reply>
+
   <persona>
   </persona>
-  <instruction_purpose>
-  </instruction_purpose>
+
+  <purpose>
+  </purpose>
+
   <instruction>
   </instruction>
+
+  <output_formatting>
+  </output_formatting>
+
   <important_constraints>
     <constraint>
     </constraint>
     <constraint>
     </constraint>
   </important_constraints>
+
 </instruction_for_the_next_reply>
-```
