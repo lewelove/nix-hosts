@@ -13,6 +13,7 @@
   <instruction>
     - write out the code.
     - write out only files that require change / new ones and nothing else. 
+    - for each file changed provide detailed description of logic changed.
     - for each file changed write it in full.
   </instruction>
 

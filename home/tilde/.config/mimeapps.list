@@ -9,6 +9,7 @@ application/json=nvim-foot.desktop
 application/xml=nvim-foot.desktop
 application/toml=nvim-foot.desktop
 application/x-yaml=nvim-foot.desktop
+inode/directory=thunar.desktop
 
 [Added Associations]
 text/plain=nvim-foot.desktop;
