@@ -7,28 +7,22 @@ import { fileURLToPath } from 'url';
 // --- CONFIGURATION ---
 
 const completelyIgnore = [
-    // General Noise
+
     '**/*.log', '**/*.lock', '**/node_modules/**',
     '**/.git/**', '**/dist/**', '**/coverage/**',
     '**/tmp/**', '**/.cache/**', '**/.DS_Store',
     '**/*.rmlock', '**/.direnv/**',
 
-    // Specific Binary/Asset exclusions
     '**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', 
     '**/*.ico', '**/*.woff', '**/*.woff2', '**/*.ttf',
     '**/*.svg', '**/*.pdf',
 
-    // Runtime Databases & State
     '**/mpd/database',
     '**/mpd/sticker.sql',
     
-    // Auto-generated Lock files
     '**/lazy-lock.json'
 ];
 
-// Files to keep in tree, but strip content
-// (Currently empty as we moved extensions to completelyIgnore, 
-// but kept here if you want to see specific files exist without content)
 const stripExts = [
 ];
 
@@ -39,7 +33,6 @@ const targetArg = args.find(arg => !arg.startsWith('-'));
 const cwd = process.cwd();
 const absolutePath = targetArg ? path.resolve(cwd, targetArg) : cwd;
 
-// Determine the location of THIS config file to find .txt files alongside it
 const __filename = fileURLToPath(import.meta.url);
 const configDir = path.dirname(__filename);
 
@@ -71,8 +64,6 @@ process.on('exit', () => {
         let content = fs.readFileSync(fullOutputPath, 'utf8');
         let injectedTags = '';
 
-        // 1. Check Target Root for system_prompt.txt
-        // This checks the folder you are packing (e.g. ~/nix-hosts/home)
         const rootPromptPath = path.join(absolutePath, 'system_prompt.txt');
 
         if (fs.existsSync(rootPromptPath)) {
@@ -87,15 +78,11 @@ process.on('exit', () => {
             }
         }
 
-        // 2. Ingest External .txt files from Config Dir
-        // This grabs ANY .txt file in ~/.config/repomix/ and creates a tag from its filename
         try {
             const files = fs.readdirSync(configDir);
             const txtFiles = files.filter(file => file.endsWith('.txt'));
 
             for (const file of txtFiles) {
-                // Get name without extension (e.g., "explanation")
-                // Replace spaces/dashes with underscores to make valid XML-like tags
                 const rawName = path.parse(file).name;
                 const tagName = rawName.replace(/[^a-zA-Z0-9_]/g, '_');
                 
@@ -110,8 +97,6 @@ process.on('exit', () => {
             console.warn('Warning: Could not read external .txt files:', e.message);
         }
 
-        // 3. Merge Path into Directory Structure
-        // We find the opening tag and inject the Root path immediately after
         const openTag = '<directory_structure>';
         const injectedRoot = `${openTag}\nRoot: ${prettyPath}\n`;
         
@@ -119,16 +104,12 @@ process.on('exit', () => {
             content = content.replace(openTag, injectedRoot);
         }
 
-        // 4. Prepend Injected Tags
-        // We simply place the custom text files at the very top
         content = injectedTags + content;
 
-        // 5. Strip Binary/Image Content
         const escDots = stripExts.map(e => e.replace('.', '\\.'));
         if (escDots.length > 0) {
             const extPattern = escDots.join('|');
             
-            // Regex: <file path="...ext"> content </file>
             const startTag = `<file path="[^"]+(?:${extPattern})">`;
             const wildcard = '[\\s\\S]*?'; 
             const endTag = '<\\/file>\\s*'; 
@@ -139,7 +120,7 @@ process.on('exit', () => {
         }
 
         fs.writeFileSync(fullOutputPath, content);
-        console.log(`\n Repomixed: ${dynamicName}`);
+        console.log(`\nRepomixed: ${dynamicName}`);
 
     } catch (err) {
         console.error('Error post-processing:', err);

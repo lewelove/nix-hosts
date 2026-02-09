@@ -111,4 +111,4 @@ echo "[>] Starting Resampling for: $1 [${ORIG_W}x${ORIG_H}px]"
 process_size 2160
 process_size 1440
 process_size 1080
-process_embed_jpg
+# process_embed_jpg
