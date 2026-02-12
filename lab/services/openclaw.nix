@@ -28,7 +28,7 @@
 
       bundledPlugins = {
         summarize.enable = true;
-        oracle.enable = false;
+        oracle.enable = true;
       };
 
       instances.default = {
