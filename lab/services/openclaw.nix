@@ -61,7 +61,7 @@
         Service = {
           # We load the same secret file so the Instance has the token to talk to the Gateway
           EnvironmentFile = [ "/home/${username}/.secrets/openclaw.env" ];
-          ExecStart = "${config.home-manager.users.${username}.programs.openclaw.package}/bin/openclaw run --instance default";
+          ExecStart = "${config.home-manager.users.${username}.programs.openclaw.package}/bin/openclaw start --instance default";
           Restart = "always";
           RestartSec = "3s";
         };
