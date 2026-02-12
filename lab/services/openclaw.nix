@@ -11,7 +11,7 @@
 
       config = {
         gateway = {
-          # Use a placeholder. The real value is loaded via systemd EnvironmentFile
+          # Placeholder for Nix evaluation; real token is injected via Systemd
           auth.token = "USE_ENV_VAR"; 
         };
       };
@@ -20,7 +20,7 @@
 
       instances.default = {
         enable = true;
-        systemd.enable = false; # We manage the units manually below
+        systemd.enable = false; 
         config = {
           gateway.auth.token = "USE_ENV_VAR"; 
           channels.telegram = {
@@ -41,9 +41,7 @@
           After = [ "network.target" ];
         };
         Service = {
-          # This forces local mode
           Environment = [ "OPENCLAW_GATEWAY_MODE=local" ];
-          # This loads your REAL token from the local file
           EnvironmentFile = [ "/home/${username}/.secrets/openclaw.env" ];
           ExecStart = "${config.home-manager.users.${username}.programs.openclaw.package}/bin/openclaw gateway --allow-unconfigured";
           Restart = "always";
@@ -59,9 +57,9 @@
           Requires = [ "openclaw-gateway.service" ];
         };
         Service = {
-          # We load the same secret file so the Instance has the token to talk to the Gateway
           EnvironmentFile = [ "/home/${username}/.secrets/openclaw.env" ];
-          ExecStart = "${config.home-manager.users.${username}.programs.openclaw.package}/bin/openclaw start --instance default";
+          # Removed the 'start'/'run' subcommand
+          ExecStart = "${config.home-manager.users.${username}.programs.openclaw.package}/bin/openclaw --instance default";
           Restart = "always";
           RestartSec = "3s";
         };
