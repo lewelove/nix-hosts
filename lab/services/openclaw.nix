@@ -11,7 +11,8 @@
 
       config = {
         gateway = {
-          auth.token = "change-this-to-a-secure-random-string"; 
+          # Use a placeholder. The real value is loaded via systemd EnvironmentFile
+          auth.token = "USE_ENV_VAR"; 
         };
       };
 
@@ -19,9 +20,10 @@
 
       instances.default = {
         enable = true;
-        systemd.enable = true;
+        systemd.enable = false; # We manage the units manually below
         config = {
-          gateway.auth.token = "change-this-to-a-secure-random-string";
+          gateway.address = "http://127.0.0.1:18789";
+          gateway.auth.token = "USE_ENV_VAR"; 
           channels.telegram = {
             tokenFile = "/home/${username}/.secrets/telegram-token";
             allowFrom = [ 7976595060 ]; 
@@ -33,19 +35,38 @@
       };
     };
 
-    systemd.user.services.openclaw-gateway = {
-      Service = {
-        # 1. FORCE THE MODE VIA ENV VAR
-        Environment = [ 
-          "OPENCLAW_GATEWAY_MODE=local" 
-        ];
-        
-        # 2. Add the --allow-unconfigured flag just in case the binary is being stubborn
-        ExecStart = lib.mkForce "${config.home-manager.users.${username}.programs.openclaw.package}/bin/openclaw gateway --allow-unconfigured";
-        
-        EnvironmentFile = [ "/home/${username}/.secrets/openclaw.env" ];
-        Restart = "always";
-        RestartSec = lib.mkForce "3s";
+    systemd.user.services = {
+      openclaw-gateway = {
+        Unit = {
+          Description = "OpenClaw Gateway";
+          After = [ "network.target" ];
+        };
+        Service = {
+          # This forces local mode
+          Environment = [ "OPENCLAW_GATEWAY_MODE=local" ];
+          # This loads your REAL token from the local file
+          EnvironmentFile = [ "/home/${username}/.secrets/openclaw.env" ];
+          ExecStart = "${config.home-manager.users.${username}.programs.openclaw.package}/bin/openclaw gateway --allow-unconfigured";
+          Restart = "always";
+          RestartSec = "3s";
+        };
+        Install.WantedBy = [ "default.target" ];
+      };
+
+      openclaw-instance-default = {
+        Unit = {
+          Description = "OpenClaw Instance (Default)";
+          After = [ "openclaw-gateway.service" ];
+          Requires = [ "openclaw-gateway.service" ];
+        };
+        Service = {
+          # We load the same secret file so the Instance has the token to talk to the Gateway
+          EnvironmentFile = [ "/home/${username}/.secrets/openclaw.env" ];
+          ExecStart = "${config.home-manager.users.${username}.programs.openclaw.package}/bin/openclaw run --instance default";
+          Restart = "always";
+          RestartSec = "3s";
+        };
+        Install.WantedBy = [ "default.target" ];
       };
     };
   };
