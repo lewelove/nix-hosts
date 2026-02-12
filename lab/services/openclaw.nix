@@ -1,3 +1,5 @@
+File: `services/openclaw.nix`
+```nix
 { config, pkgs, lib, inputs, username, hostPath, identity, ... }:
 
 {
@@ -10,21 +12,17 @@
       documents = ../tilde/openclaw-docs;
 
       config = {
-        gateway = {
-          mode = "local";
-          auth.token = "USE_ENV_VAR"; 
-        };
-        
-        # 1. Enable the plugin globally
-        plugins.entries.telegram.enabled = true;
+        gateway.mode = "local";
+        gateway.auth.token = "USE_ENV_VAR"; 
+
+        # SOURCE: Force plugin enablement to override any defaults
+        plugins.entries.telegram.enabled = lib.mkForce true;
 
         channels.telegram = {
-          enabled = true;
-          tokenFile = "/home/${username}/.secrets/telegram-token";
+          enabled = lib.mkForce true;
+          # We now provide the token via environment variable for better security
           allowFrom = [ 7976595060 ]; 
-          groups = {
-            "*" = { requireMention = true; };
-          };
+          groups = { "*" = { requireMention = true; }; };
         };
 
         agents.defaults.model.primary = "openrouter/arcee-ai/trinity-large-preview:free";
@@ -37,13 +35,8 @@
         systemd.enable = false; 
         config = {
           gateway.auth.token = "USE_ENV_VAR"; 
-          # 2. Enable the plugin for the instance
-          plugins.entries.telegram.enabled = true;
-          channels.telegram = {
-            enabled = true;
-            tokenFile = "/home/${username}/.secrets/telegram-token";
-            allowFrom = [ 7976595060 ]; 
-          };
+          plugins.entries.telegram.enabled = lib.mkForce true;
+          channels.telegram.enabled = lib.mkForce true;
           agents.defaults.model.primary = "openrouter/arcee-ai/trinity-large-preview:free";
         };
       };
@@ -63,8 +56,9 @@
         ];
         EnvironmentFile = [ "/home/${username}/.secrets/openclaw.env" ];
         
-        # 3. FIXED: Added --plugin telegram to force the plugin to load
-        ExecStart = "${config.home-manager.users.${username}.programs.openclaw.package}/bin/openclaw gateway --allow-unconfigured --token \${OPENCLAW_GATEWAY_TOKEN} --plugin telegram";
+        # SOURCE: Removed invalid --plugin flag. 
+        # Token is passed via \${} to escape Nix interpolation.
+        ExecStart = "${config.home-manager.users.${username}.programs.openclaw.package}/bin/openclaw gateway --allow-unconfigured --token \${OPENCLAW_GATEWAY_TOKEN}";
         
         Restart = "always";
         RestartSec = "3s";
