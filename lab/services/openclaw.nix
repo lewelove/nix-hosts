@@ -45,7 +45,7 @@
         
         EnvironmentFile = [ "/home/${username}/.secrets/openclaw.env" ];
         Restart = "always";
-        RestartSec = 3s;
+        RestartSec = lib.mkForce "3s";
       };
     };
   };
