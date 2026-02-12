@@ -7,22 +7,26 @@
     programs.openclaw = {
       enable = true;
       package = inputs.openclaw.packages.${pkgs.system}.openclaw;
-      # Bundles documentation into the Nix store
       documents = ../tilde/openclaw-docs;
 
       config = {
-        gateway.auth.token = "USE_ENV_VAR"; 
+        gateway = {
+          # 1. Explicitly set mode to local in the config
+          mode = "local";
+          auth.token = "USE_ENV_VAR"; 
+        };
       };
 
       bundledPlugins.summarize.enable = true;
 
       instances.default = {
         enable = true;
-        # We disable the module's automatic systemd to avoid version-mismatch bugs
         systemd.enable = false; 
         config = {
           gateway.auth.token = "USE_ENV_VAR"; 
           channels.telegram = {
+            # 2. Explicitly enable the channel
+            enable = true;
             tokenFile = "/home/${username}/.secrets/telegram-token";
             allowFrom = [ 7976595060 ]; 
             groups = {
@@ -39,14 +43,12 @@
         After = [ "network.target" ];
       };
       Service = {
-        # Local mode tells the gateway to run the bot/agent logic itself
         Environment = [ "OPENCLAW_GATEWAY_MODE=local" ];
-        # Injects the real OPENCLAW_GATEWAY_AUTH_TOKEN
         EnvironmentFile = [ "/home/${username}/.secrets/openclaw.env" ];
         
-        # We call the binary without subcommands like 'instance' or 'run'
-        # We removed --allow-unconfigured so it actually uses the Home Manager config
-        ExecStart = "${config.home-manager.users.${username}.programs.openclaw.package}/bin/openclaw gateway";
+        # Adding --allow-unconfigured back to bypass the "Doctor" blocks 
+        # since Nix managed configs can't be edited by the binary.
+        ExecStart = "${config.home-manager.users.${username}.programs.openclaw.package}/bin/openclaw gateway --allow-unconfigured";
         
         Restart = "always";
         RestartSec = "3s";
