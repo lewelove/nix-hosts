@@ -1,7 +1,7 @@
 file:///home/lewelove/nix-hosts
 file:///home/lewelove/LLM/repomix repomix
 file:///home/lewelove/dev
-file:///home/lewelove/dev/mpf2k-test-library
+file:///home/lewelove/dev/vellum-test-library
 file:///home/lewelove/dev/mpf2k-notes
 file:///home/lewelove/Notes
 file:///home/lewelove/Pictures/Screenshots
@@ -10,6 +10,7 @@ file:///home/lewelove/downloads/1000xhome
 file:///run/media/lewelove/1000xhome/backup-everything/FB2K/Library%20Historyfied!
 file:///home/lewelove/Wallpapers
 file:///run/media/lewelove/1000xhome/backup-everything/Folders/Pictures%20&%20Movies/Album%20Covers
+file:///run/media/lewelove/1000xhome/backup-everything/Folders/Pictures%20&%20Movies/Album%20Covers/covers.psd
 file:///run/media/lewelove/1000xhome/backup-everything/Folders/Pictures%20&%20Movies/Album%20Covers/covers.raw
 file:///home/lewelove/Downloads/1000xlab/torrents
 file:///home/lewelove/Downloads/1000xlab/films
@@ -18,6 +19,7 @@ file:///home/lewelove/.config
 file:///home/lewelove/.local
 file:///home/lewelove/.scripts
 file:///home/lewelove/.applications
+file:///home/lewelove/.vellum
 file:///mnt /mnt
 file:///home/lewelove/distroboxed
 file:///mnt/tgfs

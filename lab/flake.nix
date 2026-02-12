@@ -8,6 +8,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
+    openclaw.url = "github:openclaw/nix-openclaw";
   };
 
   outputs = { self, nixpkgs, ... }@inputs:

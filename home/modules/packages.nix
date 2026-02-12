@@ -68,6 +68,7 @@
     flac2all
     mediainfo
     imagemagick
+    puddletag
     
     # Network
     amneziawg-go
