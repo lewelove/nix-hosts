@@ -1,5 +1,3 @@
-File: `services/openclaw.nix`
-```nix
 { config, pkgs, lib, inputs, username, hostPath, identity, ... }:
 
 {
