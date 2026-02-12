@@ -40,5 +40,12 @@
         systemd.enable = true;
       };
     };
+
+    # This injects the environment variables into the bot's service
+    systemd.user.services.openclaw-gateway = {
+      Service = {
+        EnvironmentFile = [ "/home/${username}/.secrets/openclaw.env" ];
+      };
+    };
   };
 }
