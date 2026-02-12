@@ -31,9 +31,6 @@
       # First-party plugins to give the bot "senses"
       bundledPlugins = {
         summarize.enable = true;   # Summarize URLs
-        peekaboo.enable = true;    # System info/screenshots (where applicable)
-        oracle.enable = true;      # Web search capabilities
-        goplaces.enable = true;    # Google Places integration
       };
 
       instances.default = {
