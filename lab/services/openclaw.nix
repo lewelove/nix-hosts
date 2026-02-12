@@ -26,7 +26,7 @@
           };
         };
 
-        models.default = "openrouter/arcee-ai/trinity-large-preview:free";
+        agents.defaults.model = "openrouter/arcee-ai/trinity-large-preview:free";
       };
 
       bundledPlugins.summarize.enable = true;
