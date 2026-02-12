@@ -26,8 +26,8 @@
           };
         };
 
-        # CORRECT PATH: agents.defaults.model
-        agents.defaults.model = "openrouter/arcee-ai/trinity-large-preview:free";
+        # FIXED: model is a submodule, the identifier goes into 'id'
+        agents.defaults.model.id = "openrouter/arcee-ai/trinity-large-preview:free";
       };
 
       bundledPlugins.summarize.enable = true;
@@ -43,8 +43,8 @@
             tokenFile = "/home/${username}/.secrets/telegram-token";
             allowFrom = [ 7976595060 ]; 
           };
-          # Ensure instance also uses the correct model path
-          agents.defaults.model = "openrouter/arcee-ai/trinity-large-preview:free";
+          # FIXED here as well
+          agents.defaults.model.id = "openrouter/arcee-ai/trinity-large-preview:free";
         };
       };
     };
