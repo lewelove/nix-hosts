@@ -7,6 +7,8 @@
 
     programs.openclaw = {
       enable = true;
+
+      package = inputs.nix-openclaw.packages.${pkgs.system}.openclaw;
       
       # Points to the directory where you keep your bot's identity files
       documents = ../tilde/openclaw-docs;
