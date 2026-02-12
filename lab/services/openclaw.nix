@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, username, hostPath, ... }:
+{ config, pkgs, lib, inputs, username, hostPath, identity, ... }:
 
 {
   home-manager.users.${username} = {
@@ -7,7 +7,10 @@
     programs.openclaw = {
       enable = true;
       package = inputs.openclaw.packages.${pkgs.system}.openclaw;
-      documents = ../tilde/openclaw-docs;
+      
+      # FIX: Use an absolute string path to the local git repo 
+      # instead of a Nix path literal to allow write access.
+      documents = "${identity.repoPath}/${identity.hostname}/tilde/openclaw-docs";
 
       config = {
         gateway = {
@@ -26,7 +29,6 @@
           };
         };
 
-        # PROOF-BASED FIX: The field name is 'primary'
         agents.defaults.model.primary = "openrouter/arcee-ai/trinity-large-preview:free";
       };
 
@@ -43,7 +45,6 @@
             tokenFile = "/home/${username}/.secrets/telegram-token";
             allowFrom = [ 7976595060 ]; 
           };
-          # PROOF-BASED FIX: Same path here
           agents.defaults.model.primary = "openrouter/arcee-ai/trinity-large-preview:free";
         };
       };
