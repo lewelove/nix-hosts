@@ -7,6 +7,8 @@
     programs.openclaw = {
       enable = true;
       package = inputs.openclaw.packages.${pkgs.system}.openclaw;
+      
+      # Bundles files into Nix store to satisfy build-time assertions
       documents = ../tilde/openclaw-docs;
 
       config = {
@@ -26,6 +28,7 @@
           };
         };
 
+        # SOURCE: nix-openclaw module uses 'primary' key
         agents.defaults.model.primary = "openrouter/arcee-ai/trinity-large-preview:free";
       };
 
@@ -57,12 +60,13 @@
           "OPENCLAW_GATEWAY_MODE=local"
           "OPENCLAW_NIX_MODE=1"
           "OPENCLAW_CONFIG_PATH=/home/${username}/.config/openclaw/openclaw.json"
+          # SOURCE: OPENCLAW_DOCS_DIR overrides the read-only store path at runtime
           "OPENCLAW_DOCS_DIR=/home/${username}/nix-hosts/lab/tilde/openclaw-docs"
         ];
         EnvironmentFile = [ "/home/${username}/.secrets/openclaw.env" ];
         
-        # FIXED: Escaped the dollar sign with \ for Nix double-quote strings.
-        ExecStart = "${config.home-manager.users.${username}.programs.openclaw.package}/bin/openclaw gateway --allow-unconfigured --token \${OPENCLAW_GATEWAY_AUTH_TOKEN}";
+        # FIXED: Correct variable name (OPENCLAW_GATEWAY_TOKEN) and escaped dollar sign
+        ExecStart = "${config.home-manager.users.${username}.programs.openclaw.package}/bin/openclaw gateway --allow-unconfigured --token \${OPENCLAW_GATEWAY_TOKEN}";
         
         Restart = "always";
         RestartSec = "3s";
