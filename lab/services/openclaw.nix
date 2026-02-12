@@ -15,6 +15,7 @@
           auth.token = "USE_ENV_VAR"; 
         };
         
+        # 1. Enable the plugin globally
         plugins.entries.telegram.enabled = true;
 
         channels.telegram = {
@@ -26,8 +27,7 @@
           };
         };
 
-        # VERIFIED: Use primary and mkForce
-        agents.defaults.model.primary = lib.mkForce "openrouter/arcee-ai/trinity-large-preview:free";
+        agents.defaults.model.primary = "openrouter/arcee-ai/trinity-large-preview:free";
       };
 
       bundledPlugins.summarize.enable = true;
@@ -37,9 +37,14 @@
         systemd.enable = false; 
         config = {
           gateway.auth.token = "USE_ENV_VAR"; 
+          # 2. Enable the plugin for the instance
           plugins.entries.telegram.enabled = true;
-          channels.telegram.enabled = true;
-          agents.defaults.model.primary = lib.mkForce "openrouter/arcee-ai/trinity-large-preview:free";
+          channels.telegram = {
+            enabled = true;
+            tokenFile = "/home/${username}/.secrets/telegram-token";
+            allowFrom = [ 7976595060 ]; 
+          };
+          agents.defaults.model.primary = "openrouter/arcee-ai/trinity-large-preview:free";
         };
       };
     };
@@ -53,13 +58,13 @@
         Environment = [ 
           "OPENCLAW_GATEWAY_MODE=local"
           "OPENCLAW_NIX_MODE=1"
-          # FIXED: Correct path to the Nix-managed config file
           "OPENCLAW_CONFIG_PATH=/home/${username}/.openclaw/openclaw.json"
           "OPENCLAW_DOCS_DIR=/home/${username}/nix-hosts/lab/tilde/openclaw-docs"
         ];
         EnvironmentFile = [ "/home/${username}/.secrets/openclaw.env" ];
         
-        ExecStart = "${config.home-manager.users.${username}.programs.openclaw.package}/bin/openclaw gateway --allow-unconfigured --token \${OPENCLAW_GATEWAY_TOKEN}";
+        # 3. FIXED: Added --plugin telegram to force the plugin to load
+        ExecStart = "${config.home-manager.users.${username}.programs.openclaw.package}/bin/openclaw gateway --allow-unconfigured --token \${OPENCLAW_GATEWAY_TOKEN} --plugin telegram";
         
         Restart = "always";
         RestartSec = "3s";
