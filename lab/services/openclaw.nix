@@ -22,7 +22,6 @@
         enable = true;
         systemd.enable = false; # We manage the units manually below
         config = {
-          gateway.address = "http://127.0.0.1:18789";
           gateway.auth.token = "USE_ENV_VAR"; 
           channels.telegram = {
             tokenFile = "/home/${username}/.secrets/telegram-token";
