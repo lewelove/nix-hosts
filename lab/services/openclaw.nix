@@ -9,7 +9,7 @@
       enable = true;
       
       # Points to the directory where you keep your bot's identity files
-      documents = ../openclaw-docs;
+      documents = ../tilde/openclaw-docs;
 
       config = {
         gateway = {
