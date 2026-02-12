@@ -61,9 +61,8 @@
         ];
         EnvironmentFile = [ "/home/${username}/.secrets/openclaw.env" ];
         
-        # FIXED: Explicitly pass the token via flag using expansion from the EnvironmentFile.
-        # Note: double ''$ is used for Nix escaping.
-        ExecStart = "${config.home-manager.users.${username}.programs.openclaw.package}/bin/openclaw gateway --allow-unconfigured --token ''${OPENCLAW_GATEWAY_AUTH_TOKEN}";
+        # FIXED: Escaped the dollar sign with \ for Nix double-quote strings.
+        ExecStart = "${config.home-manager.users.${username}.programs.openclaw.package}/bin/openclaw gateway --allow-unconfigured --token \${OPENCLAW_GATEWAY_AUTH_TOKEN}";
         
         Restart = "always";
         RestartSec = "3s";
