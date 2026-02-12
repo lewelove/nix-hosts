@@ -3,7 +3,7 @@
 {
   # Add the OpenClaw Home Manager module to the user configuration
   home-manager.users.${username} = {
-    imports = [ inputs.nix-openclaw.homeManagerModules.openclaw ];
+    imports = [ inputs.openclaw.homeManagerModules.openclaw ];
 
     programs.openclaw = {
       enable = true;
