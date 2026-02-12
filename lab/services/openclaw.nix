@@ -50,13 +50,19 @@
         After = [ "network.target" ];
       };
       Service = {
-        Environment = [ "OPENCLAW_GATEWAY_MODE=local" ];
+        Environment = [ 
+          "OPENCLAW_GATEWAY_MODE=local"
+          "OPENCLAW_NIX_MODE=1"
+          # POINT TO THE NIX-MANAGED CONFIG
+          "OPENCLAW_CONFIG_PATH=/home/${username}/.config/openclaw/openclaw.json"
+        ];
         EnvironmentFile = [ "/home/${username}/.secrets/openclaw.env" ];
+        
         ExecStart = "${config.home-manager.users.${username}.programs.openclaw.package}/bin/openclaw gateway --allow-unconfigured";
+        
         Restart = "always";
         RestartSec = "3s";
       };
       Install.WantedBy = [ "default.target" ];
     };
-  };
 }
