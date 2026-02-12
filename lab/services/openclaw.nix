@@ -25,6 +25,8 @@
             "*" = { requireMention = true; };
           };
         };
+
+        models.default = "openrouter/arcee-ai/trinity-large-preview:free";
       };
 
       bundledPlugins.summarize.enable = true;
