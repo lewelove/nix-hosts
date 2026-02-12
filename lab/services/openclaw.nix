@@ -1,45 +1,55 @@
 { config, pkgs, lib, inputs, username, hostPath, identity, ... }:
 
+let
+  # Access the packages directly from the flake inputs
+  # We use the system-specific package set
+  openclawPkgs = inputs.openclaw.packages.${pkgs.stdenv.hostPlatform.system};
+in
 {
   home-manager.users.${username} = {
     imports = [ inputs.openclaw.homeManagerModules.openclaw ];
 
-    # Fix: Use an overlay to set priority on the underlying packages.
-    # This resolves the 'is-docker' collision between summarize and oracle.
-    nixpkgs.overlays = [
-      (final: prev: {
-        # We try to apply priority to these names. 
-        # The OpenClaw module will use these versions when installing plugins.
-        summarize = if prev ? summarize then lib.hiPrio prev.summarize else prev;
-        oracle = if prev ? oracle then lib.lowPrio prev.oracle else prev;
-      })
-    ];
-
     programs.openclaw = {
       enable = true;
-      package = inputs.openclaw.packages.${pkgs.stdenv.hostPlatform.system}.openclaw;
+      package = openclawPkgs.openclaw;
       documents = ../tilde/openclaw-docs;
+
+      # FIXED: We disable 'bundledPlugins' because they cause the PATH collision.
+      # Instead, we define them manually in the config section below.
+      bundledPlugins = {
+        summarize.enable = false;
+        oracle.enable = false;
+      };
 
       config = {
         gateway.mode = "local";
         gateway.auth.token = "USE_ENV_VAR"; 
 
-        # SOURCE: Force plugin enablement to override any defaults
-        plugins.entries.telegram.enabled = lib.mkForce true;
+        # Manually enable and point to the plugin store paths.
+        # This bypasses the Home Manager "install to PATH" logic, avoiding collisions.
+        plugins.entries = {
+          telegram.enabled = lib.mkForce true;
+          
+          summarize = {
+            enabled = true;
+            # Point directly to the binary in the nix store
+            path = "${openclawPkgs.summarize}/bin/summarize";
+          };
+          
+          oracle = {
+            enabled = true;
+            # Point directly to the binary in the nix store
+            path = "${openclawPkgs.oracle}/bin/oracle";
+          };
+        };
 
         channels.telegram = {
           enabled = lib.mkForce true;
-          # We now provide the token via environment variable for better security
           allowFrom = [ 7976595060 ]; 
           groups = { "*" = { requireMention = true; }; };
         };
 
         agents.defaults.model.primary = "openrouter/arcee-ai/trinity-large-preview:free";
-      };
-
-      bundledPlugins = {
-        summarize.enable = true;
-        oracle.enable = true;
       };
 
       instances.default = {
@@ -68,7 +78,6 @@
         ];
         EnvironmentFile = [ "/home/${username}/.secrets/openclaw.env" ];
         
-        # Token is passed via \${} to escape Nix interpolation.
         ExecStart = "${config.home-manager.users.${username}.programs.openclaw.package}/bin/openclaw gateway --allow-unconfigured --token \${OPENCLAW_GATEWAY_TOKEN}";
         
         Restart = "always";
