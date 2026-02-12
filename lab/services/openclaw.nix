@@ -25,8 +25,6 @@
         config = {
           gateway.auth.token = "USE_ENV_VAR"; 
           channels.telegram = {
-            # 2. Explicitly enable the channel
-            enable = true;
             tokenFile = "/home/${username}/.secrets/telegram-token";
             allowFrom = [ 7976595060 ]; 
             groups = {
