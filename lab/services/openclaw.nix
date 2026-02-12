@@ -7,7 +7,7 @@
     programs.openclaw = {
       enable = true;
       package = inputs.openclaw.packages.${pkgs.system}.openclaw;
-      documents = "../tilde/openclaw-docs";
+      documents = "${hostPath}/tilde/openclaw-docs";
 
       config = {
         gateway = {
