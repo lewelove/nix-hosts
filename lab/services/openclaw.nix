@@ -4,6 +4,13 @@
   home-manager.users.${username} = {
     imports = [ inputs.openclaw.homeManagerModules.openclaw ];
 
+    # Fix: Resolve collision between summarize and oracle plugins
+    # Both try to install 'is-docker' into the same path.
+    home.packages = [
+      (lib.hiPrio inputs.openclaw.packages.${pkgs.system}.summarize)
+      (lib.lowPrio inputs.openclaw.packages.${pkgs.system}.oracle)
+    ];
+
     programs.openclaw = {
       enable = true;
       package = inputs.openclaw.packages.${pkgs.system}.openclaw;
