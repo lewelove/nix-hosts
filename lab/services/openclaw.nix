@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, username, identity, ... }:
+{ config, pkgs, lib, inputs, username, hostPath, identity, ... }:
 
 {
   home-manager.users.${username} = {
@@ -10,20 +10,27 @@
       documents = ../tilde/openclaw-docs;
 
       config = {
-        gateway.mode = "local";
-        gateway.auth.token = "USE_ENV_VAR"; 
+        gateway = {
+          mode = "local";
+          auth.token = "USE_ENV_VAR"; 
+        };
         
         plugins.entries.telegram.enabled = true;
+
         channels.telegram = {
           enabled = true;
           tokenFile = "/home/${username}/.secrets/telegram-token";
           allowFrom = [ 7976595060 ]; 
-          groups = { "*" = { requireMention = true; }; };
+          groups = {
+            "*" = { requireMention = true; };
+          };
         };
 
-        # FORCE the global default model
+        # VERIFIED: Use primary and mkForce
         agents.defaults.model.primary = lib.mkForce "openrouter/arcee-ai/trinity-large-preview:free";
       };
+
+      bundledPlugins.summarize.enable = true;
 
       instances.default = {
         enable = true;
@@ -32,8 +39,6 @@
           gateway.auth.token = "USE_ENV_VAR"; 
           plugins.entries.telegram.enabled = true;
           channels.telegram.enabled = true;
-          
-          # FORCE the instance model
           agents.defaults.model.primary = lib.mkForce "openrouter/arcee-ai/trinity-large-preview:free";
         };
       };
@@ -48,7 +53,8 @@
         Environment = [ 
           "OPENCLAW_GATEWAY_MODE=local"
           "OPENCLAW_NIX_MODE=1"
-          "OPENCLAW_CONFIG_PATH=/home/${username}/.config/openclaw/openclaw.json"
+          # FIXED: Correct path to the Nix-managed config file
+          "OPENCLAW_CONFIG_PATH=/home/${username}/.openclaw/openclaw.json"
           "OPENCLAW_DOCS_DIR=/home/${username}/nix-hosts/lab/tilde/openclaw-docs"
         ];
         EnvironmentFile = [ "/home/${username}/.secrets/openclaw.env" ];
