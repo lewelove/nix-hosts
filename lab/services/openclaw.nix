@@ -11,9 +11,19 @@
 
       config = {
         gateway = {
-          # 1. Explicitly set mode to local in the config
           mode = "local";
           auth.token = "USE_ENV_VAR"; 
+        };
+        # Ensure the plugin entry is also set to true
+        plugins.entries.telegram.enabled = true;
+        
+        channels.telegram = {
+          enabled = true;
+          tokenFile = "/home/${username}/.secrets/telegram-token";
+          allowFrom = [ 7976595060 ]; 
+          groups = {
+            "*" = { requireMention = true; };
+          };
         };
       };
 
@@ -24,13 +34,11 @@
         systemd.enable = false; 
         config = {
           gateway.auth.token = "USE_ENV_VAR"; 
+          plugins.entries.telegram.enabled = true;
           channels.telegram = {
             enabled = true;
             tokenFile = "/home/${username}/.secrets/telegram-token";
             allowFrom = [ 7976595060 ]; 
-            groups = {
-              "*" = { requireMention = true; };
-            };
           };
         };
       };
@@ -44,11 +52,7 @@
       Service = {
         Environment = [ "OPENCLAW_GATEWAY_MODE=local" ];
         EnvironmentFile = [ "/home/${username}/.secrets/openclaw.env" ];
-        
-        # Adding --allow-unconfigured back to bypass the "Doctor" blocks 
-        # since Nix managed configs can't be edited by the binary.
         ExecStart = "${config.home-manager.users.${username}.programs.openclaw.package}/bin/openclaw gateway --allow-unconfigured";
-        
         Restart = "always";
         RestartSec = "3s";
       };
