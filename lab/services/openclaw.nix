@@ -26,8 +26,8 @@
           };
         };
 
-        # FIXED: The field name in the submodule is 'name'
-        agents.defaults.model.name = "openrouter/arcee-ai/trinity-large-preview:free";
+        # PROOF-BASED FIX: The field name is 'primary'
+        agents.defaults.model.primary = "openrouter/arcee-ai/trinity-large-preview:free";
       };
 
       bundledPlugins.summarize.enable = true;
@@ -43,8 +43,8 @@
             tokenFile = "/home/${username}/.secrets/telegram-token";
             allowFrom = [ 7976595060 ]; 
           };
-          # FIXED: The field name in the submodule is 'name'
-          agents.defaults.model.name = "openrouter/arcee-ai/trinity-large-preview:free";
+          # PROOF-BASED FIX: Same path here
+          agents.defaults.model.primary = "openrouter/arcee-ai/trinity-large-preview:free";
         };
       };
     };
