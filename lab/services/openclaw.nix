@@ -1,10 +1,7 @@
 { config, pkgs, lib, inputs, username, hostPath, ... }:
 
 let
-  # Extract the specific daemon packages from the flake
-  # These are wrappers pre-configured for the 'default' name
-  gatewayPkg = inputs.openclaw.packages.${pkgs.system}.openclaw-gateway-default;
-  instancePkg = inputs.openclaw.packages.${pkgs.system}.openclaw-instance-default;
+  openclawPkg = inputs.openclaw.packages.${pkgs.system}.openclaw;
 in
 {
   home-manager.users.${username} = {
@@ -12,7 +9,7 @@ in
 
     programs.openclaw = {
       enable = true;
-      package = inputs.openclaw.packages.${pkgs.system}.openclaw; # CLI tool
+      package = openclawPkg;
       documents = ../tilde/openclaw-docs;
 
       config = {
@@ -23,7 +20,6 @@ in
 
       instances.default = {
         enable = true;
-        # Disable the module's automatic systemd generation to avoid the known bug
         systemd.enable = false; 
         config = {
           gateway.auth.token = "USE_ENV_VAR"; 
@@ -47,8 +43,7 @@ in
         Service = {
           Environment = [ "OPENCLAW_GATEWAY_MODE=local" ];
           EnvironmentFile = [ "/home/${username}/.secrets/openclaw.env" ];
-          # Use the specialized gateway binary
-          ExecStart = "${gatewayPkg}/bin/openclaw-gateway-default gateway";
+          ExecStart = "${openclawPkg}/bin/openclaw gateway --allow-unconfigured";
           Restart = "always";
           RestartSec = "3s";
         };
@@ -63,8 +58,8 @@ in
         };
         Service = {
           EnvironmentFile = [ "/home/${username}/.secrets/openclaw.env" ];
-          # Use the specialized instance binary (no 'run' or 'start' needed)
-          ExecStart = "${instancePkg}/bin/openclaw-instance-default";
+          # Command to run the bot instance
+          ExecStart = "${openclawPkg}/bin/openclaw instance default";
           Restart = "always";
           RestartSec = "3s";
         };
