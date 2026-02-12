@@ -1,25 +1,29 @@
 { config, pkgs, lib, inputs, username, hostPath, ... }:
 
+let
+  # Extract the specific daemon packages from the flake
+  # These are wrappers pre-configured for the 'default' name
+  gatewayPkg = inputs.openclaw.packages.${pkgs.system}.openclaw-gateway-default;
+  instancePkg = inputs.openclaw.packages.${pkgs.system}.openclaw-instance-default;
+in
 {
   home-manager.users.${username} = {
     imports = [ inputs.openclaw.homeManagerModules.openclaw ];
 
     programs.openclaw = {
       enable = true;
-      package = inputs.openclaw.packages.${pkgs.system}.openclaw;
+      package = inputs.openclaw.packages.${pkgs.system}.openclaw; # CLI tool
       documents = ../tilde/openclaw-docs;
 
       config = {
-        gateway = {
-          # Placeholder for Nix evaluation; real token is injected via Systemd
-          auth.token = "USE_ENV_VAR"; 
-        };
+        gateway.auth.token = "USE_ENV_VAR"; 
       };
 
       bundledPlugins.summarize.enable = true;
 
       instances.default = {
         enable = true;
+        # Disable the module's automatic systemd generation to avoid the known bug
         systemd.enable = false; 
         config = {
           gateway.auth.token = "USE_ENV_VAR"; 
@@ -43,7 +47,8 @@
         Service = {
           Environment = [ "OPENCLAW_GATEWAY_MODE=local" ];
           EnvironmentFile = [ "/home/${username}/.secrets/openclaw.env" ];
-          ExecStart = "${config.home-manager.users.${username}.programs.openclaw.package}/bin/openclaw gateway --allow-unconfigured";
+          # Use the specialized gateway binary
+          ExecStart = "${gatewayPkg}/bin/openclaw-gateway-default gateway";
           Restart = "always";
           RestartSec = "3s";
         };
@@ -58,8 +63,8 @@
         };
         Service = {
           EnvironmentFile = [ "/home/${username}/.secrets/openclaw.env" ];
-          # Removed the 'start'/'run' subcommand
-          ExecStart = "${config.home-manager.users.${username}.programs.openclaw.package}/bin/openclaw --instance default";
+          # Use the specialized instance binary (no 'run' or 'start' needed)
+          ExecStart = "${instancePkg}/bin/openclaw-instance-default";
           Restart = "always";
           RestartSec = "3s";
         };
