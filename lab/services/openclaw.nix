@@ -1,21 +1,23 @@
 { config, pkgs, lib, inputs, username, hostPath, identity, ... }:
 
-let
-  # Access the packages directly from the flake inputs
-  # We use the system-specific package set
-  openclawPkgs = inputs.openclaw.packages.${pkgs.stdenv.hostPlatform.system};
-in
 {
   home-manager.users.${username} = {
     imports = [ inputs.openclaw.homeManagerModules.openclaw ];
 
+    # Install plugins explicitly from flake inputs.
+    # We lower the priority of 'oracle' so its colliding files (like is-docker)
+    # yield to 'summarize'. This resolves the buildEnv error cleanly.
+    home.packages = [
+      inputs.summarize.packages.${pkgs.stdenv.hostPlatform.system}.default
+      (lib.lowPrio inputs.oracle.packages.${pkgs.stdenv.hostPlatform.system}.default)
+    ];
+
     programs.openclaw = {
       enable = true;
-      package = openclawPkgs.openclaw;
+      package = inputs.openclaw.packages.${pkgs.stdenv.hostPlatform.system}.openclaw;
       documents = ../tilde/openclaw-docs;
 
-      # FIXED: We disable 'bundledPlugins' because they cause the PATH collision.
-      # Instead, we define them manually in the config section below.
+      # Disable the module's internal bundling to avoid double-installation
       bundledPlugins = {
         summarize.enable = false;
         oracle.enable = false;
@@ -25,26 +27,17 @@ in
         gateway.mode = "local";
         gateway.auth.token = "USE_ENV_VAR"; 
 
-        # Manually enable and point to the plugin store paths.
-        # This bypasses the Home Manager "install to PATH" logic, avoiding collisions.
+        # We manually enable the plugins in the config so OpenClaw knows to use them.
+        # Since we added them to home.packages, they are already in the PATH.
         plugins.entries = {
           telegram.enabled = lib.mkForce true;
-          
-          summarize = {
-            enabled = true;
-            # Point directly to the binary in the nix store
-            path = "${openclawPkgs.summarize}/bin/summarize";
-          };
-          
-          oracle = {
-            enabled = true;
-            # Point directly to the binary in the nix store
-            path = "${openclawPkgs.oracle}/bin/oracle";
-          };
+          summarize.enabled = true;
+          oracle.enabled = true;
         };
 
         channels.telegram = {
           enabled = lib.mkForce true;
+          # We now provide the token via environment variable for better security
           allowFrom = [ 7976595060 ]; 
           groups = { "*" = { requireMention = true; }; };
         };
@@ -78,6 +71,7 @@ in
         ];
         EnvironmentFile = [ "/home/${username}/.secrets/openclaw.env" ];
         
+        # Token is passed via \${} to escape Nix interpolation.
         ExecStart = "${config.home-manager.users.${username}.programs.openclaw.package}/bin/openclaw gateway --allow-unconfigured --token \${OPENCLAW_GATEWAY_TOKEN}";
         
         Restart = "always";

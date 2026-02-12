@@ -9,6 +9,12 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     openclaw.url = "github:openclaw/nix-openclaw";
+
+    summarize.url = "github:openclaw/nix-steipete-tools?dir=tools/summarize";
+    summarize.inputs.nixpkgs.follows = "nixpkgs";
+    
+    oracle.url = "github:openclaw/nix-steipete-tools?dir=tools/oracle";
+    oracle.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
