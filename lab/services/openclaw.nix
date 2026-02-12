@@ -26,7 +26,10 @@
         agents.defaults.model.primary = "openrouter/arcee-ai/trinity-large-preview:free";
       };
 
-      bundledPlugins.summarize.enable = true;
+      bundledPlugins = {
+        summarize.enable = true;
+        oracle.enable = false;
+      };
 
       instances.default = {
         enable = true;
