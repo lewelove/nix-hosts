@@ -7,9 +7,6 @@
     programs.openclaw = {
       enable = true;
       package = inputs.openclaw.packages.${pkgs.system}.openclaw;
-      
-      # 1. Use a Path Literal. 
-      # This satisfies the Nix assertions during build by bundling the files.
       documents = ../tilde/openclaw-docs;
 
       config = {
@@ -60,14 +57,13 @@
           "OPENCLAW_GATEWAY_MODE=local"
           "OPENCLAW_NIX_MODE=1"
           "OPENCLAW_CONFIG_PATH=/home/${username}/.config/openclaw/openclaw.json"
-          
-          # 2. OVERRIDE: Point the actual runtime to the writable directory.
-          # This ensures the agent can write indices/git hooks to your local folder.
           "OPENCLAW_DOCS_DIR=/home/${username}/nix-hosts/lab/tilde/openclaw-docs"
         ];
         EnvironmentFile = [ "/home/${username}/.secrets/openclaw.env" ];
         
-        ExecStart = "${config.home-manager.users.${username}.programs.openclaw.package}/bin/openclaw gateway --allow-unconfigured";
+        # FIXED: Explicitly pass the token via flag using expansion from the EnvironmentFile.
+        # Note: double ''$ is used for Nix escaping.
+        ExecStart = "${config.home-manager.users.${username}.programs.openclaw.package}/bin/openclaw gateway --allow-unconfigured --token ''${OPENCLAW_GATEWAY_AUTH_TOKEN}";
         
         Restart = "always";
         RestartSec = "3s";
