@@ -4,16 +4,20 @@
   home-manager.users.${username} = {
     imports = [ inputs.openclaw.homeManagerModules.openclaw ];
 
-    # Fix: Resolve collision between summarize and oracle plugins
-    # Both try to install 'is-docker' into the same path.
-    home.packages = [
-      (lib.hiPrio inputs.openclaw.packages.${pkgs.system}.summarize)
-      (lib.lowPrio inputs.openclaw.packages.${pkgs.system}.oracle)
+    # Fix: Use an overlay to set priority on the underlying packages.
+    # This resolves the 'is-docker' collision between summarize and oracle.
+    nixpkgs.overlays = [
+      (final: prev: {
+        # We try to apply priority to these names. 
+        # The OpenClaw module will use these versions when installing plugins.
+        summarize = if prev ? summarize then lib.hiPrio prev.summarize else prev;
+        oracle = if prev ? oracle then lib.lowPrio prev.oracle else prev;
+      })
     ];
 
     programs.openclaw = {
       enable = true;
-      package = inputs.openclaw.packages.${pkgs.system}.openclaw;
+      package = inputs.openclaw.packages.${pkgs.stdenv.hostPlatform.system}.openclaw;
       documents = ../tilde/openclaw-docs;
 
       config = {
@@ -64,7 +68,6 @@
         ];
         EnvironmentFile = [ "/home/${username}/.secrets/openclaw.env" ];
         
-        # SOURCE: Removed invalid --plugin flag. 
         # Token is passed via \${} to escape Nix interpolation.
         ExecStart = "${config.home-manager.users.${username}.programs.openclaw.package}/bin/openclaw gateway --allow-unconfigured --token \${OPENCLAW_GATEWAY_TOKEN}";
         
