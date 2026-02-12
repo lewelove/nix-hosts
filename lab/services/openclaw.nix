@@ -1,15 +1,13 @@
 { config, pkgs, lib, inputs, username, hostPath, ... }:
 
-let
-  openclawPkg = inputs.openclaw.packages.${pkgs.system}.openclaw;
-in
 {
   home-manager.users.${username} = {
     imports = [ inputs.openclaw.homeManagerModules.openclaw ];
 
     programs.openclaw = {
       enable = true;
-      package = openclawPkg;
+      package = inputs.openclaw.packages.${pkgs.system}.openclaw;
+      # Bundles documentation into the Nix store
       documents = ../tilde/openclaw-docs;
 
       config = {
@@ -20,6 +18,7 @@ in
 
       instances.default = {
         enable = true;
+        # We disable the module's automatic systemd to avoid version-mismatch bugs
         systemd.enable = false; 
         config = {
           gateway.auth.token = "USE_ENV_VAR"; 
@@ -34,37 +33,25 @@ in
       };
     };
 
-    systemd.user.services = {
-      openclaw-gateway = {
-        Unit = {
-          Description = "OpenClaw Gateway";
-          After = [ "network.target" ];
-        };
-        Service = {
-          Environment = [ "OPENCLAW_GATEWAY_MODE=local" ];
-          EnvironmentFile = [ "/home/${username}/.secrets/openclaw.env" ];
-          ExecStart = "${openclawPkg}/bin/openclaw gateway --allow-unconfigured";
-          Restart = "always";
-          RestartSec = "3s";
-        };
-        Install.WantedBy = [ "default.target" ];
+    systemd.user.services.openclaw-gateway = {
+      Unit = {
+        Description = "OpenClaw Gateway (Local Mode)";
+        After = [ "network.target" ];
       };
-
-      openclaw-instance-default = {
-        Unit = {
-          Description = "OpenClaw Instance (Default)";
-          After = [ "openclaw-gateway.service" ];
-          Requires = [ "openclaw-gateway.service" ];
-        };
-        Service = {
-          EnvironmentFile = [ "/home/${username}/.secrets/openclaw.env" ];
-          # Command to run the bot instance
-          ExecStart = "${openclawPkg}/bin/openclaw instance default";
-          Restart = "always";
-          RestartSec = "3s";
-        };
-        Install.WantedBy = [ "default.target" ];
+      Service = {
+        # Local mode tells the gateway to run the bot/agent logic itself
+        Environment = [ "OPENCLAW_GATEWAY_MODE=local" ];
+        # Injects the real OPENCLAW_GATEWAY_AUTH_TOKEN
+        EnvironmentFile = [ "/home/${username}/.secrets/openclaw.env" ];
+        
+        # We call the binary without subcommands like 'instance' or 'run'
+        # We removed --allow-unconfigured so it actually uses the Home Manager config
+        ExecStart = "${config.home-manager.users.${username}.programs.openclaw.package}/bin/openclaw gateway";
+        
+        Restart = "always";
+        RestartSec = "3s";
       };
+      Install.WantedBy = [ "default.target" ];
     };
   };
 }
