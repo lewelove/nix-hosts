@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, username, hostPath, identity, ... }:
+{ config, pkgs, lib, inputs, username, identity, ... }:
 
 {
   home-manager.users.${username} = {
@@ -7,32 +7,23 @@
     programs.openclaw = {
       enable = true;
       package = inputs.openclaw.packages.${pkgs.system}.openclaw;
-      
-      # Bundles files into Nix store to satisfy build-time assertions
       documents = ../tilde/openclaw-docs;
 
       config = {
-        gateway = {
-          mode = "local";
-          auth.token = "USE_ENV_VAR"; 
-        };
+        gateway.mode = "local";
+        gateway.auth.token = "USE_ENV_VAR"; 
         
         plugins.entries.telegram.enabled = true;
-
         channels.telegram = {
           enabled = true;
           tokenFile = "/home/${username}/.secrets/telegram-token";
           allowFrom = [ 7976595060 ]; 
-          groups = {
-            "*" = { requireMention = true; };
-          };
+          groups = { "*" = { requireMention = true; }; };
         };
 
-        # SOURCE: nix-openclaw module uses 'primary' key
-        agents.defaults.model.primary = "openrouter/arcee-ai/trinity-large-preview:free";
+        # FORCE the global default model
+        agents.defaults.model.primary = lib.mkForce "openrouter/arcee-ai/trinity-large-preview:free";
       };
-
-      bundledPlugins.summarize.enable = true;
 
       instances.default = {
         enable = true;
@@ -40,12 +31,10 @@
         config = {
           gateway.auth.token = "USE_ENV_VAR"; 
           plugins.entries.telegram.enabled = true;
-          channels.telegram = {
-            enabled = true;
-            tokenFile = "/home/${username}/.secrets/telegram-token";
-            allowFrom = [ 7976595060 ]; 
-          };
-          agents.defaults.model.primary = "openrouter/arcee-ai/trinity-large-preview:free";
+          channels.telegram.enabled = true;
+          
+          # FORCE the instance model
+          agents.defaults.model.primary = lib.mkForce "openrouter/arcee-ai/trinity-large-preview:free";
         };
       };
     };
@@ -60,12 +49,10 @@
           "OPENCLAW_GATEWAY_MODE=local"
           "OPENCLAW_NIX_MODE=1"
           "OPENCLAW_CONFIG_PATH=/home/${username}/.config/openclaw/openclaw.json"
-          # SOURCE: OPENCLAW_DOCS_DIR overrides the read-only store path at runtime
           "OPENCLAW_DOCS_DIR=/home/${username}/nix-hosts/lab/tilde/openclaw-docs"
         ];
         EnvironmentFile = [ "/home/${username}/.secrets/openclaw.env" ];
         
-        # FIXED: Correct variable name (OPENCLAW_GATEWAY_TOKEN) and escaped dollar sign
         ExecStart = "${config.home-manager.users.${username}.programs.openclaw.package}/bin/openclaw gateway --allow-unconfigured --token \${OPENCLAW_GATEWAY_TOKEN}";
         
         Restart = "always";
