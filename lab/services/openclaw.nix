@@ -13,12 +13,10 @@
         gateway.mode = "local";
         gateway.auth.token = "USE_ENV_VAR"; 
 
-        # SOURCE: Force plugin enablement to override any defaults
         plugins.entries.telegram.enabled = lib.mkForce true;
 
         channels.telegram = {
           enabled = lib.mkForce true;
-          # We now provide the token via environment variable for better security
           allowFrom = [ 7976595060 ]; 
           groups = { "*" = { requireMention = true; }; };
         };
@@ -27,8 +25,8 @@
       };
 
       bundledPlugins = {
-        summarize.enable = false;
-        oracle.enable = true;
+        summarize.enable = true;
+        oracle.enable = false;
       };
 
       instances.default = {
@@ -57,8 +55,6 @@
         ];
         EnvironmentFile = [ "/home/${username}/.secrets/openclaw.env" ];
         
-        # SOURCE: Removed invalid --plugin flag. 
-        # Token is passed via \${} to escape Nix interpolation.
         ExecStart = "${config.home-manager.users.${username}.programs.openclaw.package}/bin/openclaw gateway --allow-unconfigured --token \${OPENCLAW_GATEWAY_TOKEN}";
         
         Restart = "always";
