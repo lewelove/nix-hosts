@@ -62,7 +62,7 @@ fi
 if git remote | grep -q "^origin$"; then
     echo
     gum join --horizontal "$(g ">")" " Pushing to Origin..."
-    git push -uq origin main
+    git push -u origin main
 fi
 
 ################################################################
