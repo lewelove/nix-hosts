@@ -34,23 +34,29 @@ gum join --horizontal "$(g ">")" " Committing local changes..."
 git add .
 if ! git diff-index --quiet HEAD --; then
     git commit -m "$MSG"
+else
+    echo ":: No changes to commit locally."
 fi
 
 if git remote | grep -q "^lab$"; then
-    LAB_ADDR=$(git remote get-url lab)
-    
-    TARGET_ADDR=''${LAB_ADDR%.git} 
+    RAW_ADDR=$(git remote get-url lab)
+    TARGET_ADDR=''${RAW_ADDR%.git}
+    TARGET_ADDR=''${TARGET_ADDR%/}
 
     echo
-    gum join --horizontal "$(g ">")" " Mirroring to Lab via " "$(y "rsync")" "..."
+    gum join --horizontal "$(g ">")" " Mirroring to Lab (" "$(y "$TARGET_ADDR")" ")..."
     
-    rsync -azq --delete \
+    if rsync -azq --delete \
       --exclude ".direnv/" \
       --exclude "result" \
-      "${repoPath}/" "$TARGET_ADDR/"
-    
-    echo
-    gum join --horizontal "$(g ">")" " " "$(g "SUCCESS")" " - Lab is now a perfect mirror."
+      "${repoPath}/" "$TARGET_ADDR/"; 
+    then
+        gum join --horizontal "$(g ">")" " " "$(g "SUCCESS")" " - Lab is now a perfect mirror."
+    else
+        echo
+        gum join --horizontal "$(r ">")" " " "$(r "FAILURE")" " - Sync to Lab failed."
+        exit 1
+    fi
 fi
 
 if git remote | grep -q "^origin$"; then
