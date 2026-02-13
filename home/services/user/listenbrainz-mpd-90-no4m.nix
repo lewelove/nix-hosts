@@ -10,7 +10,7 @@ let
       owner = "lewelove";
       repo = "listenbrainz-mpd-90-no4m";
       rev = "main";
-      hash = "sha256-ePYk33SuGTiTRquUcVZTdkx4bXayCpWkEK5a/CC0+Yo=";
+      hash = "sha256-ZlELdjaJQukMZfDotmyuPW0S4D2zsPv++vQDOXnm/Yk=";
     };
     cargoHash = lib.fakeHash;
   });

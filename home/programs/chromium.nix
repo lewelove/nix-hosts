@@ -56,7 +56,7 @@ let
     untrap = fetchExtension {
       id = "enboaomnljigfhfjfoalacienlhjlfil";
       version = "9.3.7";
-      hash = "sha256-606Xbwjq9c53i/cMsIwOfnDBp0Mf8Ogds6ppEw5lEy0=";
+      hash = "sha256-ePj7aR8iOvpDYs1QpaY35UEuLLhIpRjHhSDZuJkstKc=";
     };
   };
 
