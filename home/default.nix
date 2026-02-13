@@ -45,6 +45,7 @@
 
     # System Services
     # ./services/xremap.nix
+    ./services/keyd.nix
     ./services/mympd.nix
     ./services/olivetin.nix
     ./services/open-webui.nix
