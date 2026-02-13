@@ -21,41 +21,39 @@ b() { gum style --foreground 4 "$*"; }
 m() { gum style --foreground 5 "$*"; }
 w() { gum style --foreground 7 "$*"; }
 
-# tilde-stow
-
 MSG="''${1:-$(date -u +'%Y-%m-%d %H:%M UTC')}"
 
 cd "${repoPath}"
 
 echo
 gum join --horizontal "$(g ">")" " Repomixing " "$(g "${repoPath}...")"
-if ! output=$(repomix --quiet --include "common/**,home/**" 2>&1); then
-    echo "$output"
-    exit 1
-fi
 
-if ! output=$(repomix --quiet --include "common/**,lab/**" 2>&1); then
-    echo "$output"
-    exit 1
-fi
-echo
+repomix --quiet --include "common/**,home/**" || true
+repomix --quiet --include "common/**,lab/**" || true
 
-gum join --horizontal "$(g ">")" " Adding to git with message " "$(m "$MSG")" "..."
 echo
+gum join --horizontal "$(g ">")" " Checking for local changes..."
+
 git add .
-git commit -m "$MSG"
+if ! git diff-index --quiet HEAD --; then
+    echo ":: Committing changes with message: $MSG"
+    git commit -m "$MSG"
+else
+    echo ":: No new changes to commit. Proceeding to sync..."
+fi
+
 echo
 
 if git remote | grep -q "^lab$"; then
     LAB_ADDR=$(git remote get-url lab)
-    gum join --horizontal "$(g ">")" " Syncing to " "$(g "$LAB_ADDR")" "..."
+    gum join --horizontal "$(g ">")" " Syncing to Lab " "$(g "[$LAB_ADDR]")" "..."
     git push -f lab main
     echo
 fi
 
 if git remote | grep -q "^origin$"; then
     ORIGIN_ADDR=$(git remote get-url origin)
-    gum join --horizontal "$(g ">")" " Syncing to " "$(b "$ORIGIN_ADDR")" "..."
+    gum join --horizontal "$(g ">")" " Syncing to Origin " "$(b "[$ORIGIN_ADDR]")" "..."
     git push -uq origin main
 fi
 
