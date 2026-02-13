@@ -57,17 +57,17 @@
     options = [ "nofail" "compress=zstd" "noatime" "space_cache=v2" "x-gvfs-show" ];
   };
 
-  fileSystems."/run/media/${username}/s128" = {
-    device = "/dev/disk/by-uuid/64f25c1b-034c-4f7f-8c38-14ac9eaa83a1";
-    fsType = "btrfs";
-    options = [ "nofail" "compress=zstd" "noatime" "space_cache=v2" "x-gvfs-show" ];
-  };
-
-  fileSystems."/run/media/${username}/x2000" = {
-    device = "/dev/disk/by-uuid/e2873f44-a0b2-4c05-9e8a-d14e9cade796";
-    fsType = "btrfs";
-    options = [ "subvol=/" "nofail" "compress=zstd" "noatime" "space_cache=v2" "x-gvfs-show" ];
- };
+ #  fileSystems."/run/media/${username}/s128" = {
+ #    device = "/dev/disk/by-uuid/64f25c1b-034c-4f7f-8c38-14ac9eaa83a1";
+ #    fsType = "btrfs";
+ #    options = [ "nofail" "compress=zstd" "noatime" "space_cache=v2" "x-gvfs-show" ];
+ #  };
+ #
+ #  fileSystems."/run/media/${username}/x2000" = {
+ #    device = "/dev/disk/by-uuid/e2873f44-a0b2-4c05-9e8a-d14e9cade796";
+ #    fsType = "btrfs";
+ #    options = [ "subvol=/" "nofail" "compress=zstd" "noatime" "space_cache=v2" "x-gvfs-show" ];
+ # };
 
   # --- NFS Mounting ---
 

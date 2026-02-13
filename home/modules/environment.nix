@@ -4,7 +4,7 @@
 
   environment.loginShellInit = ''
     if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
-       exec uwsm start default
+       exec start-hyprland
     fi
   '';
 

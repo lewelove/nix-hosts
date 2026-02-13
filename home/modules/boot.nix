@@ -3,7 +3,7 @@
 {
 
   # --- Boot ---
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub = {
     enable = true;
