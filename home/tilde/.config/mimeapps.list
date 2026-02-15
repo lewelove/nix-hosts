@@ -1,4 +1,10 @@
 [Default Applications]
+text/html=zen-beta.desktop
+x-scheme-handler/http=zen-beta.desktop
+x-scheme-handler/https=zen-beta.desktop
+x-scheme-handler/about=zen-beta.desktop
+x-scheme-handler/unknown=zen-beta.desktop
+
 text/plain=nvim-foot.desktop
 text/markdown=nvim-foot.desktop
 text/x-log=nvim-foot.desktop
@@ -12,7 +18,6 @@ application/x-yaml=nvim-foot.desktop
 inode/directory=thunar.desktop
 
 [Added Associations]
-text/plain=nvim-foot.desktop;
-image/jpeg=imv-dir.desktop;
-image/png=imv-dir.desktop;
-image/webp=imv-dir.desktop;
+image/jpeg=imv-dir.desktop
+image/png=imv-dir.desktop
+image/webp=imv-dir.desktop

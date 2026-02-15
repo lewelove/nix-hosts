@@ -10,8 +10,8 @@ vim.keymap.set({ 'n', 'v', 'x' }, '<leader>y', '"+y<CR> ')
 
 -- No clipboard override
 map("n", "x", '"_x')
-map({"n", "v"}, "d", '"_d')
-map("n", "dd", '"_dd')
+-- map({"n", "v"}, "d", '"_d')
+-- map("n", "dd", '"_dd')
 map("v", "p", '"_dP')
 
 -- Center screen when jumping
