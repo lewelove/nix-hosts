@@ -2,7 +2,7 @@
 
 let
   wrapper = config.my.chromium.wrapper;
-  url = "http://localhost:8188";
+  url = "http://comfy.home/";
   name = "ComfyUI";
   icon = "comfyui";
 in

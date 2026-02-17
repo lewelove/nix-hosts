@@ -2,7 +2,7 @@
 
 let
   wrapper = config.my.chromium.wrapper;
-  url = "http://localhost:666";
+  url = "http://mpd.home/";
   name = "myMPD";
   icon = "mympd";
 in

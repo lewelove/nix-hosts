@@ -49,6 +49,7 @@
     ./services/mympd.nix
     ./services/olivetin.nix
     ./services/open-webui.nix
+    ./services/local-domains.nix
 
     # User Services
     ./services/user/mpd.nix
