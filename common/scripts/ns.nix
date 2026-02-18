@@ -24,13 +24,12 @@ w() { gum style --foreground 7 "$*"; }
 MSG="''${1:-$(date -u +'%Y-%m-%d %H:%M UTC')}"
 cd "${repoPath}"
 
-echo
-gum join --horizontal "$(g "[>] ")" "Packaging Repository..."
+gum join --horizontal "$(m "[>] ")" "Packaging Repository..."
 repomix --quiet --include "dotfiles/**,common/**,home/**" || true
 repomix --quiet --include "dotfiles/**,common/**,lab/**" || true
 
 echo
-gum join --horizontal "$(g "[>] ")" "Committing local changes..."
+gum join --horizontal "$(m "[>] ")" "Committing local changes..."
 git add .
 if ! git diff-index --quiet HEAD --; then
     git commit -m "$MSG"
@@ -44,7 +43,7 @@ if git remote | grep -q "^lab$"; then
     TARGET_ADDR=''${TARGET_ADDR%/}
 
     echo
-    gum join --horizontal "$(g "[>] ")" "Mirroring to Lab: " "$(y "$TARGET_ADDR")" "..."
+    gum join --horizontal "$(m "[>] ")" "Mirroring to Lab: " "$(y "$TARGET_ADDR")" "..."
     
     if rsync -azq --delete \
       --exclude ".direnv/" \
