@@ -39,7 +39,7 @@ if status is-interactive
   end
 
   # Gitsync wrapper
-  function gitsync
+  function sync
       set -l branch (git branch --show-current)
       
       if test -z "$branch"

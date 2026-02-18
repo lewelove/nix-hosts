@@ -8,7 +8,7 @@ $character
 [time]
 disabled = false
 format = "$time"
-time_format = "%H:%M" 
+time_format = "%H:%M:%S" 
 
 [username]
 show_always = true
@@ -27,4 +27,4 @@ style = "cyan"
 
 [character]
 success_symbol = "[\\[](bright-black)[>](bright-black)[\\]](bright-black)"
-error_symbol = "[\\[](red)[>](red)[\\]](red)"
+error_symbol = "[\\[](bright-black)[>](bright-black)[\\]](bright-black)"
