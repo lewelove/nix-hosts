@@ -4,7 +4,7 @@ if status is-interactive
 
   starship init fish | source
 
-  set -g fish_color_command magenta
+  set -g fish_color_command green
 
   function starship_newline --on-event fish_prompt
       if set -q _starship_rendered
