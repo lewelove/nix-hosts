@@ -26,8 +26,8 @@ cd "${repoPath}"
 
 echo
 gum join --horizontal "$(g ">")" " Repomixing..."
-repomix --quiet --include "common/**,home/**" || true
-repomix --quiet --include "common/**,lab/**" || true
+repomix --quiet --include "dotfiles/**,common/**,home/**" || true
+repomix --quiet --include "dotfiles/**,common/**,lab/**" || true
 
 echo
 gum join --horizontal "$(g ">")" " Committing local changes..."

@@ -17,7 +17,6 @@
         download = "/run/media/${username}/1000xhome/downloads";
       };
 
-      };
     };
   };
 
