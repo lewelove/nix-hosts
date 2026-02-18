@@ -53,7 +53,6 @@ if git remote | grep -q "^lab$"; then
     then
         gum join --horizontal "$(g "[+] ")" "Lab is now a perfect mirror."
     else
-        echo
         gum join --horizontal "$(r "[!] ")" "Sync to Lab failed."
         exit 1
     fi
@@ -70,10 +69,8 @@ if git remote | grep -q "^origin$"; then
     if
         git push -u origin main
     then
-        echo
         gum join --horizontal "$(g "[+] ")" "Pushed to origin."
     else
-        echo
         gum join --horizontal "$(r "[!] ")" "Push failed."
     fi
 fi
