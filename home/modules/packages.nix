@@ -15,7 +15,7 @@
     ydotool
     wtype
     wev
-    xorg.xhost
+    xhost
     pulseaudio
     gnome-disk-utility
     bluez

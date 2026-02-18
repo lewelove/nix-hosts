@@ -1,0 +1,20 @@
+[options]
+scaling_mode = shrink
+
+upscaling_method = nearest_neighbour
+
+[binds]
+<Escape> = quit
+h = prev
+l = next
+j = nop
+k = nop
+
+a = zoom actual
+r = reset
+c = center
+
+<Shift+S> = upscaling next
+
+<ScrollUp> = zoom 5%
+<ScrollDown> = zoom -5%

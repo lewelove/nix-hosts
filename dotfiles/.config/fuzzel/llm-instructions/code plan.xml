@@ -1,0 +1,16 @@
+<instruction_for_the_next_reply>
+**instruction purpose:**
+  to write professional code.
+**required behavior:**
+  be extremely professional.
+  be extremely thoughtful.
+  be extremely careful.
+**instruction:**
+  execute drafted plan step by step.
+  follow plan closely.
+  write out the code.
+  write out only files that require change and nothing else. 
+  for each file changed write it in full.
+**important constraints:**
+  never write additional comments unless explicitly asked.
+</instruction_for_the_next_reply>

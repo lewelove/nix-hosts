@@ -41,7 +41,7 @@ export NH_FLAKE="${hostPath}"
 if
     NH_NOM=1 nh os switch "${hostPath}" --hostname "$TARGET_HOST"
 then
-    tilde-stow
+    # tilde-stow
     echo
     gum join --horizontal "$(g ">")" " " "$(g "SUCCESS ")" "Configuration for " "$(b "$TARGET_HOST")" " applied."
 else

@@ -15,6 +15,7 @@
     ./modules/hardware-configuration.nix
     ./modules/nvidia.nix
 
+    ./modules/tilde.nix
     ./modules/networking.nix
     ./modules/bluetooth.nix
     ./modules/virtualization.nix
