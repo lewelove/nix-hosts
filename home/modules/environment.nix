@@ -2,12 +2,6 @@
 
 {
 
-  environment.loginShellInit = ''
-    if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
-       exec start-hyprland
-    fi
-  '';
-
   environment.extraInit = ''
     export PATH="$HOME/.commands:$HOME/.scripts:$PATH"
     export XDG_DATA_DIRS="$HOME/.applications:$XDG_DATA_DIRS"

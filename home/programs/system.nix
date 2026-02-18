@@ -1,6 +1,14 @@
 { pkgs, identity, ... }:
 
 {
+  programs.fish = {
+    enable = true;
+    loginShellInit = ''
+      if test -z "$DISPLAY" -a (tty) = "/dev/tty1"
+        exec start-hyprland
+      end
+    '';
+  };
 
   programs.ssh.startAgent = true;
 
@@ -21,6 +29,7 @@
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;
+    enableFishIntegration = true;
   };
 
   programs.fuse.userAllowOther = true;
@@ -29,5 +38,4 @@
     fuzzyCompletion = true;
     keybindings = true;
   };
-
 }

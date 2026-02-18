@@ -2,7 +2,6 @@
 
 {
   home-manager.users.${username} = { config, ... }: let
-    # This 'config' is the Home Manager config, which contains the helper.
     link = config.lib.file.mkOutOfStoreSymlink;
     dot = "${identity.repoPath}/dotfiles";
   in {
@@ -13,6 +12,7 @@
       ".applications".source = link "${dot}/.applications";
 
       # --- .config Directories ---
+      ".config/fish".source = link "${dot}/.config/fish"; # Add this line
       ".config/nvim".source = link "${dot}/.config/nvim";
       ".config/foot".source = link "${dot}/.config/foot";
       ".config/fuzzel".source = link "${dot}/.config/fuzzel";
@@ -35,7 +35,7 @@
       ".config/listenbrainz-mpd".source = link "${dot}/.config/listenbrainz-mpd";
       ".config/uwsm".source = link "${dot}/.config/uwsm";
 
-      # --- Individual Config Files (Avoids Directory Collisions with HM-managed GTK) ---
+      # --- Individual Config Files ---
       ".config/mimeapps.list".source = link "${dot}/.config/mimeapps.list";
       ".config/gtk-3.0/bookmarks".source = link "${dot}/.config/gtk-3.0/bookmarks";
 

@@ -1,13 +1,12 @@
 { config, pkgs, inputs, username, ... }:
 
 {
-  
   services.getty.autologinUser = "${username}";
 
   users.users.${username} = {
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel"  "input" "uinput" ];
-    shell = pkgs.bash; 
+    shell = pkgs.fish; 
     autoSubUidGidRange = true;
   };
 
@@ -22,5 +21,4 @@
       ];
     }
   ];
-
 }
