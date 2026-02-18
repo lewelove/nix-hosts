@@ -44,7 +44,7 @@ if git remote | grep -q "^lab$"; then
     TARGET_ADDR=''${TARGET_ADDR%/}
 
     echo
-    gum join --horizontal "$(g "> ")" "Mirroring to Lab" "$(y "($TARGET_ADDR)")" "..."
+    gum join --horizontal "$(g "> ")" "Mirroring to Lab: " "$(y "$TARGET_ADDR")" "..."
     
     if rsync -azq --delete \
       --exclude ".direnv/" \
@@ -65,7 +65,7 @@ if git remote | grep -q "^origin$"; then
     TARGET_ADDR=''${TARGET_ADDR%/}
 
     echo
-    gum join --horizontal "$(g "> ")" "Pushing to Origin " "$(y "($TARGET_ADDR)")" "..."
+    gum join --horizontal "$(g "> ")" "Pushing to Origin: " "$(y "$TARGET_ADDR")" "..."
 
     if
         git push -u origin main
