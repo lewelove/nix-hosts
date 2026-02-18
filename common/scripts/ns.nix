@@ -25,12 +25,12 @@ MSG="''${1:-$(date -u +'%Y-%m-%d %H:%M UTC')}"
 cd "${repoPath}"
 
 echo
-gum join --horizontal "$(g ">")" " Repomixing..."
+gum join --horizontal "$(g "> Repomixing...")"
 repomix --quiet --include "dotfiles/**,common/**,home/**" || true
 repomix --quiet --include "dotfiles/**,common/**,lab/**" || true
 
 echo
-gum join --horizontal "$(g ">")" " Committing local changes..."
+gum join --horizontal "$(g "> Committing local changes...")"
 git add .
 if ! git diff-index --quiet HEAD --; then
     git commit -m "$MSG"
@@ -51,18 +51,26 @@ if git remote | grep -q "^lab$"; then
       --exclude "result" \
       "${repoPath}/" "$TARGET_ADDR/"; 
     then
-        gum join --horizontal "$(g ">")" " " "$(g "SUCCESS")" " - Lab is now a perfect mirror."
+        gum join --horizontal "$(g "> SUCCESS")" " - Lab is now a perfect mirror."
     else
         echo
-        gum join --horizontal "$(r ">")" " " "$(r "FAILURE")" " - Sync to Lab failed."
+        gum join --horizontal "$(r "> FAILURE")" " - Sync to Lab failed."
         exit 1
     fi
 fi
 
 if git remote | grep -q "^origin$"; then
-    echo
-    gum join --horizontal "$(g ">")" " Pushing to Origin..."
-    git push -u origin main
+    if
+        echo
+        gum join --horizontal "$(g ">")" " Pushing to Origin..."
+        git push -u origin main
+    then
+        echo
+        gum join --horizontal "$(g "> SUCCESS")" " - Pushed to origin."
+    else
+        echo
+        gum join --horizontal "$(r "> FAILURE")" " - Git Push failed."
+    fi
 fi
 
 ################################################################
