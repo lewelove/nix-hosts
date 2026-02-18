@@ -6,6 +6,14 @@
   time.timeZone = "Europe/Moscow";
   i18n.defaultLocale = "en_US.UTF-8";
 
+  # --- Docs ---
+  documentation = {
+    enable = true;
+    man.enable = true;
+    man.generateCaches = false;
+    nixos.enable = false;
+  };
+
   # --- Fonts ---
   fonts = {
     packages = with pkgs; [

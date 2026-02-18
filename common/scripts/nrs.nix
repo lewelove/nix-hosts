@@ -32,21 +32,16 @@ cd "${repoPath}" || exit 1
 
 git add .
 
-echo
-gum join --horizontal "$(g ">")" " Rebuilding NixOS for " "$(b "$TARGET_HOST")" "..."
-echo
-
 export NH_FLAKE="${hostPath}"
 
 if
     NH_NOM=1 nh os switch "${hostPath}" --hostname "$TARGET_HOST"
 then
-    # tilde-stow
     echo
-    gum join --horizontal "$(g ">")" " " "$(g "SUCCESS ")" "Configuration for " "$(b "$TARGET_HOST")" " applied."
+    gum join --horizontal "$(g "[+] ")" "Configuration for " "$(b "$TARGET_HOST")" " applied."
 else
     echo
-    gum join --horizontal "$(b ">")" " " "$(r "FAILURE ")" "Build failed."
+    gum join --horizontal "$(r "[!] ")" "Build failed."
     exit 1
 fi
 

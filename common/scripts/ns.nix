@@ -25,12 +25,12 @@ MSG="''${1:-$(date -u +'%Y-%m-%d %H:%M UTC')}"
 cd "${repoPath}"
 
 echo
-gum join --horizontal "$(g "> Repomixing...")"
+gum join --horizontal "$(g "> ")" "Repomixing..."
 repomix --quiet --include "dotfiles/**,common/**,home/**" || true
 repomix --quiet --include "dotfiles/**,common/**,lab/**" || true
 
 echo
-gum join --horizontal "$(g "> Committing local changes...")"
+gum join --horizontal "$(g "> ")" "Committing local changes..."
 git add .
 if ! git diff-index --quiet HEAD --; then
     git commit -m "$MSG"
@@ -44,17 +44,17 @@ if git remote | grep -q "^lab$"; then
     TARGET_ADDR=''${TARGET_ADDR%/}
 
     echo
-    gum join --horizontal "$(g "> Mirroring to Lab (")" "$(y "$TARGET_ADDR")" "$(g ") ...")"
+    gum join --horizontal "$(g "> ")" "Mirroring to Lab" "$(y "($TARGET_ADDR)")" "..."
     
     if rsync -azq --delete \
       --exclude ".direnv/" \
       --exclude "result" \
       "${repoPath}/" "$TARGET_ADDR/"; 
     then
-        gum join --horizontal "$(g ":: SUCCESS :: ")" " Lab is now a perfect mirror."
+        gum join --horizontal "$(g "[+] ")" "Lab is now a perfect mirror."
     else
         echo
-        gum join --horizontal "$(r ":: FAILURE :: ")" " Sync to Lab failed."
+        gum join --horizontal "$(r "[!] ")" "Sync to Lab failed."
         exit 1
     fi
 fi
@@ -65,16 +65,16 @@ if git remote | grep -q "^origin$"; then
     TARGET_ADDR=''${TARGET_ADDR%/}
 
     echo
-    gum join --horizontal "$(g "> Pushing to Origin (")" "$(y "$TARGET_ADDR")" "$(g ") ...")"
+    gum join --horizontal "$(g "> ")" "Pushing to Origin " "$(y "($TARGET_ADDR)")" "..."
 
     if
         git push -u origin main
     then
         echo
-        gum join --horizontal "$(g ":: SUCCESS ::")" " Pushed to origin."
+        gum join --horizontal "$(g "[+] ")" "Pushed to origin."
     else
         echo
-        gum join --horizontal "$(r ":: FAILURE ::")" " Git Push failed."
+        gum join --horizontal "$(r "[!] ")" "Push failed."
     fi
 fi
 
