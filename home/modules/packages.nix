@@ -53,6 +53,7 @@
     bat
     fd
     fastfetch
+    starship
 
     # Virtualization
     distrobox

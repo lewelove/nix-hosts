@@ -12,7 +12,8 @@
       ".applications".source = link "${dot}/.applications";
 
       # --- .config Directories ---
-      ".config/fish".source = link "${dot}/.config/fish"; # Add this line
+      ".config/fish".source = link "${dot}/.config/fish";
+      ".config/starship.toml".source = link "${dot}/.config/starship.toml";
       ".config/nvim".source = link "${dot}/.config/nvim";
       ".config/foot".source = link "${dot}/.config/foot";
       ".config/fuzzel".source = link "${dot}/.config/fuzzel";
