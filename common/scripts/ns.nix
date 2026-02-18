@@ -44,32 +44,37 @@ if git remote | grep -q "^lab$"; then
     TARGET_ADDR=''${TARGET_ADDR%/}
 
     echo
-    gum join --horizontal "$(g ">")" " Mirroring to Lab (" "$(y "$TARGET_ADDR")" ")..."
+    gum join --horizontal "$(g "> Mirroring to Lab (")" "$(y "$TARGET_ADDR")" "$(g ") ...")"
     
     if rsync -azq --delete \
       --exclude ".direnv/" \
       --exclude "result" \
       "${repoPath}/" "$TARGET_ADDR/"; 
     then
-        gum join --horizontal "$(g "> SUCCESS")" " - Lab is now a perfect mirror."
+        gum join --horizontal "$(g ":: SUCCESS :: ")" " Lab is now a perfect mirror."
     else
         echo
-        gum join --horizontal "$(r "> FAILURE")" " - Sync to Lab failed."
+        gum join --horizontal "$(r ":: FAILURE :: ")" " Sync to Lab failed."
         exit 1
     fi
 fi
 
 if git remote | grep -q "^origin$"; then
+    RAW_ADDR=$(git remote get-url origin)
+    TARGET_ADDR=''${RAW_ADDR%.git}
+    TARGET_ADDR=''${TARGET_ADDR%/}
+
+    echo
+    gum join --horizontal "$(g "> Pushing to Origin (")" "$(y "$TARGET_ADDR")" "$(g ") ...")"
+
     if
-        echo
-        gum join --horizontal "$(g ">")" " Pushing to Origin..."
         git push -u origin main
     then
         echo
-        gum join --horizontal "$(g "> SUCCESS")" " - Pushed to origin."
+        gum join --horizontal "$(g ":: SUCCESS ::")" " Pushed to origin."
     else
         echo
-        gum join --horizontal "$(r "> FAILURE")" " - Git Push failed."
+        gum join --horizontal "$(r ":: FAILURE ::")" " Git Push failed."
     fi
 fi
 
