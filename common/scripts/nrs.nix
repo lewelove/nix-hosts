@@ -24,7 +24,7 @@ w() { gum style --foreground 7 "$*"; }
 TARGET_HOST="''${1:-$(hostname)}"
 
 if [ ! -d "${hostPath}" ]; then
-  echo "$(g ">")" " Error: Host directory ${hostPath} does not exist in ${repoPath}"
+  echo "$(r "[!] ")" "Error: Host directory ${hostPath} does not exist in ${repoPath}"
   exit 1
 fi
 
