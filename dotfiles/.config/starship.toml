@@ -26,5 +26,5 @@ truncate_to_repo = false
 style = "cyan"
 
 [character]
-success_symbol = "[>](bright-black)"
+success_symbol = "[>](blue)"
 error_symbol = "[>](red)"
