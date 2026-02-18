@@ -3,16 +3,29 @@
 let
   nt = pkgs.writeShellApplication {
     name = "nt";
-    runtimeInputs = with pkgs; [ nix git ];
+    runtimeInputs = with pkgs; [ nh nix-output-monitor coreutils gum ];
     text = ''
 
 ################################################################
+
+rb() { gum style --foreground 1 --bold "$*"; }
+gb() { gum style --foreground 2 --bold "$*"; }
+yb() { gum style --foreground 3 --bold "$*"; }
+bb() { gum style --foreground 4 --bold "$*"; }
+mb() { gum style --foreground 5 --bold "$*"; }
+wb() { gum style --foreground 7 --bold "$*"; }
+r() { gum style --foreground 1 "$*"; }
+g() { gum style --foreground 2 "$*"; }
+y() { gum style --foreground 3 "$*"; }
+b() { gum style --foreground 4 "$*"; }
+m() { gum style --foreground 5 "$*"; }
+w() { gum style --foreground 7 "$*"; }
 
 REPO_DIR="${identity.repoPath}"
 TARGET_HOST="''${1:-}"
 
 if [ -z "$TARGET_HOST" ]; then
-  echo "Usage: nt <hostname>"
+  echo "$(r "[!] ")" "Usage: nt <hostname>"
   exit 1
 fi
 
@@ -20,21 +33,20 @@ cd "$REPO_DIR" || exit 1
 TARGET_PATH="$REPO_DIR/$TARGET_HOST"
 
 if [ ! -d "$TARGET_PATH" ]; then
-  echo ":: Error: Host directory $TARGET_PATH does not exist."
+  echo "$(r "[!] ")" "Error: Host directory $(b "$TARGET_HOST") does not exist in $REPO_DIR"
   exit 1
 fi
 
 echo
-echo ":: Verifying Flake for [$TARGET_HOST] (No Link)..."
+gum join --horizontal "$(m "[>] ")" "Verifying Flake for " "$(b "[$TARGET_HOST]")" "..."
 echo
 
-# We point directly to the system derivation inside the flake
-if nix build "$TARGET_PATH#nixosConfigurations.$TARGET_HOST.config.system.build.toplevel" --no-link; then
+if NH_NOM=1 nh os build "$TARGET_PATH" --hostname "$TARGET_HOST"; then
     echo
-    echo ":: SUCCESS: $TARGET_HOST is valid and buildable."
+    gum join --horizontal "$(g "[+] ")" "$(b "$TARGET_HOST")" " is valid and buildable."
 else
     echo
-    echo ":: FAILURE: $TARGET_HOST build failed."
+    gum join --horizontal "$(r "[!] ")" "$(b "$TARGET_HOST")" " build failed."
     exit 1
 fi
 
