@@ -16,15 +16,7 @@
       users = [ "${username}" ];
       commands = [
         { 
-          command = "/run/current-system/sw/bin/killall";
-          options = [ "NOPASSWD" ];
-        }
-        { 
-          command = "/run/current-system/sw/bin/awg-quick";
-          options = [ "NOPASSWD" ];
-        }
-        { 
-          command = "/run/current-system/sw/bin/nixos-rebuild";
+          command = "/run/current-system/sw/bin/awgr";
           options = [ "NOPASSWD" ];
         }
       ];
