@@ -120,7 +120,6 @@ process.on('exit', () => {
         }
 
         fs.writeFileSync(fullOutputPath, content);
-        console.log(`\nRepomixed: ${dynamicName}`);
 
     } catch (err) {
         console.error('Error post-processing:', err);
