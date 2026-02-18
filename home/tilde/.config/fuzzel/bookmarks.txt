@@ -1,4 +1,0 @@
-Google AI Studio=https://aistudio.google.com/prompts/new_chat
-GitHub / lewelove=https://github.com/lewelove
-Openrouter=https://openrouter.ai
-Nix Search=https://search.nixos.org/packages
