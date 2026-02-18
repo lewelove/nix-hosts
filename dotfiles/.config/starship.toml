@@ -2,7 +2,8 @@ add_newline = false
 
 format = """
 [\\[](bright-black)[$time](bright-black)[\\]](bright-black) [$username](yellow)[@](green)[$hostname](blue) [$directory](purple)
-$character"""
+$character
+"""
 
 [time]
 disabled = false
@@ -12,7 +13,6 @@ time_format = "%H:%M"
 [username]
 show_always = true
 format = "$user"
-style_user = "blue"
 
 [hostname]
 ssh_only = false
@@ -21,7 +21,8 @@ style = "blue"
 
 [directory]
 format = "$path"
-truncation_length = 3
+truncation_length = 100
+truncate_to_repo = false
 style = "cyan"
 
 [character]
