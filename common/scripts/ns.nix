@@ -52,7 +52,7 @@ if git remote | grep -q "^lab$"; then
     then
         gum join --horizontal "$(g "[+] ")" "Lab is now a perfect mirror."
     else
-        gum join --horizontal "$(r "[!] ")" "Sync to Lab failed."
+        gum join --horizontal "$(r "[!] ")" "Mirroring to Lab failed."
         exit 1
     fi
 fi
@@ -63,12 +63,12 @@ if git remote | grep -q "^origin$"; then
     TARGET_ADDR=''${TARGET_ADDR%/}
 
     echo
-    gum join --horizontal "$(g "[>] ")" "Pushing to Origin: " "$(y "$TARGET_ADDR")" "..."
+    gum join --horizontal "$(m "[>] ")" "Pushing to Origin: " "$(y "$TARGET_ADDR")" "..."
 
     if
         git push -u origin main
     then
-        gum join --horizontal "$(g "[+] ")" "Pushed to origin."
+        gum join --horizontal "$(g "[+] ")" "Pushed to Origin."
     else
         gum join --horizontal "$(r "[!] ")" "Push failed."
     fi
