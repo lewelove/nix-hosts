@@ -7,16 +7,12 @@
 
   <required_behavior>
     - be extremely professional.
-    - be extremely thoughtful.
-    - be extremely pedantic.
-    - use standard time-tested solutions.
   <required_behavior>
 
   <instruction>
-    create robust plan required for full implementation like this:
+    create plan required for implementation like this:
       - describe what you will implement
-      - in short describe technical way to get there
-      - convince me why technical decision you picked is the best and the most professional one.
+      - in short describe way to get there in the most elegant simple way aligning with unix philosophy
   </instruction>
 
   <important_constraints>
