@@ -38,24 +38,4 @@ if status is-interactive
       end
   end
 
-  # Gitsync wrapper
-  function sync
-      set -l branch (git branch --show-current)
-      
-      if test -z "$branch"
-          echo "Error: Not in a git repository or no branch found."
-          return 1
-      end
-
-      set -l msg $argv[1]
-      if test -z "$msg"
-          set msg (date -u +"%Y-%m-%d at %H:%M UTC")
-      end
-
-      git add .
-      git commit -m "$msg"
-      git push -u origin "$branch"
-      
-      repomix --quiet
-  end
 end

@@ -68,6 +68,7 @@
     ../common/scripts/nrs.nix
     ../common/scripts/ns.nix
     ../common/scripts/nt.nix
+    ../common/scripts/sync.nix
     ./scripts/awgr.nix
   ];
 
