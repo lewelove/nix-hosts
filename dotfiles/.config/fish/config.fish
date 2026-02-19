@@ -28,8 +28,8 @@ if status is-interactive
   alias scur="systemctl --user restart"
   alias jc="journalctl -fu"
   alias jcu="journalctl --user -fu"
+  alias sync="git-sync-bin"
 
-  # Distrobox wrapper
   function distrobox
       if contains $argv[1] create rm stop assemble
           systemd-run --user --scope --unit=distrobox-setup distrobox $argv
