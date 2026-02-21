@@ -8,6 +8,7 @@ let
     "mpd.home"       = 666;
     "vellum.home"    = 5173;
     "openwebui.home" = 8080;
+    "excalidraw.home" = 5000;
   };
 
 in {

@@ -43,6 +43,7 @@
     ./programs/web-applications/vscode.nix
     ./programs/web-applications/comfyui.nix
     ./programs/web-applications/eluxum.nix
+    ./programs/web-applications/excalidraw.nix
 
     # System Services
     # ./services/xremap.nix
@@ -62,6 +63,7 @@
     ./services/user/quickshell.nix
     ./services/user/listenbrainz-mpd-90-no4m.nix
     ./services/user/polkit-agent.nix
+    ./services/user/excalidraw.nix
 
     # Scripts
     ../common/scripts/tilde-stow.nix
