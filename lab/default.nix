@@ -12,7 +12,7 @@
     ./network/core.nix
     ./network/inbound.nix
     ./network/openssh.nix
-    ./network/amneziawg.nix
+    # ./network/amneziawg.nix
 
     ./network/routing-isp.nix
     # ./network/tailscale.nix
@@ -35,7 +35,7 @@
     ./services/nfs.nix
     ./services/jellyfin.nix
     ./services/qbittorrent.nix
-    ./services/openclaw.nix
+    # ./services/openclaw.nix
 
     # Scripts
     ../common/scripts/tilde-stow.nix
