@@ -1,4 +1,4 @@
-<instruction_for_the_next_reply>
+<instruction>
 
   <purpose>
     - to plan implementation of the idea discussed.
@@ -7,7 +7,7 @@
 
   <required_behavior>
     - be extremely thoughtful.
-  <required_behavior>
+  </required_behavior>
 
   <instruction>
     create plan required for implementation like this:
@@ -20,8 +20,8 @@
       - omit all introductory preambles, summaries, and compliments. get straight to the point.
     </constraint>
     <constraint>
-      - you are strictly prohibited to write any code blocks in the next reply until explicitly asked by me.
+      - you are strictly prohibited to write any code blocks in your next reply.
     </constraint>
   </important_constraints>
 
-</instruction_for_the_next_reply>
+</instruction>

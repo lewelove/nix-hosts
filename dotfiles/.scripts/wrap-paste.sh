@@ -11,8 +11,6 @@ wtype -k Return
 
 wtype -M ctrl v -m ctrl
 
-sleep 0.1
-
 wtype -k Return
 wtype '```'
 wtype -k Return

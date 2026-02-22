@@ -90,7 +90,6 @@
 ; (gtk_accel_path "<Actions>/ThunarWindow/view-location-selector-menu" "")
 ; (gtk_accel_path "<Actions>/ThunarBookmarks/f263358e0612618ffdebe7537c2947d0" "")
 ; (gtk_accel_path "<Actions>/ThunarWindow/edit-menu" "")
-; (gtk_accel_path "<Actions>/ThunarBookmarks/0eeb4eda3344c941040537b5d72e8921" "")
 ; (gtk_accel_path "<Actions>/ThunarBookmarks/fcfef04be1f49c794fdd63595304e004" "")
 ; (gtk_accel_path "<Actions>/ThunarActionManager/copy" "<Primary>c")
 ; (gtk_accel_path "<Actions>/ThunarStandardView/unselect-all-files" "Escape")
