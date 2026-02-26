@@ -14,6 +14,7 @@
     killall
     jq
     btop
+    wol
 
     # Terminal Programs
     neovim

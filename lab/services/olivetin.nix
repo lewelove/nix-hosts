@@ -7,6 +7,11 @@
       listenAddressSingleHTTPFrontend = "0.0.0.0:1337";
       actions = [
         {
+          title = "WAKE HOME COMPUTER";
+          icon = "🖥️";
+          shell = "${pkgs.wol}/bin/wol e0:d5:5e:79:c2:d4";
+        }
+        {
           title = "VPN: START RANDOM / RESTART";
           icon = "🚀";
           shell = "/run/wrappers/bin/sudo /run/current-system/sw/bin/awgu";
