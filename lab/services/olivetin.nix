@@ -9,7 +9,7 @@
         {
           title = "WAKE HOME COMPUTER";
           icon = "🖥️";
-          shell = "${pkgs.wol}/bin/wol e0:d5:5e:79:c2:d4";
+          shell = "${pkgs.wakeonlan}/bin/wakeonlan -i 192.168.1.255 e0:d5:5e:79:c2:d4";
         }
         {
           title = "VPN: START RANDOM / RESTART";
