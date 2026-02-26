@@ -62,7 +62,7 @@ let
 
   windowUserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36";
 
-  trustedOrigins = "http://vscode.home:4444,http://mpf2k.home:5173,http://qbittorrent.lab:8080";
+  trustedOrigins = "http://vscode.home,http://vellum.home,http://qbittorrent.lab";
 
   commonArgs = [
     "--test-type"
