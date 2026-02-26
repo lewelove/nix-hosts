@@ -1,15 +1,14 @@
 #!/usr/bin/env bash
 
-CONTENT=$(wl-paste)
-if [ -z "$CONTENT" ]; then
-    exit 0
-fi
-
 wtype -k Return
 wtype '```'
 wtype -k Return
 
+sleep 0.05
+
 wtype -M ctrl v -m ctrl
+
+sleep 0.05
 
 wtype -k Return
 wtype '```'

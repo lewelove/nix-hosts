@@ -21,16 +21,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   end,
 })
 
--- Set filetype-specific settings
-vim.api.nvim_create_autocmd("FileType", {
-  group = augroup,
-  pattern = { "lua", "python" },
-  callback = function()
-    vim.opt_local.tabstop = 4
-    vim.opt_local.shiftwidth = 4
-  end,
-})
-
 -- Enable spellcheck for specific filetypes
 vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("SpellCheck", { clear = true }),
@@ -44,15 +34,6 @@ vim.api.nvim_set_hl(0, "SpellBad", { undercurl = true, sp = "#EA4335" })
 vim.api.nvim_set_hl(0, "SpellRare", { underline = false, undercurl = false })
 vim.api.nvim_set_hl(0, "SpellLocal", { underline = false, undercurl = false })
 vim.api.nvim_set_hl(0, "SpellCap", { underline = false, undercurl = false })
-
-vim.api.nvim_create_autocmd("FileType", {
-  group = augroup,
-  pattern = { "javascript", "typescript", "json", "html", "css" },
-  callback = function()
-    vim.opt_local.tabstop = 2
-    vim.opt_local.shiftwidth = 2
-  end,
-})
 
 -- Autoname file based on first line
 _G.RenameByContent = function()
@@ -184,4 +165,3 @@ local undodir = vim.fn.expand("~/.vim/undodir")
 if vim.fn.isdirectory(undodir) == 0 then
   vim.fn.mkdir(undodir, "p")
 end
-

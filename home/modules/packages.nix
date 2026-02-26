@@ -12,6 +12,7 @@
     tree
     killall
     jq
+    jaq
     ydotool
     wtype
     wev
@@ -54,6 +55,8 @@
     fd
     fastfetch
     starship
+    hyperfine
+    lazygit
 
     # Virtualization
     distrobox

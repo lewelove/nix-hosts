@@ -1,4 +1,4 @@
-<one_time_instruction>
+<instruction_for_the_next_reply>
 
   <persona>
   </persona>
@@ -19,4 +19,4 @@
     </constraint>
   </important_constraints>
 
-</one_time_instruction>
+</instruction_for_the_next_reply>
