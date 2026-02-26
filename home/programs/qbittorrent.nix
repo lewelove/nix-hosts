@@ -2,7 +2,7 @@
 
 let
   wrapper = config.my.chromium.wrapper;
-  url = "http://192.168.1.100:8080";
+  url = "http://qbittorrent.lab";
   name = "qBittorrent";
   icon = "qbittorrent";
 in

@@ -33,37 +33,31 @@
     ./programs/system.nix
 
     # Web Applications
-    ./programs/web-applications/youtube.nix
-    ./programs/web-applications/photopea.nix
-    ./programs/web-applications/figma.nix
+    ./programs/youtube.nix
+    ./programs/photopea.nix
+    ./programs/figma.nix
 
-    # Local Web Applications
-    ./programs/web-applications/qbittorrent.nix
-    ./programs/web-applications/jellyfin.nix
-    ./programs/web-applications/vscode.nix
-    ./programs/web-applications/comfyui.nix
-    ./programs/web-applications/eluxum.nix
-    ./programs/web-applications/excalidraw.nix
+    # Local Network Web Applications
+    ./programs/qbittorrent.nix
+    ./programs/jellyfin.nix
+    ./programs/vscode.nix
+    ./programs/comfyui.nix
+    ./programs/vellum.nix
+    ./programs/excalidraw.nix
 
     # System Services
     # ./services/xremap.nix
     ./services/keyd.nix
-    ./services/mympd.nix
     ./services/olivetin.nix
     ./services/open-webui.nix
-    ./services/local-domains.nix
 
     # User Services
     ./services/user/mpd.nix
-    ./services/user/chromium-service.nix
-    ./services/user/code-server.nix
     ./services/user/swww.nix
-    ./services/user/figma-agent.nix
     # ./services/user/wlsunset.nix
     ./services/user/quickshell.nix
     ./services/user/listenbrainz-mpd-90-no4m.nix
     ./services/user/polkit-agent.nix
-    ./services/user/excalidraw.nix
 
     # Scripts
     ../common/scripts/tilde-stow.nix
