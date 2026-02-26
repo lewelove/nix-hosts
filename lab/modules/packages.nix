@@ -16,7 +16,7 @@
     btop
     wol
     tcpdump
-    ether-wake
+    etherwake
 
     # Terminal Programs
     neovim
