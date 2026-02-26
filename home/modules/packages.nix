@@ -23,6 +23,7 @@
     blueman
     sshfs
     nfs-utils
+    tcpdump
 
     # Desktop
     fuzzel

@@ -15,6 +15,7 @@
     jq
     btop
     wol
+    tcpdump
 
     # Terminal Programs
     neovim
