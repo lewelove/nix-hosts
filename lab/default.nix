@@ -31,7 +31,7 @@
 
     # Services
     # ./services/transmission.nix
-    # ./services/olivetin.nix
+    ./services/olivetin.nix
     ./services/nfs.nix
     ./services/jellyfin.nix
     ./services/qbittorrent.nix
