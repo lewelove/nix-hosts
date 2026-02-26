@@ -17,6 +17,7 @@
     wol
     tcpdump
     net-tools
+    wakeonlan
 
     # Terminal Programs
     neovim
