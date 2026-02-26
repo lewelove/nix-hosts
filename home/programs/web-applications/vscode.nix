@@ -2,7 +2,7 @@
 
 let
   wrapper = config.my.chromium.wrapper;
-  url = "http://vscode.home/"; # Clean URL
+  url = "https://vscode.home/";
   name = "VS Code";
   icon = "code";
 in

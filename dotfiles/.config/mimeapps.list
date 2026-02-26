@@ -4,7 +4,6 @@ x-scheme-handler/http=zen-beta.desktop
 x-scheme-handler/https=zen-beta.desktop
 x-scheme-handler/about=zen-beta.desktop
 x-scheme-handler/unknown=zen-beta.desktop
-
 text/plain=nvim-foot.desktop
 text/markdown=nvim-foot.desktop
 text/x-log=nvim-foot.desktop

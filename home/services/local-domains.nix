@@ -1,7 +1,6 @@
 { config, pkgs, lib, ... }:
 
 let
-  # Map your domains to their local ports
   localServices = {
     "vscode.home"    = 4444;
     "comfy.home"     = 8188;
@@ -20,12 +19,20 @@ in {
     recommendedProxySettings = true;
 
     virtualHosts = lib.mapAttrs (domain: port: {
+      forceSSL = true;
+      
+      sslCertificate = "/etc/ssl/local/${domain}.pem";
+      sslCertificateKey = "/etc/ssl/local/${domain}-key.pem";
+
       locations."/" = {
         proxyPass = "http://127.0.0.1:${toString port}";
         proxyWebsockets = true;
       };
     }) localServices;
   };
+
+  # Ensure Nginx has access to the directory
+  systemd.services.nginx.serviceConfig.ReadOnlyPaths = [ "/etc/ssl/local" ];
 
   services.logrotate.enable = false;
 

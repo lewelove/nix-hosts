@@ -24,6 +24,7 @@
     sshfs
     nfs-utils
     tcpdump
+    mkcert
 
     # Desktop
     fuzzel
