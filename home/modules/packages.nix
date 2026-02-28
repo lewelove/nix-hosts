@@ -75,6 +75,7 @@
     mediainfo
     imagemagick
     puddletag
+    roomeqwizard
     
     # Network
     amneziawg-go
