@@ -98,6 +98,7 @@
     nix-output-monitor
 
     # Flake Inputs
+    inputs.nvibrant.packages.${pkgs.system}.default
     inputs.zen-browser.packages.x86_64-linux.default
     # inputs.photogimp.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];

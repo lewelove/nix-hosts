@@ -12,6 +12,7 @@
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     photogimp.url = "github:Libadoxon/nix-photo-gimp";
     xremap.url = "github:xremap/nix-flake";
+    nvibrant.url = "github:mikaeladev/nix-nvibrant";
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
