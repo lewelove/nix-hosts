@@ -3,8 +3,7 @@ Type=Application
 Name=Neovim (Foot)
 GenericName=Text Editor
 Comment=Edit text files in Neovim via Foot
-# The -e flag tells foot to execute the following command
-Exec=foot -e nvim %F
+Exec=foot --app-id=nvim-foot -e nvim %F
 Icon=nvim
 Terminal=false
 Categories=Utility;TextEditor;Development;
