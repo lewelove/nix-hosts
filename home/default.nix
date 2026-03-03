@@ -43,6 +43,7 @@
     ./programs/vscode.nix
     ./programs/comfyui.nix
     ./programs/vellum.nix
+    ./programs/mympd.nix
     ./programs/excalidraw.nix
 
     # System Services
