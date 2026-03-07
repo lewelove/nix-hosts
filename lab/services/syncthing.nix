@@ -9,7 +9,7 @@ in
 {
   networking.firewall.allowedTCPPorts = [ 8384 22000 ];
   networking.firewall.allowedUDPPorts = [ 22000 21027 ];
-  #
+
   # services.nginx.virtualHosts."${domain}" = {
   #   locations."/" = {
   #     proxyPass = "http://127.0.0.1:${toString port}";
@@ -17,12 +17,12 @@ in
   #   };
   # };
 
-  services.syncthing = {
-    enable = true;
-    user = "${username}";
-    group = "users";
-    overrideDevices = false;
-    overrideFolders = false;
-    guiAddress = "0.0.0.0:${toString port}";
+  home-manager.users.${username} = {
+    services.syncthing = {
+      enable = true;
+      extraOptions = [
+        "--gui-address=0.0.0.0:8384"
+      ];
+    };
   };
 }
