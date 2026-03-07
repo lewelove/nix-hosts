@@ -24,6 +24,5 @@ in
     overrideDevices = false;
     overrideFolders = false;
     guiAddress = "127.0.0.1:${toString port}";
-    };
   };
 }
