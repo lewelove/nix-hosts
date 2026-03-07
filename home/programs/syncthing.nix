@@ -19,6 +19,8 @@ in
 
   services.syncthing = {
     enable = true;
+    user = "${username}";
+    group = "users";
     overrideDevices = false;
     overrideFolders = false;
     guiAddress = "127.0.0.1:${toString port}";
