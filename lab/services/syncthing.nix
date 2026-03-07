@@ -7,8 +7,8 @@ let
   port = 8384;
 in
 {
-  # networking.firewall.allowedTCPPorts = [ 22000 ];
-  # networking.firewall.allowedUDPPorts = [ 22000 21027 ];
+  networking.firewall.allowedTCPPorts = [ 8384 22000 ];
+  networking.firewall.allowedUDPPorts = [ 22000 21027 ];
   #
   # services.nginx.virtualHosts."${domain}" = {
   #   locations."/" = {
@@ -23,6 +23,6 @@ in
     group = "users";
     overrideDevices = false;
     overrideFolders = false;
-    guiAddress = "127.0.0.1:${toString port}";
+    guiAddress = "0.0.0.0:${toString port}";
   };
 }
