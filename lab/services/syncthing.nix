@@ -21,14 +21,9 @@ in
     enable = true;
     user = "${username}";
     group = "users";
-    guiAddress = "127.0.0.1:${toString port}";
     overrideDevices = false;
     overrideFolders = false;
-
-    settings = {
-      gui = {
-        user = "${username}";
-      };
+    guiAddress = "127.0.0.1:${toString port}";
     };
   };
 }
