@@ -23,6 +23,7 @@ in
     group = "users";
     overrideDevices = false;
     overrideFolders = false;
-    # guiAddress = "0.0.0.0:${toString port}";
+    guiAddress = "0.0.0.0:${toString port}";
+    overrideConfig = true;
   };
 }
