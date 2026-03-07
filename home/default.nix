@@ -45,6 +45,7 @@
     ./programs/vellum.nix
     ./programs/mympd.nix
     ./programs/excalidraw.nix
+    ./programs/syncthing.nix
 
     # System Services
     # ./services/xremap.nix

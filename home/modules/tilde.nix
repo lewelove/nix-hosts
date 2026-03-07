@@ -38,7 +38,7 @@
 
       # --- Individual Config Files ---
       ".config/mimeapps.list".source = link "${dot}/.config/mimeapps.list";
-      ".config/gtk-3.0/bookmarks".source = link "${dot}/.config/gtk-3.0/bookmarks";
+      # ".config/gtk-3.0/bookmarks".source = link "${dot}/.config/gtk-3.0/bookmarks";
 
       # --- External Storage Symlinks ---
       "Downloads/1000xhome".source = link "/run/media/${username}/1000xhome/downloads";
