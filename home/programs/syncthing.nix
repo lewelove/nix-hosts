@@ -31,18 +31,15 @@ in
     };
   };
 
-  services.syncthing = {
-    enable = true;
-    user = "${username}";
-    group = "users";
-    overrideDevices = false;
-    overrideFolders = false;
-    guiAddress = "127.0.0.1:${toString homePort}";
-    dataDir = "/home/${username}/.local/share/syncthing";
-    configDir = "/home/${username}/.config/syncthing";
-  };
-
   home-manager.users.${username} = {
+    services.syncthing = {
+      enable = true;
+      extraOptions = [
+        "--gui-address=127.0.0.1:${toString homePort}"
+        "--no-browser"
+      ];
+    };
+
     xdg.desktopEntries = {
       "${homeName}" = {
         name = homeName;

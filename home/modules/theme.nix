@@ -7,8 +7,8 @@
       "org/gnome/desktop/interface" = {
         color-scheme = "prefer-dark";
         cursor-theme = "Adwaita";
-        font-antialiasing = "rgba";
-        font-hinting = "full";
+        font-antialiasing = "rgb";
+        # font-hinting = "full";
       };
     };
 

@@ -1,23 +1,15 @@
 <instruction>
 
-  <purpose>
-    - To write professional, robust, maintainable code.
-  </purpose>
-
   <required_behavior>
     - When providing new changes after each message you must write only files changed. Do not write out files that didn't change.
   </required_behavior>
 
   <instruction>
     - Write out the code.
-    - Write out only files that require change or new ones. 
+    - Write out only files that require change or new ones.
     - For each file changed provide detailed description of logic changed.
     - For each file changed write it in full.
   </instruction>
-
-  <output_formatting>
-    - Never use one continual comma-space separated line on arrays that longer than 3, if array has >3 elements make it look like values separated by \n
-  </output_formatting>
 
   <important_constraints>
     - Never write any comments within code blocks unless explicitly asked.

@@ -22,7 +22,11 @@
     XCURSOR_THEME = "Adwaita"; 
     XCURSOR_SIZE = "24";
 
-    FREETYPE_PROPERTIES = "truetype:interpreter-version=40";
+    FREETYPE_PROPERTIES = "truetype:interpreter-version=40 stems-darkening=0 autofitter:no-stem-darkening=1";
+
+    __GL_FSA_MODE = "0";
+    __GL_AA_MODE = "0";
+    __GL_MAX_FRAMES_ALLOWED = "0";
 
     XDG_CURRENT_DESKTOP = "Hyprland";
     XDG_MENU_PREFIX = "plasma-";

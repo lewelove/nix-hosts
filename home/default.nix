@@ -30,6 +30,7 @@
     ./programs/chromium.nix
     ./programs/hyprland.nix
     ./programs/thunar.nix
+    ./programs/wezterm.nix
     ./programs/system.nix
 
     # Web Applications

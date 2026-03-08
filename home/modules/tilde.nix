@@ -35,6 +35,7 @@
       ".config/figma-agent".source = link "${dot}/.config/figma-agent";
       ".config/listenbrainz-mpd".source = link "${dot}/.config/listenbrainz-mpd";
       ".config/uwsm".source = link "${dot}/.config/uwsm";
+      ".config/wezterm".source = link "${dot}/.config/wezterm";
 
       # --- Individual Config Files ---
       ".config/mimeapps.list".source = link "${dot}/.config/mimeapps.list";

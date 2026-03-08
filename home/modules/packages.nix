@@ -25,6 +25,9 @@
     nfs-utils
     tcpdump
     mkcert
+    mesa-demos
+    waffle
+    apitrace
 
     # Desktop
     fuzzel
@@ -47,6 +50,9 @@
     # Terminal Programs
     foot
     kitty
+    wezterm
+    alacritty
+    ghostty
     neovim
     btop
     repomix

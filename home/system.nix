@@ -27,15 +27,15 @@
       enable = true;
       antialias = true;
       hinting = {
-        enable = true;
+        enable = false;
         autohint = false;
-        style = "full";
+        style = "slight";
       };
       subpixel = {
         rgba = "rgb";
-        lcdfilter = "default";
+        lcdfilter = "light";
       };
-      useEmbeddedBitmaps = true;
+      useEmbeddedBitmaps = false;
       defaultFonts = {
         monospace = [
           "CommitMono Nerd Font"
