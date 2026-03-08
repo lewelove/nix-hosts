@@ -17,7 +17,9 @@ if status is-interactive
   fish_add_path "$HOME/.scripts"
 
   # --- Basic Aliases ---
-  alias clr="clear"
+  alias clr="set -e _starship_rendered; clear"
+  alias clear="set -e _starship_rendered; command clear"
+
   alias x+="chmod +x"
   alias nv="nvim"
   alias nvn="NVIM_APPNAME=nvim-notes nvim"
