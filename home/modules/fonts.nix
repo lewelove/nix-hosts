@@ -1,0 +1,68 @@
+{ pkgs, username, ... }:
+
+{
+  fonts = {
+    packages = with pkgs; [
+      nerd-fonts.commit-mono
+      commit-mono
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
+      noto-fonts-color-emoji
+      corefonts
+      vista-fonts
+    ];
+
+    fontconfig = {
+      enable = true;
+      antialias = true;
+      hinting = {
+        enable = true;
+        autohint = false;
+        style = "full";
+      };
+      subpixel = {
+        rgba = "rgb";
+        lcdfilter = "default";
+      };
+      useEmbeddedBitmaps = false;
+      defaultFonts = {
+        monospace = [
+          "CommitMono Nerd Font"
+          "Noto Sans Mono CJK JP"
+          "Noto Color Emoji"
+        ];
+        sansSerif = [
+          "Noto Sans"
+          "Noto Sans CJK JP"
+          "Noto Sans Arabic"
+          "Noto Sans Thai"
+          "Noto Color Emoji"
+        ];
+        serif = [
+          "Noto Serif"
+          "Noto Serif CJK JP"
+          "Noto Serif Arabic"
+          "Noto Serif Thai"
+          "Noto Color Emoji"
+        ];
+      };
+    };
+  };
+
+  home-manager.users.${username} = {
+    dconf.settings = {
+      "org/gnome/desktop/interface" = {
+        font-antialiasing = "rgb";
+        font-hinting = "full";
+      };
+    };
+
+    gtk = {
+      font = {
+        name = "Noto Sans";
+        size = 10;
+      };
+    };
+  };
+}

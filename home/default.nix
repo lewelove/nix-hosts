@@ -22,6 +22,7 @@
 
     ./modules/home-manager.nix
     ./modules/theme.nix
+    ./modules/fonts.nix
 
     ./modules/packages.nix
     ./modules/games.nix
@@ -30,6 +31,7 @@
     ./programs/chromium.nix
     ./programs/hyprland.nix
     ./programs/thunar.nix
+    ./programs/nvim.nix
     ./programs/wezterm.nix
     ./programs/system.nix
 
