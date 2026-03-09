@@ -22,7 +22,7 @@
     XCURSOR_THEME = "Adwaita"; 
     XCURSOR_SIZE = "24";
 
-    FREETYPE_PROPERTIES = "truetype:interpreter-version=40 stems-darkening=0 autofitter:no-stem-darkening=1";
+    FREETYPE_PROPERTIES = "truetype:interpreter-version=40 cff:no-stem-darkening=0 autofitter:no-stem-darkening=0";
 
     __GL_FSA_MODE = "0";
     __GL_AA_MODE = "0";

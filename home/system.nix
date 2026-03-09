@@ -27,13 +27,13 @@
       enable = true;
       antialias = true;
       hinting = {
-        enable = false;
+        enable = true;
         autohint = false;
-        style = "slight";
+        style = "full";
       };
       subpixel = {
         rgba = "rgb";
-        lcdfilter = "light";
+        lcdfilter = "default";
       };
       useEmbeddedBitmaps = false;
       defaultFonts = {
