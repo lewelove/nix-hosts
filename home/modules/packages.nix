@@ -6,7 +6,6 @@
 
     # System
     wget
-    stow
     unzip
     gcc
     tree
@@ -31,7 +30,6 @@
 
     # Desktop
     fuzzel
-    quickshell
     mako
     libnotify
     swww
@@ -50,14 +48,11 @@
     # Terminal Programs
     foot
     kitty
-    wezterm
     alacritty
     ghostty
     neovim
     btop
     repomix
-    yazi
-    ripdrag
     ripgrep
     bat
     fd
@@ -82,10 +77,6 @@
     imagemagick
     puddletag
     roomeqwizard
-    
-    # Network
-    amneziawg-go
-    amneziawg-tools
 
     # Web
     ayugram-desktop

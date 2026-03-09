@@ -22,7 +22,6 @@
 
     ./modules/home-manager.nix
     ./modules/theme.nix
-    ./modules/fonts.nix
 
     ./modules/packages.nix
     ./modules/games.nix
@@ -32,7 +31,9 @@
     ./programs/hyprland.nix
     ./programs/thunar.nix
     ./programs/nvim.nix
-    ./programs/wezterm.nix
+    ./programs/mpd.nix
+    ./programs/quickshell.nix
+    ./programs/listenbrainz-mpd-90-no4m.nix
     ./programs/system.nix
 
     # Web Applications
@@ -57,11 +58,8 @@
     ./services/open-webui.nix
 
     # User Services
-    ./services/user/mpd.nix
     ./services/user/swww.nix
     # ./services/user/wlsunset.nix
-    ./services/user/quickshell.nix
-    ./services/user/listenbrainz-mpd-90-no4m.nix
     ./services/user/polkit-agent.nix
 
     # Scripts

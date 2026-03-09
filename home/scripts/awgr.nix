@@ -9,6 +9,7 @@ let
       gum 
       curl 
       jq 
+      amneziawg-go
       amneziawg-tools 
       psmisc
     ];

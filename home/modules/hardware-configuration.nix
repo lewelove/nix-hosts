@@ -11,6 +11,13 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
+  swapDevices = [ ];
+
+  zramSwap.enable = true;
+
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
   # --- System Drives ---
 
   fileSystems."/" = {
@@ -42,7 +49,7 @@
   fileSystems."/run/media/${username}/1000xhome" = {
     device = "/dev/disk/by-uuid/27b9a1ab-0bb3-4e2f-bc9b-7c4a227dbb2f";
     fsType = "btrfs";
-    options = [ "subvol=/" "nofail" "compress=zstd" "noatime" "space_cache=v2" "x-gvfs-show" ];
+    options = [ "nofail" "compress=zstd" "noatime" "space_cache=v2" "x-gvfs-show" ];
   };
 
   fileSystems."/run/media/${username}/500" = {
@@ -57,11 +64,11 @@
     options = [ "nofail" "compress=zstd" "noatime" "space_cache=v2" "x-gvfs-show" ];
   };
  
- #  fileSystems."/run/media/${username}/x2000" = {
- #    device = "/dev/disk/by-uuid/e2873f44-a0b2-4c05-9e8a-d14e9cade796";
- #    fsType = "btrfs";
- #    options = [ "subvol=/" "nofail" "compress=zstd" "noatime" "space_cache=v2" "x-gvfs-show" ];
- # };
+  fileSystems."/run/media/${username}/2000" = {
+    device = "/dev/disk/by-uuid/e2873f44-a0b2-4c05-9e8a-d14e9cade796";
+    fsType = "btrfs";
+    options = [ "nofail" "compress=zstd" "noatime" "space_cache=v2" "x-gvfs-show" ];
+ };
 
   # --- NFS Mounting ---
 
@@ -74,12 +81,5 @@
       "x-systemd.idle-timeout=600"
     ];
   };
-
-  swapDevices = [ ];
-
-  zramSwap.enable = true;
-
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
 }
