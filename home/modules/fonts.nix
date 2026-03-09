@@ -3,6 +3,7 @@
 {
   fonts = {
     packages = with pkgs; [
+      inter
       nerd-fonts.commit-mono
       commit-mono
       noto-fonts
@@ -53,7 +54,8 @@
   home-manager.users.${username} = {
     dconf.settings = {
       "org/gnome/desktop/interface" = {
-        font-antialiasing = "rgb";
+        font-antialiasing = "rgba";
+        font-rgba-order = "rgb";
         font-hinting = "full";
       };
     };
@@ -61,7 +63,7 @@
     gtk = {
       font = {
         name = "Noto Sans";
-        size = 10;
+        size = 11;
       };
     };
   };
