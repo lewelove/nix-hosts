@@ -12,6 +12,8 @@ const completelyIgnore = [
     '**/.git/**', '**/dist/**', '**/coverage/**',
     '**/tmp/**', '**/.cache/**', '**/.DS_Store',
     '**/*.rmlock', '**/.direnv/**',
+    '**/llm-injections/**',
+    '**/llm-instructions/**',
 
     '**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', 
     '**/*.ico', '**/*.woff', '**/*.woff2', '**/*.ttf',
