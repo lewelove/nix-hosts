@@ -33,7 +33,7 @@
     ./programs/nvim.nix
     ./programs/mpd.nix
     ./programs/quickshell.nix
-    ./programs/listenbrainz-mpd-90-no4m.nix
+    ./programs/swww.nix
     ./programs/system.nix
 
     # Web Applications
@@ -58,7 +58,6 @@
     ./services/open-webui.nix
 
     # User Services
-    ./services/user/swww.nix
     # ./services/user/wlsunset.nix
     ./services/user/polkit-agent.nix
 
