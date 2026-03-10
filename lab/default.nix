@@ -36,6 +36,7 @@
     ./services/jellyfin.nix
     ./services/qbittorrent.nix
     ./services/syncthing.nix
+    ./services/won.nix
     # ./services/openclaw.nix
 
     # Scripts
