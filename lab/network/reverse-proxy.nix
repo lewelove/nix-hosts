@@ -7,8 +7,11 @@
     environmentFile = "/etc/duckdns.env";
 
     virtualHosts = {
-      "{$DUCKDNS_DOMAIN}" = {
+      "jellyfin.{$DUCKDNS_DOMAIN}" = {
         extraConfig = ''
+          basicauth * {
+            lewelove $2a$14$QCg4lYo7UFzsX7HwZYIdn.D/F05QFh4lp121dcpRhRFdDb14TP3Ju
+          }
           reverse_proxy localhost:8096
         '';
       };
