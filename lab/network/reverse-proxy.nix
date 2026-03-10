@@ -3,24 +3,28 @@
 {
   services.caddy = {
     enable = true;
+    
     environmentFile = "/etc/duckdns.env";
 
     virtualHosts = {
-      "{$DUCKDNS_DOMAIN}" = {
+      "jellyfin.{$DUCKDNS_DOMAIN}" = {
         extraConfig = ''
-          handle /authelia* {
-            reverse_proxy localhost:9091
-          }
-
-          handle {
-            forward_auth localhost:9091 {
-              uri /authelia/api/verify?rd=https://{$DUCKDNS_DOMAIN}/authelia/
-              copy_headers Remote-User Remote-Groups Remote-Name Remote-Email
-            }
-            reverse_proxy localhost:8096
+          reverse_proxy localhost:8096 {
           }
         '';
       };
+      
+      # "torrents.{$DUCKDNS_DOMAIN}" = {
+      #   extraConfig = ''
+      #     reverse_proxy localhost:8080
+      #   '';
+      # };
+      #
+      # "sync.{$DUCKDNS_DOMAIN}" = {
+      #   extraConfig = ''
+      #     reverse_proxy localhost:8384
+      #   '';
+      # };
     };
   };
 
