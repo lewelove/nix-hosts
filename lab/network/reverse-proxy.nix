@@ -13,17 +13,17 @@
         '';
       };
       
-      "torrents.{$DUCKDNS_DOMAIN}" = {
-        extraConfig = ''
-          reverse_proxy localhost:8080
-        '';
-      };
-
-      "sync.{$DUCKDNS_DOMAIN}" = {
-        extraConfig = ''
-          reverse_proxy localhost:8384
-        '';
-      };
+      # "torrents.{$DUCKDNS_DOMAIN}" = {
+      #   extraConfig = ''
+      #     reverse_proxy localhost:8080
+      #   '';
+      # };
+      #
+      # "sync.{$DUCKDNS_DOMAIN}" = {
+      #   extraConfig = ''
+      #     reverse_proxy localhost:8384
+      #   '';
+      # };
     };
   };
 
