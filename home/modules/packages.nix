@@ -43,6 +43,7 @@
     bitwarden-desktop
     qwen-code
     gnome-calculator
+    gnome-clocks
     godot
 
     # Terminal Programs
