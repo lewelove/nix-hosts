@@ -116,6 +116,7 @@
 ; (gtk_accel_path "<Actions>/ThunarWindow/view-menu" "")
 ; (gtk_accel_path "<Actions>/ThunarWindow/search" "<Primary>f")
 ; (gtk_accel_path "<Actions>/ThunarWindow/new-tab" "<Primary>t")
+; (gtk_accel_path "<Actions>/ThunarBookmarks/4f6658b456d46ba31c2ca16db937df23" "")
 ; (gtk_accel_path "<Actions>/ThunarWindow/zoom-reset" "<Primary>0")
 ; (gtk_accel_path "<Actions>/ThunarActionManager/open-in-new-tab" "<Primary><Shift>p")
 ; (gtk_accel_path "<Actions>/ThunarBookmarks/ec4540a350b778013ba297ce8600df79" "")
