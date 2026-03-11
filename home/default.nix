@@ -43,7 +43,6 @@
     ./services/user/polkit-agent.nix
 
     # Scripts
-    ../common/scripts/tilde-stow.nix
     ../common/scripts/nrs.nix
     ../common/scripts/ns.nix
     ../common/scripts/nt.nix

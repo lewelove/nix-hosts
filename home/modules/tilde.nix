@@ -8,6 +8,7 @@
     home.file = {
       # --- .config Directories (Not yet modularized) ---
       ".config/foot".source = link "${dot}/.config/foot";
+      ".config/alacritty".source = link "${dot}/.config/alacritty";
       ".config/fuzzel".source = link "${dot}/.config/fuzzel";
       ".config/kitty".source = link "${dot}/.config/kitty";
       ".config/mako".source = link "${dot}/.config/mako";
