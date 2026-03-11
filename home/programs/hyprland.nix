@@ -1,4 +1,4 @@
-{ pkgs, username, ... }:
+{ pkgs, username, dot, ... }:
 
 {
   programs.hyprland = {
@@ -16,16 +16,14 @@
       pkgs.xdg-desktop-portal-gtk
     ];
     config = {
-      common = {
-        default = [ "gtk" ];
-      };
-      hyprland = {
-        default = [ "hyprland" "gtk" ];
-      };
+      common.default = [ "gtk" ];
+      hyprland.default = [ "hyprland" "gtk" ];
     };
   };
 
-  home-manager.users.${username} = {
+  home-manager.users.${username} = { config, ... }: {
+    home.file.".config/hypr".source = config.lib.file.mkOutOfStoreSymlink "${dot}/.config/hypr";
+
     systemd.user.targets.hyprland-session = {
       Unit = {
         Description = "Hyprland Compositor Session";

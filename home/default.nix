@@ -28,6 +28,8 @@
 
     # Programs
     ./programs/chromium.nix
+    ./programs/fish.nix
+    ./programs/git.nix
     ./programs/hyprland.nix
     ./programs/thunar.nix
     ./programs/nvim.nix
