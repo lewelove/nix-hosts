@@ -1,4 +1,4 @@
-{ ... }:
+{ inputs, lib, ... }:
 
 {
 
@@ -27,31 +27,10 @@
     ./modules/games.nix
 
     # Programs
-    ./programs/chromium.nix
-    ./programs/fish.nix
-    ./programs/git.nix
-    ./programs/hyprland.nix
-    ./programs/thunar.nix
-    ./programs/nvim.nix
-    ./programs/mpd.nix
-    ./programs/quickshell.nix
-    ./programs/swww.nix
-    ./programs/system.nix
-
-    # Web Applications
-    ./programs/youtube.nix
-    ./programs/photopea.nix
-    ./programs/figma.nix
-
-    # Local Network Web Applications
-    ./programs/qbittorrent.nix
-    ./programs/jellyfin.nix
-    ./programs/vscode.nix
-    ./programs/comfyui.nix
-    ./programs/vellum.nix
-    ./programs/mympd.nix
-    ./programs/excalidraw.nix
-    ./programs/syncthing.nix
+    (lib.pipe inputs.import-tree[
+      (i: i.filterNot (path: lib.hasInfix "/disabled/" path))
+      (i: i ./programs)
+    ])
 
     # System Services
     # ./services/xremap.nix

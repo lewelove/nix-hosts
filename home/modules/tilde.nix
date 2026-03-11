@@ -9,7 +9,6 @@
       # --- .config Directories (Not yet modularized) ---
       ".config/foot".source = link "${dot}/.config/foot";
       ".config/fuzzel".source = link "${dot}/.config/fuzzel";
-      ".config/hypr".source = link "${dot}/.config/hypr";
       ".config/kitty".source = link "${dot}/.config/kitty";
       ".config/mako".source = link "${dot}/.config/mako";
       ".config/mpv".source = link "${dot}/.config/mpv";
@@ -20,7 +19,6 @@
       ".config/qt5ct".source = link "${dot}/.config/qt5ct";
       ".config/qt6ct".source = link "${dot}/.config/qt6ct";
       ".config/containers".source = link "${dot}/.config/containers";
-      ".config/uwsm".source = link "${dot}/.config/uwsm";
 
       # --- External Storage Symlinks ---
       "Downloads/1000xhome".source = link "/run/media/${username}/1000xhome/downloads";
