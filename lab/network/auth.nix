@@ -14,11 +14,21 @@
       server = {
         host = "127.0.0.1";
         port = 9091;
-        path = "/authelia";
       };
-      log.level = "debug";
-      authentication_backend.file.path = "/var/lib/authelia-main/users.yml";
-      storage.local.path = "/var/lib/authelia-main/db.sqlite3";
+      log.level = "info";
+
+      authentication_backend = {
+        file = {
+          path = "/var/lib/authelia-main/users.yml";
+          search_emails = false; # Simpler for 1FA
+        };
+      };
+
+      storage = {
+        local = {
+          path = "/var/lib/authelia-main/db.sqlite3";
+        };
+      };
       
       session = {
         name = "authelia_session";
@@ -32,13 +42,17 @@
         default_policy = "deny";
         rules = [
           {
-            domain = [ "lewelaboratory.duckdns.org" ];
+            domain = [ "*.lewelaboratory.duckdns.org" ];
             policy = "one_factor";
           }
         ];
       };
       
-      notifier.filesystem.filename = "/var/lib/authelia-main/emails.txt";
+      notifier = {
+        filesystem = {
+          filename = "/var/lib/authelia-main/emails.txt";
+        };
+      };
     };
   };
 
