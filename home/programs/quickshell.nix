@@ -1,8 +1,7 @@
-{ pkgs, username, ... }:
+{ pkgs, username, dot, ... }:
 
 {
-
-  home-manager.users.${username} = {
+  home-manager.users.${username} = { config, ... }: {
     systemd.user.services.quickshell = {
       Unit = {
         Description = "Quickshell Desktop Shell";
@@ -15,6 +14,7 @@
       };
       Install.WantedBy = [ "graphical-session.target" ];
     };
-  };
 
+    home.file.".config/quickshell".source = config.lib.file.mkOutOfStoreSymlink "${dot}/.config/quickshell";
+  };
 }

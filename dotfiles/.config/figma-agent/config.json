@@ -1,6 +1,6 @@
 {
   "use_system_fonts": true,
-  "font_directories": ["~/.local/share/fonts"],
+  "font_directories": ["~/Fonts"],
   "enable_font_rescan": true,
   "enable_font_preview": true
 }

@@ -1,4 +1,4 @@
-{ pkgs, lib, username, config, ... }:
+{ pkgs, lib, username, config, dot, ... }:
 
 let
   wrapper = config.my.chromium.wrapper;
@@ -21,17 +21,14 @@ let
   };
 in
 {
-  home-manager.users.${username} = {
+  home-manager.users.${username} = { config, ... }: {
     xdg.desktopEntries.${name} = {
       inherit name;
       genericName = "Graphic Design Tool";
       exec = "${wrapper}/bin/chromium-browser --app=${url}";
       terminal = false;
       icon = "figma";
-      categories = [
-        "Graphics"
-        "Network"
-      ];
+      categories = [ "Graphics" "Network" ];
     };
 
     systemd.user.services.figma-agent = {
@@ -48,5 +45,7 @@ in
       };
       Install.WantedBy = [ "graphical-session.target" ];
     };
+
+    home.file.".config/figma-agent".source = config.lib.file.mkOutOfStoreSymlink "${dot}/.config/figma-agent";
   };
 }

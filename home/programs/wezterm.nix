@@ -1,13 +1,10 @@
-{ pkgs, lib, username, identity, ... }:
+{ pkgs, username, dot, ... }:
 
-let
-  dotfolder = "${identity.repoPath}/dotfiles/.config/wezterm";
-in
 {
   environment.systemPackages = [ pkgs.wezterm ];
 
   home-manager.users.${username} = { config, ... }: {
-    home.file.".config/wezterm".source = config.lib.file.mkOutOfStoreSymlink dotfolder;
+    home.file.".config/wezterm".source = config.lib.file.mkOutOfStoreSymlink "${dot}/.config/wezterm";
 
     systemd.user.services.wezterm-mux = {
       Unit = {

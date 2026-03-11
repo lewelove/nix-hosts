@@ -1,8 +1,6 @@
-
-{ config, pkgs, inputs, username, ... }:
+{ inputs, username, ... }:
 
 {
-
   imports = [ inputs.home-manager.nixosModules.default ];
 
   home-manager = {
@@ -16,8 +14,6 @@
         createDirectories = true;
         download = "/run/media/${username}/1000xhome/downloads";
       };
-
     };
   };
-
 }

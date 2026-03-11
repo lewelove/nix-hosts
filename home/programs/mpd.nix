@@ -1,4 +1,4 @@
-{ pkgs, config, lib, username, ... }:
+{ pkgs, lib, username, dot, ... }:
 
 let
   listenbrainz-mpd-90-no4m = pkgs.listenbrainz-mpd.overrideAttrs (old: rec {
@@ -51,6 +51,11 @@ in
         ];
       };
       Install.WantedBy = [ "default.target" ];
+    };
+
+    home.file = {
+      ".config/rmpc".source = config.lib.file.mkOutOfStoreSymlink "${dot}/.config/rmpc";
+      ".config/listenbrainz-mpd".source = config.lib.file.mkOutOfStoreSymlink "${dot}/.config/listenbrainz-mpd";
     };
   };
 }

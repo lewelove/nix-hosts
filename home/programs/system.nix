@@ -1,4 +1,4 @@
-{ pkgs, identity, ... }:
+{ pkgs, identity, username, dot, ... }:
 
 {
   programs.fish = {
@@ -37,5 +37,17 @@
   programs.fzf = {
     fuzzyCompletion = true;
     keybindings = true;
+  };
+
+  home-manager.users.${username} = { config, ... }: {
+    home.file = {
+      ".bashrc".source = config.lib.file.mkOutOfStoreSymlink "${dot}/.bashrc";
+      ".scripts".source = config.lib.file.mkOutOfStoreSymlink "${dot}/.scripts";
+      ".applications".source = config.lib.file.mkOutOfStoreSymlink "${dot}/.applications";
+      ".config/fish".source = config.lib.file.mkOutOfStoreSymlink "${dot}/.config/fish";
+      ".config/starship.toml".source = config.lib.file.mkOutOfStoreSymlink "${dot}/.config/starship.toml";
+      ".config/mimeapps.list".source = config.lib.file.mkOutOfStoreSymlink "${dot}/.config/mimeapps.list";
+      ".config/repomix".source = config.lib.file.mkOutOfStoreSymlink "${dot}/.config/repomix";
+    };
   };
 }
