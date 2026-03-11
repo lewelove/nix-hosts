@@ -12,15 +12,13 @@
     settings = {
       theme = "dark";
       server = {
-        host = "127.0.0.1";
-        port = 9091;
+        address = "tcp://127.0.0.1:9091";
       };
       log.level = "info";
 
       authentication_backend = {
         file = {
           path = "/var/lib/authelia-main/users.yml";
-          search_emails = false; # Simpler for 1FA
         };
       };
 
@@ -32,7 +30,12 @@
       
       session = {
         name = "authelia_session";
-        domain = "lewelaboratory.duckdns.org";
+        cookies = [
+          {
+            domain = "lewelaboratory.duckdns.org";
+            autostart = true;
+          }
+        ];
         expiration = "1h";
         inactivity = "30m";
         remember_me = "30d";
