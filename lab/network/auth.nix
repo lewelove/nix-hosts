@@ -30,15 +30,14 @@
       
       session = {
         name = "authelia_session";
+        # Modern cookies configuration
         cookies = [
           {
             domain = "lewelaboratory.duckdns.org";
-            autostart = true;
+            authelia_url = "https://auth.lewelaboratory.duckdns.org";
+            default_redirection_url = "https://jellyfin.lewelaboratory.duckdns.org";
           }
         ];
-        expiration = "1h";
-        inactivity = "30m";
-        remember_me = "30d";
       };
 
       access_control = {
