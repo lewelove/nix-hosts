@@ -6,27 +6,6 @@
     hostName = "jitsi.lewelaboratory.duckdns.org";
     config = {
       enableWelcomePage = true;
-      hosts = {
-        domain = "jitsi.lewelaboratory.duckdns.org";
-        anonymousdomain = "guest.jitsi.lewelaboratory.duckdns.org";
-        muc = "conference.jitsi.lewelaboratory.duckdns.org";
-      };
-    };
-  };
-
-  services.prosody = {
-    enable = true;
-    virtualHosts."jitsi.lewelaboratory.duckdns.org" = {
-      enabled = true;
-      extraConfig = ''
-        authentication = "internal_plain"
-      '';
-    };
-    virtualHosts."guest.jitsi.lewelaboratory.duckdns.org" = {
-      enabled = true;
-      extraConfig = ''
-        authentication = "anonymous"
-      '';
     };
   };
 
