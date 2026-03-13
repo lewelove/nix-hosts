@@ -23,6 +23,7 @@
     mesa-demos
     waffle
     apitrace
+    openssl
 
     # Desktop
     fuzzel

@@ -31,6 +31,13 @@
           reverse_proxy localhost:8081
         '';
       };
+
+      "vellum.{$DUCKDNS_DOMAIN}" = {
+        extraConfig = ''
+          import auth
+          reverse_proxy localhost:5173
+        '';
+      };
     };
   };
 
