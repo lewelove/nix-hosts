@@ -26,7 +26,7 @@
         '';
       };
 
-      "jitsy.{$DUCKDNS_DOMAIN}" = {
+      "jitsi.{$DUCKDNS_DOMAIN}" = {
         extraConfig = ''
           reverse_proxy localhost:8081
         '';
