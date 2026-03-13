@@ -1,7 +1,6 @@
 { pkgs, inputs, ... }:
 
 {
-
   virtualisation.containers.enable = true;
 
   virtualisation.podman = {
@@ -23,5 +22,4 @@
       cgroup_manager = "systemd";
     };
   };
-
 }

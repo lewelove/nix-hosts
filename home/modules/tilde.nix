@@ -22,9 +22,9 @@
       ".config/containers".source = link "${dot}/.config/containers";
 
       # --- External Storage Symlinks ---
-      "Downloads/1000xhome".source = link "/run/media/${username}/1000xhome/downloads";
-      "Downloads/x2000".source    = link "/run/media/${username}/x2000/downloads";
-      "Downloads/1000xlab".source = link "/mnt/servers/1000xlab/downloads";
+      # "downloads/1000xhome".source = link "/run/media/${username}/1000xhome/downloads";
+      # "downloads/x2000".source    = link "/run/media/${username}/x2000/downloads";
+      # "downloads/1000xlab".source = link "/mnt/servers/1000xlab/downloads";
     };
   };
 }

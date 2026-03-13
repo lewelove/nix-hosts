@@ -1,8 +1,7 @@
 { pkgs, inputs, ... }:
 
 {
-
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs;[
 
     # System
     wget
@@ -18,10 +17,7 @@
     xhost
     pulseaudio
     gnome-disk-utility
-    bluez
-    blueman
     sshfs
-    nfs-utils
     tcpdump
     mkcert
     mesa-demos
@@ -38,7 +34,6 @@
     hyprpicker
     wlsunset
     wl-clipboard
-    polkit_gnome
     peazip
     bitwarden-desktop
     qwen-code
@@ -50,8 +45,6 @@
     foot
     kitty
     alacritty
-    ghostty
-    neovim
     btop
     repomix
     ripgrep
@@ -64,8 +57,6 @@
 
     # Virtualization
     distrobox
-    runc
-    crun
 
     # Media
     mpv
@@ -81,15 +72,10 @@
 
     # Web
     ayugram-desktop
-    figma-agent
 
     # Themes and Icons
     nwg-look
     adwaita-icon-theme
-    papirus-icon-theme
-    dconf
-    libsForQt5.qt5ct
-    kdePackages.qt6ct
     
     # Nix
     nh
@@ -101,5 +87,4 @@
     inputs.zen-browser.packages.x86_64-linux.default
     # inputs.photogimp.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
-
 }

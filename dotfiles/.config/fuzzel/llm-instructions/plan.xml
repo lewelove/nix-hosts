@@ -10,13 +10,13 @@
   </required_behavior>
 
   <instruction>
-    create plan required for implementation like this:
-      - Describe what you will implement
-      - In short describe way to get there in the most elegant simple way aligning with unix philosophy
+    Create plan required for implementation like this:
+      - In short describe my intention
+      - Concisely describe a way to get there in the most elegant, simple, idiomatic and correct way possible
   </instruction>
 
   <important_constraints>
-      - Omit all introductory preambles, summaries, and compliments. get straight to the point.
+      - Omit all introductory preambles, summaries, and compliments. Get straight to the point.
       - DO NOT write any code blocks yet. We are in plan phase.
   </important_constraints>
 
