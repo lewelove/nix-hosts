@@ -25,6 +25,12 @@
           reverse_proxy localhost:8096
         '';
       };
+
+      "jitsy.{$DUCKDNS_DOMAIN}" = {
+        extraConfig = ''
+          reverse_proxy localhost:8081
+        '';
+      };
     };
   };
 
