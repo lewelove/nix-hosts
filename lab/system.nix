@@ -1,4 +1,4 @@
-{ config, pkgs, username, hostname, ... }:
+{ config, pkgs, username, hostname, identity, ... }:
 
 {
 
@@ -17,6 +17,7 @@
     useOSProber = true;
   };
 
+  # --- ACME / SSL Setup ---
   security.acme = {
     acceptTerms = true;
     defaults.email = identity.email;
@@ -30,6 +31,7 @@
       "jitsi-meet-1.0.8792"
     ];
   };
+
   system.stateVersion = "25.11"; 
 
 }
