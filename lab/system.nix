@@ -17,6 +17,11 @@
     useOSProber = true;
   };
 
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = identity.email;
+  };
+
   # --- Nix Settings ---
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config = {

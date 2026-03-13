@@ -9,7 +9,7 @@
     };
   };
 
-  services.nginx.virtualHosts."jitsy.lewelaboratory.duckdns.org" = {
+  services.nginx.virtualHosts."jitsi.lewelaboratory.duckdns.org" = {
     listen = [ { addr = "127.0.0.1"; port = 8081; } ];
     addSSL = false;
     enableACME = false;
