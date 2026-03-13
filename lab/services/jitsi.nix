@@ -18,11 +18,15 @@
     enable = true;
     virtualHosts."jitsi.lewelaboratory.duckdns.org" = {
       enabled = true;
-      authentication = "internal_plain";
+      extraConfig = ''
+        authentication = "internal_plain"
+      '';
     };
     virtualHosts."guest.jitsi.lewelaboratory.duckdns.org" = {
       enabled = true;
-      authentication = "anonymous";
+      extraConfig = ''
+        authentication = "anonymous"
+      '';
     };
   };
 
