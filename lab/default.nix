@@ -42,6 +42,7 @@
     ./services/syncthing.nix
     ./services/jitsi.nix
     ./services/won.nix
+    ./services/mpd.nix
     # ./services/openclaw.nix
 
     # Scripts
