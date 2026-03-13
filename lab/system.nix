@@ -19,7 +19,12 @@
 
   # --- Nix Settings ---
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    permittedInsecurePackages = [
+      "jitsi-meet-1.0.8792"
+    ];
+  };
   system.stateVersion = "25.11"; 
 
 }
