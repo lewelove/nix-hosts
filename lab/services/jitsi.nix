@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   services.jitsi-meet = {
@@ -11,8 +11,10 @@
 
   services.nginx.virtualHosts."jitsi.lewelaboratory.duckdns.org" = {
     listen = [ { addr = "127.0.0.1"; port = 8081; } ];
-    addSSL = false;
-    enableACME = false;
+    addSSL = lib.mkForce false;
+    forceSSL = lib.mkForce false;
+    enableACME = lib.mkForce false;
+    onlySSL = lib.mkForce false;
   };
 
   networking.firewall = {
