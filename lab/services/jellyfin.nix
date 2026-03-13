@@ -4,7 +4,7 @@
 
   services.jellyfin = {
     enable = true;
-    openFirewall = true;
+    openFirewall = false;
   };
 
   users.users.jellyfin.extraGroups = [ "torrents" ];

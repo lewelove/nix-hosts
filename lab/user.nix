@@ -2,7 +2,7 @@
 
 {
   
-  services.getty.autologinUser = "${username}";
+  # services.getty.autologinUser = "${username}";
 
   users.users.${username} = {
     isNormalUser = true;

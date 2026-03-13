@@ -10,12 +10,12 @@
     enable = true;
     checkReversePath = "loose";
     allowedTCPPorts = [ 80 443 ];
-    extraCommands = ''
-      # Allow all traffic from Home Subnet
-      iptables -A INPUT -s 192.168.1.0/24 -j ACCEPT
-      # Allow all traffic from your AmneziaWG Phone Subnet
-      iptables -A INPUT -s 10.10.10.0/24 -j ACCEPT
-    '';
+    # extraCommands = ''
+    #   # Allow all traffic from Home Subnet
+    #   iptables -A INPUT -s 192.168.1.0/24 -j ACCEPT
+    #   # Allow all traffic from your AmneziaWG Phone Subnet
+    #   iptables -A INPUT -s 10.10.10.0/24 -j ACCEPT
+    # '';
   };
 
   boot.kernel.sysctl = {
