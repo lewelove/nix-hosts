@@ -35,7 +35,7 @@
       "vellum.{$DUCKDNS_DOMAIN}" = {
         extraConfig = ''
           import auth
-          reverse_proxy localhost:5173
+          reverse_proxy 127.0.0.1:5173
         '';
       };
     };
