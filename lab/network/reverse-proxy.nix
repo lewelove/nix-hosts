@@ -28,7 +28,6 @@
 
       "jitsi.{$DUCKDNS_DOMAIN}" = {
         extraConfig = ''
-          import auth
           reverse_proxy localhost:8081
         '';
       };

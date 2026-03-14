@@ -5,7 +5,7 @@
   boot.kernel.sysctl = {
     "net.ipv4.conf.all.rp_filter" = 2;
     "net.ipv4.conf.default.rp_filter" = 2;
-    "net.ipv4.conf.enp2s0.rp_filter" = 2; # Matches your Lab interface
+    "net.ipv4.conf.enp2s0.rp_filter" = 2;
   };
 
   systemd.services.routing-isp = {
@@ -23,14 +23,12 @@
       
       ${pkgs.iproute2}/bin/ip rule add fwmark 1 lookup 101 priority 1000 || true
 
-      # Enable users for ISP routing
       ${pkgs.iptables}/bin/iptables -t mangle -A OUTPUT -m owner --uid-owner qbittorrent -j MARK --set-mark 1
       
       ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -o enp2s0 -m mark --mark 1 -j MASQUERADE
     '';
 
     postStop = ''
-      # Disable users for ISP routing
       ${pkgs.iptables}/bin/iptables -t mangle -D OUTPUT -m owner --uid-owner qbittorrent -j MARK --set-mark 1 || true
 
       ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -o enp2s0 -m mark --mark 1 -j MASQUERADE || true
