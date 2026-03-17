@@ -28,6 +28,8 @@ if status is-interactive
   alias ipcheck="curl ip-api.com"
   alias scus="systemctl --user status"
   alias scur="systemctl --user restart"
+  alias scs="systemctl status"
+  alias scr="systemctl restart"
   alias jc="journalctl -fu"
   alias jcu="journalctl --user -fu"
   alias sync="git-sync-bin"
