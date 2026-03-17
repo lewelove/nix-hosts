@@ -4,7 +4,7 @@
 
   services.qbittorrent = {
     enable = true;
-    webuiPort = 8080;
+    webuiPort = 8081;
     torrentingPort = 54321;
     openFirewall = true;
     user = "qbittorrent";

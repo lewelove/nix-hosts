@@ -9,7 +9,7 @@
   networking.firewall = {
     enable = true;
     checkReversePath = "loose";
-    allowedTCPPorts = [ 80 443 8080 ];
+    allowedTCPPorts = [ 80 443 ];
     extraCommands = ''
       iptables -A INPUT -s 192.168.1.0/24 -j ACCEPT
       iptables -A INPUT -s 10.10.10.0/24 -j ACCEPT
