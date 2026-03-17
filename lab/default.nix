@@ -46,7 +46,6 @@
     # ./services/openclaw.nix
 
     # Scripts
-    ../common/scripts/tilde-stow.nix
     ../common/scripts/nrs.nix
     ./scripts/awgu.nix
     ./scripts/awgd.nix

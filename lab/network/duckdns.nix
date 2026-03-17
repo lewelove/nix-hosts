@@ -9,7 +9,6 @@
     serviceConfig = {
       Type = "oneshot";
       EnvironmentFile = "/etc/duckdns.env";
-      # Use \${ to tell Nix "This is a literal dollar sign for the shell"
       ExecStart = "${pkgs.curl}/bin/curl -s \"https://www.duckdns.org/update?domains=\${DUCKDNS_DOMAIN}&token=\${DUCKDNS_TOKEN}&ip=\"";
     };
 
