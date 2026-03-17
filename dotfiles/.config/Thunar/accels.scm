@@ -23,7 +23,6 @@
 ; (gtk_accel_path "<Actions>/ThunarActionManager/open" "<Primary>o")
 ; (gtk_accel_path "<Actions>/ThunarStandardView/sort-ascending" "")
 ; (gtk_accel_path "<Actions>/ThunarWindow/toggle-split-view" "F3")
-; (gtk_accel_path "<Actions>/ThunarBookmarks/a98917d68eb8bcdebee0e593b686333e" "")
 ; (gtk_accel_path "<Actions>/ThunarActionManager/copy-2" "<Primary>Insert")
 ; (gtk_accel_path "<Actions>/ThunarActionManager/trash-delete" "Delete")
 ; (gtk_accel_path "<Actions>/ThunarWindow/open-recent" "")
