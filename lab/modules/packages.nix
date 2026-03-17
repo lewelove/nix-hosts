@@ -21,6 +21,7 @@
 
     # Terminal Programs
     neovim
+    starship
 
     # Virtualization
     distrobox

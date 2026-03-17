@@ -7,4 +7,6 @@
     enableBashIntegration = true;
   };
 
+  programs.fish.enable = true;
+
 }

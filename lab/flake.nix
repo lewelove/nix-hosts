@@ -8,17 +8,18 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
-    openclaw.url = "github:openclaw/nix-openclaw";
+    # openclaw.url = "github:openclaw/nix-openclaw";
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
   let
     identity = import ./identity.nix;
     hostPath = "${identity.repoPath}/${identity.hostname}";
+    dot = "${identity.repoPath}/dotfiles";
   in {
     nixosConfigurations.${identity.hostname} = nixpkgs.lib.nixosSystem {
       specialArgs = {
-        inherit inputs identity hostPath;
+        inherit inputs identity hostPath dot;
         inherit (identity) username hostname repoPath;
       };
       modules = [
