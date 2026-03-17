@@ -32,15 +32,11 @@
       (i: i ./programs)
     ])
 
-    # System Services
-    # ./services/xremap.nix
-    ./services/keyd.nix
-    ./services/olivetin.nix
-    ./services/open-webui.nix
-
-    # User Services
-    # ./services/user/wlsunset.nix
-    ./services/user/polkit-agent.nix
+    # Services
+    (lib.pipe inputs.import-tree [
+      (i: i.filterNot (path: lib.hasInfix "/disabled/" path))
+      (i: i ./services)
+    ])
 
     # Scripts
     ../common/scripts/nrs.nix

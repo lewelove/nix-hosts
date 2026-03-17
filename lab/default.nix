@@ -33,17 +33,17 @@
 
     ./modules/virtualization.nix
 
+    # Programs
+    (lib.pipe inputs.import-tree[
+      (i: i.filterNot (path: lib.hasInfix "/disabled/" path))
+      (i: i ./programs)
+    ])
+
     # Services
-    # ./services/transmission.nix
-    # ./services/olivetin.nix
-    ./services/nfs.nix
-    ./services/jellyfin.nix
-    ./services/qbittorrent.nix
-    ./services/syncthing.nix
-    ./services/jitsi.nix
-    ./services/won.nix
-    ./services/mpd.nix
-    # ./services/openclaw.nix
+    (lib.pipe inputs.import-tree [
+      (i: i.filterNot (path: lib.hasInfix "/disabled/" path))
+      (i: i ./services)
+    ])
 
     # Scripts
     ../common/scripts/nrs.nix

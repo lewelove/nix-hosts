@@ -6,9 +6,9 @@ let
   '';
 in
 {
-  environment.systemPackages = [ 
-    pkgs.neovim 
-    nvl 
+  environment.systemPackages = [
+    pkgs.neovim
+    nvl
   ];
 
   home-manager.users.${username} = { config, ... }: {
