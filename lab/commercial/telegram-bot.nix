@@ -6,7 +6,7 @@ let
     python-telegram-bot
   ]);
 
-  botScript = ./bot.py;
+  botScript = /home/lewelove/commercial/family-office-bot/bot.py;
 in
 {
   systemd.services.lab-bot = {
