@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, identity, ... }:
 
 let
   awgr = pkgs.writeShellApplication {
@@ -18,9 +18,14 @@ let
         exec sudo "$0" "$@"
       fi
 
-      SOURCE_DIR="/home/lewelove/VPN/awg"
+      SOURCE_DIR="/home/${identity.username}/vpn/amneziawg"
       TARGET_DIR="/etc/amneziawg"
       TARGET_CONF="$TARGET_DIR/active.conf"
+
+      if [ ! -d "$SOURCE_DIR" ]; then
+        echo "Error: Directory $SOURCE_DIR does not exist."
+        exit 1
+      fi
 
       SELECTED=$(find "$SOURCE_DIR" -maxdepth 1 -name "*.conf" -printf "%f\n" | gum choose --header "Select VPN Endpoint")
 

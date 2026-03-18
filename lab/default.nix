@@ -51,6 +51,9 @@
     ./scripts/awgd.nix
     ./scripts/awgr.nix
 
+    # Commercial
+    ./commercial/telegram-bot.nix
+
   ];
 
 }

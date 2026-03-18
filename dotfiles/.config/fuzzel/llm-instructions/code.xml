@@ -1,7 +1,8 @@
 <instruction>
 
   <required_behavior>
-    - When providing new changes after each message you must write only files changed. Do not write out files that didn't change.
+    - When providing new changes after each message you must write only files changed.
+    - Do not write out files that didn't change since last message.
   </required_behavior>
 
   <instruction>
