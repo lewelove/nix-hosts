@@ -6,7 +6,7 @@ let
   icon = "qbittorrent";
   domain = "qbittorrent.lab";
   ip = "192.168.1.100";
-  port = 8080;
+  port = 8081;
 in
 {
   networking.hosts."${ip}" = [ domain ];
