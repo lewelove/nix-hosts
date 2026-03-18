@@ -5,6 +5,8 @@ let
   pythonEnv = pkgs.python3.withPackages (ps: with ps; [
     python-telegram-bot
   ]);
+
+  botScript = ./bot.py;
 in
 {
   systemd.services.lab-bot = {
@@ -17,7 +19,7 @@ in
       EnvironmentFile = "/etc/telegram-bot.env";
       
       # Execute using the virtual python environment
-      ExecStart = "${pythonEnv}/bin/python /home/lewelove/nix-hosts/lab/commercial/bot.py";
+      ExecStart = "${pythonEnv}/bin/python ${botScript}";
       
       # Hardening & Reliability
       Restart = "always";
