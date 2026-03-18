@@ -10,7 +10,7 @@
   };
 
   services.nginx.virtualHosts."jitsi.lewelaboratory.duckdns.org" = {
-    listen = [ { addr = "127.0.0.1"; port = 8081; } ];
+    listen = [ { addr = "127.0.0.1"; port = 8082; } ];
     addSSL = lib.mkForce false;
     forceSSL = lib.mkForce false;
     enableACME = lib.mkForce false;

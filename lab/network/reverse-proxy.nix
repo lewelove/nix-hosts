@@ -29,6 +29,10 @@
       "jitsi.{$DUCKDNS_DOMAIN}" = {
         extraConfig = ''
           reverse_proxy localhost:8082
+              header_up Host {host}
+              header_up X-Real-IP {remote_host}
+              header_up X-Forwarded-For {remote_host}
+              header_up X-Forwarded-Proto {scheme}
         '';
       };
 
