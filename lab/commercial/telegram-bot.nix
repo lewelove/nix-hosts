@@ -1,7 +1,9 @@
 { pkgs, ... }:
 
 let
-  botRepo = /home/lewelove/commercial/family-office-bot;
+  pythonEnv = pkgs.python3.withPackages (ps: with ps; [
+    python-telegram-bot
+  ]);
 in
 {
   systemd.services.lab-bot = {
@@ -10,16 +12,13 @@ in
     wantedBy = [ "multi-user.target" ];
 
     serviceConfig = {
-      EnvironmentFile = "/etc/telegram-bot.env";
-      
-      ExecStart = "${(pkgs.callPackage "${botRepo}/flake.nix" {}).packages.${pkgs.system}.default}/bin/family-office-bot";
-      
+      User = "lewelove";
+      Group = "users";
+      EnvironmentFile = "/home/lewelove/commercial/family-office-bot/.env";
+      WorkingDirectory = "/home/lewelove/commercial/family-office-bot";
+      ExecStart = "${pythonEnv}/bin/python /home/lewelove/commercial/family-office-bot/bot.py";
       Restart = "always";
       RestartSec = "10s";
-
-      DynamicUser = true;
-      StateDirectory = "lab-bot";
-      WorkingDirectory = "/var/lib/lab-bot";
     };
   };
 }
