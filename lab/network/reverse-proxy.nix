@@ -28,7 +28,7 @@
 
       "jitsi.{$DUCKDNS_DOMAIN}" = {
         extraConfig = ''
-          reverse_proxy localhost:8081
+          reverse_proxy localhost:8082
         '';
       };
 
