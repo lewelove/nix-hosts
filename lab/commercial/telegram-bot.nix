@@ -1,33 +1,25 @@
 { pkgs, ... }:
 
 let
-  # Packages the bot needs
-  pythonEnv = pkgs.python3.withPackages (ps: with ps; [
-    python-telegram-bot
-  ]);
-
-  botScript = "/home/lewelove/commercial/family-office-bot/bot.py";
+  botRepo = /home/lewelove/commercial/family-office-bot;
 in
 {
   systemd.services.lab-bot = {
-    description = "Telegram Bot for Lab Server";
+    description = "Family Office Telegram Bot";
     after = [ "network.target" ];
     wantedBy = [ "multi-user.target" ];
 
     serviceConfig = {
-      # Pull the TELEGRAM_TOKEN from our secret file
       EnvironmentFile = "/etc/telegram-bot.env";
       
-      # Execute using the virtual python environment
-      ExecStart = "${pythonEnv}/bin/python ${botScript}";
+      ExecStart = "${(pkgs.callPackage "${botRepo}/flake.nix" {}).packages.${pkgs.system}.default}/bin/family-office-bot";
       
-      # Hardening & Reliability
       Restart = "always";
       RestartSec = "10s";
+
       DynamicUser = true;
-      ReadWritePaths = [ "/var/lib/lab-bot" ];
       StateDirectory = "lab-bot";
-      ProtectHome = "read-only";
+      WorkingDirectory = "/var/lib/lab-bot";
     };
   };
 }
