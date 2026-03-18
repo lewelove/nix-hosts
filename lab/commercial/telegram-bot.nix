@@ -14,9 +14,11 @@ in
     serviceConfig = {
       User = "lewelove";
       Group = "users";
-      EnvironmentFile = "/home/lewelove/commercial/family-office-bot/.env";
       WorkingDirectory = "/home/lewelove/commercial/family-office-bot";
+      EnvironmentFile = "/etc/telegram-bot.env";
       ExecStart = "${pythonEnv}/bin/python /home/lewelove/commercial/family-office-bot/bot.py";
+      
+      ProtectHome = false;
       Restart = "always";
       RestartSec = "10s";
     };
