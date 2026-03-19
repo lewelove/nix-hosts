@@ -14,7 +14,7 @@
     ./network/openssh.nix
     ./network/duckdns.nix
     ./network/reverse-proxy.nix
-    ./network/crowdsec.nix
+    ./network/fail2ban.nix
     ./network/auth.nix
 
     # ./network/amneziawg.nix

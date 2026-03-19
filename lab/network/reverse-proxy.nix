@@ -6,6 +6,13 @@
     environmentFile = "/etc/duckdns.env";
 
     extraConfig = ''
+      {
+        log {
+          output file /var/log/caddy/access.log
+          format json
+        }
+      }
+
       (auth) {
         forward_auth localhost:9091 {
           uri /api/verify?rd=https://auth.{$DUCKDNS_DOMAIN}/
@@ -44,6 +51,10 @@
       };
     };
   };
+
+  systemd.tmpfiles.rules = [
+    "d /var/log/caddy 0755 caddy caddy -"
+  ];
 
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 }
