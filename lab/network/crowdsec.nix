@@ -1,10 +1,10 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 
 {
   services.crowdsec = {
     enable = true;
 
-    # 1. New location for acquisitions
+    # 1. Use the new acquisition location
     localConfig.acquisitions = [
       {
         source = "journalctl";
@@ -18,23 +18,21 @@
       }
     ];
 
-    # 2. Correct nesting for the API server
-    settings = {
-      general.api.server = {
-        enable = true;
-        listen_uri = "127.0.0.1:8080";
-      };
-      # Mandatory: Tell it where to put credentials so it doesn't try the read-only store
-      lapi.credentialsFile = "/var/lib/crowdsec/local_api_credentials.yaml";
-    };
+    # 2. Configure LAPI credentials to be writable
+    settings.lapi.credentialsFile = "/var/lib/crowdsec/local_api_credentials.yaml";
   };
 
-  # 3. THE CRITICAL FIX: 
-  # The bouncer-register service fails because 'cscli' looks in /etc/crowdsec/config.yaml.
-  # We link the Nix-generated config to that exact path.
-  environment.etc."crowdsec/config.yaml".source = config.services.crowdsec.settingsFile;
+  # 3. FIX: Manually provide the config file that cscli / bouncer-register needs.
+  # This stops the "open /etc/crowdsec/config.yaml: no such file" error.
+  environment.etc."crowdsec/config.yaml".text = ''
+    api:
+      client:
+        credentials_path: /var/lib/crowdsec/local_api_credentials.yaml
+      server:
+        listen_uri: 127.0.0.1:8080
+  '';
 
-  # 4. New standalone bouncer service
+  # 4. Enable the standalone bouncer
   services.crowdsec-firewall-bouncer = {
     enable = true;
     settings = {
@@ -42,6 +40,6 @@
     };
   };
 
-  # 5. Ensure CrowdSec can read the logs
+  # 5. Essential permissions
   users.users.crowdsec.extraGroups = [ "systemd-journal" ];
 }
