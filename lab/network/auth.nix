@@ -34,7 +34,7 @@
           {
             domain = "lewelaboratory.duckdns.org";
             authelia_url = "https://auth.lewelaboratory.duckdns.org";
-            default_redirection_url = "https://auth.lewelaboratory.duckdns.org";
+            default_redirection_url = "https://jellyfin.lewelaboratory.duckdns.org";
           }
         ];
       };
