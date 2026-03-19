@@ -42,6 +42,9 @@ vim.keymap.set("n", "<leader>a", function() _G.NewBufferSameDir() end, { desc = 
 -- Autorename by first line
 vim.keymap.set("n", "<leader>n", function() _G.RenameByContent() end, { silent = true })
 
+-- Quick Save Raw Idea
+vim.keymap.set("n", "<leader>s", function() _G.QuickSaveNote() end, { desc = "Quick Save Raw Note", silent = true })
+
 -- Replace whole file with clipboard paste
 vim.keymap.set('n', '<leader>v', 'ggVG"_dP | :w<CR>', { desc = 'Paste clipboard to whole buffer' })
 
@@ -108,13 +111,6 @@ vim.keymap.set("n", "<leader>d", function()
     return
   end
 
-  -- vim.cmd([[
-  --   hi DiffAdd guibg=#2d3322 guifg=#a6e22e
-  --   hi DiffDelete guibg=#331b1b guifg=#661111
-  --   hi DiffChange guibg=#1f2430
-  --   hi DiffText guibg=#394b70 guifg=#7aa2f7 gui=bold
-  -- ]])
-
   vim.cmd("diffthis")
 
   local buf = vim.api.nvim_create_buf(false, true)
@@ -145,5 +141,4 @@ end, { desc = "Diff Merge Tool (Internal)" })
 -- Reload Configuration
 vim.keymap.set("n", "<leader>rl", function()
   vim.cmd("source $MYVIMRC")
-  -- vim.notify("Configuration Reloaded!", vim.log.levels.INFO)
 end, { desc = "Reload Config" })

@@ -1,6 +1,7 @@
 vim.cmd([[set noswapfile]])
 
 -- Theme & Look
+vim.opt.shortmess:append("I")
 vim.cmd.colorscheme("unokai")
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
