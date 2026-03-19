@@ -1,8 +1,7 @@
 add_newline = false
 
-# We use ${custom.machine_icon} to pull in the emoji and $git_branch for the repo status.
 format = """
-[\\[](bright-black)[$time](bright-black)[\\]](bright-black) ${custom.machine_icon} [$username](yellow)[@](green)[$hostname](blue) [$directory](purple) $git_branch
+[\\[](bright-black)[$time](bright-black)[\\]](bright-black) ${custom.icon} [$username](yellow)[@](green)[$hostname](blue) [$directory](purple) $git_branch
 $character
 """
 
@@ -22,20 +21,13 @@ style = "blue"
 
 [directory]
 format = "$path"
-truncation_length = 100
-truncate_to_repo = false
 style = "cyan"
-
-[git_branch]
-symbol = " "
-format = "on [$symbol$branch]($style) "
-style = "bright-black"
 
 [character]
 success_symbol = "[\\[](bright-black)[>](bright-black)[\\]](bright-black)"
 error_symbol = "[\\[](bright-black)[>](bright-black)[\\]](bright-black)"
 
-[custom.machine_icon]
+[custom.icon]
 when = "true"
+command = "hostname | grep -q home && echo 🏠 || echo 🧬"
 format = "$output"
-command = "uname -n | grep -iq 'home' && echo '🏠' || echo '🧪'"
