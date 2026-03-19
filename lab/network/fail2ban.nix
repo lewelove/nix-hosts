@@ -26,6 +26,7 @@
           filter = "caddy-auth";
           logpath = "/var/log/caddy/access.log";
           port = "http,https";
+          backend = "auto"; 
         };
       };
     };
