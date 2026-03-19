@@ -31,11 +31,6 @@
     };
   };
 
-  systemd.services.fail2ban.preStart = ''
-    mkdir -p /var/log/caddy
-    touch /var/log/caddy/access.log
-  '';
-
   environment.etc."fail2ban/filter.d/caddy-auth.conf".text = ''
     [Definition]
     failregex = ^.*"remote_ip":"<HOST>".*"status":(401|403|444).*$

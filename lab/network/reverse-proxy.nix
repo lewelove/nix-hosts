@@ -60,9 +60,9 @@
     };
   };
 
-  # Ensure the log directory exists and Caddy can write to it
   systemd.tmpfiles.rules = [
     "d /var/log/caddy 0755 caddy caddy -"
+    "f /var/log/caddy/access.log 0644 caddy caddy -"
   ];
 
   networking.firewall.allowedTCPPorts = [ 80 443 ];
