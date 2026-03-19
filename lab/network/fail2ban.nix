@@ -26,15 +26,18 @@
           filter = "caddy-auth";
           logpath = "/var/log/caddy/access.log";
           port = "http,https";
-          backend = "auto";
         };
       };
     };
   };
 
+  systemd.services.fail2ban.preStart = ''
+    mkdir -p /var/log/caddy
+    touch /var/log/caddy/access.log
+  '';
+
   environment.etc."fail2ban/filter.d/caddy-auth.conf".text = ''
     [Definition]
-    # This matches the remote_ip in Caddy's JSON log for 401 (Unauthorized) or 403 (Forbidden)
     failregex = ^.*"remote_ip":"<HOST>".*"status":(401|403|444).*$
     ignoreregex =
   '';
