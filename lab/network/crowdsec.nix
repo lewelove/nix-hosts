@@ -1,10 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   services.crowdsec = {
     enable = true;
 
-    # 1. Acquisitions are now under 'localConfig'
+    # 1. Acquisitions (journal monitors)
     localConfig.acquisitions = [
       {
         source = "journalctl";
@@ -18,41 +18,39 @@
       }
     ];
 
-    # 2. Settings: Server config goes under 'general', credentials under 'lapi'/'capi'
+    # 2. Settings: General for server, LAPI/CAPI for credentials
     settings = {
-      general = {
-        api.server = {
-          enable = true;
-          listen_uri = "127.0.0.1:8080";
-        };
+      general.api.server = {
+        enable = true;
+        listen_uri = "127.0.0.1:8080";
       };
-      
-      lapi = {
-        # This MUST be a writable path for CrowdSec to generate its local credentials
-        credentialsFile = "/var/lib/crowdsec/local_api_credentials.yaml";
-      };
-
-      capi = {
-        # Writable path for Central API credentials
-        credentialsFile = "/var/lib/crowdsec/online_api_credentials.yaml";
-      };
+      lapi.credentialsFile = "/var/lib/crowdsec/local_api_credentials.yaml";
+      capi.credentialsFile = "/var/lib/crowdsec/online_api_credentials.yaml";
     };
   };
 
-  # 3. The Bouncer is now a standalone top-level service
+  # 3. FIX: Symlink the generated NixOS config to the location cscli expects
+  # This resolves "Error: open /etc/crowdsec/config.yaml: no such file or directory"
+  environment.etc."crowdsec/config.yaml".source = config.services.crowdsec.settingsFile;
+
+  # 4. Firewall Bouncer
   services.crowdsec-firewall-bouncer = {
     enable = true;
     settings = {
       api_url = "http://127.0.0.1:8080/";
-      # Note: The 'register' service will attempt to auto-fill the api_key here
     };
   };
 
-  # 4. Mandatory: Create the directory for credentials and databases
+  # 5. Stabilize user/group to prevent DynamicUser migration errors
+  users.users.crowdsec = {
+    isSystemUser = true;
+    group = "crowdsec";
+    extraGroups = [ "systemd-journal" ];
+  };
+  users.groups.crowdsec = {};
+
+  # 6. Ensure the directory is ready
   systemd.tmpfiles.rules = [
     "d /var/lib/crowdsec 0750 crowdsec crowdsec -"
   ];
-
-  # 5. Ensure CrowdSec can read the systemd journal
-  users.users.crowdsec.extraGroups = [ "systemd-journal" ];
 }
