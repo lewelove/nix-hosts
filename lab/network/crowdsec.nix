@@ -4,7 +4,7 @@
   services.crowdsec = {
     enable = true;
 
-    # 1. Acquisitions move here
+    # 1. Acquisitions are now under 'localConfig'
     localConfig.acquisitions = [
       {
         source = "journalctl";
@@ -18,40 +18,41 @@
       }
     ];
 
-    # 2. Modern structured settings
+    # 2. Settings: Server config goes under 'general', credentials under 'lapi'/'capi'
     settings = {
-      # Use lapi.server to enable the Local API engine
-      lapi = {
-        server = {
+      general = {
+        api.server = {
           enable = true;
           listen_uri = "127.0.0.1:8080";
         };
-        # MUST point to a writable path for auto-generated credentials
-        credentialsFile = "/var/lib/crowdsec/local_api_credentials.yaml";
       };
       
+      lapi = {
+        # This MUST be a writable path for CrowdSec to generate its local credentials
+        credentialsFile = "/var/lib/crowdsec/local_api_credentials.yaml";
+      };
+
       capi = {
-        # Optional: path for online API credentials
+        # Writable path for Central API credentials
         credentialsFile = "/var/lib/crowdsec/online_api_credentials.yaml";
       };
     };
   };
 
-  # 3. Firewall Bouncer is now its own standalone service
+  # 3. The Bouncer is now a standalone top-level service
   services.crowdsec-firewall-bouncer = {
     enable = true;
     settings = {
       api_url = "http://127.0.0.1:8080/";
-      # On first run, this service will attempt to auto-register with the LAPI.
-      # If it fails, check 'systemctl status crowdsec-firewall-bouncer-register'
+      # Note: The 'register' service will attempt to auto-fill the api_key here
     };
   };
 
-  # 4. Ensure permissions for log reading
-  users.users.crowdsec.extraGroups = [ "systemd-journal" ];
-
-  # 5. Ensure the state directory exists with correct permissions
+  # 4. Mandatory: Create the directory for credentials and databases
   systemd.tmpfiles.rules = [
     "d /var/lib/crowdsec 0750 crowdsec crowdsec -"
   ];
+
+  # 5. Ensure CrowdSec can read the systemd journal
+  users.users.crowdsec.extraGroups = [ "systemd-journal" ];
 }
