@@ -13,7 +13,7 @@
     description = "Timer to trigger Wake-on-LAN daily";
     wantedBy = [ "timers.target" ];
     timerConfig = {
-      OnCalendar = "*-*-* 07:55:00";
+      OnCalendar = "*-*-* 06:55:00";
       
       Persistent = true; 
       
