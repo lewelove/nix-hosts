@@ -11,6 +11,7 @@
     # Network
     ./network/core.nix
     ./network/inbound.nix
+    ./network/amneziawg.nix
     ./network/openssh.nix
     ./network/duckdns.nix
     ./network/reverse-proxy.nix
