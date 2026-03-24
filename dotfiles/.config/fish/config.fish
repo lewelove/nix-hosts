@@ -16,13 +16,13 @@ if status is-interactive
   fish_add_path "$HOME/.commands"
   fish_add_path "$HOME/.scripts"
 
-  # --- Basic Aliases ---
   alias clr="set -e _starship_rendered; clear"
   alias clear="set -e _starship_rendered; command clear"
 
   alias x+="chmod +x"
   alias nv="nvim"
-  alias nvn="NVIM_APPNAME=nvim-notes nvim"
+  alias lg="lazygit"
+
   alias clients="hyprctl clients | rg -A 3 'class'"
   alias awgd="sudo killall amneziawg-go"
   alias ipcheck="curl ip-api.com"

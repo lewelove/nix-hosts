@@ -54,6 +54,7 @@
 
     # Commercial
     ./commercial/telegram-bot.nix
+    ./commercial/routing-bot.nix
 
   ];
 
