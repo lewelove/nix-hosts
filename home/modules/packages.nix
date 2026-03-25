@@ -35,7 +35,6 @@
     hyprpicker
     wlsunset
     wl-clipboard
-    peazip
     bitwarden-desktop
     qwen-code
     gnome-calculator
