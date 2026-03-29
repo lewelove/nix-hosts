@@ -5,7 +5,6 @@
     enable = true;
     environmentFile = "/etc/duckdns.env";
 
-    # Define a snippet for logging to avoid global block conflicts
     extraConfig = ''
       (logging) {
         log {
@@ -20,12 +19,21 @@
           copy_headers Remote-User Remote-Groups Remote-Name Remote-Email
         }
       }
+
+      (drop_scanners) {
+        @scanners {
+          path *.php *.env *.git* *.xml *.yaml *.yml *.ini *.sql *.bak *.swp *.save *.log
+          path_regexp wp ^/wp-
+        }
+        respond @scanners "Forbidden" 403
+      }
     '';
 
     virtualHosts = {
       "auth.{$DUCKDNS_DOMAIN}" = {
         extraConfig = ''
           import logging
+          import drop_scanners
           reverse_proxy localhost:9091
         '';
       };
@@ -33,6 +41,7 @@
       "jellyfin.{$DUCKDNS_DOMAIN}" = {
         extraConfig = ''
           import logging
+          import drop_scanners
           import auth
           reverse_proxy localhost:8096
         '';
@@ -41,6 +50,7 @@
       "jitsi.{$DUCKDNS_DOMAIN}" = {
         extraConfig = ''
           import logging
+          import drop_scanners
           reverse_proxy localhost:8082 {
               header_up Host {host}
               header_up X-Real-IP {remote_host}
@@ -53,6 +63,7 @@
       "vellum.{$DUCKDNS_DOMAIN}" = {
         extraConfig = ''
           import logging
+          import drop_scanners
           import auth
           reverse_proxy 127.0.0.1:5173
         '';
