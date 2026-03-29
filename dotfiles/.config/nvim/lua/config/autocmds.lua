@@ -64,7 +64,7 @@ _G.RenameByContent = function()
   if not first_line then return end
 
   local clean_text = first_line:gsub('[<>:"/\\|%?%*]', "_")
-  clean_text = clean_text:gsub("^%.+", "") -- Remove leading dots
+  clean_text = clean_text:gsub("^%.+", "")
   clean_text = clean_text:gsub("%s+", " ")
   clean_text = clean_text:match("^%s*(.-)%s*$")
   
@@ -73,10 +73,8 @@ _G.RenameByContent = function()
   end
   if #clean_text == 0 then clean_text = "untitled" end
 
-  local timestamp = os.date("!%Y%m%d-%H%M%S")
-  
   local extension = (ft == "markdown") and ".md" or ".txt"
-  local filename = timestamp .. " " .. clean_text .. extension
+  local filename = clean_text .. extension
   
   local target_dir
   if buf_name ~= "" then

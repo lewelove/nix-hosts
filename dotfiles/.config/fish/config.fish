@@ -22,6 +22,7 @@ if status is-interactive
   alias x+="chmod +x"
   alias nv="nvim"
   alias lg="lazygit"
+  alias gs="git status"
 
   alias clients="hyprctl clients | rg -A 3 'class'"
   alias awgd="sudo killall amneziawg-go"

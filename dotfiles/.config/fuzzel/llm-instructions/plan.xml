@@ -10,9 +10,7 @@
   </required_behavior>
 
   <instruction>
-    Create plan required for implementation like this:
-      - In short describe my intention
-      - Concisely describe a way to get there in the most elegant, simple, idiomatic and correct way possible
+    - Create plan required for implementation, concisely describing a way to get there in the most elegant, simple, idiomatic and correct way possible
   </instruction>
 
   <important_constraints>

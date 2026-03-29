@@ -3,7 +3,7 @@
 let
   git-sync-bin = pkgs.writeShellApplication {
     name = "git-sync-bin"; # Internal name to avoid PATH collisions
-    runtimeInputs = with pkgs; [ git coreutils gum repomix ];
+    runtimeInputs = with pkgs; [ git coreutils gum repomix bash ];
     text = ''
       r() { gum style --foreground 1 "$*"; }
       g() { gum style --foreground 2 "$*"; }
@@ -19,6 +19,15 @@ let
 
       GIT_ROOT=$(git rev-parse --show-toplevel)
       cd "$GIT_ROOT"
+
+      # Check for custom sync script
+      if [ -f "$GIT_ROOT/.sync.sh" ]; then
+          echo
+          gum join --horizontal "$(m "[>] ")" "Custom sync script found: " "$(y ".sync.sh")"
+          echo
+          chmod +x "$GIT_ROOT/.sync.sh"
+          bash "$GIT_ROOT/.sync.sh" "$@"
+      fi
 
       BRANCH=$(git branch --show-current 2>/dev/null || echo "")
       if [ -z "$BRANCH" ]; then
