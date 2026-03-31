@@ -54,7 +54,7 @@
     ./scripts/awgr.nix
 
     # Commercial
-    ./commercial/telegram-bot.nix
+    ./commercial/family-office-bot.nix
     ./commercial/routing-bot.nix
 
   ];
