@@ -24,10 +24,6 @@ w() { gum style --foreground 7 "$*"; }
 MSG="''${1:-$(date -u +'%Y-%m-%d %H:%M UTC')}"
 cd "${repoPath}"
 
-gum join --horizontal "$(m "[>] ")" "Packaging Repository..."
-repomix --quiet --include "dotfiles/**,common/**,home/**" || true
-repomix --quiet --include "dotfiles/**,common/**,lab/**" || true
-
 echo
 gum join --horizontal "$(m "[>] ")" "Committing local changes..."
 git add .
@@ -56,6 +52,10 @@ if git remote | grep -q "^lab$"; then
         exit 1
     fi
 fi
+
+gum join --horizontal "$(m "[>] ")" "Packaging Repository..."
+repomix --quiet --include "dotfiles/**,common/**,home/**" || true
+repomix --quiet --include "dotfiles/**,common/**,lab/**" || true
 
 if git remote | grep -q "^origin$"; then
     RAW_ADDR=$(git remote get-url origin)
