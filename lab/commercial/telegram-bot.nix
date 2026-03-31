@@ -12,7 +12,7 @@ in
     home = "/var/lib/commercial/family-office-bot";
     createHome = true;
   };
-  users.groups.telegram-bot = {};
+  users.groups.family-office-bot = {};
 
   systemd.tmpfiles.rules = [
     "d /var/lib/commercial/family-office-bot 0750 family-office-bot family-office-bot -"
