@@ -55,7 +55,6 @@
 
     # Commercial
     ./commercial/family-office-bot.nix
-    ./commercial/routing-bot.nix
 
   ];
 
