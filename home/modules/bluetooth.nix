@@ -9,9 +9,16 @@
     settings = {
       General = {
         AutoEnable = true;
-        Enable = "Source,Sink,Media,Socket";
         AutoConnect = true;
-        Experimental = true;
+        # Experimental = true;
+        Privacy = "off";
+        MinSniffInterval = 0;
+        JustWorksRepairing = "always";
+        FastConnectable = true;
+        UserspaceHID = "true";
+        SecureConnections = "false";
+        # Capability = "NoInputNoOutput";
+        # Class = "0x000100";
       };
       Policy = {
         AutoEnable = true;

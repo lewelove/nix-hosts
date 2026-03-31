@@ -17,6 +17,6 @@
     enable32Bit = true;
   };
 
-  hardware.xpadneo.enable = true;
+  hardware.xpadneo.enable = false;
 
 }
