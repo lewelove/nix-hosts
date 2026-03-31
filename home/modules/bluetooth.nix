@@ -11,6 +11,7 @@
         AutoEnable = true;
         Enable = "Source,Sink,Media,Socket";
         AutoConnect = true;
+        Experimental = true;
       };
       Policy = {
         AutoEnable = true;
