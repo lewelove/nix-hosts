@@ -24,8 +24,8 @@ in
     wantedBy = [ "multi-user.target" ];
 
     serviceConfig = {
-      User = "telegram-bot";
-      Group = "telegram-bot";
+      User = "family-office-bot";
+      Group = "family-office-bot";
       
       WorkingDirectory = "/var/lib/commercial/family-office-bot";
       EnvironmentFile = "/etc/telegram-bot.env";
