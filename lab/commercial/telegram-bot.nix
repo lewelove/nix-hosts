@@ -6,7 +6,7 @@ let
   ]);
 in
 {
-  users.users.telegram-bot = {
+  users.users.family-office-bot = {
     isSystemUser = true;
     group = "family-office-bot";
     home = "/var/lib/commercial/family-office-bot";
