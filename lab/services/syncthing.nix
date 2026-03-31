@@ -14,6 +14,5 @@
 
     overrideDevices = false;
     overrideFolders = false;
-    };
   };
 }
