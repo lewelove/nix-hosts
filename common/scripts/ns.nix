@@ -53,6 +53,8 @@ if git remote | grep -q "^lab$"; then
     fi
 fi
 
+echo
+
 gum join --horizontal "$(m "[>] ")" "Packaging Repository..."
 repomix --quiet --include "dotfiles/**,common/**,home/**" || true
 repomix --quiet --include "dotfiles/**,common/**,lab/**" || true
