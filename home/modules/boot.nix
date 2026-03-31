@@ -15,6 +15,7 @@
   boot.kernelParams = [ 
     "btusb.enable_autosuspend=0" 
     "bluetooth.disable_ertm=1"
+    "bluetooth.disable_esco=1"
   ];
 
 }

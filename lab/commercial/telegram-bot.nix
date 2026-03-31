@@ -8,9 +8,15 @@ in
 {
   users.users.telegram-bot = {
     isSystemUser = true;
-    group = "telegram-bot";
+    group = "family-office-bot";
+    home = "/var/lib/commercial/family-office-bot";
+    createHome = true;
   };
   users.groups.telegram-bot = {};
+
+  systemd.tmpfiles.rules = [
+    "d /var/lib/commercial/family-office-bot 0750 family-office-bot family-office-bot -"
+  ];
 
   systemd.services.lab-bot = {
     description = "Family Office Telegram Bot";
@@ -20,13 +26,18 @@ in
     serviceConfig = {
       User = "telegram-bot";
       Group = "telegram-bot";
-      WorkingDirectory = "/home/lewelove/commercial/family-office-bot";
-      EnvironmentFile = "/etc/telegram-bot.env";
-      ExecStart = "${pythonEnv}/bin/python /home/lewelove/commercial/family-office-bot/bot.py";
       
-      ProtectHome = false;
+      WorkingDirectory = "/var/lib/commercial/family-office-bot";
+      EnvironmentFile = "/etc/telegram-bot.env";
+      
+      ExecStart = "${pythonEnv}/bin/python /var/lib/commercial/family-office-bot/bot.py";
+      
       Restart = "always";
       RestartSec = "10s";
+
+      ProtectHome = "true";
+      ProtectSystem = "full";
+      ReadWritePaths = [ "/var/lib/commercial/family-office-bot" ];
     };
   };
 }
