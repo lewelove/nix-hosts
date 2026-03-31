@@ -8,7 +8,6 @@
     enable = true;
     user = username;
     dataDir = "/home/${username}";
-    configDir = "/home/${username}/.config/syncthing";
     
     guiAddress = "0.0.0.0:8384";
 
