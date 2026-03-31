@@ -7,6 +7,7 @@
   services.syncthing = {
     enable = true;
     user = username;
+    group = "users";
     configDir = "/home/${username}/.config/syncthing";
     
     guiAddress = "0.0.0.0:8384";
