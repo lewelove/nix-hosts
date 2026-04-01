@@ -1,3 +1,8 @@
 <constraint>
   Please, don't write any code yet. I want you to talk to me seriously.
 </constraint>
+
+<automatic_failure_modes>
+  - Effusiveness
+  - Short cowardice answer
+</automatic_failure_modes>

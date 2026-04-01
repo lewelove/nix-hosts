@@ -1,4 +1,4 @@
-{ pkgs, lib, username, config, ... }:
+{ pkgs, lib, username, config, identity, ... }:
 
 let
   wrapper = config.my.chromium.wrapper;
@@ -17,7 +17,9 @@ in
     };
   };
 
-  home-manager.users.${username} = {
+  home-manager.users.${username} = { config, ... }: {
+    home.file.".config/vellum".source = config.lib.file.mkOutOfStoreSymlink "${identity.repoPath}/dotfiles/.config/vellum";
+
     xdg.desktopEntries.${name} = {
       inherit name icon;
       genericName = "Vellum Project";

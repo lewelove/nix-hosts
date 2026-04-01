@@ -1,0 +1,98 @@
+[storage]
+library_root = "/run/media/lewelove/1000xhome/backup-everything/FB2K/Library Historyfied!/"
+library_export = "~/dev/vellum-test-library/metadata_output"
+thumbnail_cache_folder = "~/.vellum/thumbnails"
+
+[theme]
+thumbnail_size = 190
+
+[theme.shader]
+
+path = "shaders/mountain_oklch.frag"
+speed = 0.003
+zoom = 0.5
+# zoom = 1.5
+blur = 1.0
+grain = 0.02
+# equalize = 0.0
+equalize = 0.6
+# equalize = 1.0
+
+# path = "shaders/vapor.frag"
+# speed = 0.005
+# zoom = 1.8
+# blur = 0.011
+# edge_blur = 0.11
+# grain = 0.01
+# equalize = 1.0
+
+# path = "shaders/liquid.frag"
+# speed = 0.001
+# zoom = 0.1
+# blur = 1.2
+# edge_blur = 1.6
+# grain = 0.01
+# equalize = 1.0
+
+[manifest]
+supported_extensions = [ ".flac" ]
+
+[manifest.keys]
+album = { level = "album" }
+albumartist = { level = "album" }
+date = { level = "album" }
+genre = { level = "album", add_newline = true, type = "list" }
+comment = { level = "album", add_newline = true }
+country = { level = "album" }
+label = { level = "album" }
+catalognumber = { level = "album" }
+media = { level = "album", add_newline = true }
+discogs_url = { level = "album" }
+musicbrainz_url = { level = "album", add_newline = true }
+tracknumber = { level = "track" }
+title = { level = "track" }
+artist = { level = "track" }
+
+[compiler]
+scan_depth = 4
+
+[compiler.keys]
+country = { level = "album" }
+label = { level = "album" }
+catalognumber = { level = "album" }
+media = { level = "album" }
+discogs_url = { level = "album" }
+musicbrainz_url = { level = "album" }
+unix_added_local = { level = "album" }
+unix_added_foobar = { level = "album" }
+unix_added_applemusic = { level = "album" }
+unix_added_youtube = { level = "album" }
+unix_added_primary = { level = "album" }
+custom_id = { level = "album" }
+custom_albumartist = { level = "album", args = "custom_albumartist,artistartist,albumartist" }
+custom_string = { level = "album" }
+old_comment = { level = "album" }
+replaygain_album_gain = { level = "album" }
+replaygain_album_peak = { level = "album" }
+musicbrainz_albumid = { level = "album" }
+musicbrainz_albumartistid = { level = "album" }
+musicbrainz_releasegroupid = { level = "album" }
+
+lyrics = { level = "tracks" }
+accuripid = { level = "tracks" }
+ctdbid = { level = "tracks" }
+discid = { level = "tracks" }
+replaygain_track_gain = { level = "tracks" }
+replaygain_track_peak = { level = "tracks" }
+musicbrainz_trackid = { level = "tracks" }
+musicbrainz_releasetrackid = { level = "tracks" }
+musicbrainz_artistid = { level = "tracks" }
+
+unix_added = { level = "album", class = "function", args = "unix_added_primary,unixtimeyoutube,unixtimeapple,unixtimefoobar,unix_added_youtube,unix_added_applemusic,unix_added_foobar,unix_added_local" }
+cover_chroma = { level = "album", class = "function", sync = false }
+cover_entropy = { level = "album", class = "function", sync = false }
+# cover_palette = { level = "album", class = "function", args = "k=12,noise=0.0,conv=0.05,filter=0.002,bias=0.0", sync = false }
+# cover_palette = { level = "album", class = "function", args = "type=kmeans,k=16", sync = false }
+cover_palette = { level = "album", class = "function", args = "type=kmeans_filtered,k=10,mode=cut,Tt=50,Cb=12,Ct=60,Ht=100", sync = false }
+# cover_palette = { level = "album", class = "function", args = "type=mean_shift,bw=12", sync = false }
+# cover_palette = { level = "album", class = "function", args = "type=mcu_material,k=16", sync = false }

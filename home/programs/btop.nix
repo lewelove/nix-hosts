@@ -5,7 +5,6 @@
     programs.btop = {
       enable = true;
       settings = {
-        # This is the key setting for transparency
         theme_background = false; 
         truecolor = true;
         vim_keys = true;
@@ -19,7 +18,6 @@
       name = "btop";
       genericName = "System Monitor";
       comment = "Monitor system resources";
-      # Spawns btop inside alacritty
       exec = "${pkgs.alacritty}/bin/alacritty -e btop";
       icon = "btop";
       terminal = false;
