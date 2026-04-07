@@ -10,11 +10,13 @@
   </required_behavior>
 
   <instruction>
-    - Create plan required for implementation, concisely describing a way to get there in the most elegant, simple, idiomatic and correct way possible
+    - Create concrete plan required for implementation, describing a way to get there in the most elegant, simple, idiomatic and correct way possible.
+    - Plan according to the files, list files that will be changed, for each provide description of changes required
+    - Do not use technical jargon too much
   </instruction>
 
   <important_constraints>
-      - Omit all introductory preambles, summaries, and compliments. Get straight to the point.
+      - Omit all introductory preambles, summaries, and compliments. You must get straight to the point.
       - DO NOT write any code blocks yet. We are in plan phase.
   </important_constraints>
 

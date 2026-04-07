@@ -38,7 +38,7 @@ vec3 oklab_to_srgb(vec3 c) {
     g = g >= 0.0031308 ? 1.055 * pow(g, 1.0 / 2.4) - 0.055 : 12.92 * g;
     b = b >= 0.0031308 ? 1.055 * pow(b, 1.0 / 2.4) - 0.055 : 12.92 * b;
 
-    return clamp(vec3(r, g, b), 0.0, 1.0);
+    return clamp(vec3(r, g, b), 0.1, 0.8);
 }
 
 vec4 permute(vec4 x){return mod(((x*34.0)+1.0)*x, 289.0);}
@@ -164,7 +164,7 @@ void main() {
         currentEdgeSoftness = nextEdgeSoftness;
     }
     
-    finalOklab.x = 0.1 + (finalOklab.x * 0.8);
+    finalOklab.x = 0.0 + (finalOklab.x * 0.7);
     
     vec3 finalColor = oklab_to_srgb(finalOklab);
 

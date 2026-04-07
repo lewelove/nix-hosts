@@ -132,48 +132,26 @@ void main() {
 
     float val = fbm(vec3(p * iZoom, t));
 
-    float totalWeight = 0.0;
-    for(int i = 0; i < NUM_COLORS; i++) {
-        totalWeight += iRatios[i];
-    }
-    if (totalWeight <= 0.0) totalWeight = 1.0; 
-
     vec3 finalOklab = vec3(0.0);
-    float cumulative = 0.00;
-    float currentEdgeSoftness = 0.0;
+    
+    float segmentWidth = 1.0 / float(max(1, iCount));
+    float edgeSoftness = iBlur * segmentWidth * 1.0;
 
     for(int i = 0; i < NUM_COLORS; i++) {
-        float weight = iRatios[i] / totalWeight;
-        float nextCumulative = cumulative + weight;
+        if (i >= iCount) break;
+
+        float cumulative = float(i) * segmentWidth;
+        float nextCumulative = float(i + 1) * segmentWidth;
         
-        float nextWeight = 0.0;
-        if (i + 1 < NUM_COLORS) {
-            nextWeight = iRatios[i+1] / totalWeight;
-        }
-        
-        float nextEdgeSoftness = iBlur * min(weight, nextWeight); 
-        
-        float startMask = (i == 0) ? 1.0 : smoothstep(cumulative - currentEdgeSoftness, cumulative + currentEdgeSoftness, val);
-        float endMask = (i == NUM_COLORS - 1) ? 0.0 : smoothstep(nextCumulative - nextEdgeSoftness, nextCumulative + nextEdgeSoftness, val);
+        float startMask = (i == 0) ? 1.0 : smoothstep(cumulative - edgeSoftness, cumulative + edgeSoftness, val);
+        float endMask = (i == iCount - 1) ? 0.0 : smoothstep(nextCumulative - edgeSoftness, nextCumulative + edgeSoftness, val);
         
         float weightMask = startMask - endMask;
         
         finalOklab += iColorsOklab[i] * max(0.0, weightMask);
-        
-        cumulative = nextCumulative;
-        currentEdgeSoftness = nextEdgeSoftness;
     }
     
-    float l = finalOklab.x;
-    float c = length(finalOklab.yz);
-    float h = atan(finalOklab.z, finalOklab.y);
-
-    l = 0.1 + (l * 0.9);
-    c += 0.0;
-
-    finalOklab.x = l;
-    finalOklab.y = c * cos(h);
-    finalOklab.z = c * sin(h);
+    finalOklab.x = 0.08 + (finalOklab.x * 0.85);
     
     vec3 finalColor = oklab_to_srgb(finalOklab);
 

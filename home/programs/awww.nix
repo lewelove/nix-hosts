@@ -3,7 +3,7 @@
 {
 
   home-manager.users.${username} = {
-    systemd.user.services.swww = {
+    systemd.user.services.awww = {
       Unit = {
         Description = "Wayland Wallpaper Daemon";
         PartOf = [ "graphical-session.target" ];
@@ -11,7 +11,7 @@
         ConditionEnvironment = "WAYLAND_DISPLAY";
       };
       Service = {
-        ExecStart = "${pkgs.swww}/bin/swww-daemon";
+        ExecStart = "${pkgs.awww}/bin/awww-daemon";
         Restart = "on-failure";
         RestartSec = 1;
         Type = "simple";

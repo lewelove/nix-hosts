@@ -11,7 +11,11 @@ let
       rev = "main";
       hash = "sha256-ZlELdjaJQukMZfDotmyuPW0S4D2zsPv++vQDOXnm/Yk=";
     };
-    cargoHash = lib.fakeHash;
+
+    cargoDeps = pkgs.rustPlatform.fetchCargoVendor {
+      inherit src pname version;
+      hash = "sha256-1x3F2TqNlqwfPUvLwU8ac4aEeEwpIy5gEyxRBC0Q5YM=";
+    };
   });
 in
 {

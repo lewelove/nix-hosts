@@ -1,0 +1,19 @@
+<instruction>
+  Write out professionally made, verbose documentational comments fully describing code and it's logic.
+</instruction>
+
+<comment_formatting>
+  Never write multiline comments. If more space needed use double/triple of single line comments.
+  Never use LLM slop formatting like wrapping text in gingbats, etc. Be professional.
+</comment_formatting>
+
+<file_formatting>
+    File: `path/to/filename.ext`
+    ```
+    {full file content here}
+    ```
+</file_formatting>
+
+<constraints>
+  - Never touch logic itself. Your purpose is writing comments.
+</constraints>

@@ -1,27 +1,43 @@
 #version 300 es
+
+// WebGL 2.0 fragment shader for generating organic, fluid background visuals.
+// Utilizes perceptual color spaces to avoid muddy transitions during interpolation.
 precision highp float;
 precision highp int;
 
+// Define maximum palette size to match the uniform array allocation in the engine.
 #ifndef NUM_COLORS
 #define NUM_COLORS 24
 #endif
 
+// Animation clock in seconds.
 uniform float iTime;
+// Seed value used to ensure distinct noise patterns for different albums.
 uniform float iRandom;
+// Viewport resolution used for coordinate normalization.
 uniform vec2 iResolution;
+// Physical size of the album cover for potential parallax/occlusion logic.
 uniform float iCoverSize;
+// Palette colors stored in Oklab space for perceptually uniform blending.
 uniform vec3 iColorsOklab[NUM_COLORS];
+// The statistical representation ratio of each color in the source image.
 uniform float iRatios[NUM_COLORS];
+// Number of active colors in the current palette.
 uniform int iCount;
 
+// Multiplier for the temporal noise coordinate.
 uniform float iSpeed;
+// Scale factor for the spatial noise coordinates.
 uniform float iZoom;
+// Controls the falloff power of color weights to adjust blending sharpness.
 uniform float iBlur;
-uniform float iEdgeBlur;
+// Strength of the high-frequency grain overlay.
 uniform float iGrain;
 
 out vec4 fragColor;
 
+// Converts Oklab coordinates to linear sRGB then to gamma-corrected sRGB.
+// This prevents the "gray mud" effect in mid-tones common with standard RGB blending.
 vec3 oklab_to_srgb(vec3 c) {
     float l_ = c.x + 0.3963377774 * c.y + 0.2158037573 * c.z;
     float m_ = c.x - 0.1055613458 * c.y - 0.0638541728 * c.z;
@@ -42,9 +58,11 @@ vec3 oklab_to_srgb(vec3 c) {
     return clamp(vec3(r, g, b), 0.0, 1.0);
 }
 
+// Standard helper functions for Simplex noise implementation.
 vec4 permute(vec4 x){return mod(((x*34.0)+1.0)*x, 289.0);}
 vec4 taylorInvSqrt(vec4 r){return 1.79284291400159 - 0.85373472095314 * r;}
 
+// Implementation of 3D Simplex noise for fluid motion and spatial variance.
 float snoise(vec3 v){ 
   const vec2  C = vec2(1.0/6.0, 1.0/3.0) ;
   const vec4  D = vec4(0.0, 0.5, 1.0, 2.0);
@@ -106,70 +124,71 @@ float snoise(vec3 v){
                                 dot(p2,x2), dot(p3,x3) ) );
 }
 
+// Fractional Brownian Motion using 2 octaves. 
+// Provides enough detail for fluid movement while minimizing GPU texture unit usage.
 float fbm(vec3 p) {
     float v = 0.0;
-    float a = 0.5;
-    for (int i = 0; i < 3; i++) {
+    float a = 4.2;
+    for (int i = 0; i < 2; i++) {
         v += a * snoise(p);
         p *= 2.0;
         a *= 0.5;
     }
-    
-    v = v / 0.875;
-    v = v * 0.5 + 0.5;
-    v = 0.5 - 0.5 * cos(3.14159265 * v);
-    v = 0.5 - 0.5 * cos(3.14159265 * v);
-    
-    return clamp(v, 0.0, 1.0);
+    return v / 0.75;
 }
 
 void main() {
+    // Coordinate normalization with aspect ratio correction.
     vec2 uv = gl_FragCoord.xy / iResolution.xy;
     float aspect = iResolution.x / iResolution.y;
-    vec2 p = (uv - 0.5);
+    vec2 p = uv - 0.5;
     p.x *= aspect;
-    
+
+    // Apply speed multiplier to the global time variable.
     float t = (iTime + iRandom) * iSpeed;
 
-    float val = fbm(vec3(p * iZoom, t));
-
-    float totalWeight = 0.0;
-    for(int i = 0; i < NUM_COLORS; i++) {
-        totalWeight += iRatios[i];
+    // Limit active palette processing to 12 for mobile performance and power efficiency.
+    int limit = iCount;
+    if (limit > 12) limit = 12;
+    if (limit == 0) {
+        fragColor = vec4(0.0, 0.0, 0.0, 1.0);
+        return;
     }
-    if (totalWeight <= 0.0) totalWeight = 1.0; 
 
-    vec3 finalOklab = vec3(0.0);
-    float cumulative = 0.00;
+    float totalWeight = 0.0001;
+    vec3 finalOklab = iColorsOklab[0] * totalWeight;
     
-    float currentEdgeSoftness = 0.0;
+    // Convert the 0.0-1.0 iBlur parameter into an exponential power factor.
+    // Higher power creates sharper "islands" of color; lower power creates a misty blend.
+    float power = max(0.0, 10.0 - iBlur * 13.0);
 
-    for(int i = 0; i < NUM_COLORS; i++) {
-        float weight = iRatios[i] / totalWeight;
-        float nextCumulative = cumulative + weight;
+    for (int i = 0; i < limit; i++) {
+        float fi = float(i);
         
-        float nextWeight = 0.0;
-        if (i + 1 < NUM_COLORS) {
-            nextWeight = iRatios[i+1] / totalWeight;
-        }
+        // Calculate a unique spatial offset for every color index using prime-like constants.
+        // This prevents different colors from sharing the exact same noise pattern.
+        vec2 offset = vec2(sin(t * 0.5 + fi * 1.3), cos(t * 0.4 + fi * 2.1)) * 0.5;
+        vec3 p3 = vec3(p * iZoom + offset + vec2(fi * 13.37, fi * 27.51), t + fi * 42.1);
         
-        float nextEdgeSoftness = min(iBlur, min(weight, nextWeight) * iEdgeBlur); 
+        // Sample noise and remap to 0.0 - 1.0 range.
+        float n = fbm(p3);
+        n = n * 0.5 + 0.5;
         
-        float startMask = (i == 0) ? 1.0 : smoothstep(cumulative - currentEdgeSoftness, cumulative + currentEdgeSoftness, val);
-        float endMask = (i == NUM_COLORS - 1) ? 0.0 : smoothstep(nextCumulative - nextEdgeSoftness, nextCumulative + nextEdgeSoftness, val);
+        // Apply the weight power to create localized clumping of specific palette colors.
+        float w = pow(max(0.0, n), power);
         
-        float weightMask = startMask - endMask;
-        
-        finalOklab += iColorsOklab[i] * max(0.0, weightMask);
-        
-        cumulative = nextCumulative;
-        currentEdgeSoftness = nextEdgeSoftness;
+        finalOklab += iColorsOklab[i] * w;
+        totalWeight += w;
     }
+
+    // Normalize sum of weights back to a valid Oklab color.
+    finalOklab /= totalWeight;
     
-    finalOklab.x = 0.1 + (finalOklab.x * 0.8);
-    
+    // Final color space conversion to sRGB for display.
     vec3 finalColor = oklab_to_srgb(finalOklab);
 
+    // Apply high-frequency noise (grain) to dither the 8-bit output.
+    // This masks banding artifacts in smooth gradients produced by the Oklab transitions.
     float grain = (fract(sin(dot(uv, vec2(12.9898, 78.233))) * 43758.5453) - 0.5) * iGrain;
     finalColor += grain;
     

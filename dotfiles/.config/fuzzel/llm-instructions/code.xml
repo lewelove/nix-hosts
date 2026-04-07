@@ -7,7 +7,7 @@
 
   <important_constraints>
     - Never write any comments within code blocks.
-    - Do not write out files that didn't change since last message.
+    - Do not write out files that didn't require change since last message.
   </important_constraints>
 
   <output_formatting>

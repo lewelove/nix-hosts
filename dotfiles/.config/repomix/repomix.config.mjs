@@ -50,7 +50,7 @@ const dynamicName = prettyPath
     .replace(/^\//, '')
     .replace(/[\/\s]+/g, '-') + '.xml';
 
-const outputDir = path.join(homeDir, 'LLM/repomix');
+const outputDir = path.join(homeDir, 'Folders/XML Packed');
 const fullOutputPath = path.join(outputDir, dynamicName);
 
 if (!fs.existsSync(outputDir)) {
