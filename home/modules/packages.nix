@@ -38,6 +38,7 @@
     bitwarden-desktop
     gnome-calculator
     gnome-clocks
+    nicotine-plus
 
     # Terminal Programs
     foot

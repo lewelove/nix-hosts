@@ -1,5 +1,8 @@
 Google AI Studio=https://aistudio.google.com/prompts/new_chat
 GitHub / lewelove=https://github.com/lewelove
+RuTracker=https://rutracker.org/
+Discogs=https://discogs.com
+CUETOOLS=http://db.cuetools.net/?tocid=
 Openrouter=https://openrouter.ai
 Nix Search=https://search.nixos.org/packages
 GitHub / MelkiyRoman=https://github.com/MelkiyRoman

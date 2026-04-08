@@ -133,6 +133,7 @@
 ; (gtk_accel_path "<Actions>/ThunarBookmarks/c288f7e9737e09dba12f1ef2c2c75450" "")
 ; (gtk_accel_path "<Actions>/ThunarWindow/open-home" "<Alt>Home")
 ; (gtk_accel_path "<Actions>/ThunarWindow/switch-focused-split-view-pane" "")
+; (gtk_accel_path "<Actions>/ThunarBookmarks/1087ac67f97fe75f12bc145c75641e5e" "")
 ; (gtk_accel_path "<Actions>/ThunarWindow/show-hidden" "<Primary>h")
 ; (gtk_accel_path "<Actions>/ThunarBookmarks/c84b14e69005e52b19381a061b64894f" "")
 ; (gtk_accel_path "<Actions>/ThunarStandardView/set-default-app" "")

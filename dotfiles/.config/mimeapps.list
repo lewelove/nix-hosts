@@ -15,8 +15,10 @@ application/xml=nvl.desktop
 application/toml=nvl.desktop
 application/x-yaml=nvl.desktop
 inode/directory=thunar.desktop
+application/x-cue=nvl.desktop
 
 [Added Associations]
 image/jpeg=imv-dir.desktop
 image/png=imv-dir.desktop
 image/webp=imv-dir.desktop
+application/x-cue=nvl.desktop;nvim.desktop;
