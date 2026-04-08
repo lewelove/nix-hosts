@@ -11,6 +11,7 @@
     killall
     jq
     jaq
+    yq-go
     ydotool
     wtype
     wev
@@ -29,17 +30,14 @@
     fuzzel
     mako
     libnotify
-    swww
+    awww
     xremap
     hyprshot
     hyprpicker
-    wlsunset
     wl-clipboard
     bitwarden-desktop
-    qwen-code
     gnome-calculator
     gnome-clocks
-    godot
 
     # Terminal Programs
     foot
@@ -54,6 +52,7 @@
     starship
     hyperfine
     lazygit
+    taplo
 
     # Virtualization
     distrobox
@@ -85,6 +84,5 @@
     # Flake Inputs
     inputs.nvibrant.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
-    # inputs.photogimp.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }

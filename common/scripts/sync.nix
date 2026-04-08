@@ -2,7 +2,7 @@
 
 let
   git-sync-bin = pkgs.writeShellApplication {
-    name = "git-sync-bin"; # Internal name to avoid PATH collisions
+    name = "git-sync-bin";
     runtimeInputs = with pkgs; [ git coreutils gum repomix bash ];
     text = ''
       r() { gum style --foreground 1 "$*"; }
@@ -20,13 +20,30 @@ let
       GIT_ROOT=$(git rev-parse --show-toplevel)
       cd "$GIT_ROOT"
 
-      # Check for custom sync script
+      SKIP_XML=false
+      MSG_ARG=""
+
+      for arg in "$@"; do
+        if [ "$arg" = "--no-xml" ]; then
+          SKIP_XML=true
+        else
+          if [ -z "$MSG_ARG" ]; then
+            MSG_ARG="$arg"
+          fi
+        fi
+      done
+
       if [ -f "$GIT_ROOT/.sync.sh" ]; then
           echo
           gum join --horizontal "$(m "[>] ")" "Custom sync script found: " "$(y ".sync.sh")"
-          echo
           chmod +x "$GIT_ROOT/.sync.sh"
           bash "$GIT_ROOT/.sync.sh" "$@"
+      fi
+
+      if [ "$SKIP_XML" = false ]; then
+          echo
+          gum join --horizontal "$(m "[>] ")" "Running Repomix..."
+          repomix --quiet || true
       fi
 
       BRANCH=$(git branch --show-current 2>/dev/null || echo "")
@@ -34,7 +51,7 @@ let
           BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "main")
       fi
 
-      MSG="''${1:-$(date -u +'%Y-%m-%d at %H:%M UTC')}"
+      MSG="''${MSG_ARG:-$(date -u +'%Y-%m-%d at %H:%M UTC')}"
 
       echo
       gum join --horizontal "$(m "[>] ")" "Syncing " "$(y "$GIT_ROOT") to " "$(b "origin/$BRANCH")"
@@ -64,10 +81,6 @@ let
       fi
 
       echo
-      gum join --horizontal "$(m "[>] ")" "Running Repomix..."
-      repomix --quiet || true
-      echo
-
       gum join --horizontal "$(g "[+] ")" "Sync Complete."
     '';
   };

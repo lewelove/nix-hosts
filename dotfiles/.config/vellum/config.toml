@@ -58,16 +58,16 @@ catalognumber = { level = "album" }
 media = { level = "album" }
 discogs_url = { level = "album" }
 musicbrainz_url = { level = "album" }
-unix_added_local = { level = "album" }
-unix_added_foobar = { level = "album" }
-unix_added_applemusic = { level = "album" }
-unix_added_youtube = { level = "album" }
-unix_added_primary = { level = "album" }
+unix_added_local = { level = "album", type = "integer" }
+unix_added_foobar = { level = "album", type = "integer" }
+unix_added_applemusic = { level = "album", type = "integer" }
+unix_added_youtube = { level = "album", type = "integer" }
+unix_added_primary = { level = "album", type = "integer" }
 custom_id = { level = "album" }
 custom_albumartist = { level = "album", args = "custom_albumartist,artistartist,albumartist" }
 custom_string = { level = "album" }
 old_comment = { level = "album" }
-collection = { level = "album", type = "array" }
+collection = { level = "album", type = "list" }
 replaygain_album_gain = { level = "album" }
 replaygain_album_peak = { level = "album" }
 musicbrainz_albumid = { level = "album" }
