@@ -29,9 +29,10 @@
         monospace = [
           "CommitMono Nerd Font"
           "Noto Sans Mono CJK JP"
-          "Noto Color Emoji"
+          # "Noto Color Emoji"
         ];
         sansSerif = [
+          "Inter"
           "Noto Sans"
           "Noto Sans CJK JP"
           "Noto Sans Arabic"
@@ -39,6 +40,7 @@
           "Noto Color Emoji"
         ];
         serif = [
+          "Inter"
           "Noto Serif"
           "Noto Serif CJK JP"
           "Noto Serif Arabic"
@@ -56,14 +58,14 @@
         cursor-theme = "Adwaita";
         font-antialiasing = "rgba";
         font-rgba-order = "rgb";
-        font-hinting = "full";
+        font-hinting = "slight";
       };
     };
 
     gtk = {
       enable = true;
       font = {
-        name = "Noto Sans";
+        name = "Inter";
         size = 11;
       };
       iconTheme = {
