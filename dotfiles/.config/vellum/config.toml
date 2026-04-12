@@ -12,10 +12,10 @@ thumbnail_size = 190
 [theme.shader]
 order = "original"
 path = "shaders/mountain_eq.frag"
-speed = 0.01
-zoom = 0.3
+speed = 0.5
+zoom = 0.4
 blur = 0.7
-grain = 0.02
+grain = 0.3
 
 # path = "shaders/simplex.frag"
 # speed = 0.005
@@ -29,6 +29,11 @@ supported_extensions = [ ".flac" ]
 
 [compiler]
 unix_added = [ "unix_added_youtube", "unix_added_applemusic", "unix_added_foobar" ]
+date_added = "%B %d %Y"
+file_subset_match = [
+  "ALBUM", "ALBUMARTIST", "DATE", "GENRE",
+  "COMMENT", "TITLE", "ARTIST", "TRACKNUMBER"
+]
 
 
 [manifest.keys]
@@ -89,13 +94,13 @@ musicbrainz_trackid = { level = "tracks" }
 musicbrainz_releasetrackid = { level = "tracks" }
 musicbrainz_artistid = { level = "tracks" }
 
-cover_chroma = { level = "album", class = "function", sync = false }
-cover_entropy = { level = "album", class = "function", sync = false }
-# cover_palette = { level = "album", class = "function", args = "k=12,noise=0.0,conv=0.05,filter=0.002,bias=0.0", sync = false }
-# cover_palette = { level = "album", class = "function", args = "type=kmeans,sort=C,k=8", sync = false }
-# cover_palette = { level = "album", class = "function", args = "type=kmeans_filtered,sort=C,k=12,mode=cut,Hb=35,Ht=108,Cb=12,Ct=60,Tb=0,Tt=50", sync = false }
-# cover_palette = { level = "album", class = "function", args = "type=msc,k=16,bw=0.08,mt=0.05,cg=3.0,t=0.002", sync = false }
-# cover_palette = { level = "album", class = "function", args = "type=mmcq,k=8,sort=C", sync = false }
-# cover_palette = { level = "album", class = "function", args = "type=auto,theme=basic,t=0.0,k=12", sync = false }
-# cover_palette = { level = "album", class = "function", args = "type=msc,bw=6", sync = false }
-cover_palette = { level = "album", class = "function", args = "type=mcu_material,sort=gradient,k=12", sync = false }
+cover_chroma = { level = "album", class = "function" }
+cover_entropy = { level = "album", class = "function" }
+# cover_palette = { level = "album", class = "function", args = "k=12,noise=0.0,conv=0.05,filter=0.002,bias=0.0" }
+# cover_palette = { level = "album", class = "function", args = "type=kmeans,sort=C,k=8" }
+# cover_palette = { level = "album", class = "function", args = "type=kmeans_filtered,sort=C,k=12,mode=cut,Hb=35,Ht=108,Cb=12,Ct=60,Tb=0,Tt=50" }
+# cover_palette = { level = "album", class = "function", args = "type=msc,k=16,bw=0.08,mt=0.05,cg=3.0,t=0.002" }
+# cover_palette = { level = "album", class = "function", args = "type=mmcq,k=8,sort=C" }
+# cover_palette = { level = "album", class = "function", args = "type=auto,theme=basic,t=0.0,k=12" }
+# cover_palette = { level = "album", class = "function", args = "type=msc,bw=6" }
+cover_palette = { level = "album", class = "function", args = "type=mcu_material,sort=gradient,k=8" }

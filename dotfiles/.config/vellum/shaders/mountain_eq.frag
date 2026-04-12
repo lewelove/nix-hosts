@@ -117,7 +117,7 @@ float fbm(vec3 p) {
     v = v / 0.875;
     v = v * 0.5 + 0.5;
     v = 0.5 - 0.5 * cos(3.14159265 * v);
-    v = 0.5 - 0.5 * cos(3.14159265 * v);
+    // v = 0.5 - 0.5 * cos(3.14159265 * v);
     
     return clamp(v, 0.0, 1.0);
 }
@@ -128,7 +128,7 @@ void main() {
     vec2 p = (uv - 0.5);
     p.x *= aspect;
     
-    float t = (iTime + iRandom) * iSpeed;
+    float t = (iTime + iRandom) * iSpeed / 100.0;
 
     float val = fbm(vec3(p * iZoom, t));
 
@@ -155,7 +155,7 @@ void main() {
     
     vec3 finalColor = oklab_to_srgb(finalOklab);
 
-    float grain = (fract(sin(dot(uv, vec2(12.9898, 78.233))) * 43758.5453) - 0.5) * iGrain;
+    float grain = (fract(sin(dot(uv, vec2(12.9898, 78.233))) * 43758.5453) - 0.5) * iGrain / 10.0;
     finalColor += grain;
     
     fragColor = vec4(finalColor, 1.0);

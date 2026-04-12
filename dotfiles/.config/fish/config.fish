@@ -35,6 +35,9 @@ if status is-interactive
   alias jcu="journalctl --user -fu"
   alias sync="git-sync-bin"
 
+  # album curation utils
+  alias discid="/home/lewelove/dev/album_curation/discid/result/bin/discid"
+
   function distrobox
       if contains $argv[1] create rm stop assemble
           systemd-run --user --scope --unit=distrobox-setup distrobox $argv
