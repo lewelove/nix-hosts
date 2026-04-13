@@ -36,6 +36,12 @@ file_subset_match = [
 ]
 
 
+[compiler.cover_palette]
+type = "kmeans"
+sort = "gradient"
+args = "k=8"
+
+
 [manifest.keys]
 albumartist = { level = "album", newline = true }
 album = { level = "album" }
@@ -98,9 +104,8 @@ cover_chroma = { level = "album", class = "function" }
 cover_entropy = { level = "album", class = "function" }
 # cover_palette = { level = "album", class = "function", args = "k=12,noise=0.0,conv=0.05,filter=0.002,bias=0.0" }
 # cover_palette = { level = "album", class = "function", args = "type=kmeans,sort=C,k=8" }
-# cover_palette = { level = "album", class = "function", args = "type=kmeans_filtered,sort=C,k=12,mode=cut,Hb=35,Ht=108,Cb=12,Ct=60,Tb=0,Tt=50" }
+# cover_palette = { level = "album", class = "function", args = "type=kmeans,sort=gradient,k=8,Hb=35,Ht=108,Cb=12,Ct=60,Tb=0,Tt=50" }
 # cover_palette = { level = "album", class = "function", args = "type=msc,k=16,bw=0.08,mt=0.05,cg=3.0,t=0.002" }
 # cover_palette = { level = "album", class = "function", args = "type=mmcq,k=8,sort=C" }
 # cover_palette = { level = "album", class = "function", args = "type=auto,theme=basic,t=0.0,k=12" }
 # cover_palette = { level = "album", class = "function", args = "type=msc,bw=6" }
-cover_palette = { level = "album", class = "function", args = "type=mcu_material,sort=gradient,k=8" }
