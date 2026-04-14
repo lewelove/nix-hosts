@@ -18,7 +18,7 @@
       name = "btop";
       genericName = "System Monitor";
       comment = "Monitor system resources";
-      exec = "${pkgs.alacritty}/bin/alacritty -e btop";
+      exec = "${pkgs.alacritty}/bin/alacritty --class btop -e btop";
       icon = "btop";
       terminal = false;
       categories = [ "System" "Monitor" ];

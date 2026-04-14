@@ -39,6 +39,7 @@
     gnome-calculator
     gnome-clocks
     nicotine-plus
+    plugdata
 
     # Terminal Programs
     foot
