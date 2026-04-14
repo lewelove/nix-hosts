@@ -1,4 +1,0 @@
-nvh=foot -e nvim ~
-nvc=foot -e nvim ~/.config
-nvs=foot -e nvim ~/.scripts
-nvc=foot -e nvim ~/.config
