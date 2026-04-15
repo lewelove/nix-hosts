@@ -1,37 +1,35 @@
-<system_prompt>
-  <instruction>
-    For each of the .rs files i want you to create .txt file describing in details what it's doing and explaining logic behind it so the literal beginner or amateur could understand it at the first glance, effectively transforming rust syntax into human syntax. Make sure you don't skip a single logical part of code. Follow file formatting from `explanation` block when providing .txt.
-  </instruction>
+<instruction>
+  For each of the .rs files i want you to create .txt file describing in details what it's doing and explaining logic behind it so the literal beginner or amateur could understand it at the first glance, effectively transforming rust syntax into human syntax. Make sure you don't skip a single logical part of code. Follow file formatting from `explanation` block when providing .txt.
+</instruction>
 
-  <structural_precision>
-    You must maintain a 1-to-1 parity with the source code. Every distinct block defined at the root level of the file must have its own dedicated entry in the documentation. 
-  </structural_precision>
+<structural_precision>
+  You must maintain a 1-to-1 parity with the source code. Every distinct block defined at the root level of the file must have its own dedicated entry in the documentation. 
+</structural_precision>
 
-  <output_template>
-    For each .txt file generated name it with the same path of corresponding .rs file. Examples: src/main.rs -> scr/main.txt; src/config/mod.rs -> src/config/mod.txt;
-    Follow this template for each generated .txt file:
-    ```text
-    File: {path/to/filename.rs}
-    Role: {A professional job title}
+<output_template>
+  For each .txt file generated name it with the same path of corresponding .rs file. Examples: src/main.rs -> scr/main.txt; src/config/mod.rs -> src/config/mod.txt;
+  Follow this template for each generated .txt file:
+  ```text
+  File: {path/to/filename.rs}
+  Role: {A professional job title}
 
-    Description:
-    {Detailed paragraph describing the file's mission}
+  Description:
+  {Detailed paragraph describing the file's mission}
 
-    Imports:
-    [You list every import line of code here and describe its purpose]
-    `{Import use or mod line listed}`
-    - {In short describe what it does}
+  Imports:
+  [You list every import line of code here and describe its purpose]
+  `{Import use or mod line listed}`
+  - {In short describe what it does}
 
-    Logic:
-    [For every block in the file provided you describe what it does and exhaustively explain logic behind it]
-    `{Defining line like `fn SomeFunction{}`, `pub enum SomeEnum{}`, etc...}`
-    - Simple understandable description and explanation of logic without technical jargon or unwanted metaphors.
-    - Detailed nitty-gritty explanation of entire logic. Must be exhaustive. No word limit for this.
+  Logic:
+  [For every block in the file provided you describe what it does and exhaustively explain logic behind it]
+  `{Defining line like `fn SomeFunction{}`, `pub enum SomeEnum{}`, etc...}`
+  - Simple understandable description and explanation of logic without technical jargon or unwanted metaphors.
+  - Detailed nitty-gritty explanation of entire logic. Must be exhaustive. No word limit for this.
 
-    `{Next defining line like `fn SomeFunction{}`, `pub enum SomeEnum{}`, etc...}`
-    - etc...
-    - etc...
+  `{Next defining line like `fn SomeFunction{}`, `pub enum SomeEnum{}`, etc...}`
+  - etc...
+  - etc...
 
-    ```
-  </output_template>
-</system_prompt>
+  ```
+</output_template>

@@ -32,7 +32,8 @@ unix_added = [ "unix_added_youtube", "unix_added_applemusic", "unix_added_foobar
 date_added = "%B %d %Y"
 file_subset_match = [
   "ALBUM", "ALBUMARTIST", "DATE", "GENRE",
-  "COMMENT", "TITLE", "ARTIST", "TRACKNUMBER"
+  "COMMENT", "TITLE", "ARTIST", "TRACKNUMBER",
+  "REPLAYGAIN_TRACK_GAIN", "REPLAYGAIN_ALBUM_GAIN"
 ]
 
 
@@ -50,17 +51,20 @@ date = { level = "album" }
 genre = { level = "album", type = "list", newline = true }
 styles = { level = "album", type = "list" }
 
+original_yyyy_mm = { level = "album", newline = true }
+
 country = { level = "album", newline = true }
 label = { level = "album" }
 catalognumber = { level = "album" }
-media = { level = "album" }
-original_yyyy_mm = { level = "album" }
 release_yyyy_mm = { level = "album" }
-
-comment = { level = "album", newline = true }
 
 discogs_url = { level = "album", newline = true }
 musicbrainz_url = { level = "album" }
+media = { level = "album" }
+
+discid = { level = "album", newline = true }
+ctdbid = { level = "album" }
+accuripid = { level = "album" }
 
 tracknumber = { level = "track" }
 title = { level = "track" }

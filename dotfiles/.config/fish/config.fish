@@ -36,7 +36,10 @@ if status is-interactive
   alias sync="git-sync-bin"
 
   # album curation utils
-  alias discid="/home/lewelove/dev/album_curation/discid/result/bin/discid"
+  alias discid="/home/lewelove/dev/album_curation/discid/.build/bin/discid"
+  alias albumw="/home/lewelove/dev/album_curation/album_write/.build/bin/album_write"
+  alias albumspl="/home/lewelove/dev/album_curation/album_split/.build/bin/album_split"
+  alias mbid="/home/lewelove/dev/album_curation/mbid/.build/bin/mbid"
 
   function distrobox
       if contains $argv[1] create rm stop assemble

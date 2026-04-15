@@ -1,20 +1,18 @@
 <instruction>
-
-  <instruction>
-    - Write out the code.
-    - For each file changed provide detailed description of logic changed.
-  </instruction>
-
-  <important_constraints>
-    - Never write any comments within code blocks.
-    - Do not write out files that didn't require change since last message.
-  </important_constraints>
-
-  <output_formatting>
-    File: `path/to/filename.ext`
-    ```
-    {full file content here}
-    ```
-  </output_formatting>
-
+  - Write out the code.
+  - For each file changed provide detailed description of logic changed.
 </instruction>
+
+<important_constraints>
+  - Never write any comments within code blocks.
+  - Do not write out files that didn't require change since last message.
+</important_constraints>
+
+<output_formatting>
+  {explanation of changes made in the file}
+
+  File: `path/to/filename.ext`
+  ```
+  {full file content here}
+  ```
+</output_formatting>

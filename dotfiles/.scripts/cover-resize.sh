@@ -70,7 +70,6 @@ fi
 process_size() {
     local TARGET_SIZE="$1"
 
-    # CASE 1: Exact size match
     if [ "$ORIG_W" -eq "$TARGET_SIZE" ]; then
         if [ "$MONOCHROME" = false ]; then
             local FILENAME="${FILE_PATH}+none+${TARGET_SIZE}.png"
@@ -87,15 +86,15 @@ process_size() {
         return
     fi
 
-    # CASE 2: Upscaling (Mitchell)
     if [ "$TARGET_SIZE" -gt "$ORIG_W" ]; then
-        local FILENAME="${FILE_PATH}${MONO_SUFFIX}+mitchell+${TARGET_SIZE}.png"
+        # local FILENAME="${FILE_PATH}${MONO_SUFFIX}+mitchell+${TARGET_SIZE}.png"
+        local FILENAME="${FILE_PATH}${MONO_SUFFIX}+lanczos+${TARGET_SIZE}.png"
         local OUT_PATH="${OUT_DIR}/${FILENAME}"
 
         magick "$INPUT_PATH" \
             "${PRE_MONO[@]}" \
             -colorspace Oklab \
-            -filter Mitchell \
+            -filter Lanczos \
             -distort Resize "${TARGET_SIZE}x${TARGET_SIZE}" \
             "${POST_MONO[@]}" \
             -colorspace sRGB \
@@ -104,7 +103,6 @@ process_size() {
 
         echo "[+] > [${TARGET_SIZE}] $FILENAME [Upscaled]"
         
-    # CASE 3: Downscaling (Lanczos)
     else
         local FILENAME="${FILE_PATH}${MONO_SUFFIX}+lanczos+${TARGET_SIZE}.png"
         local OUT_PATH="${OUT_DIR}/${FILENAME}"
