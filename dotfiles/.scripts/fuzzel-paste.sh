@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 OPTIONS=(
-    "YYYYMMDD"
-    "Unix Epoch"
+  "Unix Epoch"
+  "YYYYMMDD"
 )
 
 selection=$(printf "%s\n" "${OPTIONS[@]}" | fuzzel --dmenu --prompt="Paste: " --width 20)

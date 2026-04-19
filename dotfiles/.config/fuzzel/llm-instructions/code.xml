@@ -8,11 +8,11 @@
   - Do not write out files that didn't require change since last message.
 </important_constraints>
 
-<output_formatting>
-  {explanation of changes made in the file}
-
-  File: `path/to/filename.ext`
-  ```
-  {full file content here}
-  ```
-</output_formatting>
+  <output_formatting>
+    {explanation of changes made in the file}
+  
+    File: `path/to/filename.ext`
+    ```
+    {full file content here}
+    ```
+  </output_formatting>

@@ -58,15 +58,15 @@ order_by = "COALESCE(CAST(json_extract(metadata, '$.album.tags.UNIX_ADDED_YOUTUB
 label = "Last Edited"
 order_by = "COALESCE(json_extract(metadata, '$.album.info.metadata_toml_mtime'), 0) DESC"
 
-# -- SHELVES --
+# -- COLLECTIONS --
 
-[shelves.library]
+[collections.library]
 label = "Entire Library"
 filter = "1=1"
 
 # My Year
 
-[shelves.my_year]
+[collections.my_year]
 label = "My Year"
 filter = "json_extract(metadata, '$.album.tags.COLLECTION') IS NOT NULL"
 strict = true
@@ -80,12 +80,12 @@ strict = true
 
 # Apple Music Collection
 
-[shelves.apple_music]
+[collections.apple_music]
 label = "Apple Music Collection"
 filter = "json_extract(metadata, '$.album.tags.UNIX_ADDED_APPLEMUSIC') IS NOT NULL"
 strict = true
-groupers = ["year_added_applemusic"]
-sorters = ["unix_added_applemusic"]
+groupers = ["year_added_applemusic", "genre", "decade"]
+sorters = ["unix_added_applemusic", "default", "az", "year"]
 
 [groupers.year_added_applemusic]
 label = "Year Added"
@@ -99,7 +99,7 @@ strict = true
 
 # Foobar2000 Collection
 
-[shelves.foobar]
+[collections.foobar]
 label = "Foobar2000 Collection"
 filter = "json_extract(metadata, '$.album.tags.UNIX_ADDED_FOOBAR') IS NOT NULL"
 strict = true
@@ -115,3 +115,9 @@ strict = true
 label = "Date Added"
 order_by = "CAST(json_extract(metadata, '$.album.tags.UNIX_ADDED_FOOBAR') AS INT) DESC"
 strict = true
+
+# -- SHELVES --
+
+[shelves.ambient50]
+label = "Ambient 50"
+file = "/home/lewelove/nix-hosts/dotfiles/.config/vellum/shelves/Ambient50.txt"

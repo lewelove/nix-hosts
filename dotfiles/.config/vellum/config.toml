@@ -12,9 +12,9 @@ thumbnail_size = 190
 [theme.shader]
 order = "original"
 path = "shaders/mountain_eq.frag"
-speed = 0.5
-zoom = 0.4
-blur = 0.7
+speed = 1.9
+zoom = 0.6
+blur = 0.6
 grain = 0.3
 
 # path = "shaders/simplex.frag"
@@ -33,14 +33,15 @@ date_added = "%B %d %Y"
 file_subset_match = [
   "ALBUM", "ALBUMARTIST", "DATE", "GENRE",
   "COMMENT", "TITLE", "ARTIST", "TRACKNUMBER",
-  "REPLAYGAIN_TRACK_GAIN", "REPLAYGAIN_ALBUM_GAIN"
+  "REPLAYGAIN_TRACK_GAIN",
+  "REPLAYGAIN_ALBUM_GAIN"
 ]
 
 
 [compiler.cover_palette]
 type = "kmeans"
 sort = "gradient"
-args = "k=8"
+args = "k=6"
 
 
 [manifest.keys]
@@ -60,7 +61,6 @@ release_yyyy_mm = { level = "album" }
 
 discogs_url = { level = "album", newline = true }
 musicbrainz_url = { level = "album" }
-media = { level = "album" }
 
 discid = { level = "album", newline = true }
 ctdbid = { level = "album" }
@@ -87,6 +87,7 @@ custom_albumartist = { level = "album", args = "custom_albumartist,artistartist,
 custom_string = { level = "album" }
 old_comment = { level = "album" }
 collection = { level = "album", type = "list" }
+shelves = { level = "album", type = "list" }
 replaygain_album_gain = { level = "album" }
 replaygain_album_peak = { level = "album" }
 musicbrainz_albumid = { level = "album" }
