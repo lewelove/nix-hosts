@@ -12,8 +12,8 @@ thumbnail_size = 190
 [theme.shader]
 order = "original"
 path = "shaders/mountain_eq.frag"
-speed = 1.9
-zoom = 0.6
+speed = 0.9
+zoom = 0.2
 blur = 0.6
 grain = 0.3
 
@@ -41,7 +41,7 @@ file_subset_match = [
 [compiler.cover_palette]
 type = "kmeans"
 sort = "gradient"
-args = "k=6"
+args = "k=8"
 
 
 [manifest.keys]
@@ -62,9 +62,7 @@ release_yyyy_mm = { level = "album" }
 discogs_url = { level = "album", newline = true }
 musicbrainz_url = { level = "album" }
 
-discid = { level = "album", newline = true }
-ctdbid = { level = "album" }
-accuripid = { level = "album" }
+discid_url = { level = "album", newline = true }
 
 tracknumber = { level = "track" }
 title = { level = "track" }

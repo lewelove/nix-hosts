@@ -40,6 +40,7 @@ if status is-interactive
   alias albumw="/home/lewelove/dev/album_curation/album_write/.build/bin/album_write"
   alias albumspl="/home/lewelove/dev/album_curation/album_split/.build/bin/album_split"
   alias mbid="/home/lewelove/dev/album_curation/mbid/.build/bin/mbid"
+  alias cover-resize="/home/lewelove/dev/album_curation/cover_resize/.build/bin/cover_resize"
 
   function distrobox
       if contains $argv[1] create rm stop assemble
