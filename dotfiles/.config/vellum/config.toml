@@ -61,8 +61,7 @@ release_yyyy_mm = { level = "album" }
 
 discogs_url = { level = "album", newline = true }
 musicbrainz_url = { level = "album" }
-
-discid_url = { level = "album", newline = true }
+ctdbid_url = { level = "album" }
 
 tracknumber = { level = "track" }
 title = { level = "track" }

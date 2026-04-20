@@ -44,7 +44,7 @@
 	<name>Cover Resize</name>
 	<submenu></submenu>
 	<unique-id>1776629176919456-1</unique-id>
-	<command>cover-resize.sh %f</command>
+	<command>/home/lewelove/dev/album_curation/cover_resize/.build/bin/cover_resize %f</command>
 	<description></description>
 	<range>*</range>
 	<patterns>*</patterns>
