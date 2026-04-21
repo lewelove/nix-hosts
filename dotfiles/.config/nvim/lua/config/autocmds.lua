@@ -325,6 +325,9 @@ vim.api.nvim_create_user_command('AlbumScript', function()
   -- Format TRACKNUMBER: remove quotes and leading zeros (e.g., "005" -> 5)
   vim.cmd([[silent! %s/TRACKNUMBER = "0*\(\d\+\)"/TRACKNUMBER = \1/ge]])
 
+  -- Format DISCNUMBER: remove quotes and leading zeros (e.g., "01" -> 1)
+  vim.cmd([[silent! %s/DISCNUMBER = "0*\(\d\+\)"/DISCNUMBER = \1/ge]])
+
   -- Remove all double quotes from UNIX_ADDED lines
   vim.cmd([[silent! %g/^UNIX_ADDED_\(FOOBAR\|APPLEMUSIC\|YOUTUBE\)/s/"//ge]])
 
