@@ -1,7 +1,6 @@
 [storage]
 library_root = "/run/media/lewelove/1000xhome/backup-everything/FB2K/Library Historyfied!/"
 library_export = "~/dev/vellum-test-library/metadata_output"
-thumbnail_cache_folder = "~/.vellum/thumbnails"
 environment = "~/.secrets/vellum.env"
 
 
@@ -15,7 +14,7 @@ path = "shaders/mountain_eq.frag"
 speed = 0.9
 zoom = 0.2
 blur = 0.6
-grain = 0.3
+grain = 0.2
 
 # path = "shaders/simplex.frag"
 # speed = 0.005
@@ -41,6 +40,7 @@ file_subset_match = [
 [compiler.cover_palette]
 type = "kmeans"
 sort = "gradient"
+threshold = 0.00
 args = "k=8"
 
 
@@ -68,7 +68,7 @@ title = { level = "track" }
 
 
 [compiler.keys]
-artists = { level = "album", type = "list" }
+albumartists = { level = "album", type = "list" }
 styles = { level = "album", type = "list" }
 country = { level = "album" }
 label = { level = "album" }

@@ -272,3 +272,69 @@ local undodir = vim.fn.expand("~/.vim/undodir")
 if vim.fn.isdirectory(undodir) == 0 then
   vim.fn.mkdir(undodir, "p")
 end
+
+
+-- Metadata cleanup script for music tagging
+vim.api.nvim_create_user_command('AlbumScript', function()
+  -- Check for specific tags and patterns before modifying the buffer
+  local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+  local has_album_gain = vim.fn.search('^REPLAYGAIN_ALBUM_GAIN = ', 'nw') > 0
+  local has_albumartists = vim.fn.search('^ALBUMARTISTS = ', 'nw') > 0
+
+  -- Identify all ARTIST lines to verify if they are identical
+  local artist_lines = {}
+  for _, line in ipairs(lines) do
+    if line:match("^ARTIST = ") then
+      table.insert(artist_lines, line)
+    end
+  end
+
+  local all_artists_same = #artist_lines > 0
+  for i = 2, #artist_lines do
+    if artist_lines[i] ~= artist_lines[1] then
+      all_artists_same = false
+      break
+    end
+  end
+
+  -- Delete lines starting with specific unwanted keys
+  -- ARTIST and Gain tags are handled separately based on conditions
+  vim.cmd([[silent! %g/^\(REPLAYGAIN_TRACK_PEAK\|REPLAYGAIN_ALBUM_PEAK\|ORIGINAL_DATE\|ORIGINAL_YYYY_MM\|DATE_ADDED\) = /d]])
+
+  -- Delete ARTIST lines only if every instance in the file is exactly the same
+  if all_artists_same then
+    vim.cmd([[silent! %g/^ARTIST = /d]])
+  end
+
+  -- Execute track gain removal only if album gain was present anywhere in the file
+  if has_album_gain then
+    vim.cmd([[silent! %g/^REPLAYGAIN_TRACK_GAIN = /d]])
+  end
+  -- Clean up the album gain line
+  vim.cmd([[silent! %g/^REPLAYGAIN_ALBUM_GAIN = /d]])
+
+  -- Duplicate CUSTOM_ALBUMARTIST into ALBUMARTISTS only if ALBUMARTISTS is missing
+  if not has_albumartists then
+    vim.cmd([[silent! %s/^\(CUSTOM_ALBUMARTIST\) = \(.*\)/ALBUMARTISTS = \2\r\1 = \2/ge]])
+  end
+
+  -- Swap ALBUM and ALBUMARTIST if ALBUM is currently on top
+  -- Ensures Artist information precedes the Album title
+  vim.cmd([[silent! %s/^\(ALBUM = .*\)\n\(ALBUMARTISTS\? = .*\)/\2\r\1/ge]])
+
+  -- Format TRACKNUMBER: remove quotes and leading zeros (e.g., "005" -> 5)
+  vim.cmd([[silent! %s/TRACKNUMBER = "0*\(\d\+\)"/TRACKNUMBER = \1/ge]])
+
+  -- Remove all double quotes from UNIX_ADDED lines
+  vim.cmd([[silent! %g/^UNIX_ADDED_\(FOOBAR\|APPLEMUSIC\|YOUTUBE\)/s/"//ge]])
+
+  -- Ensure exactly one blank line exists after the [album] header
+  vim.cmd([[silent! %s/^\[album\]$/[album]\r/ge]])
+
+  -- Remove all consecutive empty lines > 1 (Squeeze whitespace)
+  vim.cmd([[silent! %s/\n\{3,}/\r\r/ge]])
+
+  -- Save
+  vim.cmd("write")
+
+end, { desc = "Process music metadata: conditional tag logic, reordering, and formatting" })
