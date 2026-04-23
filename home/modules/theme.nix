@@ -29,7 +29,6 @@
         monospace = [
           "CommitMono Nerd Font"
           "Noto Sans Mono CJK JP"
-          # "Noto Color Emoji"
         ];
         sansSerif = [
           "Inter"
@@ -51,7 +50,7 @@
     };
   };
 
-  home-manager.users.${username} = {
+  home-manager.users.${username} = { config, ... }: {
     dconf.settings = {
       "org/gnome/desktop/interface" = {
         color-scheme = "prefer-dark";
@@ -64,6 +63,7 @@
 
     gtk = {
       enable = true;
+      gtk4.theme = config.gtk.theme;
       font = {
         name = "Inter";
         size = 11;

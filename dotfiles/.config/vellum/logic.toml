@@ -2,122 +2,134 @@
 
 [groupers.genre]
 label = "Genre"
-select = "json_extract(metadata, '$.album.GENRE')"
+select = "${album.GENRE}"
 
 [groupers.artists]
 label = "Artists"
-select = "COALESCE(NULLIF(json_extract(metadata, '$.album.tags.ALBUMARTISTS'), '[]'), json_extract(metadata, '$.album.ALBUMARTIST'))"
+select = "COALESCE(NULLIF(${album.tags.ALBUMARTISTS}, {[]}), ${album.ALBUMARTIST})"
 
 [groupers.decade]
 label = "Decade"
-select = "substr(json_extract(metadata, '$.album.DATE'), 1, 3) || '0s'"
+select = "substr(${album.DATE}, 1, 3) || {0s}"
 
 [groupers.total_tracks]
 label = "Total Tracks"
-select = "CAST(json_extract(metadata, '$.album.info.total_tracks') AS TEXT)"
+select = "CAST(${album.info.total_tracks} AS TEXT)"
 
 [groupers.total_discs]
 label = "Total Discs"
-select = "CAST(COALESCE(json_extract(metadata, '$.album.info.total_discs'), 1) AS TEXT)"
+select = "CAST(COALESCE(${album.info.total_discs}, 1) AS TEXT)"
 
 [groupers.year_added]
 label = "Year Added"
-select = "strftime('%Y', datetime(json_extract(metadata, '$.album.info.unix_added'), 'unixepoch'))"
+select = "strftime({%Y}, datetime(${album.info.unix_added}, {unixepoch}))"
 
 [groupers.chroma]
 label = "Chroma"
-select = "CASE WHEN CAST(json_extract(metadata, '$.album.tags.COVER_CHROMA') AS FLOAT) = 0 THEN 'Monochrome' WHEN CAST(json_extract(metadata, '$.album.tags.COVER_CHROMA') AS FLOAT) < 15 THEN 'Bleak' WHEN CAST(json_extract(metadata, '$.album.tags.COVER_CHROMA') AS FLOAT) < 33 THEN 'Muted' WHEN CAST(json_extract(metadata, '$.album.tags.COVER_CHROMA') AS FLOAT) < 60 THEN 'Standard' ELSE 'Vibrant' END"
+select = "CASE WHEN CAST(${album.tags.COVER_CHROMA} AS FLOAT) = 0 THEN {Monochrome} WHEN CAST(${album.tags.COVER_CHROMA} AS FLOAT) < 15 THEN {Bleak} WHEN CAST(${album.tags.COVER_CHROMA} AS FLOAT) < 33 THEN {Muted} WHEN CAST(${album.tags.COVER_CHROMA} AS FLOAT) < 60 THEN {Standard} ELSE {Vibrant} END"
 
 # -- SORTERS --
 
 [sorters.default]
 label = "Default"
-order_by = "CASE WHEN LOWER(COALESCE(json_extract(metadata, '$.album.tags.CUSTOM_ALBUMARTIST'), json_extract(metadata, '$.album.ALBUMARTIST'))) LIKE 'the %' THEN SUBSTR(COALESCE(json_extract(metadata, '$.album.tags.CUSTOM_ALBUMARTIST'), json_extract(metadata, '$.album.ALBUMARTIST')), 5) ELSE COALESCE(json_extract(metadata, '$.album.tags.CUSTOM_ALBUMARTIST'), json_extract(metadata, '$.album.ALBUMARTIST')) END ASC, json_extract(metadata, '$.album.DATE') ASC, json_extract(metadata, '$.album.ALBUM') ASC"
+order_by = "CASE WHEN LOWER(COALESCE(${album.tags.CUSTOM_ALBUMARTIST}, ${album.ALBUMARTIST})) LIKE {the %} THEN SUBSTR(COALESCE(${album.tags.CUSTOM_ALBUMARTIST}, ${album.ALBUMARTIST}), 5) ELSE COALESCE(${album.tags.CUSTOM_ALBUMARTIST}, ${album.ALBUMARTIST}) END ASC, ${album.DATE} ASC, ${album.ALBUM} ASC"
 
 [sorters.az]
 label = "Alphabetical"
-order_by = "json_extract(metadata, '$.album.ALBUM') ASC"
+order_by = "${album.ALBUM} ASC"
 
 [sorters.year]
 label = "Year"
-order_by = "json_extract(metadata, '$.album.DATE') DESC"
+order_by = "${album.DATE} DESC"
 
 [sorters.duration]
 label = "Duration"
-order_by = "CAST(json_extract(metadata, '$.album.info.album_duration') AS INT) DESC"
+order_by = "CAST(${album.info.album_duration} AS INT) DESC"
 
 [sorters.chroma]
 label = "Chroma"
-order_by = "CAST(json_extract(metadata, '$.album.tags.COVER_CHROMA') AS FLOAT) DESC"
+order_by = "CAST(${album.tags.COVER_CHROMA} AS FLOAT) DESC"
 
 [sorters.entropy]
 label = "Entropy"
-order_by = "CAST(json_extract(metadata, '$.album.tags.COVER_ENTROPY') AS INT) DESC"
+order_by = "CAST(${album.tags.COVER_ENTROPY} AS INT) DESC"
 
 [sorters.date_added]
 label = "Date Added"
-order_by = "COALESCE(CAST(json_extract(metadata, '$.album.tags.UNIX_ADDED_YOUTUBE') AS INT), CAST(json_extract(metadata, '$.album.tags.UNIX_ADDED_APPLEMUSIC') AS INT), CAST(json_extract(metadata, '$.album.tags.UNIX_ADDED_FOOBAR') AS INT), CAST(json_extract(metadata, '$.album.info.unix_added') AS INT)) DESC"
+order_by = "COALESCE(CAST(${album.tags.UNIX_ADDED_YOUTUBE} AS INT), CAST(${album.tags.UNIX_ADDED_APPLEMUSIC} AS INT), CAST(${album.tags.UNIX_ADDED_FOOBAR} AS INT), CAST(${album.info.unix_added} AS INT)) DESC"
 
 [sorters.last_edited]
 label = "Last Edited"
-order_by = "COALESCE(json_extract(metadata, '$.album.info.metadata_toml_mtime'), 0) DESC"
+order_by = "COALESCE(${album.info.metadata_toml_mtime}, 0) DESC"
 
 # -- COLLECTIONS --
 
-[collections.library]
-label = "Entire Library"
-filter = "1=1"
+# [collections.library]
+# label = "Entire Library"
+# filter = "1=1"
 
-# My Year
+[collections.album_library]
+label = "Main Library"
+filter = "COALESCE(${album.tags.COLLECTION}, '') NOT LIKE %{Vapor Memory} AND ${album.GENRE} NOT LIKE %{Signalwave} AND ${album.GENRE} NOT LIKE %{Vaporwave}"
 
-[collections.my_year]
-label = "My Year"
-filter = "json_extract(metadata, '$.album.tags.COLLECTION') IS NOT NULL"
-strict = true
-groupers = ["my_year_grouper"]
-sorters = ["default", "date_added"]
+[collections.vapor_memory]
+label = "Vapor Memory"
+filter = "COALESCE(${album.tags.COLLECTION}, '') LIKE %{Vapor Memory} OR ${album.GENRE} LIKE %{Vaporwave}"
 
-[groupers.my_year_grouper]
-label = "Year"
-select = "json_extract(metadata, '$.album.tags.COLLECTION')"
-strict = true
+[collections.signalwave]
+label = "Signal Memory"
+filter = "COALESCE(${album.GENRE}, '') LIKE %{Signalwave}"
 
 # Apple Music Collection
 
 [collections.apple_music]
-label = "Apple Music Collection"
-filter = "json_extract(metadata, '$.album.tags.UNIX_ADDED_APPLEMUSIC') IS NOT NULL"
+label = "Apple Music"
+filter = "${album.tags.UNIX_ADDED_APPLEMUSIC} IS NOT NULL"
 strict = true
 groupers = ["year_added_applemusic", "genre", "decade"]
 sorters = ["unix_added_applemusic", "default", "az", "year"]
 
 [groupers.year_added_applemusic]
 label = "Year Added"
-select = "strftime('%Y', datetime(json_extract(metadata, '$.album.tags.UNIX_ADDED_APPLEMUSIC'), 'unixepoch'))"
+select = "strftime({%Y}, datetime(${album.tags.UNIX_ADDED_APPLEMUSIC}, {unixepoch}))"
 strict = true
 
 [sorters.unix_added_applemusic]
 label = "Date Added"
-order_by = "CAST(json_extract(metadata, '$.album.tags.UNIX_ADDED_APPLEMUSIC') AS INT) DESC"
+order_by = "CAST(${album.tags.UNIX_ADDED_APPLEMUSIC} AS INT) DESC"
 strict = true
 
 # Foobar2000 Collection
 
 [collections.foobar]
-label = "Foobar2000 Collection"
-filter = "json_extract(metadata, '$.album.tags.UNIX_ADDED_FOOBAR') IS NOT NULL"
+label = "Foobar2000"
+filter = "${album.tags.UNIX_ADDED_FOOBAR} IS NOT NULL"
 strict = true
 groupers = ["year_added_foobar"]
 sorters = ["unix_added_foobar"]
 
 [groupers.year_added_foobar]
 label = "Year Added"
-select = "strftime('%Y', datetime(json_extract(metadata, '$.album.tags.UNIX_ADDED_FOOBAR'), 'unixepoch'))"
+select = "strftime({%Y}, datetime(${album.tags.UNIX_ADDED_FOOBAR}, {unixepoch}))"
 strict = true
 
 [sorters.unix_added_foobar]
 label = "Date Added"
-order_by = "CAST(json_extract(metadata, '$.album.tags.UNIX_ADDED_FOOBAR') AS INT) DESC"
+order_by = "CAST(${album.tags.UNIX_ADDED_FOOBAR} AS INT) DESC"
+strict = true
+
+# My Year
+
+[collections.my_year]
+label = "My Year"
+filter = "${album.tags.MY_YEAR} IS NOT NULL"
+strict = true
+groupers = ["my_year_grouper"]
+sorters = ["default", "date_added"]
+
+[groupers.my_year_grouper]
+label = "Year"
+select = "${album.tags.MY_YEAR}"
 strict = true
 
 # -- SHELVES --
@@ -125,3 +137,4 @@ strict = true
 [shelves.ambient50]
 label = "Ambient 50"
 file = "/home/lewelove/nix-hosts/dotfiles/.config/vellum/shelves/Ambient50.txt"
+

@@ -34,9 +34,19 @@ if status is-interactive
   alias jc="journalctl -fu"
   alias jcu="journalctl --user -fu"
   alias sync="git-sync-bin"
+  alias c="wl-copy"
+
+  function lowmtime
+    find . -type f -printf '%T@ %Tb %Td %TY %p\n' | sort -n | head -1 | string replace -r '^(\d+)\.\d+' \'\$1\'
+  end
+
+  # vellum
+  # alias vellum="/home/lewelove/dev/vellum/rust/target/release/vellum"
 
   # album curation utils
-  alias discid="/home/lewelove/dev/album_curation/discid/.build/bin/discid"
+  # alias discid="/home/lewelove/dev/album_curation/discid/.build/bin/discid"
+  alias discid="/home/lewelove/dev/album_curation/rsdiscid/target/release/rsdiscid"
+  alias albumset="/home/lewelove/dev/album_curation/album_setup/.build/bin/album_setup"
   alias albumw="/home/lewelove/dev/album_curation/album_write/.build/bin/album_write"
   alias albumspl="/home/lewelove/dev/album_curation/album_split/.build/bin/album_split"
   alias mbid="/home/lewelove/dev/album_curation/mbid/.build/bin/mbid"

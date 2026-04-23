@@ -11,6 +11,7 @@
 
       xdg.userDirs = {
         enable = true;
+        setSessionVariables = true;
         createDirectories = true;
         download = "/run/media/${username}/1000xhome/downloads";
       };

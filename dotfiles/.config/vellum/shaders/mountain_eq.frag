@@ -114,12 +114,15 @@ float fbm(vec3 p) {
         a *= 0.5;
     }
     
-    v = v / 0.875;
+    // Normalize using the practical peak (0.55) instead of the 
+    // impossible theoretical peak (0.875). Clamp to prevent overshoot.
+    v = v / 0.55;
+    v = clamp(v, -1.0, 1.0);
+    
     v = v * 0.5 + 0.5;
     v = 0.5 - 0.5 * cos(3.14159265 * v);
-    // v = 0.5 - 0.5 * cos(3.14159265 * v);
     
-    return clamp(v, 0.0, 1.0);
+    return v;
 }
 
 void main() {

@@ -6,6 +6,17 @@ let
   icon = "vellum";
   domain = "vellum.localhost";
   port = 5173;
+
+  vellum-cmd = pkgs.writeShellScriptBin "vellum" ''
+    case "$1" in
+      ui)
+        cd "/home/${username}/dev/vellum/web-app" && exec ${pkgs.bun}/bin/bun run dev
+        ;;
+      *)
+        exec "/home/${username}/dev/vellum/rust/target/release/vellum" "$@"
+        ;;
+    esac
+  '';
 in
 {
   networking.hosts."127.0.0.1" = [ domain ];
@@ -16,6 +27,11 @@ in
       proxyWebsockets = true;
     };
   };
+
+  environment.systemPackages = [
+    pkgs.bun
+    vellum-cmd
+  ];
 
   home-manager.users.${username} = { config, ... }: {
     home.file.".config/vellum".source = config.lib.file.mkOutOfStoreSymlink "${identity.repoPath}/dotfiles/.config/vellum";
