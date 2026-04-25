@@ -50,4 +50,15 @@
 	<patterns>*</patterns>
 	<image-files/>
 </action>
+<action>
+	<icon></icon>
+	<name>Unzip File</name>
+	<submenu></submenu>
+	<unique-id>1777025366280687-1</unique-id>
+	<command>unzip %f</command>
+	<description></description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<other-files/>
+</action>
 </actions>

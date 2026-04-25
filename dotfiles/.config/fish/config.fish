@@ -49,6 +49,7 @@ if status is-interactive
   alias albumset="/home/lewelove/dev/album_curation/album_setup/.build/bin/album_setup"
   alias albumw="/home/lewelove/dev/album_curation/album_write/.build/bin/album_write"
   alias albumspl="/home/lewelove/dev/album_curation/album_split/.build/bin/album_split"
+  alias albumresample="/home/lewelove/dev/album_curation/album_to_44100hz/.build/bin/album_to_44100hz"
   alias mbid="/home/lewelove/dev/album_curation/mbid/.build/bin/mbid"
   alias cover-resize="/home/lewelove/dev/album_curation/cover_resize/.build/bin/cover_resize"
 

@@ -32,21 +32,18 @@ date_added = "%B %d %Y"
 manifests = [ "mbid.toml" ]
 file_subset_match = [
   "ALBUM", "ALBUMARTIST", "DATE", "GENRE",
-  "COMMENT", "TITLE", "ARTIST", "TRACKNUMBER",
-  "REPLAYGAIN_TRACK_GAIN",
-  "REPLAYGAIN_ALBUM_GAIN"
+  "COMMENT", "TITLE", "ARTIST", "TRACKNUMBER"
 ]
 
 
 [compiler.cover_palette]
 # type = "kmeansnh"
-sort = "gradient"
-# threshold = 0.00
+# sort = "gradient"
 # args = "k=18,n=6,h=5"
 type = "kmeansnv"
 # sort = "original"
-threshold = 0.00
-args = "k=24,n=8,d=0.1"
+# threshold = 0.02
+args = "k=24,n=6,d=0.2"
 
 
 [manifest.keys]
