@@ -54,6 +54,7 @@
     starship
     hyperfine
     lazygit
+    git-filter-repo
     taplo
 
     # Virtualization
@@ -70,6 +71,7 @@
     imagemagick
     puddletag
     roomeqwizard
+    ffmpeg
 
     # Web
     ayugram-desktop

@@ -5,7 +5,7 @@ Discogs=https://discogs.com
 Discogs / ʄʊȶʊʀɛ ǟʟɮʊʍֆ ʄօʀ=https://www.discogs.com/lists/%CA%84%CA%8A%C8%B6%CA%8A%CA%80%C9%9B-%C7%9F%CA%9F%C9%AE%CA%8A%CA%8D%D6%86-%CA%84%D6%85%CA%80/1613841
 CUETOOLS=http://db.cuetools.net/?tocid=
 Openrouter=https://openrouter.ai
-Openrouter / Nano Banana Pro=https://openrouter.ai/google/gemini-3-pro-image-preview
-Openrouter / Claude Opus 4.6=https://openrouter.ai/anthropic/claude-opus-4.6
+Openrouter / Nano Banana Pro=https://openrouter.ai/chat?models=google/gemini-3-pro-image-preview
+Openrouter / Claude Opus 4.6=https://openrouter.ai/chat?models=anthropic/claude-opus-4.6
 Nix Search=https://search.nixos.org/packages
 GitHub / MelkiyRoman=https://github.com/MelkiyRoman
