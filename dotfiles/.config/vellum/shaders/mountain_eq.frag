@@ -116,7 +116,7 @@ float fbm(vec3 p) {
     
     // Normalize using the practical peak (0.55) instead of the 
     // impossible theoretical peak (0.875). Clamp to prevent overshoot.
-    v = v / 0.55;
+    v = v / 0.75;
     v = clamp(v, -1.0, 1.0);
     
     v = v * 0.5 + 0.5;
@@ -154,7 +154,7 @@ void main() {
         finalOklab += iColorsOklab[i] * max(0.0, weightMask);
     }
     
-    finalOklab.x = 0.1 + (finalOklab.x * 0.84);
+    // finalOklab.x = 0.08 + (finalOklab.x * 0.84);
     
     vec3 finalColor = oklab_to_srgb(finalOklab);
 

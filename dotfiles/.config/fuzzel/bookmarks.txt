@@ -1,6 +1,8 @@
 Google AI Studio=https://aistudio.google.com/prompts/new_chat
 GitHub / lewelove=https://github.com/lewelove
 RuTracker=https://rutracker.org/
+Anna's Archive=https://annas-archive.gd/search
+Goodreads / Wantlist=https://www.goodreads.com/review/list/200651903-lewe-love?utf8=%E2%9C%93&ref=nav_mybooks&shelf=to-read&title=lewe-love&per_page=infinite
 Discogs=https://discogs.com
 Discogs / ʄʊȶʊʀɛ ǟʟɮʊʍֆ ʄօʀ=https://www.discogs.com/lists/%CA%84%CA%8A%C8%B6%CA%8A%CA%80%C9%9B-%C7%9F%CA%9F%C9%AE%CA%8A%CA%8D%D6%86-%CA%84%D6%85%CA%80/1613841
 CUETOOLS=http://db.cuetools.net/?tocid=

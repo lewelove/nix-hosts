@@ -142,3 +142,30 @@ end, { desc = "Diff Merge Tool (Internal)" })
 vim.keymap.set("n", "<leader>rl", function()
   vim.cmd("source $MYVIMRC")
 end, { desc = "Reload Config" })
+
+-- Smart Yank in Quotes
+vim.keymap.set("n", "<leader>'", function()
+  local line = vim.api.nvim_get_current_line()
+  local col = vim.api.nvim_win_get_cursor(0)[2] + 1
+  local sq_odd, dq_odd = false, false
+  for i = 1, col do
+    local c = line:sub(i, i)
+    if c == "'" then sq_odd = not sq_odd end
+    if c == '"' then dq_odd = not dq_odd end
+  end
+  if dq_odd then
+    vim.cmd('normal! yi"')
+  elseif sq_odd then
+    vim.cmd("normal! yi'")
+  else
+    local next_sq = line:find("'", col)
+    local next_dq = line:find('"', col)
+    if next_sq and next_dq then
+      if next_sq < next_dq then vim.cmd("normal! yi'") else vim.cmd('normal! yi"') end
+    elseif next_sq then
+      vim.cmd("normal! yi'")
+    else
+      vim.cmd('normal! yi"')
+    end
+  end
+end, { desc = "Smart yank inside quotes" })

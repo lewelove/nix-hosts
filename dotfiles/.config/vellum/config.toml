@@ -12,7 +12,7 @@ thumbnail_size = 190
 order = "original"
 path = "shaders/mountain_eq.frag"
 speed = 0.5
-zoom = 0.4
+zoom = 0.2
 blur = 0.6
 grain = 0.2
 
@@ -43,7 +43,7 @@ file_subset_match = [
 type = "kmeansnv"
 # sort = "original"
 # threshold = 0.02
-args = "k=24,n=12,d=0.0"
+args = "k=12,n=12,d=0.0"
 
 
 [manifest.keys]
