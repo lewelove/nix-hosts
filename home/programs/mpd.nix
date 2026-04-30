@@ -35,6 +35,7 @@ in
         audio_output {
           type            "pipewire"
           name            "PipeWire Sound Server"
+          always_on       "yes"
         }
       '';
     };
