@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, stable, ... }:
 
 {
   environment.systemPackages = with pkgs;[
@@ -61,7 +61,7 @@
     distrobox
 
     # Media
-    # mpv
+    stable.mpv
     imv
     mpc
     rmpc
