@@ -4,6 +4,10 @@ library_export = "~/dev/vellum-test-library/metadata_output"
 environment = "~/.secrets/vellum.env"
 
 
+[nix]
+store = "/run/media/lewelove/1000xhome/backup-everything/FB2K/.vellum-store/"
+flake = "~/.config/vellum/nix"
+
 [theme]
 thumbnail_size = 190
 
