@@ -33,14 +33,14 @@ let
     sponsorblock = fetchExtension {
       id = "mnjggcdmjocbbbhaepdhchncahnbgone";
       version = "6.1.2";
-      hash = "sha256-Nnud/gWl8DVIUa4g4oDYklDZclQRklHl5Uxvh/aEPYQ=";
+      hash = "sha256-nE5FE3Eo1jG8sT1KYjVl8JRbmAiyhN8IZObHsAIb0wY=";
     };
 
-    untrap = fetchExtension {
-      id = "enboaomnljigfhfjfoalacienlhjlfil";
-      version = "9.3.7";
-      hash = "sha256-ePj7aR8iOvpDYs1QpaY35UEuLLhIpRjHhSDZuJkstKc=";
-    };
+    # untrap = fetchExtension {
+    #   id = "enboaomnljigfhfjfoalacienlhjlfil";
+    #   version = "9.3.7";
+    #   hash = "sha256-Z+ZJ9wh/9PFhWTfWf1jgT4A0pnQAlnPFEFSsMnERU48=";
+    # };
   };
 
   windowUserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36";
@@ -50,7 +50,7 @@ let
   commonArgs = [
     "--test-type"
     "--unsafely-treat-insecure-origin-as-secure=${trustedOrigins}"
-    "--load-extension=${extensions.ublock-origin.drv},${extensions.untrap.drv},${extensions.sponsorblock.drv}"
+    "--load-extension=${extensions.ublock-origin.drv},${extensions.sponsorblock.drv}"
     "--extension-mime-request-handling=always-prompt-for-install"
     "--no-default-browser-check"
     "--restore-last-session"

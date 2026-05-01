@@ -3,8 +3,8 @@
 {
 
   environment.systemPackages = with pkgs; [
-    lutris
-    luanti
+    # lutris
+    # luanti
   ];
 
   programs.steam = {

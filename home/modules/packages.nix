@@ -61,7 +61,7 @@
     distrobox
 
     # Media
-    mpv
+    # mpv
     imv
     mpc
     rmpc
